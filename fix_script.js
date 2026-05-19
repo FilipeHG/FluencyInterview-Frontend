@@ -26,7 +26,7 @@ replaceFile('generate_docs_dynamic.js', (content) => {
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="Docs-index.html" class="text-decoration-none">Documentation Hub</a></li>
+                <li class="breadcrumb-item"><a href="docs-index.html" class="text-decoration-none">Documentation Hub</a></li>
                 <li class="breadcrumb-item active fw-bold" aria-current="page">\${title}</li>
             </ol>
         </nav>
