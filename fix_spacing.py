@@ -4,7 +4,7 @@ import re
 dir_path = r"c:\Users\filip\source\repos\FILIPE\English-Interview-Preparation"
 
 standard_buttons = """<button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white; padding: 6px 12px;" title="Print PDF"><i class="fas fa-print"></i></button>
-                <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white; padding: 6px 12px;" title="Home"><i class="bi bi-house-door-fill"></i></a>
+                <a href="index.html" class="btn shadow" style="background-color: #0e3167; color: white; padding: 6px 12px;" title="Home"><i class="bi bi-house-door-fill"></i></a>
                 <div class="dropdown">
                     <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;" title="Menu"><i class="bi bi-list fs-5"></i></button>
                     """

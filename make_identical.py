@@ -3,8 +3,8 @@ import re
 
 dir_path = r"c:\Users\filip\source\repos\FILIPE\English-Interview-Preparation"
 
-# Step 1: Read the exact block from Index.html
-index_path = os.path.join(dir_path, "Index.html")
+# Step 1: Read the exact block from index.html
+index_path = os.path.join(dir_path, "index.html")
 with open(index_path, "r", encoding="utf-8") as f:
     index_content = f.read()
 
@@ -15,11 +15,11 @@ pattern = re.compile(
 
 match = pattern.search(index_content)
 if not match:
-    print("Could not find button block in Index.html!")
+    print("Could not find button block in index.html!")
     exit(1)
 
 exact_block = match.group(0)
-print("Using exact block from Index.html:\n" + exact_block)
+print("Using exact block from index.html:\n" + exact_block)
 
 font_awesome_link = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">'
 

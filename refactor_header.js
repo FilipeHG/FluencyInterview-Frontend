@@ -7,8 +7,8 @@ function replaceFile(path, replacer) {
     console.log(`Updated ${path}`);
 }
 
-// 1. Index.html
-replaceFile('Index.html', (content) => {
+// 1. index.html
+replaceFile('index.html', (content) => {
     // 1a. Change header from sticky-top to wrapped
     let html = content.replace(
         /<header class="sticky-top shadow-sm no-print"\s*style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; z-index: 1000;">/g,
@@ -34,8 +34,8 @@ replaceFile('Index.html', (content) => {
     return html;
 });
 
-// 2. Docs-Index.html
-replaceFile('Docs-Index.html', (content) => {
+// 2. Docs-index.html
+replaceFile('Docs-index.html', (content) => {
     let html = content.replace(
         /<header class="sticky-top shadow-sm no-print"\s*style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; z-index: 1000;">/g,
         `<div class="sticky-top no-print" style="z-index: 1000;">
@@ -60,7 +60,7 @@ replaceFile('Docs-Index.html', (content) => {
 
 // 3. generate_site.js
 replaceFile('generate_site.js', (content) => {
-    // The headMatch split remains the same, because Index.html still has <div class="header-banner ...
+    // The headMatch split remains the same, because index.html still has <div class="header-banner ...
     // Let's modify the generated banner for pages:
     let html = content.replace(
         /<div class="header-banner no-print" style="background-color: #2c3e50; padding: 30px 0; border-bottom: none;">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/m,
@@ -69,8 +69,8 @@ replaceFile('generate_site.js', (content) => {
             <h1 class="fs-4 text-white fw-bold mb-0 me-4"><i class="\${iconClass}"></i> \${title}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
                     <li class="breadcrumb-item active text-white fw-bold small" aria-current="page">\${title}</li>
                 </ol>
             </nav>
@@ -105,8 +105,8 @@ replaceFile('generate_site_dynamic.js', (content) => {
             <h1 class="fs-4 text-white fw-bold mb-0 me-4"><i class="\${iconClass}"></i> \${title}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
                     <li class="breadcrumb-item active text-white fw-bold small" aria-current="page">\${title}</li>
                 </ol>
             </nav>
@@ -126,8 +126,8 @@ replaceFile('generate_docs_dynamic.js', (content) => {
             <h1 class="fs-4 text-white fw-bold mb-0 me-4"><i class="\${iconClass}"></i> \${title}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li class="breadcrumb-item"><a href="Docs-Index.html" class="text-white-50 text-decoration-none small">Documentation Hub</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
+                    <li class="breadcrumb-item"><a href="Docs-index.html" class="text-white-50 text-decoration-none small">Documentation Hub</a></li>
                     <li class="breadcrumb-item active text-white fw-bold small" aria-current="page">\${title}</li>
                 </ol>
             </nav>

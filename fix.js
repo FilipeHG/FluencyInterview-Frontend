@@ -59,7 +59,7 @@ hubHtml += \`
 \`;
 
 hubHtml += scriptsContent;
-fs.writeFileSync('Index.html', hubHtml, 'utf8');
+fs.writeFileSync('index.html', hubHtml, 'utf8');
 console.log('Site generated successfully!');
 `;
 

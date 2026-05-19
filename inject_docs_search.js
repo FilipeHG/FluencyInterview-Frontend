@@ -125,8 +125,8 @@ dynJs = dynJs.replace(
 
 // Inject Hub Update Logic at the end of the file
 const hubUpdateLogic = `
-// --------------------- GENERATE DOCS HUB (Docs-Index.html) ---------------------
-let docsHub = fs.readFileSync('Docs-Index.html', 'utf8');
+// --------------------- GENERATE DOCS HUB (Docs-index.html) ---------------------
+let docsHub = fs.readFileSync('Docs-index.html', 'utf8');
 
 const docsSearchIndex = {};
 pages.forEach(p => {
@@ -195,7 +195,7 @@ const docsScriptStr = \`
 \`;
 
 docsHub = docsHub.replace('</body>', docsScriptStr + '\\n</body>');
-fs.writeFileSync('Docs-Index.html', docsHub);
+fs.writeFileSync('Docs-index.html', docsHub);
 console.log('Docs Hub updated with search functionality!');
 `;
 

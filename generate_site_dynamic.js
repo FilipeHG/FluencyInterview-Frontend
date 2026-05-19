@@ -6,7 +6,7 @@ if (!fs.existsSync('data')) {
     fs.mkdirSync('data');
 }
 
-const baseHtml = fs.readFileSync('Index.html', 'utf8');
+const baseHtml = fs.readFileSync('index.html', 'utf8');
 const headMatch = baseHtml.split('<div class="header-banner shadow-sm"');
 const headContent = headMatch[0];
 
@@ -39,8 +39,8 @@ function generatePage(filename, title, iconClass, sections) {
     <div class="container my-4">
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Index.html" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="Index.html" class="text-decoration-none">Interview Training</a></li>
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Interview Training</a></li>
                 <li class="breadcrumb-item active fw-bold" aria-current="page">${title}</li>
             </ol>
         </nav>

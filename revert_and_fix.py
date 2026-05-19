@@ -13,7 +13,7 @@ exact_block = """<button onclick="window.print()" class="btn shadow" style="back
                         title="Print PDF">
                         <i class="bi bi-printer"></i>
                     </button>
-                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                    <a href="index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
                         title="Home">
                         <i class="bi bi-house-door-fill"></i>
                     </a>

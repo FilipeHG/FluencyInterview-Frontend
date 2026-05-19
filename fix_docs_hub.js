@@ -69,17 +69,17 @@ const docsScriptStr = \`
 \`;
 
 docsHub = docsHub + '\\n' + docsScriptStr + '\\n</body>\\n</html>';
-fs.writeFileSync('Docs-Index.html', docsHub);
+fs.writeFileSync('Docs-index.html', docsHub);
 console.log('Docs Hub updated with search functionality!');
 `;
 
 dynJs += newLogic;
 fs.writeFileSync('generate_docs_dynamic.js', dynJs);
 
-// Fix the current Docs-Index.html file
-let docsIndexHtml = fs.readFileSync('Docs-Index.html', 'utf8');
+// Fix the current Docs-index.html file
+let docsIndexHtml = fs.readFileSync('Docs-index.html', 'utf8');
 docsIndexHtml = docsIndexHtml.replace(/undefined\s*$/, '');
 if (!docsIndexHtml.includes('</body>')) {
     docsIndexHtml += '\n</body>\n</html>';
 }
-fs.writeFileSync('Docs-Index.html', docsIndexHtml);
+fs.writeFileSync('Docs-index.html', docsIndexHtml);

@@ -6,7 +6,7 @@ dir_path = r"c:\Users\filip\source\repos\FILIPE\English-Interview-Preparation"
 standard_buttons = """<button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;" title="Print PDF">
                     <i class="fas fa-print"></i>
                 </button>
-                <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;" title="Home">
+                <a href="index.html" class="btn shadow" style="background-color: #0e3167; color: white;" title="Home">
                     <i class="bi bi-house-door-fill"></i>
                 </a>
                 <div class="dropdown">

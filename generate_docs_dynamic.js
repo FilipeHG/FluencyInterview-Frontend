@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Extract head components from Index.html
-const baseHtml = fs.readFileSync('Index.html', 'utf8');
+// Extract head components from index.html
+const baseHtml = fs.readFileSync('index.html', 'utf8');
 const headMatch = baseHtml.split('<div class="header-banner shadow-sm"');
 let headContent = headMatch[0];
 
@@ -38,8 +38,8 @@ function generateDocPage(filename, title, iconClass, sections) {
     <div class="container my-4">
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Index.html" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="Docs-Index.html" class="text-decoration-none">Documentation Hub</a></li>
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="Docs-index.html" class="text-decoration-none">Documentation Hub</a></li>
                 <li class="breadcrumb-item active fw-bold" aria-current="page">${title}</li>
             </ol>
         </nav>
@@ -641,8 +641,8 @@ pages.forEach(p => generateDocPage(p.filename, p.title, p.iconClass, p.sections)
 console.log('Documentation site generated successfully!');
 
 
-// --------------------- GENERATE DOCS HUB (Docs-Index.html) ---------------------
-let docsHub = fs.readFileSync('Docs-Index.html', 'utf8');
+// --------------------- GENERATE DOCS HUB (Docs-index.html) ---------------------
+let docsHub = fs.readFileSync('Docs-index.html', 'utf8');
 
 const docsSearchIndex = {};
 pages.forEach(p => {
@@ -720,5 +720,5 @@ const docsScriptStr = `
 `;
 
 docsHub = docsHub + '\n' + docsScriptStr + '\n</body>\n</html>';
-fs.writeFileSync('Docs-Index.html', docsHub);
+fs.writeFileSync('Docs-index.html', docsHub);
 console.log('Docs Hub updated with search functionality!');

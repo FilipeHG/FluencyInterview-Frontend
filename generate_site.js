@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const baseHtml = fs.readFileSync('Index.html', 'utf8');
+const baseHtml = fs.readFileSync('index.html', 'utf8');
 const headMatch = baseHtml.split('<div class="header-banner shadow-sm"');
 const headContent = headMatch[0];
 
@@ -18,8 +18,8 @@ function generatePage(filename, title, iconClass, sections) {
             </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li class="breadcrumb-item"><a href="Index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Interview Training</a></li>
                     <li class="breadcrumb-item active text-white fw-bold small" aria-current="page">${title}</li>
                 </ol>
             </nav>
@@ -464,7 +464,7 @@ const page7 = {
 const pages = [page1, page2, page3, page4, page5, page6, page7];
 
 
-// --------------------- GENERATE HUB (Index.html) ---------------------
+// --------------------- GENERATE HUB (index.html) ---------------------
 
 let hubHtml = headContent;
 hubHtml += `
@@ -567,5 +567,5 @@ hubHtml += `
 `;
 
 hubHtml += scriptsContent;
-fs.writeFileSync('Index.html', hubHtml, 'utf8');
+fs.writeFileSync('index.html', hubHtml, 'utf8');
 console.log('Site generated successfully!');
