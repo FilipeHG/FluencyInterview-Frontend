@@ -1,0 +1,83 @@
+[
+    {
+        "title": ".NET Ecosystem",
+        "icon": "bi bi-microsoft",
+        "cards": [
+            {
+                "topic": "DI vs DIP",
+                "q_en": "What is the difference between Dependency Inversion (DIP) and Dependency Injection (DI)?",
+                "q_pt": "Qual a diferença entre Inversão de Dependência (DIP) e Injeção de Dependência (DI)?",
+                "a_en": "Dependency Inversion (DIP) is a design principle (the 'D' in SOLID). It states that high-level modules should not depend on low-level modules, but both should depend on abstractions. Dependency Injection (DI) is a design pattern. It is the practical implementation of DIP, where a class receives its dependencies from the outside (usually via the constructor) instead of instantiating them directly with the 'new' keyword.",
+                "a_pt": "A Inversão de Dependência (DIP) é um princípio (o 'D' do SOLID). Diz que módulos de alto nível não devem depender de baixo nível, mas sim de abstrações. Já a Injeção de Dependência (DI) é um padrão de projeto. É a implementação prática do DIP, onde a classe recebe as dependências de fora (via construtor) em vez de instanciá-las com o comando 'new'."
+            },
+            {
+                "topic": "DI Lifetimes (Singleton, Scoped, Transient)",
+                "q_en": "Explain AddSingleton, AddScoped, and AddTransient in ASP.NET Core.",
+                "q_pt": "Explique AddSingleton, AddScoped e AddTransient no ASP.NET Core.",
+                "a_en": "AddSingleton creates a single instance for the entire application lifetime, shared across all requests. AddScoped creates one instance per HTTP request; everyone asking for it during that specific request gets the same instance (ideal for DbContext). AddTransient creates a brand new instance every single time it is requested, ideal for lightweight, stateless services.",
+                "a_pt": "AddSingleton cria uma única instância para toda a vida útil da aplicação, compartilhada entre todas as requisições. AddScoped cria uma instância por requisição HTTP; todos que pedirem na mesma requisição recebem a mesma instância (ideal para DbContext). AddTransient cria uma nova instância toda vez que é solicitada, ideal para serviços leves e sem estado."
+            },
+            {
+                "topic": "Garbage Collector & IDisposable",
+                "q_en": "Explain how the .NET Garbage Collector works and the role of IDisposable.",
+                "q_pt": "Explique o funcionamento do Garbage Collector no .NET e o papel do IDisposable.",
+                "a_en": "The Garbage Collector (GC) automatically manages memory for managed objects. It marks objects in use, sweeps unreferenced ones, and compacts memory to prevent fragmentation. However, the GC does not know how to release unmanaged resources like database connections or file handles. That is where IDisposable comes in. The Dispose() method must be called to explicitly free these unmanaged resources, typically using a 'using' statement in C#.",
+                "a_pt": "O Garbage Collector (GC) gerencia a memória automaticamente para objetos gerenciados. Ele marca objetos em uso, limpa os sem referência e compacta a memória. Porém, o GC não sabe como liberar recursos não gerenciados, como conexões de banco ou arquivos. É aí que entra a interface IDisposable. O método Dispose() libera explicitamente esses recursos, sendo frequentemente utilizado junto com o bloco 'using'."
+            },
+            {
+                "topic": "AOT (Ahead-of-Time)",
+                "q_en": "What is AOT in .NET, and what are its advantages and limitations?",
+                "q_pt": "O que é AOT (Ahead-of-Time Compilation) no .NET e quais suas vantagens e limitações?",
+                "a_en": "AOT compiles IL code directly into native binaries before execution, bypassing the JIT compiler. The massive advantages are near-instant cold starts and significantly lower memory footprints, making it perfect for AWS Lambda or containerized microservices. The limitations are that it restricts dynamic reflection and dynamic loading of assemblies, meaning some libraries that rely heavily on runtime generation might not work.",
+                "a_pt": "O AOT compila o código IL direto para binário nativo antes da execução, removendo o JIT. A grande vantagem é zerar o tempo de cold start e reduzir o uso de memória, ideal para AWS Lambda e microserviços. A limitação é que ele restringe o uso de reflexão dinâmica e carregamento de assemblies em runtime, fazendo com que algumas bibliotecas não funcionem adequadamente."
+            },
+            {
+                "topic": "Polly & MediatR Resilience",
+                "q_en": "How do you build resilient APIs in ASP.NET Core using MediatR and Polly?",
+                "q_pt": "Como você constrói APIs resilientes em ASP.NET Core usando MediatR e Polly?",
+                "a_en": "I structure the API around command/query handlers with MediatR, so each request is a single responsibility and easy to test. For external calls and database connections, I wrap retry, circuit breaker and timeout policies with Polly at the HTTP or service layer, keeping handlers clean. This allows the API to tolerate transient failures, log failures consistently, and quickly fall back or fail fast when downstream systems are unhealthy. In production, that combination keeps business logic decoupled while enabling robust retry strategies.",
+                "a_pt": "Estruturo a API em torno de handlers de comando/query com MediatR, assim cada requisição tem responsabilidade única e fica fácil de testar. Para chamadas externas e conexões de banco, aplico políticas de retry, circuit breaker e timeout com Polly na camada de HTTP ou de serviço, mantendo os handlers limpos. Isso permite que a API tolere falhas transitórias, registre erros de forma consistente e faça fallback rápido ou fail fast quando sistemas downstream estão instáveis. Em produção, essa combinação mantém a lógica de negócio desacoplada e ainda permite estratégias de resiliência sólidas."
+            },
+            {
+                "topic": "Minimal APIs vs Controllers",
+                "q_en": "When would you choose Minimal APIs instead of controllers in ASP.NET Core?",
+                "q_pt": "Quando você escolheria Minimal APIs em vez de controllers no ASP.NET Core?",
+                "a_en": "I choose Minimal APIs for small public endpoints, prototypes, or microservices where startup time and simplicity matter. They are ideal when the API surface is small and the behavior is straightforward, because they reduce boilerplate and make the request pipeline explicit. For larger bounded contexts, complex authorization, or heavy validation, I prefer controllers and dedicated action methods because they scale better with filters, model binding and versioning. The decision should be guided by clarity: keep small services lean, but use controllers when structure and reuse become important.",
+                "a_pt": "Escolho Minimal APIs para endpoints pequenos, protótipos ou microsserviços onde tempo de startup e simplicidade importam. Eles são ideais quando a superfície da API é pequena e o comportamento é direto, pois reduzem boilerplate e deixam o pipeline explícito. Para contextos maiores, autorização complexa ou validação pesada, prefiro controllers e métodos de ação dedicados, porque escalam melhor com filtros, model binding e versionamento. A decisão deve ser guiada pela clareza: mantenha serviços pequenos leves, mas use controllers quando estrutura e reutilização forem importantes."
+            }
+        ]
+    },
+    {
+        "title": "Asynchronous Programming",
+        "icon": "bi bi-lightning",
+        "cards": [
+            {
+                "topic": "Synchronous vs Async/Await",
+                "q_en": "What is the difference between synchronous code and using async/await?",
+                "q_pt": "Qual a diferença entre código síncrono e o uso de async/await?",
+                "a_en": "Synchronous code executes instructions sequentially, and any I/O operation (like a database query) blocks the thread until it finishes, reducing the server's capacity to handle other requests. Async/Await releases the thread to the Thread Pool while the I/O operation is in progress, drastically improving scalability and responsiveness. It is crucial to remember that async does not mean multithreading; it simply means the thread is not blocked waiting for external responses.",
+                "a_pt": "Código síncrono executa sequencialmente, e operações I/O bloqueiam a thread, reduzindo a capacidade do servidor de atender novas requisições. Async/Await libera a thread de volta para o Thread Pool enquanto a operação I/O acontece, melhorando muito a escalabilidade. É crucial lembrar que async não significa multithreading; significa apenas que a thread não fica travada aguardando uma resposta externa."
+            },
+            {
+                "topic": "EF Core Parallel Execution",
+                "q_en": "Why doesn't EF Core support parallel operations on the same DbContext?",
+                "q_pt": "Por que o EF Core não suporta operações paralelas no mesmo DbContext?",
+                "a_en": "Because the DbContext is not thread-safe. If you try to run multiple async queries in parallel (using Task.WhenAll) on the exact same DbContext instance, you will encounter state corruption and concurrency exceptions. To run true parallel database operations, you must inject or instantiate separate DbContext instances for each parallel task.",
+                "a_pt": "Porque o DbContext não é thread-safe. Se você tentar rodar múltiplas consultas assíncronas em paralelo na mesma instância, ocorrerão corrupções de estado interno e exceções de concorrência. Para rodar operações paralelas de verdade no banco, você precisa criar instâncias separadas do DbContext para cada tarefa."
+            }
+        ]
+    },
+    {
+        "title": "API Design & Communication",
+        "icon": "bi bi-share",
+        "cards": [
+            {
+                "topic": "gRPC vs REST: When to Use Each",
+                "q_en": "What is gRPC, when do you use it, and what are the key differences with REST?",
+                "q_pt": "O que é gRPC, quando usar e qual a diferença para REST?",
+                "a_en": "gRPC (Google Remote Procedure Call) is a high-performance, open-source framework created by Google for communication between distributed applications, widely used in microservices architectures. It is based on RPC, HTTP/2, and Protocol Buffers. Following the RPC model, it allows one application to call methods of another service as if they were local functions, abstracting much of the network communication complexity. It excels in internal microservice communication because it offers low latency, smaller payloads, strongly-typed contracts, and native streaming support. I typically choose gRPC for internal service-to-service communication, especially in high-volume, low-latency distributed systems. REST remains the best choice for public APIs and external integrations due to its simplicity, browser compatibility, and ease of consumption. In modern architectures, using REST externally and gRPC internally is very common to achieve the best balance between interoperability and performance. gRPC uses HTTP/2 as the transport protocol, Protocol Buffers (Protobuf) for binary data serialization, and strongly-typed contracts defined in .proto files. This combination makes communication much more efficient compared to traditional REST + JSON. Key characteristics: (1) High performance and low latency, (2) HTTP/2 usage, (3) Strong contracts with .proto, (4) Native streaming support.",
+                "a_pt": "O gRPC (Google Remote Procedure Call) é um framework open source de alta performance criado pelo Google para comunicação entre aplicações distribuídas, muito utilizado em arquiteturas de microsserviços. É baseado em RPC, HTTP/2 e Protocol Buffers. Como segue o modelo de RPC (Remote Procedure Call), permite que uma aplicação chame métodos de outro serviço como se fossem funções locais, abstraindo grande parte da complexidade de comunicação em rede. É muito utilizado em arquiteturas de microsserviços porque oferece baixa latência, payloads menores, contratos fortemente tipados e suporte nativo a streaming. Eu normalmente escolho gRPC para comunicação interna entre serviços, principalmente em sistemas distribuídos de alto volume e baixa latência. Já o REST continua sendo a melhor escolha para APIs públicas e integrações externas, pela simplicidade, compatibilidade com navegadores e facilidade de consumo. Em arquiteturas modernas, é muito comum usar REST externamente e gRPC internamente para obter o melhor equilíbrio entre interoperabilidade e performance. O gRPC utiliza HTTP/2 como protocolo de transporte, Protocol Buffers (Protobuf) para serialização binária dos dados, e contratos fortemente tipados definidos em arquivos .proto. Essa combinação torna a comunicação muito mais eficiente em comparação ao modelo tradicional REST + JSON. Principais características: (1) Alta performance e baixa latência, (2) Uso do HTTP/2, (3) Contrato forte com .proto, (4) Suporte nativo a streaming."
+            }
+        ]
+    }
+]

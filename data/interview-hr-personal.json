@@ -1,0 +1,77 @@
+[
+    {
+        "title": "Personal Background",
+        "icon": "fas fa-user",
+        "cards": [
+            {
+                "topic": "About Yourself",
+                "q_en": "Tell me a bit about yourself. Where do you live today and how’s your life outside work?",
+                "q_pt": "Me fale um pouco sobre você. Onde você mora hoje e como é sua vida fora do trabalho?",
+                "a_en": "I am 37 years old, married, and have a 10-year-old daughter. I live in Foz do Iguaçu, Paraná, about 30 minutes from the falls. Here at home we have three cats and a little dog. I love spending my free time with my family and friends, having barbecues, taking trips to Paraguay and doing some shopping, playing the violin, and practicing sports since I really enjoy playing soccer and weightlifting.",
+                "a_pt": "Eu tenho 37 anos, sou casado e tenho uma filha de 10 anos. Moro em Foz do Iguaçu no Paraná, a cerca de 30 minutos das cataratas. Aqui em casa temos três gatas e uma cachorrinha. Adoro passar meus tempos livres com minha família e amigos, fazer churrasco, ir passear no Paraguay e fazer umas compras, tocar violino, e praticar esportes pois gosto bastante de jogar futebol e de musculação."
+            },
+            {
+                "topic": "Change vs Stability",
+                "q_en": "Would you consider yourself someone who likes change or prefers stability?",
+                "q_pt": "Você se considera uma pessoa que gosta de mudanças ou prefere estabilidade?",
+                "a_en": "I like stability, but I’m also open to change when it makes sense for my professional and personal growth. Moving from São Paulo to Foz do Iguaçu was an example of that. Right now, I’m looking for an international challenge to broaden my horizons.",
+                "a_pt": "Eu gosto de estabilidade, mas também sou aberto a mudanças quando elas fazem sentido para meu crescimento profissional e pessoal. Minha mudança de SP para Foz do Iguaçu foi um exemplo disso. Agora estou buscando um desafio internacional."
+            },
+            {
+                "topic": "Future Goals",
+                "q_en": "What’s your biggest goal for the next few years?",
+                "q_pt": "Qual seu maior objetivo para os próximos anos?",
+                "a_en": "Professionally, my goal is to land an international job, work abroad, and join global teams. I want to grow both technically, especially in Software Architecture and Engineering, and personally, learning from other cultures.",
+                "a_pt": "Profissionalmente, meu objetivo é conquistar uma vaga internacional, trabalhar fora do Brasil e participar de times globais. Quero evoluir na parte técnica, principalmente em Arquitetura, e também pessoalmente."
+            }
+        ]
+    },
+    {
+        "title": "Career & Soft Skills",
+        "icon": "fas fa-briefcase",
+        "cards": [
+            {
+                "topic": "Decision Making",
+                "q_en": "How do you make technical decisions in a team?",
+                "q_pt": "Como você toma decisões técnicas no time?",
+                "a_en": "I avoid deciding alone. I usually bring context, present options with trade-offs, and involve the team. But when needed, I make the call and move forward.",
+                "a_pt": "Evito decidir sozinho. Normalmente trago contexto, apresento opções com trade-offs e envolvo o time. Mas quando precisa, eu decido e sigo."
+            },
+            {
+                "topic": "Quality vs Delivery",
+                "q_en": "Do you prioritize quality or delivery?",
+                "q_pt": "Você prioriza qualidade ou entrega?",
+                "a_en": "I prioritize sustainable delivery. Not perfect code that never ships, nor messy code that breaks later. Balance is key.",
+                "a_pt": "Eu priorizo entrega sustentável. Nem código perfeito que nunca entrega, nem código ruim que vira problema. Equilíbrio é tudo."
+            },
+            {
+                "topic": "Software Engineer Identity",
+                "q_en": "You define yourself as a Full Stack developer but also consider yourself a software engineer. Can you tell me why?",
+                "q_pt": "Você se define como desenvolvedor Full Stack, mas também se considera engenheiro de software. Por quê?",
+                "a_en": "Yes! Although my current title is Full Stack developer, throughout my career I’ve worked as an analyst, backend developer, frontend developer, team leader, and even as an architect. So, I have a broad view of the software lifecycle, architecture, and best practices.",
+                "a_pt": "Sim! Apesar do meu cargo ser Full Stack, atuei como analista, desenvolvedor, team leader e arquiteto. Por isso, tenho uma visão ampla de ciclo de vida de software, arquitetura e melhores práticas."
+            },
+            {
+                "topic": "Leadership Experience",
+                "q_en": "Have you ever led people or teams? Do you enjoy that role?",
+                "q_pt": "Você já liderou pessoas ou times? Gosta desse papel?",
+                "a_en": "Yes, I have. I was a team leader at times, especially in bigger projects like at TV1 Group and Linx. I really enjoy helping, training colleagues, and discussing architecture, but I also love coding daily.",
+                "a_pt": "Já sim. Fui team leader em alguns momentos, principalmente em projetos maiores. Gosto bastante de ajudar, treinar colegas e discutir arquitetura, mas também curto programar no dia a dia."
+            },
+            {
+                "topic": "Standout Moment",
+                "q_en": "Tell me about a moment when you stood out in your career.",
+                "q_pt": "Me fale de um momento que você se destacou na carreira.",
+                "a_en": "An important moment was at Linx. The team was large, and I took part in an internal selection process for a software engineer position. I did technical presentations, defended solutions, and ended up getting promoted.",
+                "a_pt": "Um momento importante foi na Linx. O time era grande e participei de uma concorrência interna para uma vaga de engenheiro de software. Fiz apresentações técnicas, defendi soluções e acabei sendo promovido."
+            },
+            {
+                "topic": "International Challenge",
+                "q_en": "Have you ever worked on international projects? What do you think will be your biggest challenge?",
+                "q_pt": "Você já trabalhou em projetos internacionais? Qual acha que será o maior desafio?",
+                "a_en": "I haven’t had that opportunity yet, but I’ve always wanted to. I think the biggest challenge will be adapting to cultural differences and the technical English used daily. But I’m constantly studying English and confident I can handle it.",
+                "a_pt": "Ainda não tive essa oportunidade, mas sempre tive vontade. Acho que o maior desafio vai ser me adaptar às diferenças culturais e ao inglês técnico. Mas estou estudando constantemente e confiante de que consigo."
+            }
+        ]
+    }
+]

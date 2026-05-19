@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Angular Deep Dive",
+        "icon": "fab fa-angular",
+        "cards": [
+            {
+                "topic": "Components",
+                "q_en": "What is a Component in Angular and what are its main parts?",
+                "q_pt": "O que é um Component em Angular e quais são suas partes principais?",
+                "a_en": "A Component is the basic building block of the UI in Angular, defined by the @Component decorator. It consists of a TypeScript class (logic and properties), an HTML template (visual structure), CSS/SCSS (styling), and Metadata (selector, bindings). It controls a portion of the screen, interacts with injected services, and emits events.",
+                "a_pt": "Um Component é o bloco básico de construção da UI, definido pelo decorator @Component. É composto por uma classe TypeScript (lógica), um template HTML (visual), CSS/SCSS (estilos) e Metadados (seletor). Ele controla uma parte da tela, interage com serviços injetados e emite eventos."
+            },
+            {
+                "topic": "Modules",
+                "q_en": "What is a Module in Angular and what is its role?",
+                "q_pt": "O que é um Module em Angular e qual seu papel?",
+                "a_en": "An NgModule organizes the application into cohesive blocks. It groups Declarations (components, directives, pipes), Imports (other modules like HttpClientModule), Exports, and Providers (services). While a Component represents a piece of UI, a Module organizes and packages these components and services together.",
+                "a_pt": "Um NgModule organiza a aplicação em blocos coesos. Ele agrupa Declarations (componentes, pipes), Imports (outros módulos), Exports e Providers (serviços). Enquanto um Componente cuida de um pedaço da UI, o Módulo empacota e organiza esses componentes e dependências."
+            },
+            {
+                "topic": "Directives",
+                "q_en": "What are Directives in Angular?",
+                "q_pt": "O que são Directives em Angular?",
+                "a_en": "Directives are classes that modify the DOM's structure or behavior. Structural Directives (*ngIf, *ngFor) change the DOM layout by adding or removing elements. Attribute Directives (ngClass, ngStyle) change the appearance or behavior of existing elements. A Component itself is technically a directive with a template.",
+                "a_pt": "Directives são classes que modificam a estrutura ou comportamento do DOM. Structural Directives (*ngIf, *ngFor) alteram o layout adicionando/removendo elementos. Attribute Directives (ngClass, ngStyle) alteram a aparência ou comportamento de elementos existentes. O próprio Componente é uma diretiva com template."
+            },
+            {
+                "topic": "Pipes",
+                "q_en": "What are Pipes in Angular and when do you use them?",
+                "q_pt": "O que são Pipes em Angular e quando usá-los?",
+                "a_en": "Pipes transform values for display directly in the template without changing the underlying data. Angular provides built-in pipes like date, currency, and uppercase. You can also create custom pipes for specific domain transformations, like formatting phone numbers or applying document masks.",
+                "a_pt": "Pipes transformam valores para exibição direta no template, sem alterar os dados originais na classe. O Angular tem nativos como date, currency e uppercase. Você pode criar pipes customizados para formatar telefones, aplicar máscaras de CPF/CNPJ, etc."
+            },
+            {
+                "topic": "Observables & RxJS",
+                "q_en": "What are Observables in Angular and how do they relate to RxJS?",
+                "q_pt": "O que são Observables em Angular e qual a relação com RxJS?",
+                "a_en": "Observables are abstractions for handling asynchronous and reactive data streams (like HTTP requests or UI events). RxJS is the library that implements these Observables and provides powerful operators like map, filter, and switchMap. They allow composition of streams, elegant error handling, and easy cancellation of subscriptions.",
+                "a_pt": "Observables são abstrações para lidar com fluxos de dados assíncronos e reativos (como requisições HTTP ou eventos de tela). O RxJS é a biblioteca que implementa isso e fornece operadores como map, filter e switchMap. Eles permitem compor fluxos, tratar erros com elegância e cancelar inscrições com facilidade."
+            },
+            {
+                "topic": "Angular vs React Decision",
+                "q_en": "In an enterprise project, how do you decide between Angular and React?",
+                "q_pt": "Em um projeto enterprise, como você decide entre Angular e React?",
+                "a_en": "I weigh team experience, project complexity and the need for standardized conventions. Angular is a strong fit when we need a full framework, dependency injection, and strict structure across a large team. React is better when the UI is more flexible, the team prefers composable libraries, or when we need incremental migration. I usually choose the technology that reduces cognitive load for the team while still meeting the business need for maintainability and performance.",
+                "a_pt": "Eu avalio a experiência do time, a complexidade do projeto e a necessidade de convenções padronizadas. Angular funciona bem quando precisamos de um framework completo, injeção de dependência e estrutura rígida para um time grande. React é melhor quando a UI precisa ser mais flexível, o time prefere bibliotecas componíveis ou quando precisamos de migração incremental. Costumo escolher a tecnologia que reduz a carga cognitiva do time e ainda entrega manutenibilidade e performance."
+            },
+            {
+                "topic": "State Management in Angular",
+                "q_en": "How do you organize state management in Angular and why choose NgRx?",
+                "q_pt": "Como você organiza o gerenciamento de estado em Angular e por que escolher NgRx?",
+                "a_en": "I keep local component state inside components and move shared or cross-cutting state to NgRx stores when the app grows. NgRx is a solid choice for enterprise apps because it makes state explicit, enforces one-way data flow, and makes side effects testable. I use selectors to keep components decoupled from state shape and only dispatch actions from services or container components. That gives a clear architecture and makes debugging much easier on large teams.",
+                "a_pt": "Mantenho o estado local no componente e levo o estado compartilhado ou transversal para stores NgRx quando a aplicação cresce. O NgRx é uma boa escolha para apps enterprise porque torna o estado explícito, aplica fluxo unidirecional e deixa efeitos colaterais testáveis. Uso selectors para desacoplar componentes da forma do estado e só disparo actions a partir de services ou container components. Isso entrega uma arquitetura clara e facilita muito o debug em times grandes."
+            }
+        ]
+    }
+]

@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/i18next@23.4.0/dist/umd/i18next.min.js"></script>
+    <script crossorigin=""
+        src="https://cdn.jsdelivr.net/npm/react-i18next@13.0.1/dist/umd/react-i18next.min.js"></script>
+    <title>Databricks Technical Documentation</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-secondary: #111827;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--text);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            padding: 40px 0 0 0;
+        }
+
+        .nav-title {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 22px 0 10px;
+            font-weight: 800;
+        }
+
+        .sidebar {
+            width: 300px;
+            max-height: calc(100vh - 106px);
+            z-index: 999;
+            background: linear-gradient(180deg, #0f172a, #111827);
+            color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .sidebar h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #dbeafe;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+            margin: 5px 0;
+            padding: 6px 8px;
+            background-color: #ffffff17;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .main {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+        }
+
+        .content {
+            padding: 40px 0px 15px 15px;
+            margin-top: 4rem;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 26px 40px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .header p {
+            color: var(--text);
+            margin-top: 8px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            max-width: 1200px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 999px;
+            padding: 10px 16px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 0px;
+        }
+
+        .section-title {
+            margin-top: 70px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 14px;
+        }
+
+        .section-description {
+            color: var(--text);
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin: 30px 0 0 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-top: 16px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .diagram {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .info-box,
+        .warning-box,
+        .success-box {
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 18px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+        }
+
+        .code {
+            background: #08111f;
+            border: 1px solid #243656;
+            border-radius: 20px;
+            padding: 0;
+            margin: 30px 0 0 0;
+            overflow: auto;
+        }
+
+        .code pre {
+            color: #d6e3ff;
+            line-height: 1.8;
+            font-size: 14px;
+            padding: 30px 40px;
+            margin: 0;
+            display: inline-block;
+            white-space: pre;
+            /* mantém formatação */
+        }
+
+        .mermaid {
+            margin-top: 24px;
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--border);
+            padding: 16px;
+            text-align: left;
+        }
+
+        .table th {
+            font-size: 15px;
+            text-transform: uppercase;
+            background: #92ade5;
+            border: none;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            box-shadow: 0 5px 20px rgb(15 23 41 / 15%);
+        }
+
+        .callout {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 28px;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+        .danger {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media(max-width:1200px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sticky-top no-print" style="z-index: 1000; width: 100%; position: fixed; top: 0; left: 0;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; width: 100%;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a class="d-inline-block" href="Index.html">
+                    <img alt="Logo" src="assets/images/fluencyinterview-logo-p.png" style="height: 50px;" />
+                </a>
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Language Selector -->
+                    <div id="languageSelectorRoot"></div>
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <main class="main">
+            <div class="content">
+                <section class="hero" id="overview">
+                    <h1 class="fs-4 text-white fw-bold mb-4">
+                        Modern Lakehouse Platform for Enterprise Data Engineering
+                    </h1>
+                    <p>
+                        Databricks is a unified cloud-native data intelligence platform designed for large-scale data
+                        engineering,
+                        distributed processing, machine learning, AI workloads and SQL analytics. Built by the creators
+                        of Apache Spark,
+                        Databricks combines the flexibility of Data Lakes with the reliability of Data Warehouses
+                        through the
+                        Lakehouse architecture.
+                    </p>
+                    <div class="badges">
+                        <div class="badge">Apache Spark</div>
+                        <div class="badge">Delta Lake</div>
+                        <div class="badge">Streaming</div>
+                        <div class="badge">Machine Learning</div>
+                        <div class="badge">Lakehouse</div>
+                        <div class="badge">Azure Databricks</div>
+                        <div class="badge">RAG</div>
+                        <div class="badge">LLMs</div>
+                        <div class="badge">Data Engineering</div>
+                        <div class="badge">PySpark</div>
+                    </div>
+                </section>
+                <section class="section" id="architecture">
+                    <h2 class="section-title"><i class="bi bi-diagram-3 me-2 text-primary"></i> Enterprise Lakehouse
+                        Architecture</h2>
+                    <p class="section-description">
+                        Modern enterprise platforms separate transactional workloads from analytical workloads.
+                        Databricks acts as the analytical brain of the platform while operational systems remain focused
+                        on low-latency transactions.
+                    </p>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Operational Systems<br/>.NET APIs<br/>PostgreSQL] --&gt; B[CDC / Kafka / Event Hub]
+
+B --&gt; C[Azure Data Lake]
+
+C --&gt; D[Azure Databricks]
+
+D --&gt; E[Apache Spark Processing]
+
+E --&gt; F[Delta Lake]
+
+F --&gt; G[Analytics &amp; BI]
+F --&gt; H[Machine Learning]
+F --&gt; I[RAG &amp; AI Search]
+F --&gt; J[Streaming Analytics]
+</pre>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>OLTP Layer</h3>
+                            <p>
+                                Transactional systems optimized for low-latency operations, APIs and business logic
+                                execution.
+                            </p>
+                            <ul>
+                                <li>.NET 8 APIs</li>
+                                <li>PostgreSQL</li>
+                                <li>Redis Cache</li>
+                                <li>gRPC Internal Communication</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Streaming Layer</h3>
+                            <p>
+                                Event-driven synchronization between transactional systems and analytical platforms.
+                            </p>
+                            <ul>
+                                <li>Kafka</li>
+                                <li>Azure Event Hub</li>
+                                <li>CDC Pipelines</li>
+                                <li>Streaming Processing</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Lakehouse Layer</h3>
+                            <p>
+                                Distributed analytical environment powered by Spark and Delta Lake.
+                            </p>
+                            <ul>
+                                <li>Azure Databricks</li>
+                                <li>Delta Lake</li>
+                                <li>Data Lake</li>
+                                <li>ML Workloads</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="spark">
+                    <h2 class="section-title"><i class="bi bi-lightning-charge me-2 text-warning"></i> Apache Spark</h2>
+                    <p class="section-description">
+                        Apache Spark is the distributed processing engine behind Databricks. Spark enables parallel
+                        execution of massive workloads,
+                        in-memory processing, distributed joins, streaming analytics and scalable machine learning.
+                    </p>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Distributed Processing</h3>
+                            <p>
+                                Spark distributes workloads across multiple worker nodes, enabling massive parallel
+                                execution.
+                            </p>
+                            <ul>
+                                <li>Fault tolerance</li>
+                                <li>Lazy evaluation</li>
+                                <li>Partition-based execution</li>
+                                <li>Shuffle optimization</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Performance</h3>
+                            <p>
+                                Spark performs operations in memory which drastically improves processing performance.
+                            </p>
+                            <ul>
+                                <li>In-memory execution</li>
+                                <li>Caching</li>
+                                <li>Broadcast joins</li>
+                                <li>Predicate pushdown</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Workloads</h3>
+                            <p>
+                                Spark can process batch workloads, streaming pipelines and machine learning models.
+                            </p>
+                            <ul>
+                                <li>ETL Pipelines</li>
+                                <li>Streaming</li>
+                                <li>Machine Learning</li>
+                                <li>Real-time Analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code">
+                        <pre>
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("TaxCalculationEngine") \
+    .getOrCreate()
+
+df = spark.read.format("delta").load("/mnt/delta/rules")
+
+filtered = df.filter(df.uf == "SP")
+
+filtered.show()
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="clusters">
+                    <h2 class="section-title"><i class="bi bi-hdd-network me-2 text-primary"></i> Databricks Clusters
+                    </h2>
+                    <p class="section-description">
+                        Clusters are the execution engines of Databricks. They provide the computational resources
+                        necessary to run notebooks,
+                        Spark jobs, ETL pipelines and machine learning workloads.
+                    </p>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart TD
+
+A[Notebook] --&gt; B[Driver Node]
+
+B --&gt; C1[Worker 1]
+B --&gt; C2[Worker 2]
+B --&gt; C3[Worker 3]
+B --&gt; C4[Worker 4]
+
+C1 --&gt; D[Parallel Processing]
+C2 --&gt; D
+C3 --&gt; D
+C4 --&gt; D
+</pre>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Cluster Type</th>
+                            <th>Description</th>
+                            <th>Use Cases</th>
+                        </tr>
+                        <tr>
+                            <td>Interactive Cluster</td>
+                            <td>Used for notebooks and development workloads</td>
+                            <td>EDA, Testing, Analytics</td>
+                        </tr>
+                        <tr>
+                            <td>Job Cluster</td>
+                            <td>Temporary clusters for scheduled jobs</td>
+                            <td>ETL, Pipelines, Batch Processing</td>
+                        </tr>
+                        <tr>
+                            <td>High Performance Cluster</td>
+                            <td>Large compute workloads</td>
+                            <td>Machine Learning, Massive Processing</td>
+                        </tr>
+                    </table>
+                    <div class="callout">
+                        <strong>Important:</strong>
+                        Without a running cluster, notebooks cannot execute code. The cluster is the distributed
+                        execution engine behind all Spark operations.
+                    </div>
+                </section>
+                <section class="section" id="notebooks">
+                    <h2 class="section-title"><i class="bi bi-journal-code me-2 text-success"></i> Databricks Notebooks
+                    </h2>
+                    <p class="section-description">
+                        Databricks notebooks are interactive development environments used for data engineering,
+                        analytics, machine learning and SQL operations.
+                    </p>
+                    <div class="code">
+                        <pre>
+%python
+
+df = spark.read.csv("/mnt/data/sales.csv", header=True)
+
+display(df)
+</pre>
+                    </div>
+                    <div class="code">
+                        <pre>
+%sql
+
+SELECT
+    uf,
+    COUNT(*) AS total_rules
+FROM fiscal_rules
+GROUP BY uf
+ORDER BY total_rules DESC
+</pre>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Multi-language Support</h3>
+                            <ul>
+                                <li>Python</li>
+                                <li>SQL</li>
+                                <li>Scala</li>
+                                <li>R</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Collaboration</h3>
+                            <ul>
+                                <li>Real-time editing</li>
+                                <li>Shared notebooks</li>
+                                <li>Version history</li>
+                                <li>Integrated visualization</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Integrated Analytics</h3>
+                            <ul>
+                                <li>Dashboards</li>
+                                <li>DataFrames</li>
+                                <li>Charts</li>
+                                <li>SQL Queries</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="deltalake">
+                    <h2 class="section-title"><i class="bi bi-triangle-fill me-2 text-info"></i> Delta Lake</h2>
+                    <p class="section-description">
+                        Delta Lake is the transactional storage layer of Databricks. It adds ACID guarantees,
+                        versioning, schema enforcement and performance optimizations to Data Lakes.
+                    </p>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Raw Files<br/>CSV / JSON / Parquet] --&gt; B[Delta Lake]
+
+B --&gt; C[ACID Transactions]
+B --&gt; D[Time Travel]
+B --&gt; E[Schema Enforcement]
+B --&gt; F[Streaming]
+</pre>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>ACID Transactions</h3>
+                            <p>
+                                Delta Lake guarantees reliable and consistent writes even under concurrent workloads.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Time Travel</h3>
+                            <p>
+                                Query historical versions of tables for auditing and rollback scenarios.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Schema Enforcement</h3>
+                            <p>
+                                Prevent corrupted or malformed data from entering production tables.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="code">
+                        <pre>
+from delta.tables import *
+
+deltaTable = DeltaTable.forPath(
+    spark,
+    "/mnt/delta/fiscal_rules"
+)
+
+deltaTable.alias("target").merge(
+    source=df.alias("source"),
+    condition="target.rule_id = source.rule_id"
+).whenMatchedUpdateAll() \
+ .whenNotMatchedInsertAll() \
+ .execute()
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="acid">
+                    <h2 class="section-title"><i class="bi bi-shield-check me-2 text-success"></i> ACID Transactions
+                    </h2>
+                    <p class="section-description">
+                        ACID guarantees ensure reliability and consistency for distributed data processing environments.
+                    </p>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Atomicity</h3>
+                            <p>Operations complete entirely or rollback completely.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Consistency</h3>
+                            <p>Data transitions between valid states only.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Isolation</h3>
+                            <p>Concurrent transactions do not interfere with each other.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Durability</h3>
+                            <p>Committed data persists even after failures.</p>
+                        </div>
+                    </div>
+                    <div class="callout warning">
+                        <strong>Why ACID Matters:</strong>
+                        Traditional Data Lakes can expose partial writes and corrupted files. Delta Lake solves this
+                        through transactional guarantees.
+                    </div>
+                </section>
+                <section class="section" id="datalake">
+                    <h2 class="section-title"><i class="bi bi-database me-2 text-primary"></i> Data Lake</h2>
+                    <p class="section-description">
+                        Data Lakes are centralized repositories capable of storing structured, semi-structured and
+                        unstructured data at scale.
+                    </p>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Structured Data</h3>
+                            <ul>
+                                <li>Relational databases</li>
+                                <li>CSV</li>
+                                <li>Parquet</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Semi-Structured Data</h3>
+                            <ul>
+                                <li>JSON</li>
+                                <li>XML</li>
+                                <li>Logs</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Unstructured Data</h3>
+                            <ul>
+                                <li>PDF</li>
+                                <li>Videos</li>
+                                <li>Audio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="lakehouse">
+                    <h2 class="section-title"><i class="bi bi-house-door me-2 text-primary"></i> Lakehouse Architecture
+                    </h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart TD
+
+A[Bronze Layer<br/>Raw Data] --&gt; B[Silver Layer<br/>Cleaned Data]
+
+B --&gt; C[Gold Layer<br/>Business Data]
+
+C --&gt; D[BI &amp; Analytics]
+C --&gt; E[Machine Learning]
+C --&gt; F[AI &amp; RAG]
+</pre>
+                    </div>
+                    <div class="callout">
+                        <strong>Medallion Architecture:</strong>
+                        The Bronze, Silver and Gold architecture separates raw ingestion, cleaned transformations and
+                        business-ready datasets.
+                    </div>
+                </section>
+                <section class="section" id="etl">
+                    <h2 class="section-title"><i class="bi bi-arrow-left-right me-2 text-secondary"></i> ETL Pipelines
+                    </h2>
+                    <p class="section-description">
+                        Databricks supports scalable ETL and ELT pipelines using Apache Spark.
+                    </p>
+                    <div class="code">
+                        <pre>
+df = spark.read.json("/mnt/raw/events")
+
+cleaned = df.filter(df.status == "VALID")
+
+cleaned.write.format("delta") \
+    .mode("overwrite") \
+    .save("/mnt/silver/events")
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="streaming">
+                    <h2 class="section-title"><i class="bi bi-activity me-2 text-danger"></i> Streaming Processing</h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Kafka / Event Hub] --&gt; B[Spark Structured Streaming]
+
+B --&gt; C[Delta Lake]
+
+C --&gt; D[Real-Time Dashboards]
+</pre>
+                    </div>
+                    <div class="code">
+                        <pre>
+stream_df = spark.readStream \
+    .format("kafka") \
+    .option("subscribe", "fiscal-events") \
+    .load()
+
+query = stream_df.writeStream \
+    .format("delta") \
+    .start("/mnt/streaming/events")
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="cdc">
+                    <h2 class="section-title"><i class="bi bi-clock-history me-2 text-info"></i> CDC - Change Data
+                        Capture</h2>
+                    <p class="section-description">
+                        CDC pipelines synchronize transactional systems with analytical platforms in near real-time.
+                    </p>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[PostgreSQL] --&gt; B[Debezium CDC]
+
+B --&gt; C[Kafka]
+
+C --&gt; D[Databricks Streaming]
+
+D --&gt; E[Delta Lake]
+</pre>
+                    </div>
+                    <div class="callout danger">
+                        <strong>Important Challenges:</strong>
+                        CDC pipelines must handle ordering, replay, idempotency and deduplication correctly.
+                    </div>
+                </section>
+                <section class="section" id="partitioning">
+                    <h2 class="section-title"><i class="bi bi-layout-split me-2 text-primary"></i> Partitioning
+                        Strategies</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Partition Pruning</h3>
+                            <p>
+                                Reduces scanned data during queries.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Bucketing</h3>
+                            <p>
+                                Optimizes large joins by colocating related rows.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3>Z-Ordering</h3>
+                            <p>
+                                Improves query performance by colocating related data.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="code">
+                        <pre>
+OPTIMIZE fiscal_rules
+ZORDER BY (tenant_id, ncm, uf);
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="unitycatalog">
+                    <h2 class="section-title"><i class="bi bi-shield-lock me-2 text-primary"></i> Unity Catalog</h2>
+                    <p class="section-description">
+                        Unity Catalog provides centralized governance, security, lineage and metadata management.
+                    </p>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Data Governance</h3>
+                            <ul>
+                                <li>Access control</li>
+                                <li>Permissions</li>
+                                <li>Auditing</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Lineage</h3>
+                            <ul>
+                                <li>Track transformations</li>
+                                <li>Dependency mapping</li>
+                                <li>Impact analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="ml">
+                    <h2 class="section-title"><i class="bi bi-robot me-2 text-secondary"></i> Machine Learning</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Frameworks</h3>
+                            <ul>
+                                <li>PySpark MLlib</li>
+                                <li>Scikit-learn</li>
+                                <li>XGBoost</li>
+                                <li>TensorFlow</li>
+                                <li>PyTorch</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Use Cases</h3>
+                            <ul>
+                                <li>Anomaly Detection</li>
+                                <li>Forecasting</li>
+                                <li>Classification</li>
+                                <li>Fraud Detection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="mlflow">
+                    <h2 class="section-title"><i class="bi bi-graph-up me-2 text-info"></i> MLflow</h2>
+                    <div class="code">
+                        <pre>
+import mlflow
+
+with mlflow.start_run():
+
+    mlflow.log_param("max_depth", 5)
+    mlflow.log_metric("accuracy", 0.95)
+
+    mlflow.sklearn.log_model(model, "model")
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="rag">
+                    <h2 class="section-title"><i class="bi bi-search me-2 text-warning"></i> RAG - Retrieval Augmented
+                        Generation</h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Documents] --&gt; B[Embeddings]
+
+B --&gt; C[Vector Database]
+
+C --&gt; D[Semantic Search]
+
+D --&gt; E[LLM Response]
+</pre>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Benefits</h3>
+                            <ul>
+                                <li>Semantic search</li>
+                                <li>Context-aware responses</li>
+                                <li>Reduced hallucination</li>
+                                <li>Enterprise grounding</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Use Cases</h3>
+                            <ul>
+                                <li>Tax rule search</li>
+                                <li>Internal copilots</li>
+                                <li>Knowledge assistants</li>
+                                <li>Document intelligence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="llm">
+                    <h2 class="section-title"><i class="bi bi-cpu me-2 text-danger"></i> LLMs and AI</h2>
+                    <div class="callout warning">
+                        <strong>Important:</strong>
+                        Enterprise AI systems should always use grounding and RAG to reduce hallucinations and improve
+                        response reliability.
+                    </div>
+                    <div class="code">
+                        <pre>
+from openai import AzureOpenAI
+
+client = AzureOpenAI(
+    api_key="API_KEY",
+    api_version="2024-02-01",
+    azure_endpoint="https://your-openai.openai.azure.com/"
+)
+</pre>
+                    </div>
+                </section>
+                <section class="section" id="azure">
+                    <h2 class="section-title"><i class="bi bi-cloud me-2 text-info"></i> Azure Databricks Workspace</h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart TD
+
+A[Azure Portal] --&gt; B[Create Databricks Resource]
+
+B --&gt; C[Configure Workspace]
+
+C --&gt; D[Launch Workspace]
+
+D --&gt; E[Create Clusters]
+
+E --&gt; F[Create Notebooks]
+</pre>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Workspace</td>
+                            <td>Main Databricks environment</td>
+                        </tr>
+                        <tr>
+                            <td>Cluster</td>
+                            <td>Distributed compute engine</td>
+                        </tr>
+                        <tr>
+                            <td>Notebook</td>
+                            <td>Interactive development environment</td>
+                        </tr>
+                        <tr>
+                            <td>Unity Catalog</td>
+                            <td>Governance layer</td>
+                        </tr>
+                    </table>
+                </section>
+                <section class="section" id="devops">
+                    <h2 class="section-title"><i class="bi bi-git me-2 text-danger"></i> CI/CD and DevOps</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Azure DevOps</h3>
+                            <ul>
+                                <li>CI/CD Pipelines</li>
+                                <li>Automated deployments</li>
+                                <li>Testing automation</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Testcontainers</h3>
+                            <ul>
+                                <li>Integration tests</li>
+                                <li>Containerized environments</li>
+                                <li>Database isolation</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>K6 Performance Testing</h3>
+                            <ul>
+                                <li>Load testing</li>
+                                <li>Stress testing</li>
+                                <li>gRPC benchmarking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="observability">
+                    <h2 class="section-title"><i class="bi bi-speedometer2 me-2 text-success"></i> Observability and
+                        Monitoring</h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Applications] --&gt; B[OpenTelemetry]
+
+B --&gt; C[Azure Monitor]
+
+C --&gt; D[Logs]
+
+C --&gt; E[Metrics]
+
+C --&gt; F[Distributed Traces]
+
+F --&gt; G[AI Anomaly Detection]
+</pre>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Metrics</h3>
+                            <ul>
+                                <li>Latency</li>
+                                <li>CPU usage</li>
+                                <li>Memory consumption</li>
+                                <li>Throughput</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>AI Observability</h3>
+                            <ul>
+                                <li>Anomaly detection</li>
+                                <li>Predictive alerts</li>
+                                <li>Capacity forecasting</li>
+                                <li>Root cause analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="section" id="kubernetes">
+                    <h2 class="section-title"><i class="bi bi-box-seam me-2 text-primary"></i> Kubernetes and Containers
+                    </h2>
+                    <div class="diagram">
+                        <pre class="mermaid">
+flowchart LR
+
+A[Docker Containers] --&gt; B[Kubernetes Cluster]
+
+B --&gt; C[Auto Scaling]
+
+B --&gt; D[Rolling Updates]
+
+B --&gt; E[Service Discovery]
+</pre>
+                    </div>
+                    <div class="code">
+                        <pre>
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: tax-engine
+
+spec:
+  replicas: 3
+
+  template:
+    spec:
+      containers:
+      - name: tax-engine
+        image: tax-engine:latest
+</pre>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <aside class="sidebar">
+            <h1><i class="bi bi-menu-button"></i> -----------</h1>
+            <div class="nav-title">MENU</div>
+
+            <nav>
+                <a href="#overview">Platform Overview</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#spark">Apache Spark</a>
+                <a href="#clusters">Clusters</a>
+                <a href="#notebooks">Notebooks</a>
+                <a href="#deltalake">Delta Lake</a>
+                <a href="#acid">ACID Transactions</a>
+                <a href="#datalake">Data Lake</a>
+                <a href="#lakehouse">Lakehouse</a>
+            </nav>
+            <div class="nav-title">Data Engineering</div>
+            <nav>
+                <a href="#etl">ETL Pipelines</a>
+                <a href="#streaming">Streaming</a>
+                <a href="#cdc">CDC</a>
+                <a href="#partitioning">Partitioning</a>
+                <a href="#zordering">Z-Ordering</a>
+                <a href="#unitycatalog">Unity Catalog</a>
+            </nav>
+            <div class="nav-title">Machine Learning</div>
+            <nav>
+                <a href="#ml">Machine Learning</a>
+                <a href="#mlflow">MLflow</a>
+                <a href="#rag">RAG</a>
+                <a href="#llm">LLMs</a>
+            </nav>
+            <div class="nav-title">Azure &amp; DevOps</div>
+            <nav>
+                <a href="#azure">Azure Databricks</a>
+                <a href="#devops">CI/CD</a>
+                <a href="#observability">Observability</a>
+                <a href="#kubernetes">Kubernetes</a>
+            </nav>
+        </aside>
+    </div>
+    <script>
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default'
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const currentLanguage = localStorage.getItem('technicalDocLanguage') || 'en';
+
+        const translationResources = {
+            pt: {
+                translation: {
+                    "Search documentation...": "Pesquisar na documenta\u00e7\u00e3o...",
+                    "Overview": "Vis\u00e3o Geral",
+                    "Architecture": "Arquitetura",
+                    "Spark": "Spark",
+                    "Delta Lake": "Delta Lake",
+                    "Lakehouse": "Lakehouse",
+                    "Governance": "Governan\u00e7a",
+                    "AI & RAG": "IA e RAG",
+                    "CI/CD": "CI/CD",
+                    "Observability": "Observabilidade",
+                    "Databricks Technical Documentation": "Documenta\u00e7\u00e3o T\u00e9cnica do Databricks",
+                    "Modern Lakehouse Platform for Enterprise Data Engineering": "Plataforma Lakehouse Moderna para Engenharia de Dados Corporativa",
+                    "Databricks is a unified cloud-native data intelligence platform designed for large-scale data engineering, distributed processing, machine learning, AI workloads and SQL analytics. Built by the creators of Apache Spark, Databricks combines the flexibility of Data Lakes with the reliability of Data Warehouses through the Lakehouse architecture.": "O Databricks \u00e9 uma plataforma unificada nativa de nuvem para intelig\u00eancia de dados, projetada para engenharia de dados em larga escala, processamento distribu\u00eddo, machine learning, cargas de trabalho de IA e an\u00e1lises SQL. Criado pelos fundadores do Apache Spark, o Databricks combina a flexibilidade dos Data Lakes com a confiabilidade dos Data Warehouses atrav\u00e9s da arquitetura Lakehouse.",
+                    "Apache Spark": "Apache Spark",
+                    "Streaming": "Streaming",
+                    "Machine Learning": "Machine Learning",
+                    "Azure Databricks": "Azure Databricks",
+                    "RAG": "RAG",
+                    "LLMs": "LLMs",
+                    "Data Engineering": "Engenharia de Dados",
+                    "PySpark": "PySpark",
+                    "Enterprise Lakehouse Architecture": "Arquitetura Enterprise Lakehouse",
+                    "Modern enterprise platforms separate transactional workloads from analytical workloads. Databricks acts as the analytical brain of the platform while operational systems remain focused on low-latency transactions.": "Plataformas corporativas modernas separam cargas de trabalho transacionais de anal\u00edticas. O Databricks atua como o c\u00e9rebro anal\u00edtico da plataforma enquanto os sistemas operacionais mant\u00eam o foco em transa\u00e7\u00f5es de baixa lat\u00eancia.",
+                    "OLTP Layer": "Camada OLTP",
+                    "Transactional systems optimized for low-latency operations, APIs and business logic execution.": "Sistemas transacionais otimizados para opera\u00e7\u00f5es de baixa lat\u00eancia, APIs e execu\u00e7\u00e3o da l\u00f3gica de neg\u00f3cios.",
+                    ".NET 8 APIs": "APIs .NET 8",
+                    "PostgreSQL": "PostgreSQL",
+                    "Redis Cache": "Cache Redis",
+                    "gRPC Internal Communication": "Comunica\u00e7\u00e3o Interna via gRPC",
+                    "Streaming Layer": "Camada de Streaming",
+                    "Event-driven synchronization between transactional systems and analytical platforms.": "Sincroniza\u00e7\u00e3o baseada em eventos entre sistemas transacionais e plataformas anal\u00edticas.",
+                    "Kafka": "Kafka",
+                    "Azure Event Hub": "Azure Event Hub",
+                    "CDC Pipelines": "Pipelines CDC",
+                    "Streaming Processing": "Processamento em Streaming",
+                    "Lakehouse Layer": "Camada Lakehouse",
+                    "Distributed analytical environment powered by Spark and Delta Lake.": "Ambiente anal\u00edtico distribu\u00eddo impulsionado por Spark e Delta Lake.",
+                    "Data Lake": "Data Lake",
+                    "ML Workloads": "Cargas de trabalho de ML",
+                    "Apache Spark is the distributed processing engine behind Databricks. Spark enables parallel execution of massive workloads, in-memory processing, distributed joins, streaming analytics and scalable machine learning.": "O Apache Spark \u00e9 o mecanismo de processamento distribu\u00eddo por tr\u00e1s do Databricks. O Spark permite a execu\u00e7\u00e3o paralela de cargas de trabalho massivas, processamento em mem\u00f3ria, joins distribu\u00eddos, an\u00e1lises em streaming e machine learning escal\u00e1vel.",
+                    "Distributed Processing": "Processamento Distribu\u00eddo",
+                    "Spark distributes workloads across multiple worker nodes, enabling massive parallel execution.": "O Spark distribui as cargas de trabalho por m\u00faltiplos n\u00f3s de trabalho (worker nodes), permitindo uma execu\u00e7\u00e3o paralela massiva.",
+                    "Performance": "Performance",
+                    "Spark performs operations in memory which drastically improves processing performance.": "O Spark realiza opera\u00e7\u00f5es em mem\u00f3ria, o que melhora drasticamente o desempenho de processamento.",
+                    "Workloads": "Cargas de Trabalho",
+                    "Spark can process batch workloads, streaming pipelines and machine learning models.": "O Spark pode processar cargas de trabalho em lote (batch), pipelines de streaming e modelos de machine learning.",
+                    "Databricks Clusters": "Clusters Databricks",
+                    "Clusters are the execution engines of Databricks. They provide the computational resources necessary to run notebooks, Spark jobs, ETL pipelines and machine learning workloads.": "Clusters s\u00e3o os motores de execu\u00e7\u00e3o do Databricks. Eles fornecem os recursos computacionais necess\u00e1rios para rodar notebooks, jobs do Spark, pipelines ETL e cargas de trabalho de machine learning.",
+                    "Cluster Type": "Tipo de Cluster",
+                    "Description": "Descri\u00e7\u00e3o",
+                    "Use Cases": "Casos de Uso",
+                    "Interactive Cluster": "Cluster Interativo",
+                    "Used for notebooks and development workloads": "Usado para notebooks e desenvolvimento",
+                    "EDA, Testing, Analytics": "An\u00e1lise Explorat\u00f3ria (EDA), Testes, Analytics",
+                    "Job Cluster": "Cluster de Job",
+                    "Temporary clusters for scheduled jobs": "Clusters tempor\u00e1rios para jobs agendados",
+                    "ETL, Pipelines, Batch Processing": "ETL, Pipelines, Processamento em Lote",
+                    "High Performance Cluster": "Cluster de Alta Performance",
+                    "Large compute workloads": "Cargas de trabalho com computa\u00e7\u00e3o intensiva",
+                    "Machine Learning, Massive Processing": "Machine Learning, Processamento Massivo",
+                    "Important:": "Importante:",
+                    "Without a running cluster, notebooks cannot execute code. The cluster is the distributed execution engine behind all Spark operations.": "Sem um cluster em execu\u00e7\u00e3o, os notebooks n\u00e3o podem executar c\u00f3digo. O cluster \u00e9 o mecanismo de execu\u00e7\u00e3o distribu\u00eddo por tr\u00e1s de todas as opera\u00e7\u00f5es do Spark.",
+                    "Databricks Notebooks": "Notebooks Databricks",
+                    "Databricks notebooks are interactive development environments used for data engineering, analytics, machine learning and SQL operations.": "Os notebooks Databricks s\u00e3o ambientes de desenvolvimento interativos usados para engenharia de dados, analytics, machine learning e opera\u00e7\u00f5es SQL.",
+                    "Multi-language Support": "Suporte Multi-idioma",
+                    "Collaboration": "Colabora\u00e7\u00e3o",
+                    "Real-time editing": "Edi\u00e7\u00e3o em tempo real",
+                    "Shared notebooks": "Notebooks compartilhados",
+                    "Version history": "Hist\u00f3rico de vers\u00e3o",
+                    "Integrated visualization": "Visualiza\u00e7\u00e3o integrada",
+                    "Integrated Analytics": "An\u00e1lises Integradas",
+                    "Dashboards": "Dashboards",
+                    "DataFrames": "DataFrames",
+                    "Charts": "Gr\u00e1ficos",
+                    "SQL Queries": "Consultas SQL",
+                    "Delta Lake is the transactional storage layer of Databricks. It adds ACID guarantees, versioning, schema enforcement and performance optimizations to Data Lakes.": "O Delta Lake \u00e9 a camada de armazenamento transacional do Databricks. Ele adiciona garantias ACID, versionamento, imposi\u00e7\u00e3o de esquema (schema enforcement) e otimiza\u00e7\u00f5es de performance aos Data Lakes.",
+                    "ACID Transactions": "Transa\u00e7\u00f5es ACID",
+                    "Delta Lake guarantees reliable and consistent writes even under concurrent workloads.": "O Delta Lake garante escritas confi\u00e1veis e consistentes mesmo sob cargas de trabalho simult\u00e2neas.",
+                    "Time Travel": "Viagem no Tempo (Time Travel)",
+                    "Query historical versions of tables for auditing and rollback scenarios.": "Consulte vers\u00f5es hist\u00f3ricas de tabelas para auditoria e cen\u00e1rios de rollback.",
+                    "Schema Enforcement": "Imposi\u00e7\u00e3o de Esquema (Schema Enforcement)",
+                    "Prevent corrupted or malformed data from entering production tables.": "Evita que dados corrompidos ou malformados entrem nas tabelas de produ\u00e7\u00e3o.",
+                    "ACID guarantees ensure reliability and consistency for distributed data processing environments.": "As garantias ACID asseguram confiabilidade e consist\u00eancia para ambientes de processamento de dados distribu\u00eddos.",
+                    "Atomicity": "Atomicidade",
+                    "Operations complete entirely or rollback completely.": "Opera\u00e7\u00f5es s\u00e3o conclu\u00eddas integralmente ou s\u00e3o revertidas (rollback) totalmente.",
+                    "Consistency": "Consist\u00eancia",
+                    "Data transitions between valid states only.": "Os dados transitam apenas entre estados v\u00e1lidos.",
+                    "Isolation": "Isolamento",
+                    "Concurrent transactions do not interfere with each other.": "Transa\u00e7\u00f5es concorrentes n\u00e3o interferem umas nas outras.",
+                    "Durability": "Durabilidade",
+                    "Committed data persists even after failures.": "Os dados confirmados (committed) persistem mesmo ap\u00f3s falhas.",
+                    "Why ACID Matters:": "Por que o ACID Importa:",
+                    "Traditional Data Lakes can expose partial writes and corrupted files. Delta Lake solves this through transactional guarantees.": "Data Lakes tradicionais podem expor escritas parciais e arquivos corrompidos. O Delta Lake resolve isso por meio de garantias transacionais.",
+                    "Data Lakes are centralized repositories capable of storing structured, semi-structured and unstructured data at scale.": "Data Lakes s\u00e3o reposit\u00f3rios centralizados capazes de armazenar dados estruturados, semi-estruturados e n\u00e3o estruturados em larga escala.",
+                    "Structured Data": "Dados Estruturados",
+                    "Relational databases": "Bancos de dados relacionais",
+                    "Semi-Structured Data": "Dados Semi-estruturados",
+                    "Logs": "Logs",
+                    "Unstructured Data": "Dados N\u00e3o Estruturados",
+                    "Lakehouse Architecture": "Arquitetura Lakehouse",
+                    "Medallion Architecture:": "Arquitetura Medallion:",
+                    "The Bronze, Silver and Gold architecture separates raw ingestion, cleaned transformations and business-ready datasets.": "A arquitetura Bronze, Silver e Gold separa a ingest\u00e3o de dados brutos, transforma\u00e7\u00f5es de limpeza e conjuntos de dados prontos para o neg\u00f3cio.",
+                    "ETL Pipelines": "Pipelines ETL",
+                    "Databricks supports scalable ETL and ELT pipelines using Apache Spark.": "O Databricks suporta pipelines de ETL e ELT escal\u00e1veis usando o Apache Spark.",
+                    "CDC - Change Data Capture": "CDC - Change Data Capture",
+                    "CDC pipelines synchronize transactional systems with analytical platforms in near real-time.": "Pipelines de CDC sincronizam sistemas transacionais com plataformas anal\u00edticas em tempo quase real.",
+                    "Important Challenges:": "Desafios Importantes:",
+                    "CDC pipelines must handle ordering, replay, idempotency and deduplication correctly.": "Pipelines CDC devem lidar corretamente com ordena\u00e7\u00e3o, reprodu\u00e7\u00e3o (replay), idempot\u00eancia e desduplica\u00e7\u00e3o.",
+                    "Partitioning Strategies": "Estrat\u00e9gias de Particionamento",
+                    "Partition Pruning": "Poda de Parti\u00e7\u00e3o (Partition Pruning)",
+                    "Reduces scanned data during queries.": "Reduz o volume de dados escaneados durante as consultas.",
+                    "Bucketing": "Bucketing",
+                    "Optimizes large joins by colocating related rows.": "Otimiza grandes jun\u00e7\u00f5es (joins) agrupando linhas relacionadas.",
+                    "Z-Ordering": "Z-Ordering",
+                    "Improves query performance by colocating related data.": "Melhora o desempenho de consulta ao co-localizar dados relacionados.",
+                    "Unity Catalog": "Unity Catalog",
+                    "Unity Catalog provides centralized governance, security, lineage and metadata management.": "O Unity Catalog fornece governan\u00e7a centralizada, seguran\u00e7a, linhagem e gerenciamento de metadados.",
+                    "Data Governance": "Governan\u00e7a de Dados",
+                    "Access control": "Controle de acesso",
+                    "Permissions": "Permiss\u00f5es",
+                    "Auditing": "Auditoria",
+                    "Lineage": "Linhagem",
+                    "Track transformations": "Rastrear transforma\u00e7\u00f5es",
+                    "Dependency mapping": "Mapeamento de depend\u00eancias",
+                    "Impact analysis": "An\u00e1lise de impacto",
+                    "Frameworks": "Frameworks",
+                    "Forecasting": "Previs\u00f5es (Forecasting)",
+                    "Classification": "Classifica\u00e7\u00e3o",
+                    "Fraud Detection": "Detec\u00e7\u00e3o de Fraudes",
+                    "RAG - Retrieval Augmented Generation": "RAG - Gera\u00e7\u00e3o Aumentada por Recupera\u00e7\u00e3o",
+                    "Benefits": "Benef\u00edcios",
+                    "Semantic search": "Busca sem\u00e2ntica",
+                    "Context-aware responses": "Respostas com contexto",
+                    "Reduced hallucination": "Redu\u00e7\u00e3o de alucina\u00e7\u00f5es",
+                    "Enterprise grounding": "Ancoragem (Grounding) Corporativa",
+                    "Tax rule search": "Busca de regras fiscais",
+                    "Internal copilots": "Copilotos internos",
+                    "Knowledge assistants": "Assistentes de conhecimento",
+                    "Document intelligence": "Intelig\u00eancia de documentos",
+                    "LLMs and AI": "LLMs e IA",
+                    "Enterprise AI systems should always use grounding and RAG to reduce hallucinations and improve response reliability.": "Sistemas de IA corporativos devem sempre usar ancoragem (grounding) e RAG para reduzir alucina\u00e7\u00f5es e melhorar a confiabilidade da resposta.",
+                    "Azure Databricks Workspace": "Workspace do Azure Databricks",
+                    "Component": "Componente",
+                    "Workspace": "Espa\u00e7o de Trabalho (Workspace)",
+                    "Main Databricks environment": "Ambiente principal do Databricks",
+                    "Cluster": "Cluster",
+                    "Distributed compute engine": "Motor de computa\u00e7\u00e3o distribu\u00eddo",
+                    "Notebook": "Notebook",
+                    "Interactive development environment": "Ambiente de desenvolvimento interativo",
+                    "Governance layer": "Camada de governan\u00e7a",
+                    "CI/CD and DevOps": "CI/CD e DevOps",
+                    "CI/CD Pipelines": "Pipelines de CI/CD",
+                    "Automated deployments": "Implanta\u00e7\u00f5es automatizadas",
+                    "Testing automation": "Automa\u00e7\u00e3o de testes",
+                    "Integration tests": "Testes de integra\u00e7\u00e3o",
+                    "Containerized environments": "Ambientes em cont\u00eaineres",
+                    "Database isolation": "Isolamento de banco de dados",
+                    "K6 Performance Testing": "Testes de Performance com K6",
+                    "Load testing": "Testes de carga",
+                    "Stress testing": "Testes de estresse",
+                    "gRPC benchmarking": "Benchmarking de gRPC",
+                    "Observability and Monitoring": "Observabilidade e Monitoramento",
+                    "Metrics": "M\u00e9tricas",
+                    "Latency": "Lat\u00eancia",
+                    "CPU usage": "Uso de CPU",
+                    "Memory consumption": "Consumo de mem\u00f3ria",
+                    "Throughput": "Throughput (Taxa de Transfer\u00eancia)",
+                    "Predictive alerts": "Alertas preditivos",
+                    "Capacity forecasting": "Previs\u00e3o de capacidade",
+                    "Root cause analysis": "An\u00e1lise de causa raiz",
+                    "Kubernetes and Containers": "Kubernetes e Cont\u00eaineres",
+                    "Platform Overview": "Vis\u00e3o Geral da Plataforma",
+                    "High-Performance Tax Analyzer - Intelligent Fiscal Platform": "Analisador Fiscal de Alta Performance - Plataforma Fiscal Inteligente",
+                    "Intelligent Fiscal Platform": "Plataforma Fiscal Inteligente"
+                }
+            }
+        };
+
+        function normalizeText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        function createTranslatableElements() {
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li:not(.breadcrumb-item), td, th, span:not(.badge):not(.bi), a:not(.lang-item):not(.dropdown-item), button:not(#languageToggle), .tag, .callout, .warning, .danger, .badge, .info-box, .warning-box, .success-box'))
+                .filter(element => {
+                    if (element.closest('code, pre, .code-block, #languageSelectorRoot, .dropdown-menu')) return false;
+                    if (element.querySelector('code, pre')) return false;
+                    if (element.classList.contains('no-translate')) return false;
+                    const text = normalizeText(element.textContent || '');
+                    return text.length > 1;
+                });
+        }
+
+        function storeOriginalText(element) {
+            if (!element.dataset.originalText) {
+                element.dataset.originalText = normalizeText(element.textContent);
+            }
+        }
+
+        function restoreOriginalTexts(elements) {
+            elements.forEach(el => {
+                if (el.dataset.originalText) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + el.dataset.originalText;
+                    } else {
+                        el.textContent = el.dataset.originalText;
+                    }
+                }
+            });
+        }
+
+        function applyTranslations(elements) {
+            elements.forEach(el => {
+                const originalKey = el.dataset.originalText || normalizeText(el.textContent);
+                const translated = i18next.t(originalKey, { defaultValue: originalKey });
+                if (translated !== originalKey) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + translated;
+                    } else {
+                        el.textContent = translated;
+                    }
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            if (lang === i18next.language) return;
+            localStorage.setItem('technicalDocLanguage', lang);
+            i18next.changeLanguage(lang).then(() => {
+                const elements = createTranslatableElements();
+                if (lang === 'en') {
+                    restoreOriginalTexts(elements);
+                } else {
+                    elements.forEach(storeOriginalText);
+                    applyTranslations(elements);
+                }
+                document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+            });
+        }
+
+        function renderLanguageSwitcher() {
+            if (!window.React || !window.ReactDOM || !window.i18next || !window.ReactI18next) return;
+            const { useTranslation, I18nextProvider } = window.ReactI18next;
+
+            function LanguageSwitcher() {
+                const { i18n } = useTranslation();
+                const [open, setOpen] = React.useState(false);
+
+                React.useEffect(() => {
+                    function handleDocumentClick(event) {
+                        const root = document.getElementById('languageSelectorRoot');
+                        if (root && !root.contains(event.target)) {
+                            setOpen(false);
+                        }
+                    }
+                    document.addEventListener('click', handleDocumentClick);
+                    return () => document.removeEventListener('click', handleDocumentClick);
+                }, []);
+
+                const lang = i18n.language || 'en';
+                const flagSrc = lang === 'pt'
+                    ? 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg'
+                    : 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg';
+                const flagAlt = lang === 'pt' ? 'BR' : 'US';
+
+                return React.createElement('div', {
+                    className: `dropdown${open ? ' show' : ''}`,
+                    style: { position: 'relative' }
+                },
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'btn shadow no-translate',
+                        onClick: () => setOpen(prev => !prev),
+                        style: { backgroundColor: '#fff', color: '#000', minWidth: '45px', padding: '6px 10px' },
+                        title: 'Select Language',
+                        'aria-haspopup': 'true',
+                        'aria-expanded': open
+                    },
+                        React.createElement('img', {
+                            id: 'flagIcon',
+                            src: flagSrc,
+                            alt: flagAlt,
+                            style: { width: '24px', height: '18px', borderRadius: '2px' }
+                        })
+                    ),
+                    React.createElement('ul', {
+                        className: `dropdown-menu dropdown-menu-end shadow${open ? ' show' : ''}`,
+                        style: { display: open ? 'block' : 'none', marginTop: '4px' }
+                    },
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('pt'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg',
+                                    alt: 'BR',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'Português'
+                            )
+                        ),
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('en'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg',
+                                    alt: 'US',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'English'
+                            )
+                        )
+                    )
+                );
+            }
+
+            const rootElement = document.getElementById('languageSelectorRoot');
+            if (rootElement) {
+                try {
+                    ReactDOM.createRoot(rootElement).render(
+                        React.createElement(I18nextProvider, { i18n: i18next }, React.createElement(LanguageSwitcher))
+                    );
+                } catch (error) {
+                    console.error('Error rendering React component:', error);
+                }
+            }
+        }
+
+        function initializeLanguageSwitcher() {
+            if (typeof i18next === 'undefined' || typeof window.ReactI18next === 'undefined') {
+                setTimeout(initializeLanguageSwitcher, 100);
+                return;
+            }
+
+            i18next
+                .use(window.ReactI18next.initReactI18next)
+                .init({
+                    resources: translationResources,
+                    lng: currentLanguage,
+                    fallbackLng: 'en',
+                    debug: false,
+                    keySeparator: false,
+                    interpolation: { escapeValue: false }
+                }).then(() => {
+                    renderLanguageSwitcher();
+                    document.documentElement.lang = (i18next.language === 'pt' ? 'pt-BR' : 'en');
+
+                    if (i18next.language === 'pt') {
+                        const elements = createTranslatableElements();
+                        elements.forEach(storeOriginalText);
+                        applyTranslations(elements);
+                    }
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeLanguageSwitcher();
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.code pre').forEach(pre => {
+            const lines = pre.textContent.split('\n');
+
+            // remove linhas vazias do início e fim
+            while (lines.length && lines[0].trim() === '') lines.shift();
+            while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+            // detecta indentação mínima
+            const indent = Math.min(
+                ...lines
+                    .filter(l => l.trim().length > 0)
+                    .map(l => l.match(/^(\s*)/)[0].length)
+            );
+
+            // remove apenas essa indentação
+            pre.textContent = lines.map(l => l.slice(indent)).join('\n');
+        });
+    </script>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>

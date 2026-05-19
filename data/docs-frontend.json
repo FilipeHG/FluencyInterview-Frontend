@@ -1,0 +1,48 @@
+{
+    "title": "Frontend & APIs",
+    "iconClass": "bi bi-browser-chrome",
+    "sections": [
+        {
+            "title": "Modern SPA Ecosystem",
+            "icon": "bi bi-window-sidebar",
+            "cards": [
+                {
+                    "topic": "React Enterprise",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Architecture:</strong> Virtual DOM, reusable components, and Suspense for data loading.</li>\n                            <li><strong>React Server Components (RSC):</strong> Render UI on the server (Next.js) for zero JS bundle size and direct database access.</li>\n                            <li><strong>Optimization:</strong> Code splitting, Lazy Loading, and massive use of Tailwind CSS and Shadcn/UI for styling.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Arquitetura:</strong> Virtual DOM, componentes reutilizáveis, e Suspense para carregamento.</li>\n                            <li><strong>React Server Components (RSC):</strong> Renderiza UI no servidor (Next.js) reduzindo bundle de JS e permitindo acesso direto a banco.</li>\n                            <li><strong>Otimização:</strong> Code splitting, Lazy Loading, e adoção massiva de Tailwind CSS e Shadcn/UI.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Angular Deep Dive",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Robustness:</strong> Built-in Dependency Injection, strict TypeScript, and RxJS streams.</li>\n                            <li><strong>Enterprise Scale:</strong> Feature-based modules, Lazy Loading, and Route Guards for auth.</li>\n                            <li><strong>Signals:</strong> Replacing Zone.js for granular reactivity, massively improving performance.</li>\n                            <li><strong>OnPush:</strong> Change detection strategy that skips unnecessary tree checks.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Robustez:</strong> Injeção de dependência nativa, TypeScript estrito e RxJS.</li>\n                            <li><strong>Escala Enterprise:</strong> Módulos por feature, Lazy Loading e Route Guards para auth.</li>\n                            <li><strong>Signals:</strong> Substituindo Zone.js para reatividade granular e alta performance.</li>\n                            <li><strong>OnPush:</strong> Estratégia de change detection que evita verificações de árvore desnecessárias.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Vue.js Ecosystem",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Philosophy:</strong> Progressive framework. Easy to integrate into existing apps.</li>\n                            <li><strong>Frameworks:</strong> Nuxt for SSR/SSG and Quasar for cross-platform enterprise UIs.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Filosofia:</strong> Framework progressivo. Fácil adoção em projetos existentes.</li>\n                            <li><strong>Frameworks:</strong> Nuxt para SSR/SSG e Quasar para UI corporativas multiplataforma.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Performance & API Design",
+            "icon": "bi bi-lightning-fill",
+            "cards": [
+                {
+                    "topic": "Frontend Performance Optimization",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Web Vitals:</strong> LCP (Largest Contentful Paint), FID (First Input Delay), CLS (Cumulative Layout Shift).</li>\n                            <li><strong>Code Splitting:</strong> Bundle splitting by routes or lazy components to reduce initial payload.</li>\n                            <li><strong>Tree Shaking:</strong> Removing unused code at build time.</li>\n                            <li><strong>Memoization:</strong> React.memo, useMemo, useCallback to prevent unnecessary re-renders.</li>\n                            <li><strong>Asset Optimization:</strong> Image compression, WebP format, CDN distribution.</li>\n                            <li><strong>Service Workers:</strong> Offline support and advanced caching strategies.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Web Vitals:</strong> LCP, FID, CLS - métricas de performance do Google.</li>\n                            <li><strong>Code Splitting:</strong> Bundle por rotas ou componentes lazy para reduzir carga inicial.</li>\n                            <li><strong>Tree Shaking:</strong> Remove código não utilizado em build time.</li>\n                            <li><strong>Memoization:</strong> React.memo, useMemo, useCallback para evitar re-renders desnecessários.</li>\n                            <li><strong>Asset Optimization:</strong> Compressão de imagens, WebP, CDN global.</li>\n                            <li><strong>Service Workers:</strong> Suporte offline e estratégias de cache avançadas.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Modern API Design Patterns",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>REST (Representational State Transfer):</strong> Resource-oriented. Standard HTTP methods. Broad compatibility.</li>\n                            <li><strong>gRPC (Google Remote Procedure Call):</strong> Uses HTTP/2 and Protobuf. Binary serialization. Extremely fast for microservice communication.</li>\n                            <li><strong>GraphQL:</strong> Query language. Client specifies exactly what data it needs. Solves over/underfetching. Ideal for BFFs (Backend For Frontend).</li>\n                            <li><strong>Webhook:</strong> Server-initiated HTTP callbacks. Event-driven integrations.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>REST:</strong> Orientado a recursos. HTTP methods. Ampla compatibilidade.</li>\n                            <li><strong>gRPC:</strong> HTTP/2 e Protobuf. Serialização binária. Extremamente rápido.</li>\n                            <li><strong>GraphQL:</strong> Cliente especifica exatamente o que precisa. Ideal para BFFs.</li>\n                            <li><strong>Webhook:</strong> Callbacks HTTP iniciados pelo servidor. Integrações orientadas a eventos.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "State Management & Rendering Strategies",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Client-Side Rendering (CSR):</strong> Full control, slow initial page load, good for interactive dashboards.</li>\n                            <li><strong>Server-Side Rendering (SSR):</strong> Fast initial load, SEO friendly. Requires rendering server (Next.js, Nuxt).</li>\n                            <li><strong>Static Site Generation (SSG):</strong> Pre-build pages at deploy time. Ultra-fast. Ideal for blogs and content sites.</li>\n                            <li><strong>Incremental Static Regeneration (ISR):</strong> Hybrid. Rebuild pages on-demand while serving stale content.</li>\n                            <li><strong>State Management:</strong> Redux, Zustand, Pinia, Recoil. Choose based on complexity (simple apps vs enterprise).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>CSR:</strong> Controle total, carregamento inicial lento, bom para dashboards.</li>\n                            <li><strong>SSR:</strong> Carregamento rápido, SEO friendly (Next.js, Nuxt).</li>\n                            <li><strong>SSG:</strong> Pré-build em deploy time. Ultra-rápido. Ideal para blogs.</li>\n                            <li><strong>ISR:</strong> Híbrido. Reconstruir sob demanda mantendo conteúdo stale.</li>\n                            <li><strong>State Management:</strong> Redux, Zustand, Pinia, Recoil. Escolha conforme complexidade.</li>\n                        </ul>\n                    "
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Professional Level</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header-banner {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            border-bottom: 5px solid #0369a1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-banner h1 {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            background-color: white;
+            padding: 20px;
+        }
+
+
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Global Fixed Header -->
+    <div class="sticky-top no-print" style="z-index: 1000;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a href="Index.html" class="d-inline-block">
+                    <img src="assets/images/fluencyinterview-logo-p.png" alt="Logo" style="height: 50px;">
+                </a>
+
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Title Section -->
+        <div class="header-banner shadow-sm" style="background-color: #2c3e50; padding: 12px 0;">
+            <div class="container d-flex align-items-center justify-content-between">
+                <h1 class="fs-4 text-white fw-bold mb-1"><i class="bi bi-book"></i> Documentation Hub</h1>
+                <div class="search-container d-flex" style="max-width: 250px;">
+                    <div class="input-group input-group-sm shadow-sm">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search topics..."
+                            style="border: 2px solid #e74c3c;">
+                        <button class="btn btn-light" type="button" id="btnSearchClear"
+                            style="border-top: 2px solid #e74c3c; border-bottom: 2px solid #e74c3c; color: #e74c3c; display: none;"
+                            title="Clear">
+                            <i class="bi bi-x-lg fw-bold"></i>
+                        </button>
+                        <button class="btn" type="button" id="btnSearch"
+                            style="background-color: #e74c3c; color: white; border: 2px solid #e74c3c;" title="Search">
+                            <i class="bi bi-search fw-bold"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <a href="docs-architecture.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-building display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Architecture & Design Patterns</h3>
+                            <p class="text-muted small mt-2">Explore DDD, Clean Architecture and GoF Patterns.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="docs-backend.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-cpu display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Backend (.NET & Node.js)</h3>
+                            <p class="text-muted small mt-2">Explore Minimal APIs, AOT, DI, Event-loop and BFF.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="docs-databases.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-database display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Databases & ORMs</h3>
+                            <p class="text-muted small mt-2">Explore EF Core, Dapper, Prisma and Redis.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="docs-cloud.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-cloud-fill display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Cloud, DevOps & Messaging</h3>
+                            <p class="text-muted small mt-2">Explore Kafka, RabbitMQ, SQS, Serverless and K8s.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="docs-frontend.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-browser-chrome display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Frontend & APIs</h3>
+                            <p class="text-muted small mt-2">Explore Angular, React, Vue and Routing.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="docs-ai.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #0369a1 !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-robot display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Artificial Intelligence</h3>
+                            <p class="text-muted small mt-2">Explore AI Agents, MCP and Tooling.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+    <script id="docsSearchScript">
+        const searchIndex = { "docs-architecture.html": "architecture & design patterns core architecture principles domain-driven design (ddd) \n                        <p>a software design philosophy focused on business domain complexity.</p>\n                        <ul>\n                            <li><strong>strategic pillars:</strong> <em>bounded contexts</em> (clear sub-domain boundaries) and <em>ubiquitous language</em> (common vocabulary between devs and business).</li>\n                            <li><strong>tactical pillars:</strong> entities, value objects, aggregates, repositories, and domain services.</li>\n                        </ul>\n                     \n                        <p>uma filosofia de design de software focada na complexidade do domínio de negócio.</p>\n                        <ul>\n                            <li><strong>pilares estratégicos:</strong> <em>bounded contexts</em> (delimitação clara de subdomínios) e <em>linguagem ubíqua</em> (vocabulário comum entre devs e negócios).</li>\n                            <li><strong>pilares táticos:</strong> entidades, value objects, aggregates, repositórios e domain services.</li>\n                        </ul>\n                     c4 model \n                        <p>a simple way to visualize software architecture at different levels of detail.</p>\n                        <ul>\n                            <li><strong>context:</strong> shows who uses the system and its external dependencies.</li>\n                            <li><strong>container:</strong> shows the high-level technical architecture (apis, databases, spas).</li>\n                            <li><strong>component:</strong> details the internal modules of each container.</li>\n                            <li><strong>code:</strong> class-level diagrams (rarely used unless necessary).</li>\n                        </ul>\n                     \n                        <p>uma forma simples de visualizar arquitetura de software em diferentes níveis de detalhes.</p>\n                        <ul>\n                            <li><strong>context:</strong> mostra quem usa o sistema e dependências externas.</li>\n                            <li><strong>container:</strong> mostra a arquitetura técnica de alto nível (apis, databases, spas).</li>\n                            <li><strong>component:</strong> detalha os módulos internos de cada container.</li>\n                            <li><strong>code:</strong> diagramas de classes (raramente usado).</li>\n                        </ul>\n                     decoupled architectures \n                        <ul>\n                            <li><strong>clean architecture:</strong> dependencies point towards the domain (center), which is independent of frameworks, ui, or databases. layers: domain, application, infrastructure, presentation.</li>\n                            <li><strong>hexagonal architecture (ports & adapters):</strong> domain in the center isolated by ports (interfaces) and adapters (db/api implementations). highly facilitates testing without a real db.</li>\n                            <li><strong>onion architecture:</strong> concentric layers using dependency inversion interfaces throughout the ring.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>clean architecture:</strong> dependências apontam para o domínio (centro), que é independente de frameworks, ui ou bancos de dados. camadas: domain, application, infrastructure, presentation.</li>\n                            <li><strong>hexagonal architecture (ports & adapters):</strong> domínio no centro isolado por portas (interfaces) e adaptadores (implementações de db/apis). facilita testes sem db real.</li>\n                            <li><strong>onion architecture:</strong> camadas concêntricas com interfaces para inversão de dependência em todo o anel.</li>\n                        </ul>\n                     hybrid architecture (.net + node.js) \n                        <p>combining the best of both runtimes for extreme scale and productivity.</p>\n                        <ul>\n                            <li><strong>.net core:</strong> used for transactional workloads, heavy business rules, domain complex logic, and enterprise patterns.</li>\n                            <li><strong>node.js:</strong> used for i/o bound streaming, real-time (websockets/sse), ai generation proxying, and fast api gateways.</li>\n                        </ul>\n                     \n                        <p>combinando o melhor de ambos runtimes para escala extrema e produtividade.</p>\n                        <ul>\n                            <li><strong>.net core:</strong> usado para cargas transacionais, regras de negócio pesadas, lógica complexa e padrões enterprise.</li>\n                            <li><strong>node.js:</strong> usado para streaming i/o bound, real-time (websockets/sse), proxy de geração de ia e gateways de api rápidos.</li>\n                        </ul>\n                     distributed systems & patterns cap theorem \n                        <p>in a distributed system, you can only guarantee two out of three:</p>\n                        <ul>\n                            <li><strong>consistency:</strong> every read receives the most recent write or an error.</li>\n                            <li><strong>availability:</strong> every request receives a non-error response.</li>\n                            <li><strong>partition tolerance:</strong> the system continues to operate despite network drops.</li>\n                        </ul>\n                     \n                        <p>em sistemas distribuídos, você só pode garantir dois de três:</p>\n                        <ul>\n                            <li><strong>consistency (consistência):</strong> toda leitura recebe a última gravação ou um erro.</li>\n                            <li><strong>availability (disponibilidade):</strong> toda requisição recebe uma resposta sem erro.</li>\n                            <li><strong>partition tolerance (tolerância a partição):</strong> o sistema continua funcionando apesar de falhas de rede.</li>\n                        </ul>\n                     microservices vs monolith \n                        <ul>\n                            <li><strong>monolith:</strong> easier to develop, deploy, and test. can become a bottleneck when multiple teams work on the same codebase.</li>\n                            <li><strong>microservices:</strong> independent deployments, fault isolation, and independent scaling. but introduces network latency, data consistency challenges, and complexity in observability.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>monolito:</strong> mais fácil de desenvolver, fazer deploy e testar. pode virar gargalo quando muitos times trabalham no mesmo código.</li>\n                            <li><strong>microsserviços:</strong> deploys independentes, isolamento de falhas e escalabilidade isolada. porém traz latência de rede, desafios de consistência de dados e complexidade de observabilidade.</li>\n                        </ul>\n                     cqrs & event sourcing \n                        <ul>\n                            <li><strong>cqrs:</strong> command query responsibility segregation. separates models for reading (queries) and writing (commands).</li>\n                            <li><strong>event sourcing:</strong> instead of storing current state, store all state-changing events. the current state is derived by replaying the events.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>cqrs:</strong> segregação de responsabilidade de comando e consulta. separa os modelos de leitura (queries) e escrita (comandos).</li>\n                            <li><strong>event sourcing:</strong> ao invés de armazenar o estado atual, armazena os eventos que alteraram o estado. o estado atual é montado reproduzindo os eventos.</li>\n                        </ul>\n                     saga & outbox patterns \n                        <ul>\n                            <li><strong>saga pattern:</strong> distributed transactions sequence. <em>choreography:</em> each service listens to events and acts. <em>orchestrator:</em> a central coordinator commands services.</li>\n                            <li><strong>outbox pattern:</strong> ensures reliable messaging by saving the message to a database table in the same transaction as the business entity, then a background worker publishes it.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>saga pattern:</strong> sequência de transações distribuídas. <em>coreografia:</em> cada serviço escuta eventos e age. <em>orquestrador:</em> um coordenador central comanda os serviços.</li>\n                            <li><strong>outbox pattern:</strong> garante envio confiável salvando a mensagem em uma tabela de banco na mesma transação da entidade de negócio, depois um worker a publica.</li>\n                        </ul>\n                     api design (rest vs grpc vs graphql) \n                        <ul>\n                            <li><strong>rest:</strong> resource-oriented, http verbs. broadly compatible.</li>\n                            <li><strong>grpc:</strong> rpc framework by google using protobuf. uses http/2, extremely fast, binary serialization. ideal for microservice-to-microservice communication.</li>\n                            <li><strong>graphql:</strong> client specifies exactly what it needs. avoids over/underfetching. ideal for bffs.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>rest:</strong> orientado a recursos, verbos http. altamente compatível.</li>\n                            <li><strong>grpc:</strong> framework rpc do google usando protobuf. usa http/2, extremamente rápido, serialização binária. ideal para comunicação microsserviço para microsserviço.</li>\n                            <li><strong>graphql:</strong> cliente pede exatamente o que precisa. evita over/underfetching. ideal para bffs.</li>\n                        </ul>\n                     design patterns (gof) \n                        <p>standardized solutions to recurring problems.</p>\n                        <ul>\n                            <li><strong>strategy:</strong> defines a family of interchangeable algorithms.</li>\n                            <li><strong>observer:</strong> one-to-many dependency for automatic state notification.</li>\n                            <li><strong>decorator:</strong> adds behavior dynamically without altering the original class.</li>\n                            <li><strong>proxy:</strong> access control and lazy loading for heavy objects.</li>\n                            <li><strong>factory method:</strong> creation interface where subclasses decide the instance.</li>\n                            <li><strong>singleton:</strong> single instance, global access.</li>\n                        </ul>\n                     \n                        <p>resolvem problemas recorrentes de forma padronizada.</p>\n                        <ul>\n                            <li><strong>strategy:</strong> define algoritmos intercambiáveis.</li>\n                            <li><strong>observer:</strong> dependência um-para-muitos (notificação automática).</li>\n                            <li><strong>decorator:</strong> adiciona comportamento dinamicamente.</li>\n                            <li><strong>proxy:</strong> controle de acesso / lazy loading.</li>\n                            <li><strong>factory method:</strong> interface de criação.</li>\n                            <li><strong>singleton:</strong> instância única, acesso global.</li>\n                        </ul>\n                     ", "docs-backend.html": "backend (.net & node.js) backend paradigms synchronous vs asynchronous execution \n                        <ul>\n                            <li><strong>synchronous apis (sync):</strong> block the thread until the final response. <br><em>when to use:</em> purely computational tasks (cpu-bound).</li>\n                            <li><strong>asynchronous apis (async):</strong> release the server thread while waiting. <br><em>when to use:</em> always for i/o-bound requests. vital for scalability.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>apis síncronas (sync):</strong> bloqueiam a thread até a resposta final. <br><em>quando usar:</em> tarefas computacionais (cpu-bound).</li>\n                            <li><strong>apis assíncronas (async):</strong> liberam a thread enquanto aguardam. <br><em>quando usar:</em> sempre em requisições i/o-bound. vital para escalabilidade.</li>\n                        </ul>\n                     big-o notation (algorithmic efficiency) \n                        <p>used to classify algorithms according to how their run time or space requirements grow as the input size grows.</p>\n                        <ul>\n                            <li><strong>o(1):</strong> constant time (e.g., hash map lookup).</li>\n                            <li><strong>o(n):</strong> linear time (e.g., iterating an array).</li>\n                            <li><strong>o(log n):</strong> logarithmic time (e.g., binary search).</li>\n                            <li><strong>o(n²):</strong> quadratic time (e.g., nested loops, bubble sort). bad for large datasets.</li>\n                        </ul>\n                     \n                        <p>usada para classificar a eficiência de algoritmos conforme o tamanho da entrada cresce em tempo e espaço.</p>\n                        <ul>\n                            <li><strong>o(1):</strong> tempo constante (ex: busca em hash map).</li>\n                            <li><strong>o(n):</strong> tempo linear (ex: varrer array).</li>\n                            <li><strong>o(log n):</strong> tempo logarítmico (ex: busca binária).</li>\n                            <li><strong>o(n²):</strong> tempo quadrático (ex: loops aninhados). péssimo para alto volume.</li>\n                        </ul>\n                     .net 8 / .net 10 ecosystem advanced .net features \n                        <ul>\n                            <li><strong>span&lt;t&gt; & memory&lt;t&gt;:</strong> low allocation, high-performance slicing of memory without gc overhead.</li>\n                            <li><strong>native aot:</strong> ahead-of-time compilation. no jit. reduces ram and enables instant cold starts.</li>\n                            <li><strong>minimal apis:</strong> lightning fast endpoint routing with source generators avoiding reflection.</li>\n                            <li><strong>backgroundservices:</strong> ihostedservice for running background tasks, queue processors, and crons.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>span&lt;t&gt; & memory&lt;t&gt;:</strong> fatiamento de memória de alta performance sem alocação do garbage collector.</li>\n                            <li><strong>native aot:</strong> compilação prévia, sem jit. reduz ram e zera cold start.</li>\n                            <li><strong>minimal apis:</strong> roteamento ultrarrápido com source generators (evita reflection).</li>\n                            <li><strong>backgroundservices:</strong> ihostedservice para rodar tarefas em segundo plano, filas e crons.</li>\n                        </ul>\n                     dependency injection (di) \n                        <ul>\n                            <li><em>transient:</em> new instance per request.</li>\n                            <li><em>scoped:</em> one per http request (default for dbcontext).</li>\n                            <li><em>singleton:</em> single instance for the entire app (requires thread-safety).</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><em>transient:</em> nova instância por chamada.</li>\n                            <li><em>scoped:</em> uma por requisição http (padrão para dbcontext).</li>\n                            <li><em>singleton:</em> única para toda aplicação (requer cuidado com concorrência).</li>\n                        </ul>\n                     node.js & security node.js event loop \n                        <div class=\"alert alert-warning mb-3\">\n                            <strong>warning:</strong> never run heavy cpu-bound synchronous code on the node.js main thread, it blocks the event loop for all users!\n                        </div>\n                        <p>node.js is extremely fast for i/o operations because it uses an asynchronous non-blocking event loop.</p>\n                     \n                        <div class=\"alert alert-warning mb-3\">\n                            <strong>aviso:</strong> nunca rode código síncrono pesado de cpu na thread principal do node.js, isso trava o event loop para todos os usuários!\n                        </div>\n                        <p>node.js é extremamente rápido para operações i/o por usar um event loop assíncrono e não bloqueante.</p>\n                     enterprise security \n                        <ul>\n                            <li><strong>oauth2 & openid connect (oidc):</strong> standard protocols for authorization and authentication.</li>\n                            <li><strong>jwt (json web token):</strong> stateless tokens. must use short expiration and refresh tokens.</li>\n                            <li><strong>rbac (role-based access control):</strong> permissions mapped to user roles.</li>\n                            <li><strong>zero trust:</strong> never trust the network, always verify every request internally.</li>\n                            <li><strong>waf & rate limiting:</strong> web application firewalls and request limits to prevent ddos and brute force attacks.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>oauth2 & oidc:</strong> protocolos padrão de autorização e autenticação.</li>\n                            <li><strong>jwt:</strong> tokens stateless. devem ter expiração curta e uso de refresh tokens.</li>\n                            <li><strong>rbac:</strong> controle de acesso por papéis (roles).</li>\n                            <li><strong>zero trust:</strong> nunca confie na rede, sempre valide todas as requisições internamente.</li>\n                            <li><strong>waf & rate limiting:</strong> firewalls de aplicação e limites de request para evitar ddos.</li>\n                        </ul>\n                     cms & testing umbraco cms (.net) \n                        <p>enterprise .net cms.</p>\n                        <ul>\n                            <li><strong>architecture:</strong> fully integrated with .net core. headless api support.</li>\n                            <li><strong>document types:</strong> flexible content modeling.</li>\n                            <li><strong>performance:</strong> strongly relies on built-in caching and optimized database calls.</li>\n                        </ul>\n                     \n                        <p>cms enterprise focado em .net.</p>\n                        <ul>\n                            <li><strong>arquitetura:</strong> totalmente integrado com .net core. suporte a apis headless.</li>\n                            <li><strong>document types:</strong> modelagem de conteúdo flexível.</li>\n                            <li><strong>performance:</strong> forte uso de cache nativo e chamadas otimizadas de banco.</li>\n                        </ul>\n                     quality & tdd \n                        <ul>\n                            <li><strong>unit tests:</strong> test a single class/method isolated using mocks.</li>\n                            <li><strong>integration tests:</strong> test components interacting with real dbs or apis (e.g. testcontainers).</li>\n                            <li><strong>tdd (test-driven development):</strong> red, green, refactor. write the failing test first, make it pass, then clean the code.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>testes unitários:</strong> testam uma classe/método isolado usando mocks.</li>\n                            <li><strong>testes de integração:</strong> testam componentes reais interagindo com banco (ex: testcontainers).</li>\n                            <li><strong>tdd:</strong> red, green, refactor. escreva o teste falhando, faça passar, depois limpe o código.</li>\n                        </ul>\n                     ", "docs-databases.html": "databases, orms & big data relational & nosql entity framework core vs dapper \n                        <div class=\"alert alert-success mb-3\"><strong>cqrs strategy:</strong> use ef core for complex write rules (c) and dapper for fast reading screens (r).</div>\n                        <ul>\n                            <li><strong>ef core:</strong> full orm. change tracking, migrations, linq. ideal for domain logic.</li>\n                            <li><strong>dapper:</strong> micro-orm. pure sql mapped to objects. extreme performance.</li>\n                        </ul>\n                     \n                        <div class=\"alert alert-success mb-3\"><strong>estratégia cqrs:</strong> use ef core para escrita complexa (c) e dapper para leitura veloz (r).</div>\n                        <ul>\n                            <li><strong>ef core:</strong> orm full. change tracking, migrations, linq. ideal para lógica de domínio.</li>\n                            <li><strong>dapper:</strong> micro-orm. sql puro para objeto. performance extrema.</li>\n                        </ul>\n                     advanced postgresql \n                        <p>enterprise strategies for massive scale databases:</p>\n                        <ul>\n                            <li><strong>partitioning:</strong> range or hash partitioning for gigantic tables.</li>\n                            <li><strong>indexes:</strong> brin and gin indexes for complex queries.</li>\n                            <li><strong>read replicas:</strong> splitting read traffic from the master write db.</li>\n                            <li><strong>materialized views:</strong> pre-calculating heavy queries.</li>\n                        </ul>\n                     \n                        <p>estratégias enterprise para bancos de grande escala:</p>\n                        <ul>\n                            <li><strong>particionamento:</strong> partição por range/hash em tabelas gigantes.</li>\n                            <li><strong>índices:</strong> índices brin e gin para buscas complexas.</li>\n                            <li><strong>read replicas:</strong> dividir o tráfego de leitura do banco master.</li>\n                            <li><strong>views materializadas:</strong> pré-calcular queries muito pesadas.</li>\n                        </ul>\n                     mongodb (nosql) \n                        <p>document database storing json-like bson data.</p>\n                        <ul>\n                            <li><strong>use cases:</strong> semi-structured data, dynamic catalogs, fast telemetry.</li>\n                            <li><strong>scaling:</strong> sharding allows distributing data across multiple servers.</li>\n                            <li><strong>anti-pattern:</strong> trying to join dozens of collections; data should be nested or referenced appropriately.</li>\n                        </ul>\n                     \n                        <p>banco orientado a documentos salvando bson (json).</p>\n                        <ul>\n                            <li><strong>uso:</strong> dados semi-estruturados, catálogos dinâmicos, telemetria rápida.</li>\n                            <li><strong>escala:</strong> sharding permite distribuir dados em vários servidores.</li>\n                            <li><strong>anti-pattern:</strong> tentar fazer join de muitas collections; os dados devem ser aninhados de forma otimizada.</li>\n                        </ul>\n                     redis (in-memory data store) \n                        <p>nosql key-value database running in ram.</p>\n                        <ul>\n                            <li><strong>cache:</strong> caching slow sql queries.</li>\n                            <li><strong>semantic caching:</strong> caching llm embeddings to save token costs.</li>\n                            <li><strong>rate limiting:</strong> blocking api abuse.</li>\n                            <li><strong>pub/sub:</strong> fast asynchronous messaging.</li>\n                        </ul>\n                     \n                        <p>banco nosql chave-valor em ram.</p>\n                        <ul>\n                            <li><strong>cache:</strong> cache de sql lento.</li>\n                            <li><strong>semantic caching:</strong> cache de embeddings de ia para salvar custos.</li>\n                            <li><strong>rate limiting:</strong> bloquear abuso de api.</li>\n                            <li><strong>pub/sub:</strong> mensageria assíncrona rápida.</li>\n                        </ul>\n                     data engineering & analytics data lake vs data warehouse \n                        <ul>\n                            <li><strong>data lake:</strong> stores raw, unstructured, or structured data (e.g., s3). cheap and flexible.</li>\n                            <li><strong>data warehouse:</strong> structured, processed data optimized for analytics (e.g., snowflake, bigquery).</li>\n                            <li><strong>data mesh:</strong> decentralized architecture where each domain manages its own data products.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>data lake:</strong> armazena dados brutos, não estruturados e estruturados (ex: s3). barato e flexível.</li>\n                            <li><strong>data warehouse:</strong> dados processados e estruturados para análise (ex: snowflake).</li>\n                            <li><strong>data mesh:</strong> arquitetura descentralizada onde cada domínio cuida de seus dados.</li>\n                        </ul>\n                     azure databricks & apache spark \n                        <p>leading platform for big data, ai, and etl pipelines.</p>\n                        <ul>\n                            <li><strong>medallion architecture (delta lake):</strong> \n                                <ul>\n                                    <li><em>bronze:</em> raw ingested data.</li>\n                                    <li><em>silver:</em> cleaned, filtered, augmented data.</li>\n                                    <li><em>gold:</em> business-level aggregates ready for bi.</li>\n                                </ul>\n                            </li>\n                            <li><strong>performance:</strong> uses partition pruning and adaptive query execution to optimize distributed data shuffling.</li>\n                        </ul>\n                     \n                        <p>plataforma líder para big data, ia e pipelines etl.</p>\n                        <ul>\n                            <li><strong>arquitetura medallion (delta lake):</strong> \n                                <ul>\n                                    <li><em>bronze:</em> dados brutos da ingestão.</li>\n                                    <li><em>silver:</em> dados limpos e filtrados.</li>\n                                    <li><em>gold:</em> agregações de negócio prontas para bi.</li>\n                                </ul>\n                            </li>\n                            <li><strong>performance:</strong> usa partition pruning e adaptive query execution para otimizar o processamento distribuído.</li>\n                        </ul>\n                     etl vs elt \n                        <ul>\n                            <li><strong>etl (extract, transform, load):</strong> transform data before loading it into the destination. used when target systems lack processing power.</li>\n                            <li><strong>elt (extract, load, transform):</strong> load raw data into modern scalable data warehouses, then use their immense power to transform the data internally.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>etl (extract, transform, load):</strong> transforma os dados antes de carregar no destino.</li>\n                            <li><strong>elt (extract, load, transform):</strong> carrega os dados brutos no data warehouse e transforma lá dentro usando o poder computacional da nuvem.</li>\n                        </ul>\n                     ", "docs-cloud.html": "cloud, devops & messaging messaging & serverless kafka vs rabbitmq \n                        <ul>\n                            <li><strong>rabbitmq:</strong> smart broker, dumb consumer. routing (exchanges) and transactional queues.</li>\n                            <li><strong>kafka:</strong> dumb broker, smart consumer. event streaming, immutable logs, extremely high throughput.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>rabbitmq:</strong> smart broker, dumb consumer. roteamento (exchanges) e filas transacionais.</li>\n                            <li><strong>kafka:</strong> dumb broker, smart consumer. event streaming, logs imutáveis, vazão altíssima.</li>\n                        </ul>\n                     resilient queueing concepts \n                        <ul>\n                            <li><strong>dlq (dead letter queue):</strong> isolates messages with errors after x failed attempts (poison messages).</li>\n                            <li><strong>visibility timeout:</strong> hides messages from other workers while being processed to avoid duplicate execution.</li>\n                            <li><strong>idempotency:</strong> safe retries. processing the same message twice must yield the same state result.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>dlq:</strong> fila morta. isola mensagens com erro após x tentativas.</li>\n                            <li><strong>visibility timeout:</strong> esconde a mensagem enquanto é processada para evitar duplicidade.</li>\n                            <li><strong>idempotência:</strong> processar a mesma mensagem duas vezes deve manter o sistema no mesmo estado de sucesso.</li>\n                        </ul>\n                     cloud providers aws ecosystem \n                        <ul>\n                            <li><strong>ec2 & auto scaling:</strong> virtual machines that scale based on cpu/ram thresholds.</li>\n                            <li><strong>s3:</strong> unlimited object storage. key features: versioning and lifecycle rules.</li>\n                            <li><strong>rds:</strong> managed db. use multi-az for failover availability and read replicas for scaling reads.</li>\n                            <li><strong>sns & sqs:</strong> sns is fan-out (pub/sub). sqs is point-to-point queues.</li>\n                            <li><strong>lambda:</strong> serverless (max 15 min execution).</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>ec2 & auto scaling:</strong> vms que escalam via regras de cpu/ram.</li>\n                            <li><strong>s3:</strong> storage ilimitado. destaques: versionamento e regras de ciclo de vida.</li>\n                            <li><strong>rds:</strong> banco gerenciado. use multi-az para alta disponibilidade e read replicas para escalar leitura.</li>\n                            <li><strong>sns & sqs:</strong> sns faz fan-out (vários destinos). sqs é fila isolada.</li>\n                            <li><strong>lambda:</strong> serverless (máx 15 min de execução).</li>\n                        </ul>\n                     azure ecosystem \n                        <ul>\n                            <li><strong>azure functions:</strong> serverless offering. consumption vs premium plans.</li>\n                            <li><strong>azure service bus:</strong> enterprise messaging with topics and queues.</li>\n                            <li><strong>azure blob storage:</strong> unstructured object storage.</li>\n                            <li><strong>azure container instances:</strong> run containers instantly without k8s complexity.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>azure functions:</strong> oferta serverless com planos de consumo ou premium.</li>\n                            <li><strong>azure service bus:</strong> mensageria enterprise avançada.</li>\n                            <li><strong>azure blob storage:</strong> storage de objetos.</li>\n                            <li><strong>azure container instances:</strong> rodar containers na nuvem sem precisar montar cluster.</li>\n                        </ul>\n                     cloud i/o & networking \n                        <ul>\n                            <li><strong>ingress vs egress:</strong> ingress (traffic in) is often free. egress (traffic out) costs money.</li>\n                            <li><strong>alb (application load balancer):</strong> distributes http/https traffic.</li>\n                            <li><strong>cloudflare (cdn):</strong> caches assets globally and acts as a security proxy (waf) blocking ddos attacks.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>ingress vs egress:</strong> ingress (entrada) costuma ser grátis. egress (saída) é tarifado.</li>\n                            <li><strong>alb:</strong> balanceador que distribui tráfego web http/https.</li>\n                            <li><strong>cloudflare:</strong> cdn global e proxy de segurança (waf e proteção anti-ddos).</li>\n                        </ul>\n                     containers, kubernetes & observability docker & kubernetes \n                        <ul>\n                            <li><strong>docker:</strong> containerization. best practices: multi-stage builds, least privilege, small images.</li>\n                            <li><strong>k8s pods:</strong> smallest unit. managed by deployments or statefulsets.</li>\n                            <li><strong>hpa (horizontal pod autoscaler):</strong> automatically scales replica counts.</li>\n                            <li><strong>probes:</strong> liveness (kills if stuck) and readiness (removes from traffic pool if slow).</li>\n                            <li><strong>portainer:</strong> gui to manage docker/k8s clusters easily.</li>\n                            <li><strong>terraform:</strong> infrastructure as code (iac) to automate cloud deployments.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>docker:</strong> containerização. práticas: multi-stage builds, imagens leves, varredura de vulnerabilidades.</li>\n                            <li><strong>pods k8s:</strong> unidade mínima. devem ser criados via deployments ou statefulsets.</li>\n                            <li><strong>hpa:</strong> auto-scaler baseado em uso de cpu.</li>\n                            <li><strong>probes:</strong> liveness (mata pod travado) e readiness (espera carregar antes de mandar tráfego).</li>\n                            <li><strong>portainer:</strong> interface visual para gerenciar clusters.</li>\n                            <li><strong>terraform:</strong> infraestrutura como código (iac) para a nuvem.</li>\n                        </ul>\n                     observability & ci/cd \n                        <ul>\n                            <li><strong>observability pillars:</strong> logs, metrics, and distributed tracing.</li>\n                            <li><strong>opentelemetry:</strong> industry standard for generating traces.</li>\n                            <li><strong>correlation ids:</strong> trace a request across multiple microservices.</li>\n                            <li><strong>ci/cd (continuous integration/deployment):</strong> automated pipelines (github actions, azure devops, argocd for gitops).</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>pilares da observabilidade:</strong> logs, métricas e traces distribuídos.</li>\n                            <li><strong>opentelemetry:</strong> padrão da indústria para rastreamento.</li>\n                            <li><strong>correlation ids:</strong> id único para rastrear uma requisição passando por 10 microsserviços.</li>\n                            <li><strong>ci/cd:</strong> pipelines automatizados (github actions, azure devops, argocd).</li>\n                        </ul>\n                     ", "docs-frontend.html": "frontend & apis modern spa ecosystem react enterprise \n                        <ul>\n                            <li><strong>architecture:</strong> virtual dom, reusable components, and suspense for data loading.</li>\n                            <li><strong>react server components (rsc):</strong> render ui on the server (next.js) for zero js bundle size and direct database access.</li>\n                            <li><strong>optimization:</strong> code splitting, lazy loading, and massive use of tailwind css and shadcn/ui for styling.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>arquitetura:</strong> virtual dom, componentes reutilizáveis, e suspense para carregamento.</li>\n                            <li><strong>react server components (rsc):</strong> renderiza ui no servidor (next.js) reduzindo bundle de js e permitindo acesso direto a banco.</li>\n                            <li><strong>otimização:</strong> code splitting, lazy loading, e adoção massiva de tailwind css e shadcn/ui.</li>\n                        </ul>\n                     angular deep dive \n                        <ul>\n                            <li><strong>robustness:</strong> built-in dependency injection, strict typescript, and rxjs streams.</li>\n                            <li><strong>enterprise scale:</strong> feature-based modules, lazy loading, and route guards for auth.</li>\n                            <li><strong>signals:</strong> replacing zone.js for granular reactivity, massively improving performance.</li>\n                            <li><strong>onpush:</strong> change detection strategy that skips unnecessary tree checks.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>robustez:</strong> injeção de dependência nativa, typescript estrito e rxjs.</li>\n                            <li><strong>escala enterprise:</strong> módulos por feature, lazy loading e route guards para auth.</li>\n                            <li><strong>signals:</strong> substituindo zone.js para reatividade granular e alta performance.</li>\n                            <li><strong>onpush:</strong> estratégia de change detection que evita verificações de árvore desnecessárias.</li>\n                        </ul>\n                     vue.js ecosystem \n                        <ul>\n                            <li><strong>philosophy:</strong> progressive framework. easy to integrate into existing apps.</li>\n                            <li><strong>frameworks:</strong> nuxt for ssr/ssg and quasar for cross-platform enterprise uis.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>filosofia:</strong> framework progressivo. fácil adoção em projetos existentes.</li>\n                            <li><strong>frameworks:</strong> nuxt para ssr/ssg e quasar para ui corporativas multiplataforma.</li>\n                        </ul>\n                     ", "docs-ai.html": "artificial intelligence ai agents & orchestration autonomous agents & tool calling \n                        <p>unlike simple llm chatbots, <strong>ai agents</strong> have goals, memory, and utilize <strong>tool calling</strong>. they can autonomously access sql, apis, and files without human intervention.</p>\n                        <ul>\n                            <li><strong>mcp (model context protocol):</strong> anthropic's standard for secure communication between llms and corporate tools.</li>\n                            <li><strong>orchestrators:</strong>\n                                <ul>\n                                    <li><strong>n8n:</strong> visual automation (low-code) to connect ai to whatsapp/slack workflows.</li>\n                                    <li><strong>langchain / langgraph:</strong> code-based framework (python/ts) to manipulate complex prompt chains.</li>\n                                </ul>\n                            </li>\n                        </ul>\n                     \n                        <p>diferente de chatbots simples, os <strong>ai agents</strong> possuem objetivos, memória e utilizam <strong>tool calling</strong>. podem acessar sql, apis e arquivos de forma autônoma sem intervenção humana.</p>\n                        <ul>\n                            <li><strong>mcp (model context protocol):</strong> padrão da anthropic para comunicação segura entre llms e ferramentas corporativas.</li>\n                            <li><strong>orquestradores:</strong>\n                                <ul>\n                                    <li><strong>n8n:</strong> automação visual (low-code) para conectar ia a fluxos de whatsapp/slack.</li>\n                                    <li><strong>langchain / langgraph:</strong> framework via código para manipular cadeias complexas.</li>\n                                </ul>\n                            </li>\n                        </ul>\n                     prompt engineering \n                        <ul>\n                            <li><strong>zero-shot:</strong> asking the model a question without providing examples.</li>\n                            <li><strong>few-shot:</strong> providing a few examples inside the prompt to guide the output format.</li>\n                            <li><strong>chain-of-thought (cot):</strong> asking the model to \"think step by step\", significantly improving logical reasoning.</li>\n                        </ul>\n                     \n                        <ul>\n                            <li><strong>zero-shot:</strong> pedir algo ao modelo sem fornecer exemplos.</li>\n                            <li><strong>few-shot:</strong> fornecer alguns exemplos no prompt para guiar a resposta.</li>\n                            <li><strong>chain-of-thought (cot):</strong> pedir para o modelo \"pensar passo a passo\", melhorando absurdamente a lógica.</li>\n                        </ul>\n                     generative ai & vector dbs rag (retrieval-augmented generation) \n                        <p>enhancing llms with private data to prevent hallucinations.</p>\n                        <ul>\n                            <li><strong>ingestion & chunking:</strong> splitting pdf/docs into semantic logical chunks.</li>\n                            <li><strong>embeddings:</strong> converting text chunks into mathematical vectors.</li>\n                            <li><strong>vector db:</strong> storing embeddings (e.g., pinecone, chroma, milvus, supabase/pgvector).</li>\n                            <li><strong>retrieval & re-ranking:</strong> finding the closest vectors via cosine similarity and re-ranking them before sending to the llm context window.</li>\n                        </ul>\n                     \n                        <p>enriquecer llms com dados privados para evitar alucinações.</p>\n                        <ul>\n                            <li><strong>ingestão & chunking:</strong> cortar pdfs/docs em pedaços lógicos e semânticos.</li>\n                            <li><strong>embeddings:</strong> converter textos em vetores matemáticos.</li>\n                            <li><strong>vector db:</strong> banco que guarda os vetores (pinecone, chroma, milvus, supabase pgvector).</li>\n                            <li><strong>retrieval & re-ranking:</strong> buscar os vetores mais próximos por similaridade de cosseno e reordená-los antes de enviar ao llm.</li>\n                        </ul>\n                     supabase & pgvector \n                        <p>supabase provides managed postgresql with native pgvector extension. ideal for rag architectures without adding another external vector db infrastructure.</p>\n                     \n                        <p>supabase entrega postgresql gerenciado com a extensão pgvector nativa. ideal para arquiteturas rag sem a necessidade de gerenciar outra infra de banco vetorial externo.</p>\n                     " };
+        const searchInput = document.getElementById('searchInput');
+        const btnSearch = document.getElementById('btnSearch');
+        const btnSearchClear = document.getElementById('btnSearchClear');
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query.replace(/\s/g, '').length < 2 && query.length > 0) return;
+
+            if (query.length === 0) {
+                clearSearch();
+                return;
+            }
+
+            btnSearchClear.style.display = 'block';
+
+            document.querySelectorAll('.col-md-4').forEach(col => {
+                const link = col.querySelector('a');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    if (searchIndex[href] && searchIndex[href].includes(query)) {
+                        col.style.display = 'block';
+                    } else {
+                        col.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            btnSearchClear.style.display = 'none';
+            document.querySelectorAll('.col-md-4').forEach(col => col.style.display = 'block');
+        }
+
+        btnSearch.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+        btnSearchClear.addEventListener('click', clearSearch);
+    </script>
+
+</body>
+
+</html>

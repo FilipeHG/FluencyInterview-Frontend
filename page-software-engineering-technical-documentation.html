@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Technical Documentation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.4.0/dist/umd/i18next.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-i18next@13.0.1/dist/umd/react-i18next.min.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+    <script>
+        const currentLanguage = localStorage.getItem('technicalDocLanguage') || 'pt';
+
+        const translationResources = {
+            en: {
+                translation: {
+                    "Visão Geral": "Overview",
+                    "Introdução": "Introduction",
+                    "Índice": "Table of Contents",
+                    "Índice Geral": "General Index",
+                    "Core Engineering": "Core Engineering",
+                    "Engenharia de Software": "Software Engineering",
+                    "Backend Enterprise": "Backend Enterprise",
+                    "Frontend Engineering": "Frontend Engineering",
+                    "Cloud & Data": "Cloud & Data",
+                    "Cloud & DevOps": "Cloud & DevOps",
+                    "Big Data & Engenharia de Dados": "Big Data & Data Engineering",
+                    "Mensageria & Streaming": "Messaging & Streaming",
+                    "Advanced Topics": "Advanced Topics",
+                    "Inteligência Artificial": "Artificial Intelligence",
+                    "Arquiteturas Enterprise": "Enterprise Architectures",
+                    "Arquitetura": "Architecture",
+                    "Performance & Escalabilidade": "Performance & Scalability",
+                    "Segurança": "Security",
+                    "Observabilidade": "Observability",
+                    "Casos Reais": "Real-World Cases",
+                    "Software Engineering Technical Documentation": "Software Engineering Technical Documentation",
+                    "Documentação técnica consolidada e expandida contendo experiências reais detalhadas, arquiteturas distribuídas, engenharia backend, cloud computing, inteligência artificial, microsserviços, sistemas distribuídos, engenharia de dados, mensageria enterprise, observabilidade, segurança, estratégias de performance e arquiteturas de alta escala. Esta versão integra informações aprofundadas do rascunho original, proporcionando uma visão completa e profissional.": "Consolidated technical documentation with detailed real experiences, distributed architectures, backend engineering, cloud computing, artificial intelligence, microservices, distributed systems, data engineering, enterprise messaging, observability, security, performance strategies and high-scale architectures. This version integrates deep insights from the original draft, providing a complete and professional view.",
+                    "1. Engenharia de Software": "1. Software Engineering",
+                    "2. Backend Enterprise": "2. Backend Enterprise",
+                    "3. Frontend Engineering": "3. Frontend Engineering",
+                    "4. Cloud & DevOps": "4. Cloud & DevOps",
+                    "5. Big Data & Engenharia de Dados": "5. Big Data & Data Engineering",
+                    "6. Mensageria & Event Driven": "6. Messaging & Event Driven",
+                    "7. Inteligência Artificial": "7. Artificial Intelligence",
+                    "8. Arquiteturas Enterprise": "8. Enterprise Architectures",
+                    "9. Performance & Escalabilidade": "9. Performance & Scalability",
+                    "10. Segurança": "10. Security",
+                    "11. Observabilidade": "11. Observability",
+                    "12. Casos Reais": "12. Real-World Cases",
+                    "Clean Architecture": "Clean Architecture",
+                    "Clean Architecture foi utilizada para desacoplamento entre domínio, aplicação, infraestrutura e frameworks, promovendo testabilidade, escalabilidade e independência tecnológica. Esta abordagem separa as regras de negócio do código de infraestrutura, permitindo mudanças tecnológicas sem afetar o núcleo do sistema.": "Clean Architecture was used to decouple domain, application, infrastructure and frameworks, promoting testability, scalability and technology independence. This approach separates business rules from infrastructure code, allowing technology changes without affecting the system core.",
+                    "Princípios fundamentais incluem a inversão de dependências, onde as camadas externas dependem das internas através de interfaces, garantindo que o domínio não seja afetado por mudanças em bancos de dados, frameworks ou APIs externas.": "Fundamental principles include dependency inversion, where outer layers depend on inner layers through interfaces, ensuring the domain is not affected by changes in databases, frameworks or external APIs.",
+                    "Aplicações Reais": "Real Use Cases",
+                    "Microsserviços enterprise com isolamento de domínios": "Enterprise microservices with domain isolation",
+                    "Plataformas financeiras com alta regulamentação": "High-regulation financial platforms",
+                    "APIs distribuídas para integração de sistemas legados": "Distributed APIs for legacy system integration",
+                    "Sistemas críticos de integração com alta disponibilidade": "Critical integration systems with high availability",
+                    "Processamento assíncrono com mensageria desacoplada": "Asynchronous processing with decoupled messaging",
+                    "Em ambientes enterprise, Clean Architecture reduz acoplamento, melhora manutenibilidade e facilita evolução contínua. É especialmente útil em sistemas que precisam suportar mudanças frequentes de requisitos ou tecnologias.": "In enterprise environments, Clean Architecture reduces coupling, improves maintainability and supports continuous evolution. It is especially useful in systems that need to support frequent requirement or technology changes.",
+                    "Benefícios Detalhados": "Detailed Benefits",
+                    "Testabilidade independente de cada camada": "Layer-independent testability",
+                    "Facilidade de manutenção e refatoração": "Ease of maintenance and refactoring",
+                    "Independência de frameworks e bibliotecas": "Independence from frameworks and libraries",
+                    "Separação clara de responsabilidades": "Clear separation of responsibilities",
+                    "Escalabilidade horizontal e vertical": "Horizontal and vertical scalability",
+                    "DDD — Domain Driven Design": "DDD — Domain Driven Design",
+                    "Domain Driven Design foi aplicado para modelagem de domínios complexos, separação de bounded contexts e construção de sistemas orientados a negócio. O DDD foca em alinhar o código com o conhecimento do domínio, utilizando uma linguagem ubíqua compartilhada entre desenvolvedores e especialistas.": "Domain Driven Design was applied to model complex domains, separate bounded contexts and build business-oriented systems. DDD focuses on aligning code with domain knowledge, using a ubiquitous language shared between developers and domain experts.",
+                    "Uma boa prática é manter o modelo do domínio limpo, separado de detalhes técnicos, garantindo que as regras de negócio sejam expressas de forma clara e independente de frameworks ou infraestrutura. Isso facilita a evolução do sistema e a comunicação entre equipes.": "A good practice is to keep the domain model clean and separated from technical details, ensuring business rules are expressed clearly and independently of frameworks or infrastructure. This makes system evolution and team communication easier.",
+                    "Conceito": "Concept",
+                    "Aplicação": "Application",
+                    "Exemplo": "Example",
+                    "Bounded Context": "Bounded Context",
+                    "Separação de domínios independentes": "Separation of independent domains",
+                    "Vendas vs. Estoque": "Sales vs. Inventory",
+                    "Entities": "Entities",
+                    "Regras de negócio com identidade": "Business rules with identity",
+                    "Cliente com ID único": "Customer with unique ID",
+                    "Value Objects": "Value Objects",
+                    "Objetos imutáveis sem identidade": "Immutable objects without identity",
+                    "Endereço ou Moeda": "Address or Currency",
+                    "Aggregates": "Aggregates",
+                    "Consistência transacional": "Transactional consistency",
+                    "Pedido com itens": "Order with items",
+                    "Estratégias de Modelagem": "Modeling Strategies",
+                    "Event Storming para descoberta de eventos de domínio": "Event Storming for domain event discovery",
+                    "Context Mapping para relacionar bounded contexts": "Context Mapping to relate bounded contexts",
+                    "Ubiquitous Language para comunicação consistente": "Ubiquitous Language for consistent communication",
+                    "Domain Events para comunicação assíncrona": "Domain Events for asynchronous communication",
+                    "Em sistemas complexos, é crucial evitar over-engineering. Aplique DDD apenas onde há complexidade real de domínio, não em CRUDs simples.": "In complex systems, it is crucial to avoid over-engineering. Apply DDD only where there is real domain complexity, not in simple CRUD.",
+                    "CQRS — Command Query Responsibility Segregation": "CQRS — Command Query Responsibility Segregation",
+                    "CQRS separa o modelo de leitura do modelo de escrita, permitindo escalabilidade independente e otimização específica para cada operação. O Command Model lida com validações e regras de negócio, enquanto o Query Model é otimizado para leituras rápidas.": "CQRS separates the read model from the write model, enabling independent scalability and optimization for each operation. The Command Model handles validation and business rules, while the Query Model is optimized for fast reads.",
+                    "Em cenários de alta escala, o CQRS permite que operações de leitura sejam escaladas separadamente das de escrita, utilizando bancos de dados diferentes ou caches especializados. Isso é fundamental para sistemas com alta carga de consultas.": "In high-scale scenarios, CQRS allows reads to be scaled separately from writes, using different databases or specialized caches. This is essential for systems with heavy query loads.",
+                    "Modelos CQRS": "CQRS Models",
+                    "Command Model": "Command Model",
+                    "Query Model": "Query Model",
+                    "Pode usar DTOs, views materializadas ou projeções": "Can use DTOs, materialized views or projections",
+                    "Benefícios": "Benefits",
+                    "Escalabilidade independente de leitura/escrita": "Independent read/write scalability",
+                    "Separação de responsabilidades claras": "Clear separation of responsibilities",
+                    "Performance otimizada para cada operação": "Performance optimized for each operation",
+                    "Leitura desacoplada da escrita": "Read decoupled from write",
+                    "Escrita orientada a domínio puro": "Write oriented to pure domain",
+                    "Uma boa prática é modelar os documentos pensando em como os dados serão lidos, evitando queries complexas. Para leituras, use modelos otimizados como DTOs ou projeções.": "A good practice is to model documents thinking about how data will be read, avoiding complex queries. For reads, use optimized models such as DTOs or projections.",
+                    "C4 Model — Visualização de Arquiteturas": "C4 Model — Architecture Visualization",
+                    "O modelo C4 é uma forma simples de visualizar a arquitetura de um sistema em diferentes níveis de detalhe. Ele começa com o diagrama de Contexto, que mostra quem usa o sistema e como ele se conecta com outros sistemas.": "The C4 model is a simple way to visualize a system architecture at different levels of detail. It begins with the Context diagram, which shows who uses the system and how it connects to other systems.",
+                    "Depois vem o diagrama de Contêiner, que mostra os principais aplicativos e serviços que compõem o sistema. O diagrama de Componente detalha o que tem dentro de cada contêiner, como módulos ou bibliotecas. Se precisar ir mais fundo, dá pra usar o nível de Código, com diagramas mais técnicos.": "Then comes the Container diagram, which shows the main applications and services that make up the system. The Component diagram details what is inside each container, such as modules or libraries. If you need to go deeper, you can use the Code level with more technical diagrams.",
+                    "Níveis do C4 Model": "C4 Model Levels",
+                    "Context": "Context",
+                    "Visão geral do sistema e usuários": "System and user overview",
+                    "Container": "Container",
+                    "Aplicações e serviços principais": "Main applications and services",
+                    "Component": "Component",
+                    "Módulos dentro dos containers": "Modules inside containers",
+                    "Code": "Code",
+                    "Classes e estruturas detalhadas": "Detailed classes and structures",
+                    "Boas Práticas": "Best Practices",
+                    "Manter diagramas simples e focados no público": "Keep diagrams simple and audience-focused",
+                    "Usar para alinhar equipes e documentar arquitetura": "Use to align teams and document architecture",
+                    "Complementar com microsserviços ou arquiteturas modulares": "Supplement with microservices or modular architectures",
+                    "Evitar sobrecarga visual em diagramas complexos": "Avoid visual overload in complex diagrams",
+                    "É ótimo pra alinhar a equipe e documentar a arquitetura sem complicar demais. Quando o sistema cresce, é importante dividir componentes por domínio ou responsabilidade, ajudando a escalar sem bagunça.": "It is great for aligning the team and documenting architecture without overcomplicating things. When the system grows, it is important to divide components by domain or responsibility, helping scale without chaos.",
+                    ".NET & ASP.NET Core": ".NET & ASP.NET Core",
+                    "Desenvolvimento de aplicações backend escaláveis utilizando ASP.NET Core, arquitetura orientada a domínio, processamento assíncrono, mensageria distribuída e integração cloud-native. O ASP.NET Core oferece alta performance, modularidade e suporte a containers.": "Development of scalable backend applications using ASP.NET Core, domain-oriented architecture, asynchronous processing, distributed messaging and cloud-native integration. ASP.NET Core offers high performance, modularity and container support.",
+                    "Em cenários enterprise, foram implementadas estratégias avançadas como connection pooling para otimizar conexões de banco, retry policies para resiliência, circuit breakers para proteção contra falhas, cache distribuído e otimização de serialização JSON.": "In enterprise scenarios, advanced strategies were implemented such as connection pooling to optimize database connections, retry policies for resilience, circuit breakers for failure protection, distributed caching and JSON serialization optimization.",
+                    "Principais Aplicações": "Main Applications",
+                    "APIs de alta disponibilidade com rate limiting": "High-availability APIs with rate limiting",
+                    "Plataformas distribuídas com service mesh": "Distributed platforms with service mesh",
+                    "Background processing com workers assíncronos": "Background processing with asynchronous workers",
+                    "API Gateways para roteamento inteligente": "API Gateways for intelligent routing",
+                    "Integrações críticas com sistemas legados": "Critical integrations with legacy systems",
+                    "Workers assíncronos para processamento em lote": "Asynchronous workers for batch processing",
+                    "Tecnologias Integradas": "Integrated Technologies",
+                    "Entity Framework Core para ORM": "Entity Framework Core for ORM",
+                    "MediatR para CQRS e comandos": "MediatR for CQRS and commands",
+                    "Polly para políticas de resiliência": "Polly for resilience policies",
+                    "Serilog para logging estruturado": "Serilog for structured logging",
+                    "Swagger/OpenAPI para documentação": "Swagger/OpenAPI for documentation",
+                    "Em ambientes de alta escala foram utilizadas estratégias avançadas: connection pooling, retry policy, circuit breaker, cache distribuído e otimização de serialização.": "In high-scale environments advanced strategies were used: connection pooling, retry policy, circuit breaker, distributed cache and serialization optimization.",
+                    "Angular & React": "Angular & React",
+                    "Desenvolvimento de aplicações frontend modernas utilizando Angular, React e arquiteturas componentizadas preparadas para aplicações enterprise. Ambas as frameworks suportam TypeScript para tipagem forte e melhor manutenibilidade.": "Development of modern frontend applications using Angular, React and component-based architectures prepared for enterprise applications. Both frameworks support TypeScript for strong typing and better maintainability.",
+                    "O Angular oferece uma estrutura completa com dependency injection, enquanto o React foca em componentização flexível com hooks. Em projetos enterprise, a escolha depende da complexidade e equipe.": "Angular offers a complete framework with dependency injection, while React focuses on flexible componentization with hooks. In enterprise projects, the choice depends on complexity and the team.",
+                    "Estratégias Utilizadas": "Strategies Used",
+                    "Lazy loading para carregamento sob demanda": "Lazy loading for on-demand loading",
+                    "State management com NgRx (Angular) ou Redux (React)": "State management with NgRx (Angular) or Redux (React)",
+                    "Microfrontends para aplicações modulares": "Microfrontends for modular applications",
+                    "Componentização reutilizável e testável": "Reusable and testable componentization",
+                    "Performance optimization com code splitting": "Performance optimization with code splitting",
+                    "Server-Side Rendering (SSR) para SEO": "Server-Side Rendering (SSR) for SEO",
+                    "Progressive Web Apps (PWA) para offline": "Progressive Web Apps (PWA) for offline",
+                    "Comparação Angular vs React": "Angular vs React Comparison",
+                    "Aprendizado": "Learning",
+                    "Curva maior": "Steeper curve",
+                    "Mais simples": "Simpler",
+                    "Performance": "Performance",
+                    "Alta com AOT": "High with AOT",
+                    "Alta com Virtual DOM": "High with Virtual DOM",
+                    "Ecossistema": "Ecosystem",
+                    "Completo": "Complete",
+                    "Extenso": "Extensive",
+                    "Para aplicações enterprise, Angular é preferido quando há necessidade de estrutura rigorosa, enquanto React oferece mais flexibilidade para equipes experientes.": "For enterprise applications, Angular is preferred when a strict structure is needed, while React offers more flexibility for experienced teams.",
+                    "Microsoft Azure": "Microsoft Azure",
+                    "Construção de arquiteturas cloud-native utilizando serviços Azure, pipelines automatizados, processamento distribuído e observabilidade centralizada. O Azure oferece uma suite completa para desenvolvimento, deploy e monitoramento.": "Building cloud-native architectures using Azure services, automated pipelines, distributed processing and centralized observability. Azure offers a complete suite for development, deployment and monitoring.",
+                    "Em projetos enterprise, foram utilizados Azure DevOps para CI/CD, Azure Monitor para observabilidade, e Azure Policy para governança. A integração com .NET e Kubernetes facilita migrações e escalabilidade.": "In enterprise projects, Azure DevOps was used for CI/CD, Azure Monitor for observability, and Azure Policy for governance. Integration with .NET and Kubernetes eases migrations and scalability.",
+                    "Serviços Utilizados": "Services Used",
+                    "Azure Functions para serverless computing": "Azure Functions for serverless computing",
+                    "Azure App Services para web apps escaláveis": "Azure App Services for scalable web apps",
+                    "Azure Service Bus para mensageria enterprise": "Azure Service Bus for enterprise messaging",
+                    "Azure Storage para blobs, queues e tables": "Azure Storage for blobs, queues and tables",
+                    "Azure SQL Database para dados relacionais": "Azure SQL Database for relational data",
+                    "Azure Kubernetes Service (AKS) para containers": "Azure Kubernetes Service (AKS) for containers",
+                    "Application Insights para monitoramento": "Application Insights for monitoring",
+                    "Azure Databricks para big data analytics": "Azure Databricks for big data analytics",
+                    "Azure API Management para gateways": "Azure API Management for gateways",
+                    "Azure Key Vault para secrets management": "Azure Key Vault for secrets management",
+                    "Estratégias de Deploy": "Deployment Strategies",
+                    "Infrastructure as Code com Bicep": "Infrastructure as Code with Bicep",
+                    "Blue-Green deployments para zero downtime": "Blue-Green deployments for zero downtime",
+                    "Canary releases para testes graduais": "Canary releases for gradual testing",
+                    "Auto-scaling baseado em métricas": "Auto-scaling based on metrics",
+                    "Em produção, monitore recursos com Prometheus e Grafana, implemente logging centralizado e backup de dados.": "In production, monitor resources with Prometheus and Grafana, implement centralized logging and data backups.",
+                    "Docker & Kubernetes": "Docker & Kubernetes",
+                    "Utilização de containers e orquestração Kubernetes para deploy, escalabilidade horizontal e isolamento de workloads. Docker permite empacotamento consistente de aplicações, enquanto Kubernetes gerencia containers em produção.": "Use of containers and Kubernetes orchestration for deployment, horizontal scalability and workload isolation. Docker enables consistent packaging of applications, while Kubernetes manages containers in production.",
+                    "Em ambientes enterprise, foram implementados Helm charts para gerenciamento de releases, Istio para service mesh, e estratégias de rolling updates para deployments sem downtime.": "In enterprise environments, Helm charts were implemented for release management, Istio for service mesh, and rolling update strategies for deployments without downtime.",
+                    "Apache Spark & Databricks": "Apache Spark & Databricks",
+                    "Processamento distribuído de grandes volumes de dados utilizando Spark, pipelines analíticos e integração com Data Lakes corporativos. O Spark oferece processamento em memória para alta performance.": "Distributed processing of large data volumes using Spark, analytical pipelines and integration with corporate Data Lakes. Spark offers in-memory processing for high performance.",
+                    "Em cenários com dezenas de milhões de registros, estratégias de particionamento tornam-se fundamentais para otimizar joins e reduzir shuffle operations.": "In scenarios with tens of millions of records, partitioning strategies become essential to optimize joins and reduce shuffle operations.",
+                    "Estratégias Avançadas": "Advanced Strategies",
+                    "Data partitioning por data/hora para queries temporais": "Data partitioning by date/time for temporal queries",
+                    "Shuffle optimization com broadcast joins": "Shuffle optimization with broadcast joins",
+                    "Parallel execution com cluster tuning": "Parallel execution with cluster tuning",
+                    "Memory optimization com cache persistente": "Memory optimization with persistent caching",
+                    "Delta Lake para ACID transactions": "Delta Lake for ACID transactions",
+                    "Structured Streaming para dados em tempo real": "Structured Streaming for real-time data",
+                    "Em cenários com dezenas de milhões de registros, estratégias de particionamento tornam-se fundamentais. Use bucketing para joins frequentes e Z-ordering para queries analíticas.": "In scenarios with tens of millions of records, partitioning strategies become essential. Use bucketing for frequent joins and Z-ordering for analytical queries.",
+                    "SQL Server, PostgreSQL & MongoDB": "SQL Server, PostgreSQL & MongoDB",
+                    "Experiência com bancos relacionais e NoSQL aplicados em sistemas críticos, plataformas distribuídas e cenários de alta performance. Cada tecnologia foi escolhida baseada nos requisitos de consistência, escalabilidade e modelo de dados.": "Experience with relational and NoSQL databases applied in critical systems, distributed platforms and high-performance scenarios. Each technology was chosen based on consistency, scalability and data model requirements.",
+                    "SQL Server": "SQL Server",
+                    "Index optimization com covering indexes": "Index optimization with covering indexes",
+                    "Partitioning para tabelas grandes": "Partitioning for large tables",
+                    "Bulk processing com BCP e SSIS": "Bulk processing with BCP and SSIS",
+                    "Replication para alta disponibilidade": "Replication for high availability",
+                    "Query tuning com execution plans": "Query tuning with execution plans",
+                    "Always Encrypted para dados sensíveis": "Always Encrypted for sensitive data",
+                    "PostgreSQL": "PostgreSQL",
+                    "JSONB para dados semi-estruturados": "JSONB for semi-structured data",
+                    "Partitioning nativo": "Native partitioning",
+                    "Extensions como PostGIS": "Extensions such as PostGIS",
+                    "Full-text search avançado": "Advanced full-text search",
+                    "MongoDB": "MongoDB",
+                    "Document modeling para agregações complexas": "Document modeling for complex aggregations",
+                    "Sharding para escalabilidade horizontal": "Sharding for horizontal scalability",
+                    "Change streams para event-driven": "Change streams for event-driven",
+                    "GridFS para arquivos grandes": "GridFS for large files",
+                    "Para sistemas distribuídos, considere consistência eventual e implemente sagas para transações complexas.": "For distributed systems, consider eventual consistency and implement sagas for complex transactions.",
+                    "Apache Kafka": "Apache Kafka",
+                    "Plataforma de streaming distribuído utilizada para desacoplamento, integração assíncrona e processamento de eventos em tempo real. O Kafka oferece alta throughput e durabilidade para sistemas críticos.": "Distributed streaming platform used for decoupling, asynchronous integration and real-time event processing. Kafka offers high throughput and durability for critical systems.",
+                    "Em arquiteturas event-driven, o Kafka serve como backbone para comunicação entre microsserviços, garantindo entrega exactly-once e processamento paralelo com consumer groups.": "In event-driven architectures, Kafka serves as the backbone for communication between microservices, ensuring exactly-once delivery and parallel processing with consumer groups.",
+                    "Padrões Aplicados": "Applied Patterns",
+                    "Outbox Pattern para consistência transacional": "Outbox Pattern for transactional consistency",
+                    "Saga Pattern para transações distribuídas": "Saga Pattern for distributed transactions",
+                    "Retry Pattern com dead letter queues": "Retry Pattern with dead letter queues",
+                    "Consumer Groups para processamento paralelo": "Consumer Groups for parallel processing",
+                    "Event Replay para debugging e recovery": "Event Replay for debugging and recovery",
+                    "Event Sourcing para auditabilidade": "Event Sourcing for auditability",
+                    "Configurações de Performance": "Performance Configurations",
+                    "Batch size e linger.ms para throughput": "Batch size and linger.ms for throughput",
+                    "Partitioning para paralelismo": "Partitioning for parallelism",
+                    "Compression para reduzir rede": "Compression to reduce network",
+                    "Retention policies para storage": "Retention policies for storage",
+                    "Em produção, monitore recursos com Prometheus e Grafana, implemente logging centralizado e backup de dados.": "In production, monitor resources with Prometheus and Grafana, implement centralized logging and data backup.",
+                    "LLMs, OpenAI & RAG": "LLMs, OpenAI & RAG",
+                    "Desenvolvimento de soluções utilizando Large Language Models, recuperação contextual de documentos e automação inteligente. Os LLMs como GPT-4 oferecem capacidades avançadas de processamento de linguagem natural.": "Development of solutions using Large Language Models, contextual document retrieval and intelligent automation. LLMs like GPT-4 offer advanced natural language processing capabilities.",
+                    "O RAG (Retrieval-Augmented Generation) combina LLMs com busca semântica em bases de conhecimento, melhorando a precisão e reduzindo alucinações.": "RAG (Retrieval-Augmented Generation) combines LLMs with semantic search over knowledge bases, improving accuracy and reducing hallucinations.",
+                    "Aplicações": "Applications",
+                    "Chatbots corporativos com contexto empresarial": "Enterprise chatbots with business context",
+                    "Busca semântica em documentação técnica": "Semantic search in technical documentation",
+                    "Vetorização documental para knowledge bases": "Document vectorization for knowledge bases",
+                    "Automação operacional com workflows inteligentes": "Operational automation with intelligent workflows",
+                    "Extração inteligente de conhecimento de dados não estruturados": "Intelligent knowledge extraction from unstructured data",
+                    "Análise de sentimentos em feedback de clientes": "Sentiment analysis on customer feedback",
+                    "Tecnologias Utilizadas": "Technologies Used",
+                    "OpenAI GPT-4 para geração de texto": "OpenAI GPT-4 for text generation",
+                    "Azure OpenAI para deployments enterprise": "Azure OpenAI for enterprise deployments",
+                    "LangChain para orquestração de LLMs": "LangChain for LLM orchestration",
+                    "Pinecone/Weaviate para vector databases": "Pinecone/Weaviate for vector databases",
+                    "Hugging Face para modelos open-source": "Hugging Face for open-source models",
+                    "Em ambientes enterprise, controle de custo de tokens, cache semântico e observabilidade de prompts são fundamentais. Implemente guardrails para conteúdo sensível e monitore bias.": "In enterprise environments, token cost control, semantic caching and prompt observability are critical. Implement guardrails for sensitive content and monitor bias.",
+                    "Implementação RAG": "RAG Implementation",
+                    "O Model Context Protocol é um padrão seguro para ligar LLMs a dados locais ou corporativos. Ele permite que aplicações acessem informações sensíveis sem expor dados diretamente aos modelos.": "The Model Context Protocol is a secure standard for connecting LLMs to local or corporate data. It allows applications to access sensitive information without exposing data directly to models.",
+                    "Em ambientes enterprise, o MCP garante compliance com regulamentações como GDPR e LGPD, permitindo uso de LLMs com dados proprietários de forma segura.": "In enterprise environments, MCP ensures compliance with regulations such as GDPR and LGPD, allowing secure use of LLMs with proprietary data.",
+                    "Benefícios": "Benefits",
+                    "Segurança de dados corporativos": "Corporate data security",
+                    "Compliance com regulamentações": "Regulatory compliance",
+                    "Integração transparente com LLMs": "Transparent integration with LLMs",
+                    "Controle de acesso granular": "Granular access control",
+                    "O MCP é especialmente útil para aplicações que precisam combinar conhecimento geral de LLMs com dados específicos da empresa.": "MCP is especially useful for applications that need to combine general LLM knowledge with company-specific data.",
+                    "Microsserviços & Service Mesh": "Microservices & Service Mesh",
+                    "Distribuição de serviços permite escalabilidade independente, deploy frequente e isolamento de falhas. O service mesh gerencia comunicação, observabilidade e segurança entre serviços.": "Service distribution enables independent scalability, frequent deployment and fault isolation. Service mesh manages communication, observability and security between services.",
+                    "Padrões Implementados": "Implemented Patterns",
+                    "API Gateway para roteamento": "API Gateway for routing",
+                    "Service Discovery automático": "Automatic Service Discovery",
+                    "Circuit Breaker para resiliência": "Circuit Breaker for resilience",
+                    "Distributed Tracing": "Distributed Tracing",
+                    "Sidecar Pattern": "Sidecar Pattern",
+                    "Event-Driven Architecture": "Event-Driven Architecture",
+                    "Arquiteturas orientadas a eventos permitem processamento assíncrono e desacoplamento entre produtores e consumidores. Eventos representam mudanças de estado e são processados por múltiplos subscribers.": "Event-driven architectures allow asynchronous processing and decoupling between producers and consumers. Events represent state changes and are processed by multiple subscribers.",
+                    "Arquiteturas orientadas a eventos permitem processamento assíncrono e desacoplamento entre produtores e consumidores. Eventos representam mudanças de estado e são processados por múltiplos subscribers.": "Event-driven architectures allow asynchronous processing and decoupling between producers and consumers. Events represent state changes and are processed by multiple subscribers.",
+                    "Benefícios": "Benefits",
+                    "Escalabilidade horizontal": "Horizontal scalability",
+                    "Resiliência a falhas": "Fault resilience",
+                    "Processamento em tempo real": "Real-time processing",
+                    "Decoupling de sistemas": "System decoupling",
+                    "Otimização de Performance": "Performance Optimization",
+                    "Estratégias de otimização incluem cache distribuído, processamento assíncrono, tuning de banco de dados e algoritmos eficientes. Em sistemas de alta escala, cada milissegundo conta.": "Optimization strategies include distributed caching, asynchronous processing, database tuning and efficient algorithms. In high-scale systems, every millisecond counts.",
+                    "Segurança Enterprise": "Enterprise Security",
+                    "Implementação de autenticação robusta, autorização baseada em roles, criptografia de dados e auditoria de acessos. Segurança é prioridade em todos os níveis da arquitetura.": "Implementation of robust authentication, role-based authorization, data encryption and access auditing. Security is a priority at every level of the architecture.",
+                    "Controles Implementados": "Implemented Controls",
+                    "JWT/OAuth2 para autenticação": "JWT/OAuth2 for authentication",
+                    "Role-Based Access Control (RBAC)": "Role-Based Access Control (RBAC)",
+                    "Encryption at rest e in transit": "Encryption at rest and in transit",
+                    "API rate limiting": "API rate limiting",
+                    "Security headers (CSP, HSTS)": "Security headers (CSP, HSTS)",
+                    "Observabilidade": "Observability",
+                    "Sistema completo de observabilidade com métricas, logs estruturados, distributed tracing e alertas proativos. Ferramentas como Application Insights, Prometheus e Grafana foram utilizadas.": "A complete observability system with metrics, structured logs, distributed tracing and proactive alerts. Tools like Application Insights, Prometheus and Grafana were used.",
+                    "Ferramentas": "Tools",
+                    "Application Insights para APM": "Application Insights for APM",
+                    "Prometheus para métricas": "Prometheus for metrics",
+                    "Grafana para dashboards": "Grafana for dashboards",
+                    "ELK Stack para logging": "ELK Stack for logging",
+                    "Plataforma de E-commerce": "E-commerce Platform",
+                    "Sistema distribuído processando milhões de pedidos diários, utilizando microsserviços, CQRS, event sourcing e Kafka.": "Distributed system processing millions of daily orders using microservices, CQRS, event sourcing and Kafka.",
+                    "Tecnologias": "Technologies",
+                    ".NET Core, Angular": ".NET Core, Angular",
+                    "Azure AKS, Service Bus": "Azure AKS, Service Bus",
+                    "SQL Server, Redis": "SQL Server, Redis",
+                    "Kafka, Elasticsearch": "Kafka, Elasticsearch",
+                    "Analytics em Tempo Real": "Real-Time Analytics",
+                    "Pipeline de dados processando streams de eventos em tempo real com Spark Structured Streaming e dashboards interativos.": "Data pipeline processing real-time event streams with Spark Structured Streaming and interactive dashboards.",
+                    "Apache Spark, Kafka": "Apache Spark, Kafka",
+                    "Azure Databricks": "Azure Databricks",
+                    "Power BI, Grafana": "Power BI, Grafana"
+                }
+            }
+        };
+
+        function normalizeText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        function createTranslatableElements() {
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li:not(.breadcrumb-item), td, th, span:not(.badge):not(.bi), a:not(.lang-item):not(.dropdown-item), button:not(#languageToggle), .tag, .info-box, .warning-box, .success-box'))
+                .filter(element => {
+                    if (element.closest('code, pre, .code-block, #languageSelectorRoot, .dropdown-menu')) return false;
+                    if (element.querySelector('code, pre')) return false;
+                    if (element.classList.contains('no-translate')) return false;
+                    const text = normalizeText(element.textContent || '');
+                    return text.length > 1;
+                });
+        }
+
+        function storeOriginalText(element) {
+            if (!element.dataset.originalText) {
+                element.dataset.originalText = normalizeText(element.textContent);
+            }
+        }
+
+        function restoreOriginalTexts(elements) {
+            elements.forEach(el => {
+                if (el.dataset.originalText) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + el.dataset.originalText;
+                    } else {
+                        el.textContent = el.dataset.originalText;
+                    }
+                }
+            });
+        }
+
+        function applyTranslations(elements) {
+            elements.forEach(el => {
+                const originalKey = el.dataset.originalText || normalizeText(el.textContent);
+                const translated = i18next.t(originalKey, { defaultValue: originalKey });
+                if (translated !== originalKey) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + translated;
+                    } else {
+                        el.textContent = translated;
+                    }
+                }
+            });
+        }
+
+        function updateLanguageFlag(lang) {
+            const flagIcon = document.getElementById('flagIcon');
+            if (!flagIcon) return;
+            if (lang === 'pt') {
+                flagIcon.src = 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg';
+                flagIcon.alt = 'BR';
+            } else {
+                flagIcon.src = 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg';
+                flagIcon.alt = 'US';
+            }
+        }
+
+        function changeLanguage(lang) {
+            if (lang === i18next.language) return;
+            localStorage.setItem('technicalDocLanguage', lang);
+            i18next.changeLanguage(lang).then(() => {
+                const elements = createTranslatableElements();
+                if (lang === 'pt') {
+                    restoreOriginalTexts(elements);
+                } else {
+                    elements.forEach(storeOriginalText);
+                    applyTranslations(elements);
+                }
+                document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+            });
+        }
+
+        i18next
+            .use(window.ReactI18next.initReactI18next)
+            .init({
+                resources: translationResources,
+                lng: currentLanguage,
+                fallbackLng: 'pt',
+                debug: false,
+                keySeparator: false,
+                interpolation: { escapeValue: false }
+            });
+    </script>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-secondary: #111827;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, system-ui, sans-serif;
+            background: #f1f5f9;
+            color: var(--text);
+        }
+
+        .nav-title {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 22px 0 10px;
+            font-weight: 800;
+        }
+
+        .sidebar {
+            width: 300px;
+            max-height: calc(100vh - 106px);
+            z-index: 999;
+            background: linear-gradient(180deg, #0f172a, #111827);
+            color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .sidebar h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #dbeafe;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+            margin: 5px 0;
+            padding: 6px 8px;
+            background-color: #ffffff17;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .main {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+        }
+
+        .content {
+            padding: 40px 0px 15px 15px;
+            margin-top: 4rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            max-width: 1200px;
+        }
+
+        .section {
+            margin-bottom: 0px;
+        }
+
+        .section-title {
+            margin-top: 70px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 14px;
+        }
+
+        .section-description {
+            color: var(--text);
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin: 30px 0 0 0;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .tech-card h4 {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 999px;
+            padding: 6px 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .info-box,
+        .warning-box,
+        .success-box {
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 18px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+        }
+
+        .code {
+            background: #08111f;
+            border: 1px solid #243656;
+            border-radius: 20px;
+            padding: 0;
+            margin: 30px 0 0 0;
+            overflow: auto;
+        }
+
+        .code pre {
+            color: #d6e3ff;
+            line-height: 1.8;
+            font-size: 14px;
+            padding: 30px 40px;
+            margin: 0;
+            display: inline-block;
+            white-space: pre;
+            /* mantém formatação */
+        }
+
+        .mermaid {
+            margin-top: 24px;
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid var(--border);
+            padding: 14px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f8fafc;
+        }
+
+        .toc-card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .toc-card a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+
+
+        @media(max-width:1200px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+        }
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sticky-top no-print" style="z-index: 1000; width: 100%; position: fixed; top: 0; left: 0;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a href="Index.html" class="d-inline-block">
+                    <img src="assets/images/fluencyinterview-logo-p.png" alt="Logo" style="height: 50px;">
+                </a>
+
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Language Selector -->
+                    <div id="languageSelectorRoot"></div>
+
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <main class="main">
+
+            <div class="content">
+
+                <section class="hero" id="overview">
+                    <h1 class="fs-4 text-white fw-bold mb-4">
+                        Software Engineering Technical Documentation
+                    </h1>
+
+                    <p>
+                        Documentação técnica consolidada e expandida contendo experiências reais detalhadas,
+                        arquiteturas distribuídas, engenharia backend, cloud computing,
+                        inteligência artificial, microsserviços, sistemas distribuídos,
+                        engenharia de dados, mensageria enterprise, observabilidade,
+                        segurança, estratégias de performance e arquiteturas de alta escala.
+                        Esta versão integra informações aprofundadas do rascunho original,
+                        proporcionando uma visão completa e profissional.
+                    </p>
+
+                    <div style="margin-top:25px;">
+                        <span class="tag">Senior Software Engineer</span>
+                        <span class="tag">Software Architect</span>
+                        <span class="tag">Cloud Engineer</span>
+                        <span class="tag">Distributed Systems</span>
+                        <span class="tag">Big Data</span>
+                        <span class="tag">AI Engineering</span>
+                    </div>
+                </section>
+
+                <section id="software-engineering">
+                    <h2 class="section-title">
+                        <i class="bi bi-diagram-3"></i>
+                        Engenharia de Software
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Clean Architecture</h3>
+
+                        <span class="tag">SOLID</span>
+                        <span class="tag">DDD</span>
+                        <span class="tag">CQRS</span>
+                        <span class="tag">Arquitetura</span>
+
+                        <p>
+                            Clean Architecture foi utilizada para desacoplamento entre domínio,
+                            aplicação, infraestrutura e frameworks, promovendo testabilidade,
+                            escalabilidade e independência tecnológica. Esta abordagem separa
+                            as regras de negócio do código de infraestrutura, permitindo mudanças
+                            tecnológicas sem afetar o núcleo do sistema.
+                        </p>
+
+                        <p>
+                            Princípios fundamentais incluem a inversão de dependências, onde
+                            as camadas externas dependem das internas através de interfaces,
+                            garantindo que o domínio não seja afetado por mudanças em bancos
+                            de dados, frameworks ou APIs externas.
+                        </p>
+
+                        <h4>Aplicações Reais</h4>
+
+                        <ul>
+                            <li>Microsserviços enterprise com isolamento de domínios</li>
+                            <li>Plataformas financeiras com alta regulamentação</li>
+                            <li>APIs distribuídas para integração de sistemas legados</li>
+                            <li>Sistemas críticos de integração com alta disponibilidade</li>
+                            <li>Processamento assíncrono com mensageria desacoplada</li>
+                        </ul>
+
+                        <div class="info-box">
+                            Em ambientes enterprise, Clean Architecture reduz acoplamento,
+                            melhora manutenibilidade e facilita evolução contínua. É especialmente
+                            útil em sistemas que precisam suportar mudanças frequentes de requisitos
+                            ou tecnologias.
+                        </div>
+
+                        <h4>Benefícios Detalhados</h4>
+                        <ul>
+                            <li>Testabilidade independente de cada camada</li>
+                            <li>Facilidade de manutenção e refatoração</li>
+                            <li>Independência de frameworks e bibliotecas</li>
+                            <li>Separação clara de responsabilidades</li>
+                            <li>Escalabilidade horizontal e vertical</li>
+                        </ul>
+
+                        <pre><code class="language-csharp">
+            public class CreateOrderHandler : IRequestHandler&lt;CreateOrderCommand&gt;
+            {
+                private readonly IOrderRepository _repository;
+
+                public async Task Handle(CreateOrderCommand command)
+                {
+                    var order = Order.Create(command.CustomerId);
+
+                    await _repository.Save(order);
+                }
+            }
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart LR
+                            Presentation --> Application
+                            Application --> Domain
+                            Application --> Infrastructure
+                            Infrastructure --> Database
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>DDD — Domain Driven Design</h3>
+
+                        <span class="tag">Bounded Context</span>
+                        <span class="tag">Entities</span>
+                        <span class="tag">Value Objects</span>
+                        <span class="tag">Aggregates</span>
+
+                        <p>
+                            Domain Driven Design foi aplicado para modelagem de domínios complexos,
+                            separação de bounded contexts e construção de sistemas orientados a negócio.
+                            O DDD foca em alinhar o código com o conhecimento do domínio,
+                            utilizando uma linguagem ubíqua compartilhada entre desenvolvedores e especialistas.
+                        </p>
+
+                        <p>
+                            Uma boa prática é manter o modelo do domínio limpo, separado de detalhes técnicos,
+                            garantindo que as regras de negócio sejam expressas de forma clara e independente
+                            de frameworks ou infraestrutura. Isso facilita a evolução do sistema e a comunicação
+                            entre equipes.
+                        </p>
+
+                        <table>
+                            <tr>
+                                <th>Conceito</th>
+                                <th>Aplicação</th>
+                                <th>Exemplo</th>
+                            </tr>
+                            <tr>
+                                <td>Bounded Context</td>
+                                <td>Separação de domínios independentes</td>
+                                <td>Vendas vs. Estoque</td>
+                            </tr>
+                            <tr>
+                                <td>Entities</td>
+                                <td>Regras de negócio com identidade</td>
+                                <td>Cliente com ID único</td>
+                            </tr>
+                            <tr>
+                                <td>Value Objects</td>
+                                <td>Objetos imutáveis sem identidade</td>
+                                <td>Endereço ou Moeda</td>
+                            </tr>
+                            <tr>
+                                <td>Aggregates</td>
+                                <td>Consistência transacional</td>
+                                <td>Pedido com itens</td>
+                            </tr>
+                        </table>
+
+                        <h4>Estratégias de Modelagem</h4>
+                        <ul>
+                            <li>Event Storming para descoberta de eventos de domínio</li>
+                            <li>Context Mapping para relacionar bounded contexts</li>
+                            <li>Ubiquitous Language para comunicação consistente</li>
+                            <li>Domain Events para comunicação assíncrona</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            Em sistemas complexos, é crucial evitar over-engineering. Aplique DDD
+                            apenas onde há complexidade real de domínio, não em CRUDs simples.
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>CQRS — Command Query Responsibility Segregation</h3>
+
+                        <span class="tag">Command Model</span>
+                        <span class="tag">Query Model</span>
+                        <span class="tag">Event Sourcing</span>
+                        <span class="tag">Performance</span>
+
+                        <p>
+                            CQRS separa o modelo de leitura do modelo de escrita, permitindo
+                            escalabilidade independente e otimização específica para cada operação.
+                            O Command Model lida com validações e regras de negócio, enquanto o
+                            Query Model é otimizado para leituras rápidas.
+                        </p>
+
+                        <p>
+                            Em cenários de alta escala, o CQRS permite que operações de leitura
+                            sejam escaladas separadamente das de escrita, utilizando bancos de dados
+                            diferentes ou caches especializados. Isso é fundamental para sistemas
+                            com alta carga de consultas.
+                        </p>
+
+                        <h4>Modelos CQRS</h4>
+                        <ul>
+                            <li><strong>Command Model</strong>: Focado em validações e consistência</li>
+                            <li><strong>Query Model</strong>: Otimizado para performance de leitura</li>
+                            <li>Pode usar DTOs, views materializadas ou projeções</li>
+                        </ul>
+
+                        <h4>Benefícios</h4>
+                        <ul>
+                            <li>Escalabilidade independente de leitura/escrita</li>
+                            <li>Separação de responsabilidades claras</li>
+                            <li>Performance otimizada para cada operação</li>
+                            <li>Leitura desacoplada da escrita</li>
+                            <li>Escrita orientada a domínio puro</li>
+                        </ul>
+
+                        <div class="info-box">
+                            Uma boa prática é modelar os documentos pensando em como os dados
+                            serão lidos, evitando queries complexas. Para leituras, use modelos
+                            otimizados como DTOs ou projeções.
+                        </div>
+
+                        <pre><code class="language-csharp">
+            // Command Handler
+            public class CreateOrderCommandHandler : IRequestHandler&lt;CreateOrderCommand&gt;
+            {
+                public async Task Handle(CreateOrderCommand command)
+                {
+                    // Validações e regras de negócio
+                    var order = Order.Create(command);
+                    await _repository.Save(order);
+                }
+            }
+
+            // Query Handler
+            public class GetOrdersQueryHandler : IRequestHandler&lt;GetOrdersQuery, List&lt;OrderDto&gt;&gt;
+            {
+                public async Task&lt;List&lt;OrderDto&gt;&gt; Handle(GetOrdersQuery query)
+                {
+                    // Otimização para leitura
+                    return await _readRepository.GetOrders(query);
+                }
+            }
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart TD
+                            Command --> CommandHandler
+                            CommandHandler --> DomainValidation
+                            DomainValidation --> EventStore
+                            Query --> QueryHandler
+                            QueryHandler --> ReadModel
+                            ReadModel --> Response
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>C4 Model — Visualização de Arquiteturas</h3>
+
+                        <span class="tag">Context</span>
+                        <span class="tag">Container</span>
+                        <span class="tag">Component</span>
+                        <span class="tag">Code</span>
+
+                        <p>
+                            O modelo C4 é uma forma simples de visualizar a arquitetura de um sistema
+                            em diferentes níveis de detalhe. Ele começa com o diagrama de Contexto,
+                            que mostra quem usa o sistema e como ele se conecta com outros sistemas.
+                        </p>
+
+                        <p>
+                            Depois vem o diagrama de Contêiner, que mostra os principais aplicativos
+                            e serviços que compõem o sistema. O diagrama de Componente detalha o que
+                            tem dentro de cada contêiner, como módulos ou bibliotecas. Se precisar
+                            ir mais fundo, dá pra usar o nível de Código, com diagramas mais técnicos.
+                        </p>
+
+                        <h4>Níveis do C4 Model</h4>
+                        <ul>
+                            <li><strong>Context</strong>: Visão geral do sistema e usuários</li>
+                            <li><strong>Container</strong>: Aplicações e serviços principais</li>
+                            <li><strong>Component</strong>: Módulos dentro dos containers</li>
+                            <li><strong>Code</strong>: Classes e estruturas detalhadas</li>
+                        </ul>
+
+                        <h4>Boas Práticas</h4>
+                        <ul>
+                            <li>Manter diagramas simples e focados no público</li>
+                            <li>Usar para alinhar equipes e documentar arquitetura</li>
+                            <li>Complementar com microsserviços ou arquiteturas modulares</li>
+                            <li>Evitar sobrecarga visual em diagramas complexos</li>
+                        </ul>
+
+                        <div class="success-box">
+                            É ótimo pra alinhar a equipe e documentar a arquitetura sem complicar demais.
+                            Quando o sistema cresce, é importante dividir componentes por domínio ou
+                            responsabilidade, ajudando a escalar sem bagunça.
+                        </div>
+
+                        <div class="mermaid">
+                            graph TB
+                            subgraph "Context Diagram"
+                            User[User] --> System[System]
+                            System --> External[External System]
+                            end
+
+                            subgraph "Container Diagram"
+                            Web[Web App] --> API[API]
+                            API --> DB[(Database)]
+                            end
+                        </div>
+                    </div>
+                </section>
+
+                <section id="backend">
+                    <h2 class="section-title">
+                        <i class="bi bi-server"></i>
+                        Backend Enterprise
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>.NET & ASP.NET Core</h3>
+
+                        <span class="tag">C#</span>
+                        <span class="tag">Minimal APIs</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">Microservices</span>
+
+                        <p>
+                            Desenvolvimento de aplicações backend escaláveis utilizando ASP.NET Core,
+                            arquitetura orientada a domínio, processamento assíncrono,
+                            mensageria distribuída e integração cloud-native. O ASP.NET Core
+                            oferece alta performance, modularidade e suporte a containers.
+                        </p>
+
+                        <p>
+                            Em cenários enterprise, foram implementadas estratégias avançadas como
+                            connection pooling para otimizar conexões de banco, retry policies
+                            para resiliência, circuit breakers para proteção contra falhas,
+                            cache distribuído e otimização de serialização JSON.
+                        </p>
+
+                        <h4>Principais Aplicações</h4>
+
+                        <ul>
+                            <li>APIs de alta disponibilidade com rate limiting</li>
+                            <li>Plataformas distribuídas com service mesh</li>
+                            <li>Background processing com workers assíncronos</li>
+                            <li>API Gateways para roteamento inteligente</li>
+                            <li>Integrações críticas com sistemas legados</li>
+                            <li>Workers assíncronos para processamento em lote</li>
+                        </ul>
+
+                        <h4>Tecnologias Integradas</h4>
+                        <ul>
+                            <li>Entity Framework Core para ORM</li>
+                            <li>MediatR para CQRS e comandos</li>
+                            <li>Polly para políticas de resiliência</li>
+                            <li>Serilog para logging estruturado</li>
+                            <li>Swagger/OpenAPI para documentação</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            Em ambientes de alta escala foram utilizadas estratégias avançadas:
+                            connection pooling, retry policy, circuit breaker,
+                            cache distribuído e otimização de serialização.
+                        </div>
+
+                        <pre><code class="language-csharp">
+            // Minimal API com MediatR
+            app.MapPost("/orders", async (
+                CreateOrderRequest request,
+                IMediator mediator) =>
+            {
+                var command = new CreateOrderCommand(request);
+                var result = await mediator.Send(command);
+                
+                return result.IsSuccess ? 
+                    Results.Created($"/orders/{result.OrderId}", result) : 
+                    Results.BadRequest(result.Errors);
+            });
+
+            // Handler com validação
+            public class CreateOrderCommandHandler : IRequestHandler&lt;CreateOrderCommand, Result&gt;
+            {
+                private readonly IValidator&lt;CreateOrderCommand&gt; _validator;
+                private readonly IOrderRepository _repository;
+                
+                public async Task&lt;Result&gt; Handle(CreateOrderCommand command, CancellationToken ct)
+                {
+                    var validation = await _validator.ValidateAsync(command, ct);
+                    if (!validation.IsValid)
+                        return Result.Failure(validation.Errors);
+                        
+                    var order = Order.Create(command);
+                    await _repository.Save(order, ct);
+                    
+                    return Result.Success(order.Id);
+                }
+            }
+                    </code></pre>
+
+                        <div class="mermaid">
+                            sequenceDiagram
+                            Client->>API: HTTP Request
+                            API->>Validation: Validate Input
+                            Validation->>Application: Command
+                            Application->>Domain: Business Rules
+                            Domain->>Infrastructure: Persist
+                            Infrastructure->>Database: Save
+                            Database-->>API: Success
+                            API-->>Client: Response
+                        </div>
+                    </div>
+                </section>
+
+                <section id="frontend">
+                    <h2 class="section-title">
+                        <i class="bi bi-window"></i>
+                        Frontend Engineering
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Angular & React</h3>
+
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">RxJS</span>
+                        <span class="tag">SPA</span>
+                        <span class="tag">Componentização</span>
+
+                        <p>
+                            Desenvolvimento de aplicações frontend modernas utilizando Angular,
+                            React e arquiteturas componentizadas preparadas para aplicações enterprise.
+                            Ambas as frameworks suportam TypeScript para tipagem forte e melhor
+                            manutenibilidade.
+                        </p>
+
+                        <p>
+                            O Angular oferece uma estrutura completa com dependency injection,
+                            enquanto o React foca em componentização flexível com hooks.
+                            Em projetos enterprise, a escolha depende da complexidade e equipe.
+                        </p>
+
+                        <h4>Estratégias Utilizadas</h4>
+
+                        <ul>
+                            <li>Lazy loading para carregamento sob demanda</li>
+                            <li>State management com NgRx (Angular) ou Redux (React)</li>
+                            <li>Microfrontends para aplicações modulares</li>
+                            <li>Componentização reutilizável e testável</li>
+                            <li>Performance optimization com code splitting</li>
+                            <li>Server-Side Rendering (SSR) para SEO</li>
+                            <li>Progressive Web Apps (PWA) para offline</li>
+                        </ul>
+
+                        <h4>Comparação Angular vs React</h4>
+                        <table>
+                            <tr>
+                                <th>Aspecto</th>
+                                <th>Angular</th>
+                                <th>React</th>
+                            </tr>
+                            <tr>
+                                <td>Aprendizado</td>
+                                <td>Curva maior</td>
+                                <td>Mais simples</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>Alta com AOT</td>
+                                <td>Alta com Virtual DOM</td>
+                            </tr>
+                            <tr>
+                                <td>Ecossistema</td>
+                                <td>Completo</td>
+                                <td>Extenso</td>
+                            </tr>
+                        </table>
+
+                        <div class="info-box">
+                            Para aplicações enterprise, Angular é preferido quando há necessidade
+                            de estrutura rigorosa, enquanto React oferece mais flexibilidade
+                            para equipes experientes.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cloud">
+                    <h2 class="section-title">
+                        <i class="bi bi-cloud"></i>
+                        Cloud & DevOps
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Microsoft Azure</h3>
+
+                        <span class="tag">Azure Functions</span>
+                        <span class="tag">Azure Service Bus</span>
+                        <span class="tag">AKS</span>
+                        <span class="tag">Azure DevOps</span>
+
+                        <p>
+                            Construção de arquiteturas cloud-native utilizando serviços Azure,
+                            pipelines automatizados, processamento distribuído e observabilidade centralizada.
+                            O Azure oferece uma suite completa para desenvolvimento, deploy e monitoramento.
+                        </p>
+
+                        <p>
+                            Em projetos enterprise, foram utilizados Azure DevOps para CI/CD,
+                            Azure Monitor para observabilidade, e Azure Policy para governança.
+                            A integração com .NET e Kubernetes facilita migrações e escalabilidade.
+                        </p>
+
+                        <h4>Serviços Utilizados</h4>
+
+                        <ul>
+                            <li>Azure Functions para serverless computing</li>
+                            <li>Azure App Services para web apps escaláveis</li>
+                            <li>Azure Service Bus para mensageria enterprise</li>
+                            <li>Azure Storage para blobs, queues e tables</li>
+                            <li>Azure SQL Database para dados relacionais</li>
+                            <li>Azure Kubernetes Service (AKS) para containers</li>
+                            <li>Application Insights para monitoramento</li>
+                            <li>Azure Databricks para big data analytics</li>
+                            <li>Azure API Management para gateways</li>
+                            <li>Azure Key Vault para secrets management</li>
+                        </ul>
+
+                        <h4>Estratégias de Deploy</h4>
+                        <ul>
+                            <li>Infrastructure as Code com Bicep</li>
+                            <li>Blue-Green deployments para zero downtime</li>
+                            <li>Canary releases para testes graduais</li>
+                            <li>Auto-scaling baseado em métricas</li>
+                        </ul>
+
+                        <pre><code class="language-yaml">
+            # Azure DevOps Pipeline
+            trigger:
+            branches:
+                include:
+                - main
+
+            pool:
+            vmImage: ubuntu-latest
+
+            stages:
+            - stage: Build
+            jobs:
+            - job: Build
+                steps:
+                - task: DotNetCoreCLI@2
+                inputs:
+                    command: 'build'
+                    projects: '**/*.csproj'
+                    
+            - stage: Deploy
+            jobs:
+            - deployment: Deploy
+                environment: 'production'
+                strategy:
+                runOnce:
+                    deploy:
+                    steps:
+                    - task: AzureWebApp@1
+                        inputs:
+                        azureSubscription: $(azureSubscription)
+                        appName: $(webAppName)
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart TD
+                            Developer --> Git
+                            Git --> AzureDevOps
+                            AzureDevOps --> Build
+                            Build --> Test
+                            Test --> Deploy
+                            Deploy --> Azure[Azure Resources]
+                            Azure --> Monitor
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>Docker & Kubernetes</h3>
+
+                        <span class="tag">Containers</span>
+                        <span class="tag">Orquestração</span>
+                        <span class="tag">Microservices</span>
+
+                        <p>
+                            Utilização de containers e orquestração Kubernetes para deploy,
+                            escalabilidade horizontal e isolamento de workloads. Docker permite
+                            empacotamento consistente de aplicações, enquanto Kubernetes gerencia
+                            containers em produção.
+                        </p>
+
+                        <p>
+                            Em ambientes enterprise, foram implementados Helm charts para
+                            gerenciamento de releases, Istio para service mesh, e estratégias
+                            de rolling updates para deployments sem downtime.
+                        </p>
+
+                        <ul>
+                            <li>Containerização com Docker multi-stage builds</li>
+                            <li>Horizontal scaling automático</li>
+                            <li>Service discovery com DNS interno</li>
+                            <li>Rolling updates para zero downtime</li>
+                            <li>Self-healing com health checks</li>
+                            <li>CI/CD integration com GitOps</li>
+                            <li>Resource quotas e limits</li>
+                            <li>Network policies para segurança</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            Em produção, monitore recursos com Prometheus e Grafana,
+                            implemente logging centralizado e backup de dados.
+                        </div>
+
+                        <pre><code class="language-yaml">
+            # Kubernetes Deployment
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+            name: api-deployment
+            spec:
+            replicas: 3
+            selector:
+                matchLabels:
+                app: api
+            template:
+                metadata:
+                labels:
+                    app: api
+                spec:
+                containers:
+                - name: api
+                    image: myregistry/api:latest
+                    ports:
+                    - containerPort: 80
+                    resources:
+                    requests:
+                        memory: "128Mi"
+                        cpu: "100m"
+                    limits:
+                        memory: "256Mi"
+                        cpu: "200m"
+                    </code></pre>
+                    </div>
+                </section>
+
+                <section id="data">
+                    <h2 class="section-title">
+                        <i class="bi bi-database"></i>
+                        Big Data & Engenharia de Dados
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Apache Spark & Databricks</h3>
+
+                        <span class="tag">Spark</span>
+                        <span class="tag">Big Data</span>
+                        <span class="tag">ETL</span>
+                        <span class="tag">Data Lake</span>
+
+                        <p>
+                            Processamento distribuído de grandes volumes de dados utilizando Spark,
+                            pipelines analíticos e integração com Data Lakes corporativos.
+                            O Spark oferece processamento em memória para alta performance.
+                        </p>
+
+                        <p>
+                            Em cenários com dezenas de milhões de registros, estratégias de
+                            particionamento tornam-se fundamentais para otimizar joins e
+                            reduzir shuffle operations.
+                        </p>
+
+                        <h4>Estratégias Avançadas</h4>
+
+                        <ul>
+                            <li>Data partitioning por data/hora para queries temporais</li>
+                            <li>Shuffle optimization com broadcast joins</li>
+                            <li>Parallel execution com cluster tuning</li>
+                            <li>Memory optimization com cache persistente</li>
+                            <li>Delta Lake para ACID transactions</li>
+                            <li>Structured Streaming para dados em tempo real</li>
+                        </ul>
+
+                        <div class="info-box">
+                            Em cenários com dezenas de milhões de registros,
+                            estratégias de particionamento tornam-se fundamentais.
+                            Use bucketing para joins frequentes e Z-ordering para queries analíticas.
+                        </div>
+
+                        <pre><code class="language-python">
+            from pyspark.sql import SparkSession
+            from pyspark.sql.functions import col
+
+            spark = SparkSession.builder \
+                .appName("data-pipeline") \
+                .config("spark.sql.adaptive.enabled", "true") \
+                .getOrCreate()
+
+            # Leitura otimizada
+            orders = spark.read \
+                .format("delta") \
+                .load("/lake/orders") \
+                .filter(col("order_date") >= "2023-01-01")
+
+            # Processamento distribuído
+            result = orders \
+                .groupBy("customer_id") \
+                .agg({"total": "sum"}) \
+                .withColumnRenamed("sum(total)", "total_spent")
+
+            # Cache para reutilização
+            result.cache()
+
+            # Escrita particionada
+            result.write \
+                .mode("overwrite") \
+                .partitionBy("customer_id") \
+                .format("delta") \
+                .save("/lake/customer_summary")
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart LR
+                            Source[Data Sources] --> Ingestion
+                            Ingestion --> DataLake[(Data Lake)]
+                            DataLake --> Spark[Apache Spark]
+                            Spark --> Transform[ETL/Transform]
+                            Transform --> Warehouse[(Data Warehouse)]
+                            Warehouse --> BI[Business Intelligence]
+                            Spark --> Streaming[Real-time Streaming]
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>SQL Server, PostgreSQL & MongoDB</h3>
+
+                        <span class="tag">Relational</span>
+                        <span class="tag">NoSQL</span>
+                        <span class="tag">Performance</span>
+
+                        <p>
+                            Experiência com bancos relacionais e NoSQL aplicados em sistemas críticos,
+                            plataformas distribuídas e cenários de alta performance. Cada tecnologia
+                            foi escolhida baseada nos requisitos de consistência, escalabilidade e modelo de dados.
+                        </p>
+
+                        <h4>SQL Server</h4>
+                        <ul>
+                            <li>Index optimization com covering indexes</li>
+                            <li>Partitioning para tabelas grandes</li>
+                            <li>Bulk processing com BCP e SSIS</li>
+                            <li>Replication para alta disponibilidade</li>
+                            <li>Query tuning com execution plans</li>
+                            <li>Always Encrypted para dados sensíveis</li>
+                        </ul>
+
+                        <h4>PostgreSQL</h4>
+                        <ul>
+                            <li>JSONB para dados semi-estruturados</li>
+                            <li>Partitioning nativo</li>
+                            <li>Extensions como PostGIS</li>
+                            <li>Full-text search avançado</li>
+                        </ul>
+
+                        <h4>MongoDB</h4>
+                        <ul>
+                            <li>Document modeling para agregações complexas</li>
+                            <li>Sharding para escalabilidade horizontal</li>
+                            <li>Change streams para event-driven</li>
+                            <li>GridFS para arquivos grandes</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            Para sistemas distribuídos, considere consistência eventual
+                            e implemente sagas para transações complexas.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="messaging">
+                    <h2 class="section-title">
+                        <i class="bi bi-broadcast"></i>
+                        Mensageria & Event Driven
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Apache Kafka</h3>
+
+                        <span class="tag">Streaming</span>
+                        <span class="tag">Event Driven</span>
+                        <span class="tag">Alta Escala</span>
+
+                        <p>
+                            Plataforma de streaming distribuído utilizada para desacoplamento,
+                            integração assíncrona e processamento de eventos em tempo real.
+                            O Kafka oferece alta throughput e durabilidade para sistemas críticos.
+                        </p>
+
+                        <p>
+                            Em arquiteturas event-driven, o Kafka serve como backbone para
+                            comunicação entre microsserviços, garantindo entrega exactly-once
+                            e processamento paralelo com consumer groups.
+                        </p>
+
+                        <h4>Padrões Aplicados</h4>
+
+                        <ul>
+                            <li>Outbox Pattern para consistência transacional</li>
+                            <li>Saga Pattern para transações distribuídas</li>
+                            <li>Retry Pattern com dead letter queues</li>
+                            <li>Consumer Groups para processamento paralelo</li>
+                            <li>Event Replay para debugging e recovery</li>
+                            <li>Event Sourcing para auditabilidade</li>
+                        </ul>
+
+                        <h4>Configurações de Performance</h4>
+                        <ul>
+                            <li>Batch size e linger.ms para throughput</li>
+                            <li>Partitioning para paralelismo</li>
+                            <li>Compression para reduzir rede</li>
+                            <li>Retention policies para storage</li>
+                        </ul>
+
+                        <pre><code class="language-csharp">
+            // Producer com retry e batching
+            var producerConfig = new ProducerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                Acks = Acks.All,
+                EnableIdempotence = true,
+                BatchSize = 16384,
+                LingerMs = 5
+            };
+
+            using var producer = new ProducerBuilder<string, string>(producerConfig).Build();
+
+            await producer.ProduceAsync(
+                "orders-topic",
+                new Message<string, string>
+                {
+                    Key = order.Id.ToString(),
+                    Value = JsonSerializer.Serialize(order),
+                    Headers = new Headers
+                    {
+                        { "event-type", Encoding.UTF8.GetBytes("OrderCreated") }
+                    }
+                });
+
+            // Consumer com error handling
+            var consumerConfig = new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                GroupId = "order-processor",
+                AutoOffsetReset = AutoOffsetReset.Earliest,
+                EnableAutoCommit = false
+            };
+
+            using var consumer = new ConsumerBuilder<string, string>(consumerConfig).Build();
+            consumer.Subscribe("orders-topic");
+
+            while (true)
+            {
+                try
+                {
+                    var consumeResult = consumer.Consume();
+                    // Process message
+                    consumer.Commit(consumeResult);
+                }
+                catch (Exception ex)
+                {
+                    // Send to dead letter queue
+                    await _dlqProducer.ProduceAsync("orders-dlq", consumeResult.Message);
+                }
+            }
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart LR
+                            Producer --> Kafka[(Kafka Broker)]
+                            Kafka --> Consumer1[Consumer Group 1]
+                            Kafka --> Consumer2[Consumer Group 2]
+                            Consumer1 --> Billing[Billing Service]
+                            Consumer2 --> Notifications[Notification Service]
+                            Kafka --> Analytics[Analytics Service]
+                            Kafka --> Fraud[Fraud Detection]
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ai">
+                    <h2 class="section-title">
+                        <i class="bi bi-cpu-fill"></i>
+                        Inteligência Artificial
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>LLMs, OpenAI & RAG</h3>
+
+                        <span class="tag">LLM</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Embeddings</span>
+                        <span class="tag">AI Engineering</span>
+
+                        <p>
+                            Desenvolvimento de soluções utilizando Large Language Models,
+                            recuperação contextual de documentos e automação inteligente.
+                            Os LLMs como GPT-4 oferecem capacidades avançadas de processamento
+                            de linguagem natural.
+                        </p>
+
+                        <p>
+                            O RAG (Retrieval-Augmented Generation) combina LLMs com busca
+                            semântica em bases de conhecimento, melhorando a precisão e
+                            reduzindo alucinações.
+                        </p>
+
+                        <h4>Aplicações</h4>
+
+                        <ul>
+                            <li>Chatbots corporativos com contexto empresarial</li>
+                            <li>Busca semântica em documentação técnica</li>
+                            <li>Vetorização documental para knowledge bases</li>
+                            <li>Automação operacional com workflows inteligentes</li>
+                            <li>Extração inteligente de conhecimento de dados não estruturados</li>
+                            <li>Análise de sentimentos em feedback de clientes</li>
+                        </ul>
+
+                        <h4>Tecnologias Utilizadas</h4>
+                        <ul>
+                            <li>OpenAI GPT-4 para geração de texto</li>
+                            <li>Azure OpenAI para deployments enterprise</li>
+                            <li>LangChain para orquestração de LLMs</li>
+                            <li>Pinecone/Weaviate para vector databases</li>
+                            <li>Hugging Face para modelos open-source</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            Em ambientes enterprise, controle de custo de tokens,
+                            cache semântico e observabilidade de prompts são fundamentais.
+                            Implemente guardrails para conteúdo sensível e monitore bias.
+                        </div>
+
+                        <h4>Implementação RAG</h4>
+                        <pre><code class="language-python">
+            from langchain.embeddings import OpenAIEmbeddings
+            from langchain.vectorstores import Pinecone
+            from langchain.llms import OpenAI
+            from langchain.chains import RetrievalQA
+
+            # Embeddings para documentos
+            embeddings = OpenAIEmbeddings()
+            vectorstore = Pinecone.from_documents(documents, embeddings)
+
+            # Chain RAG
+            qa_chain = RetrievalQA.from_chain_type(
+                llm=OpenAI(temperature=0),
+                chain_type="stuff",
+                retriever=vectorstore.as_retriever(search_kwargs={"k": 3})
+            )
+
+            # Query com contexto
+            response = qa_chain.run("Como implementar CQRS?")
+                    </code></pre>
+
+                        <div class="mermaid">
+                            flowchart TD
+                            Documents[Documentos] --> Chunking[Divisão em Chunks]
+                            Chunking --> Embeddings[Embeddings]
+                            Embeddings --> VectorDB[(Vector Database)]
+                            User[Usuário] --> Query[Query]
+                            Query --> Retrieval[Busca Semântica]
+                            Retrieval --> VectorDB
+                            VectorDB --> Context[Contexto Relevante]
+                            Context --> LLM[Large Language Model]
+                            LLM --> Response[Resposta]
+                        </div>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>MCP — Model Context Protocol</h3>
+
+                        <span class="tag">Protocolo Seguro</span>
+                        <span class="tag">Integração LLM</span>
+                        <span class="tag">Dados Locais</span>
+
+                        <p>
+                            O Model Context Protocol é um padrão seguro para ligar LLMs a dados locais
+                            ou corporativos. Ele permite que aplicações acessem informações sensíveis
+                            sem expor dados diretamente aos modelos.
+                        </p>
+
+                        <p>
+                            Em ambientes enterprise, o MCP garante compliance com regulamentações
+                            como GDPR e LGPD, permitindo uso de LLMs com dados proprietários
+                            de forma segura.
+                        </p>
+
+                        <h4>Benefícios</h4>
+                        <ul>
+                            <li>Segurança de dados corporativos</li>
+                            <li>Compliance com regulamentações</li>
+                            <li>Integração transparente com LLMs</li>
+                            <li>Controle de acesso granular</li>
+                        </ul>
+
+                        <div class="info-box">
+                            O MCP é especialmente útil para aplicações que precisam combinar
+                            conhecimento geral de LLMs com dados específicos da empresa.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="architecture">
+                    <h2 class="section-title">
+                        <i class="bi bi-building"></i>
+                        Arquiteturas Enterprise
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Microsserviços & Service Mesh</h3>
+
+                        <span class="tag">Distributed Systems</span>
+                        <span class="tag">Scalability</span>
+                        <span class="tag">Resilience</span>
+
+                        <p>
+                            Arquiteturas baseadas em microsserviços permitem escalabilidade independente,
+                            deploy frequente e isolamento de falhas. O service mesh (como Istio)
+                            gerencia comunicação, observabilidade e segurança entre serviços.
+                        </p>
+
+                        <h4>Padrões Implementados</h4>
+                        <ul>
+                            <li>API Gateway para roteamento</li>
+                            <li>Service Discovery automático</li>
+                            <li>Circuit Breaker para resiliência</li>
+                            <li>Distributed Tracing</li>
+                            <li>Sidecar Pattern</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>Event-Driven Architecture</h3>
+
+                        <span class="tag">Asynchronous</span>
+                        <span class="tag">Decoupling</span>
+                        <span class="tag">Scalability</span>
+
+                        <p>
+                            Arquiteturas orientadas a eventos permitem processamento assíncrono
+                            e desacoplamento entre produtores e consumidores. Eventos representam
+                            mudanças de estado e são processados por múltiplos subscribers.
+                        </p>
+
+                        <h4>Benefícios</h4>
+                        <ul>
+                            <li>Escalabilidade horizontal</li>
+                            <li>Resiliência a falhas</li>
+                            <li>Processamento em tempo real</li>
+                            <li>Decoupling de sistemas</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="performance">
+                    <h2 class="section-title">
+                        <i class="bi bi-speedometer2"></i>
+                        Performance & Escalabilidade
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Otimização de Performance</h3>
+
+                        <span class="tag">Caching</span>
+                        <span class="tag">Async Processing</span>
+                        <span class="tag">Database Tuning</span>
+
+                        <p>
+                            Estratégias de otimização incluem cache distribuído, processamento
+                            assíncrono, tuning de banco de dados e algoritmos eficientes.
+                            Em sistemas de alta escala, cada milissegundo conta.
+                        </p>
+
+                        <h4>Técnicas Aplicadas</h4>
+                        <ul>
+                            <li>Cache distribuído com Redis</li>
+                            <li>Database indexing e query optimization</li>
+                            <li>Async/await para I/O operations</li>
+                            <li>Connection pooling</li>
+                            <li>CDN para assets estáticos</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="security">
+                    <h2 class="section-title">
+                        <i class="bi bi-shield-check"></i>
+                        Segurança
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Segurança Enterprise</h3>
+
+                        <span class="tag">Authentication</span>
+                        <span class="tag">Authorization</span>
+                        <span class="tag">Encryption</span>
+
+                        <p>
+                            Implementação de autenticação robusta, autorização baseada em roles,
+                            criptografia de dados e auditoria de acessos. Segurança é prioridade
+                            em todos os níveis da arquitetura.
+                        </p>
+
+                        <h4>Controles Implementados</h4>
+                        <ul>
+                            <li>JWT/OAuth2 para autenticação</li>
+                            <li>Role-Based Access Control (RBAC)</li>
+                            <li>Encryption at rest e in transit</li>
+                            <li>API rate limiting</li>
+                            <li>Security headers (CSP, HSTS)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="observability">
+                    <h2 class="section-title">
+                        <i class="bi bi-eye"></i>
+                        Observabilidade
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Monitoring & Logging</h3>
+
+                        <span class="tag">Metrics</span>
+                        <span class="tag">Tracing</span>
+                        <span class="tag">Alerting</span>
+
+                        <p>
+                            Sistema completo de observabilidade com métricas, logs estruturados,
+                            distributed tracing e alertas proativos. Ferramentas como Application
+                            Insights, Prometheus e Grafana foram utilizadas.
+                        </p>
+
+                        <h4>Ferramentas</h4>
+                        <ul>
+                            <li>Application Insights para APM</li>
+                            <li>Prometheus para métricas</li>
+                            <li>Grafana para dashboards</li>
+                            <li>ELK Stack para logging</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="cases">
+                    <h2 class="section-title">
+                        <i class="bi bi-briefcase"></i>
+                        Casos Reais
+                    </h2>
+
+                    <div class="tech-card">
+                        <h3>Plataforma de E-commerce</h3>
+
+                        <p>
+                            Sistema distribuído processando milhões de pedidos diários,
+                            utilizando microsserviços, CQRS, event sourcing e Kafka.
+                        </p>
+
+                        <h4>Tecnologias</h4>
+                        <ul>
+                            <li>.NET Core, Angular</li>
+                            <li>Azure AKS, Service Bus</li>
+                            <li>SQL Server, Redis</li>
+                            <li>Kafka, Elasticsearch</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3>Analytics em Tempo Real</h3>
+
+                        <p>
+                            Pipeline de dados processando streams de eventos em tempo real
+                            com Spark Structured Streaming e dashboards interativos.
+                        </p>
+
+                        <h4>Tecnologias</h4>
+                        <ul>
+                            <li>Apache Spark, Kafka</li>
+                            <li>Azure Databricks</li>
+                            <li>Power BI, Grafana</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <h1><i class="bi bi-menu-button"></i> -----------</h1>
+            <div class="nav-title">MENU</div>
+
+            <nav>
+                <a href="#overview" data-i18n="sidebar.intro">Introdução</a>
+
+                <h2 data-i18n="sidebar.coreeng">Core Engineering</h2>
+                <a href="#software-engineering" data-i18n="sidebar.softeng">Engenharia de Software</a>
+                <a href="#backend" data-i18n="sidebar.backend">Backend Enterprise</a>
+                <a href="#frontend" data-i18n="sidebar.frontend">Frontend Engineering</a>
+
+                <h2 data-i18n="sidebar.clouddata">Cloud & Data</h2>
+                <a href="#cloud" data-i18n="sidebar.cloud">Cloud & DevOps</a>
+                <a href="#data" data-i18n="sidebar.data">Big Data & Engenharia de Dados</a>
+                <a href="#messaging" data-i18n="sidebar.messaging">Mensageria & Streaming</a>
+
+                <h2 data-i18n="sidebar.advanced">Advanced Topics</h2>
+                <a href="#ai" data-i18n="sidebar.ai">Inteligência Artificial</a>
+                <a href="#architecture" data-i18n="sidebar.arch">Arquiteturas Enterprise</a>
+                <a href="#performance" data-i18n="sidebar.perf">Performance & Escalabilidade</a>
+                <a href="#security" data-i18n="sidebar.security">Segurança</a>
+                <a href="#observability" data-i18n="sidebar.observ">Observabilidade</a>
+                <a href="#cases" data-i18n="sidebar.cases">Casos Reais</a>
+            </nav>
+        </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function renderLanguageSwitcher() {
+            console.log('Rendering language switcher');
+            console.log('window.React:', !!window.React);
+            console.log('window.ReactDOM:', !!window.ReactDOM);
+            console.log('window.i18next:', !!window.i18next);
+            console.log('window.ReactI18next:', !!window.ReactI18next);
+            const { useTranslation, I18nextProvider } = window.ReactI18next;
+
+            function LanguageSwitcher() {
+                console.log('LanguageSwitcher component');
+                const { i18n } = useTranslation();
+                const [open, setOpen] = React.useState(false);
+
+                React.useEffect(() => {
+                    function handleDocumentClick(event) {
+                        const root = document.getElementById('languageSelectorRoot');
+                        if (root && !root.contains(event.target)) {
+                            setOpen(false);
+                        }
+                    }
+                    document.addEventListener('click', handleDocumentClick);
+                    return () => document.removeEventListener('click', handleDocumentClick);
+                }, []);
+
+                const lang = i18n.language || 'pt';
+                const flagSrc = lang === 'pt'
+                    ? 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg'
+                    : 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg';
+                const flagAlt = lang === 'pt' ? 'BR' : 'US';
+
+                return React.createElement('div', {
+                    className: `dropdown${open ? ' show' : ''}`,
+                    style: { position: 'relative' }
+                },
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'btn shadow',
+                        onClick: () => setOpen(prev => !prev),
+                        style: { backgroundColor: '#fff', color: '#000', minWidth: '45px', padding: '6px 10px' },
+                        title: 'Select Language',
+                        'aria-haspopup': 'true',
+                        'aria-expanded': open
+                    },
+                        React.createElement('img', {
+                            id: 'flagIcon',
+                            src: flagSrc,
+                            alt: flagAlt,
+                            style: { width: '24px', height: '18px', borderRadius: '2px' }
+                        })
+                    ),
+                    React.createElement('ul', {
+                        className: `dropdown-menu dropdown-menu-end shadow${open ? ' show' : ''}`,
+                        style: { display: open ? 'block' : 'none', marginTop: '4px' }
+                    },
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('pt'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg',
+                                    alt: 'BR',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'Português'
+                            )
+                        ),
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('en'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg',
+                                    alt: 'US',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'English'
+                            )
+                        )
+                    )
+                );
+            }
+
+            const rootElement = document.getElementById('languageSelectorRoot');
+            console.log('rootElement:', rootElement);
+            if (rootElement) {
+                console.log('Rendering React component');
+                try {
+                    ReactDOM.createRoot(rootElement).render(
+                        React.createElement(I18nextProvider, { i18n: i18next }, React.createElement(LanguageSwitcher))
+                    );
+                    console.log('React render successful');
+                } catch (error) {
+                    console.error('Error rendering React component:', error);
+                }
+            } else {
+                console.log('rootElement not found');
+            }
+        }
+
+        function initializeLanguageSwitcher() {
+            // Wait for i18next and ReactI18next to load
+            if (typeof i18next === 'undefined' || typeof window.ReactI18next === 'undefined') {
+                console.log('Waiting for i18next and ReactI18next to load...');
+                setTimeout(initializeLanguageSwitcher, 100);
+                return;
+            }
+            console.log('Libraries loaded, initializing...');
+            renderLanguageSwitcher();
+            updateLanguageFlag(i18next.language || currentLanguage);
+            document.documentElement.lang = (i18next.language === 'en' ? 'en' : 'pt-BR');
+
+            if (i18next.language === 'en') {
+                const elements = createTranslatableElements();
+                elements.forEach(storeOriginalText);
+                applyTranslations(elements);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeLanguageSwitcher();
+        });
+    </script>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ startOnLoad: true });
+
+        // Initialize Highlight.js
+        hljs.highlightAll();
+
+        // Fallback initialization if DOMContentLoaded hasn't fired yet
+        if (document.readyState === 'loading') {
+            console.log('Document still loading, waiting for DOMContentLoaded');
+        } else {
+            console.log('Document already loaded, initializing immediately');
+            initializeLanguageSwitcher();
+        }
+    </script>
+
+    <script>
+        document.querySelectorAll('.code pre').forEach(pre => {
+            const lines = pre.textContent.split('\n');
+
+            // remove linhas vazias do início e fim
+            while (lines.length && lines[0].trim() === '') lines.shift();
+            while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+            // detecta indentação mínima
+            const indent = Math.min(
+                ...lines
+                    .filter(l => l.trim().length > 0)
+                    .map(l => l.match(/^(\s*)/)[0].length)
+            );
+
+            // remove apenas essa indentação
+            pre.textContent = lines.map(l => l.slice(indent)).join('\n');
+        });
+    </script>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>

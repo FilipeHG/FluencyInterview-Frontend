@@ -1,0 +1,70 @@
+{
+    "title": "Databases, ORMs & Big Data",
+    "iconClass": "bi bi-database",
+    "sections": [
+        {
+            "title": "Relational & NoSQL",
+            "icon": "bi bi-hdd-network",
+            "cards": [
+                {
+                    "topic": "Entity Framework Core vs Dapper",
+                    "contentEn": "\n                        <div class=\"alert alert-success mb-3\"><strong>CQRS Strategy:</strong> Use EF Core for complex write rules (C) and Dapper for fast reading screens (R).</div>\n                        <ul>\n                            <li><strong>EF Core:</strong> Full ORM. Change Tracking, Migrations, LINQ. Ideal for Domain Logic.</li>\n                            <li><strong>Dapper:</strong> Micro-ORM. Pure SQL mapped to objects. Extreme performance.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <div class=\"alert alert-success mb-3\"><strong>Estratégia CQRS:</strong> Use EF Core para escrita complexa (C) e Dapper para leitura veloz (R).</div>\n                        <ul>\n                            <li><strong>EF Core:</strong> ORM Full. Change Tracking, Migrations, LINQ. Ideal para Lógica de Domínio.</li>\n                            <li><strong>Dapper:</strong> Micro-ORM. SQL puro para objeto. Performance extrema.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Advanced PostgreSQL",
+                    "contentEn": "\n                        <p>Enterprise strategies for massive scale databases:</p>\n                        <ul>\n                            <li><strong>Partitioning:</strong> Range or Hash partitioning for gigantic tables.</li>\n                            <li><strong>Indexes:</strong> BRIN and GIN indexes for complex queries.</li>\n                            <li><strong>Read Replicas:</strong> Splitting read traffic from the master write DB.</li>\n                            <li><strong>Materialized Views:</strong> Pre-calculating heavy queries.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Estratégias enterprise para bancos de grande escala:</p>\n                        <ul>\n                            <li><strong>Particionamento:</strong> Partição por range/hash em tabelas gigantes.</li>\n                            <li><strong>Índices:</strong> Índices BRIN e GIN para buscas complexas.</li>\n                            <li><strong>Read Replicas:</strong> Dividir o tráfego de leitura do banco master.</li>\n                            <li><strong>Views Materializadas:</strong> Pré-calcular queries muito pesadas.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "MongoDB (NoSQL)",
+                    "contentEn": "\n                        <p>Document database storing JSON-like BSON data.</p>\n                        <ul>\n                            <li><strong>Use Cases:</strong> Semi-structured data, dynamic catalogs, fast telemetry.</li>\n                            <li><strong>Scaling:</strong> Sharding allows distributing data across multiple servers.</li>\n                            <li><strong>Anti-pattern:</strong> Trying to join dozens of collections; data should be nested or referenced appropriately.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Banco orientado a documentos salvando BSON (JSON).</p>\n                        <ul>\n                            <li><strong>Uso:</strong> Dados semi-estruturados, catálogos dinâmicos, telemetria rápida.</li>\n                            <li><strong>Escala:</strong> Sharding permite distribuir dados em vários servidores.</li>\n                            <li><strong>Anti-pattern:</strong> Tentar fazer join de muitas collections; os dados devem ser aninhados de forma otimizada.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Redis (In-Memory Data Store)",
+                    "contentEn": "\n                        <p>NoSQL key-value database running in RAM.</p>\n                        <ul>\n                            <li><strong>Cache:</strong> Caching slow SQL queries.</li>\n                            <li><strong>Semantic Caching:</strong> Caching LLM embeddings to save token costs.</li>\n                            <li><strong>Rate Limiting:</strong> Blocking API abuse.</li>\n                            <li><strong>Pub/Sub:</strong> Fast asynchronous messaging.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Banco NoSQL chave-valor em RAM.</p>\n                        <ul>\n                            <li><strong>Cache:</strong> Cache de SQL lento.</li>\n                            <li><strong>Semantic Caching:</strong> Cache de embeddings de IA para salvar custos.</li>\n                            <li><strong>Rate Limiting:</strong> Bloquear abuso de API.</li>\n                            <li><strong>Pub/Sub:</strong> Mensageria assíncrona rápida.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Data Engineering & Analytics",
+            "icon": "bi bi-bar-chart-fill",
+            "cards": [
+                {
+                    "topic": "Data Lake vs Data Warehouse",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Data Lake:</strong> Stores raw, unstructured, or structured data (e.g., S3). Cheap and flexible.</li>\n                            <li><strong>Data Warehouse:</strong> Structured, processed data optimized for analytics (e.g., Snowflake, BigQuery).</li>\n                            <li><strong>Data Mesh:</strong> Decentralized architecture where each domain manages its own data products.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Data Lake:</strong> Armazena dados brutos, não estruturados e estruturados (ex: S3). Barato e flexível.</li>\n                            <li><strong>Data Warehouse:</strong> Dados processados e estruturados para análise (ex: Snowflake).</li>\n                            <li><strong>Data Mesh:</strong> Arquitetura descentralizada onde cada domínio cuida de seus dados.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Azure Databricks & Apache Spark",
+                    "contentEn": "\n                        <p>Leading platform for Big Data, AI, and ETL pipelines.</p>\n                        <ul>\n                            <li><strong>Medallion Architecture (Delta Lake):</strong> \n                                <ul>\n                                    <li><em>Bronze:</em> Raw ingested data.</li>\n                                    <li><em>Silver:</em> Cleaned, filtered, augmented data.</li>\n                                    <li><em>Gold:</em> Business-level aggregates ready for BI.</li>\n                                </ul>\n                            </li>\n                            <li><strong>Performance:</strong> Uses Partition Pruning and Adaptive Query Execution to optimize distributed data shuffling.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Plataforma líder para Big Data, IA e pipelines ETL.</p>\n                        <ul>\n                            <li><strong>Arquitetura Medallion (Delta Lake):</strong> \n                                <ul>\n                                    <li><em>Bronze:</em> Dados brutos da ingestão.</li>\n                                    <li><em>Silver:</em> Dados limpos e filtrados.</li>\n                                    <li><em>Gold:</em> Agregações de negócio prontas para BI.</li>\n                                </ul>\n                            </li>\n                            <li><strong>Performance:</strong> Usa Partition Pruning e Adaptive Query Execution para otimizar o processamento distribuído.</li>\n                        </ul>\n                    ",
+                    "diagramHtml": "\n                        <div class=\"mermaid-container p-3 bg-light border rounded text-center\">\n                            <div class=\"mermaid\">\n                            flowchart LR\n                                Bronze[Bronze Layer]\n                                Silver[Silver Layer]\n                                Gold[Gold Layer]\n                                Bronze --> Silver --> Gold\n                            </div>\n                        </div>\n                    "
+                },
+                {
+                    "topic": "ETL vs ELT",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>ETL (Extract, Transform, Load):</strong> Transform data before loading it into the destination. Used when target systems lack processing power.</li>\n                            <li><strong>ELT (Extract, Load, Transform):</strong> Load raw data into modern scalable Data Warehouses, then use their immense power to transform the data internally.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>ETL (Extract, Transform, Load):</strong> Transforma os dados antes de carregar no destino.</li>\n                            <li><strong>ELT (Extract, Load, Transform):</strong> Carrega os dados brutos no Data Warehouse e transforma lá dentro usando o poder computacional da nuvem.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Advanced Database Strategies",
+            "icon": "bi bi-diagram-2",
+            "cards": [
+                {
+                    "topic": "SQL Server Enterprise Optimization",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Index Tuning:</strong> Covering indexes eliminate table scans. Choose between Clustered and Non-clustered indexes.</li>\n                            <li><strong>Partitioning:</strong> Divide large tables by date/range for easier maintenance and faster queries.</li>\n                            <li><strong>Query Execution Plans:</strong> Analyze execution plans with STATISTICS IO to identify bottlenecks.</li>\n                            <li><strong>Always Encrypted:</strong> Encrypt sensitive data at the column level.</li>\n                            <li><strong>Bulk Operations (BCP, SSIS):</strong> Efficient bulk loading and data transfer.</li>\n                            <li><strong>Replication:</strong> Setup for high availability and read scaling (Transactional, Merge, Snapshot).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Índices:</strong> Índices cobrindo eliminam table scans. Clustered vs Non-clustered.</li>\n                            <li><strong>Particionamento:</strong> Divide tabelas grandes por data/range para manutenção e queries mais rápidas.</li>\n                            <li><strong>Execution Plans:</strong> Analisa planos com STATISTICS IO para gargalos.</li>\n                            <li><strong>Always Encrypted:</strong> Encripta dados sensíveis a nível de coluna.</li>\n                            <li><strong>Bulk Operations:</strong> BCP e SSIS para carregamento eficiente.</li>\n                            <li><strong>Replicação:</strong> Alta disponibilidade e escalabilidade de leitura.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Data Mesh Architecture",
+                    "contentEn": "\n                        <p>Decentralized data ownership and governance model for scaling data platforms.</p>\n                        <ul>\n                            <li><strong>Data Domains:</strong> Each business domain owns its data products and quality.</li>\n                            <li><strong>Data Products:</strong> Domain-owned datasets with clear contracts (schemas, SLAs).</li>\n                            <li><strong>Data Platform:</strong> Self-service infrastructure for domain teams to publish and consume data.</li>\n                            <li><strong>Governance:</strong> Federated governance vs centralized control. Domain autonomy with global standards.</li>\n                            <li><strong>Benefits:</strong> Scalability, faster time-to-market, reduced central bottlenecks.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Modelo descentralizado de propriedade e governança de dados para escalar plataformas.</p>\n                        <ul>\n                            <li><strong>Data Domains:</strong> Cada domínio de negócio possui seus dados e qualidade.</li>\n                            <li><strong>Data Products:</strong> Datasets com contrato claro (schemas, SLAs).</li>\n                            <li><strong>Data Platform:</strong> Infraestrutura self-service para times publicarem e consumirem dados.</li>\n                            <li><strong>Governança:</strong> Federada vs centralizada. Autonomia com padrões globais.</li>\n                            <li><strong>Benefícios:</strong> Escalabilidade, velocidade, menos gargalos centrais.</li>\n                        </ul>\n                    "
+                }
+            ]
+        }
+    ]
+}

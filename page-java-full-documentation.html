@@ -1,0 +1,3776 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin="" src="https://cdn.jsdelivr.net/npm/i18next@23.4.0/dist/umd/i18next.min.js"></script>
+    <script crossorigin=""
+        src="https://cdn.jsdelivr.net/npm/react-i18next@13.0.1/dist/umd/react-i18next.min.js"></script>
+    <title>Java Technical Documentation</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-secondary: #111827;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--text);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            padding: 40px 0 0 0;
+        }
+
+        .nav-title {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 22px 0 10px;
+            font-weight: 800;
+        }
+
+        .sidebar {
+            width: 300px;
+            max-height: calc(100vh - 106px);
+            z-index: 999;
+            background: linear-gradient(180deg, #0f172a, #111827);
+            color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .sidebar h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #dbeafe;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+            margin: 5px 0;
+            padding: 6px 8px;
+            background-color: #ffffff17;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .main {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+        }
+
+        .content {
+            padding: 40px 0px 15px 15px;
+            margin-top: 4rem;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 26px 40px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .header p {
+            color: var(--text);
+            margin-top: 8px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            max-width: 1200px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 999px;
+            padding: 10px 16px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 0px;
+        }
+
+        .section-title {
+            margin-top: 70px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 14px;
+        }
+
+        .section-description {
+            color: var(--text);
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin: 30px 0 0 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-top: 16px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .diagram {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .info-box,
+        .warning-box,
+        .success-box {
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 18px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+        }
+
+        .code {
+            background: #08111f;
+            border: 1px solid #243656;
+            border-radius: 20px;
+            padding: 0;
+            margin: 30px 0 0 0;
+            overflow: auto;
+        }
+
+        .code pre {
+            color: #d6e3ff;
+            line-height: 1.8;
+            font-size: 14px;
+            padding: 30px 40px;
+            margin: 0;
+            display: inline-block;
+            white-space: pre;
+            /* mantém formatação */
+        }
+
+        .mermaid {
+            margin-top: 24px;
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--border);
+            padding: 16px;
+            text-align: left;
+        }
+
+        .table th {
+            font-size: 15px;
+            text-transform: uppercase;
+            background: #92ade5;
+            border: none;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            box-shadow: 0 5px 20px rgb(15 23 41 / 15%);
+        }
+
+        .callout {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 28px;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+        .danger {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media(max-width:1200px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sticky-top no-print" style="z-index: 1000; width: 100%; position: fixed; top: 0; left: 0;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; width: 100%;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a class="d-inline-block" href="Index.html">
+                    <img alt="Logo" src="assets/images/fluencyinterview-logo-p.png" style="height: 50px;" />
+                </a>
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Language Selector -->
+                    <div id="languageSelectorRoot"></div>
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <main class="main">
+            <div class="content">
+                <section class="hero" id="overview">
+                    <h1 class="fs-4 text-white fw-bold mb-4">
+                        JAVA - Documentação Completa
+                    </h1>
+                    <p>
+<strong>Objetivo:</strong>
+Este documento foi criado para servir como material técnico avançado para desenvolvedores Java Júnior, Pleno, Sênior e Especialistas, abordando arquitetura enterprise moderna, JVM, Spring, bancos de dados, observabilidade, microsserviços, Kubernetes, IA generativa, ferramentas de desenvolvimento, boas práticas de código e padrões utilizados em grandes plataformas corporativas. Ele inclui diagramas arquiteturais e de fluxo avançados utilizando Mermaid.js.
+</p>
+                    <div class="badges">
+                        <div class="badge">Java 17/21</div>
+                        <div class="badge">Spring Boot</div>
+                        <div class="badge">JVM</div>
+                        <div class="badge">Microsserviços</div>
+                        <div class="badge">Kubernetes</div>
+                        <div class="badge">Virtual Threads</div>
+                    </div>
+                </section>
+
+                <section class="section" id="section-1">
+                    <h2 class="section-title"><i class="bi bi-pencil-square me-2 text-primary"></i> 0 - IntelliJ IDEA Community Edition e JetBrains AI Assistant</h2>
+                    <h3>IntelliJ IDEA Community Edition</h3>
+<p>
+O IntelliJ IDEA Community Edition é um dos IDEs mais utilizados para desenvolvimento Java. Ele oferece:
+</p>
+<ul>
+    <li>Suporte completo a Java, Maven, Gradle e Git</li>
+    <li>Refatorações inteligentes</li>
+    <li>Auto-complete avançado</li>
+    <li>Debug integrado</li>
+    <li>Integração com testes JUnit</li>
+</ul>
+
+<h3>JetBrains AI Assistant (visão geral)</h3>
+<p>
+O JetBrains AI Assistant é um recurso de IA integrado ao ecossistema JetBrains que auxilia em:
+</p>
+<ul>
+    <li>Geração de código e snippets</li>
+    <li>Explicação de trechos de código complexos</li>
+    <li>Refatoração guiada</li>
+    <li>Geração de testes</li>
+    <li>Documentação automática</li>
+</ul>
+<p>
+Na prática, você pode selecionar um método, pedir explicação, sugerir melhorias ou gerar testes unitários diretamente do IDE, acelerando o desenvolvimento e reduzindo erros.
+</p>
+                </section>
+
+                <section class="section" id="section-2">
+                    <h2 class="section-title"><i class="bi bi-arrow-up-right me-2 text-primary"></i> 1 - Java 17, Java 21 e desafios em sistemas legados</h2>
+                    <p>
+Java 17 se tornou uma das versões LTS mais utilizadas em ambientes corporativos devido à estabilidade, maturidade do ecossistema e compatibilidade com frameworks enterprise.
+</p>
+
+<p>
+Porém, muitas empresas ainda operam aplicações Java 8 ou Java 11 devido a:
+</p>
+
+<ul>
+<li>Dependência de bibliotecas antigas</li>
+<li>Frameworks legados</li>
+<li>Alto acoplamento</li>
+<li>Baixa cobertura de testes</li>
+<li>Risco operacional</li>
+<li>Dependência de servidores Java EE antigos</li>
+</ul>
+
+<h3>Problemas comuns em sistemas legados Java</h3>
+
+<ul>
+<li>Monolitos gigantes</li>
+<li>Alto uso de memória</li>
+<li>Hibernate mal otimizado</li>
+<li>Queries N+1</li>
+<li>Baixa observabilidade</li>
+<li>Acoplamento extremo</li>
+<li>Baixa modularização</li>
+<li>Deploy lento</li>
+<li>Ausência de automação</li>
+</ul>
+
+<h3>Principais evoluções do Java moderno</h3>
+
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtual Threads</td>
+<td>Alta concorrência</td>
+</tr>
+<tr>
+<td>Records</td>
+<td>Menos boilerplate</td>
+</tr>
+<tr>
+<td>Pattern Matching</td>
+<td>Legibilidade</td>
+</tr>
+<tr>
+<td>Switch Expressions</td>
+<td>Código mais limpo</td>
+</tr>
+<tr>
+<td>Sealed Classes</td>
+<td>Controle de herança</td>
+</tr>
+<tr>
+<td>GraalVM</td>
+<td>Startup extremamente rápido</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Últimas versões do Java e versão atual estável</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Versão</th>
+            <th>Tipo</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Java 17</td>
+            <td>LTS</td>
+            <td>Muito utilizado em produção</td>
+        </tr>
+        <tr>
+            <td>Java 21</td>
+            <td>LTS</td>
+            <td>Atual principal recomendação enterprise</td>
+        </tr>
+        <tr>
+            <td>Java 22</td>
+            <td>Feature Release</td>
+            <td>Recursos experimentais</td>
+        </tr>
+        <tr>
+            <td>Java 23</td>
+            <td>Feature Release</td>
+            <td>Evoluções contínuas</td>
+        </tr>
+        <tr>
+            <td>Java 24</td>
+            <td>Atual mais recente</td>
+            <td>Modernização contínua</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Java 21 e Virtual Threads</h3>
+
+<p>
+Uma das maiores revoluções recentes do Java foi o Project Loom com Virtual Threads.
+</p>
+
+<p>
+Antes do Loom, aplicações concorrentes dependiam fortemente de pools de threads do sistema operacional, gerando alto consumo de memória e limitações de escalabilidade.
+</p>
+
+<p>
+Com Virtual Threads, Java agora consegue lidar com milhões de operações concorrentes utilizando threads extremamente leves.
+</p>
+
+<pre><code>ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+</code></pre>
+
+<p>
+Isso tornou Java extremamente competitivo para aplicações:
+</p>
+
+<ul>
+    <li>High throughput</li>
+    <li>APIs massivas</li>
+    <li>Microsserviços</li>
+    <li>Streaming</li>
+    <li>Processamento concorrente</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-3">
+                    <h2 class="section-title"><i class="bi bi-cpu me-2 text-primary"></i> 2 - JVM (Java Virtual Machine)</h2>
+                    <p>
+A JVM é o núcleo do ecossistema Java.
+</p>
+
+<p>
+Ela é responsável por:
+</p>
+
+<ul>
+<li>Gerenciamento de memória</li>
+<li>Execução do bytecode</li>
+<li>Garbage Collection</li>
+<li>JIT Compilation</li>
+<li>Thread management</li>
+<li>Class loading</li>
+<li>Otimizações em runtime</li>
+</ul>
+
+<h3>Fluxo interno da JVM</h3>
+
+<div class="mermaid-container">
+    <div class="mermaid">
+        flowchart TD
+            A[.java] --> B(javac)
+            B --> C[.bytecode .class]
+            C --> D(Class Loader)
+            D --> E(JVM Runtime Memory)
+            E <--> F(JIT Compiler)
+            F --> G[Código otimizado em memória]
+    </div>
+</div>
+
+<h3>Class Loader</h3>
+
+<p>
+O Class Loader carrega classes dinamicamente.
+</p>
+
+<p>
+Existem três principais:
+</p>
+
+<ul>
+<li>Bootstrap ClassLoader</li>
+<li>Extension ClassLoader</li>
+<li>Application ClassLoader</li>
+</ul>
+
+<h3>JIT Compiler</h3>
+
+<p>
+O Just-In-Time Compiler converte bytecode em código nativo otimizado em tempo de execução.
+</p>
+
+<p>
+Isso faz Java atingir performance extremamente alta em workloads longos.
+</p>
+                </section>
+
+                <section class="section" id="section-4">
+                    <h2 class="section-title"><i class="bi bi-trash me-2 text-primary"></i> 3 - Garbage Collector (GC)</h2>
+                    <p>
+Garbage Collection é responsável por gerenciamento automático de memória.
+</p>
+
+<h3>Heap Memory</h3>
+
+<div class="mermaid-container">
+    <div class="mermaid">
+        flowchart LR
+            subgraph Heap [Heap Memory]
+                subgraph Young [Young Generation]
+                    Eden[Eden]
+                    S1[Survivor 1]
+                    S2[Survivor 2]
+                end
+                subgraph Old [Old Generation]
+                    OG[Tenured / Old Space]
+                end
+            end
+            Eden --> S1 --> S2 --> OG
+    </div>
+</div>
+
+<h3>Principais Garbage Collectors</h3>
+
+<table>
+<thead>
+<tr>
+<th>GC</th>
+<th>Cenário</th>
+<th>Características</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serial GC</td>
+<td>Aplicações simples</td>
+<td>Single thread</td>
+</tr>
+<tr>
+<td>Parallel GC</td>
+<td>Throughput</td>
+<td>Maior performance bruta</td>
+</tr>
+<tr>
+<td>G1GC</td>
+<td>Enterprise moderno</td>
+<td>Balanceado</td>
+</tr>
+<tr>
+<td>ZGC</td>
+<td>Baixíssima latência</td>
+<td>Pausas mínimas</td>
+</tr>
+<tr>
+<td>Shenandoah</td>
+<td>Ultra low latency</td>
+<td>GC concorrente</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Problemas comuns de GC</h3>
+
+<ul>
+<li>Memory leaks</li>
+<li>Objetos gigantes em memória</li>
+<li>Excesso de alocação</li>
+<li>Pool mal configurado</li>
+<li>Cache sem eviction</li>
+<li>Streams mal utilizados</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-5">
+                    <h2 class="section-title"><i class="bi bi-diagram-3 me-2 text-primary"></i> 4 - Virtual Threads aprofundado</h2>
+                    <p>
+Virtual Threads representam uma das maiores mudanças da história do Java.
+</p>
+
+<p>
+Antes do Project Loom:
+</p>
+
+<ul>
+<li>Cada requisição consumia thread pesada do SO</li>
+<li>Alto consumo de memória</li>
+<li>Context switching caro</li>
+<li>Limitação de concorrência</li>
+</ul>
+
+<p>
+Agora Virtual Threads são extremamente leves.
+</p>
+
+<pre><code>ExecutorService executor =
+    Executors.newVirtualThreadPerTaskExecutor();
+
+executor.submit(() -> {
+    System.out.println("Virtual Thread");
+});
+</code></pre>
+
+<h3>Impactos arquiteturais</h3>
+
+<ul>
+<li>Milhões de conexões concorrentes</li>
+<li>Menos necessidade de programação reativa</li>
+<li>Maior simplicidade</li>
+<li>Redução de complexidade assíncrona</li>
+</ul>
+
+<h3>Quando evitar Virtual Threads</h3>
+
+<ul>
+<li>CPU-bound pesado</li>
+<li>Bibliotecas não thread-safe</li>
+<li>Drivers antigos</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-6">
+                    <h2 class="section-title"><i class="bi bi-lightning-charge me-2 text-primary"></i> 5 - APIs assíncronas no Java</h2>
+                    <p>
+APIs assíncronas permitem que operações demoradas não bloqueiem threads principais.
+</p>
+
+<h3>CompletableFuture</h3>
+
+<pre><code>CompletableFuture.supplyAsync(() -> {
+    return userService.findUser();
+}).thenApply(user -> {
+    return mapper.toDto(user);
+});
+</code></pre>
+
+<h3>Fluxo assíncrono</h3>
+
+<div class="flow">
+Request
+ → 
+Thread recebe request
+ → 
+Task async disparada
+ → 
+Thread liberada
+ → 
+Processamento ocorre em background
+ → 
+Resposta retornada posteriormente
+</div>
+
+<h3>Quando usar async</h3>
+
+<ul>
+<li>Integrações externas</li>
+<li>IO-bound</li>
+<li>Uploads</li>
+<li>Mensageria</li>
+<li>Streaming</li>
+<li>Processamento distribuído</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-7">
+                    <h2 class="section-title"><i class="bi bi-box-seam me-2 text-primary"></i> 6 - Internals do Spring Framework</h2>
+                    <p>
+O Spring é baseado fortemente em:
+</p>
+
+<ul>
+<li>IoC Container</li>
+<li>Dependency Injection</li>
+<li>Reflection</li>
+<li>Proxy Pattern</li>
+<li>AOP</li>
+</ul>
+
+<h3>Fluxo interno do Spring</h3>
+
+<div class="flow">
+Spring Boot Start
+ → 
+ApplicationContext
+ → 
+Component Scan
+ → 
+Bean Creation
+ → 
+Dependency Injection
+ → 
+Proxy Generation
+ → 
+Application Ready
+</div>
+
+<h3>Bean Lifecycle</h3>
+
+<div class="flow">
+Instantiation
+ → 
+Dependency Injection
+ → 
+@PostConstruct
+ → 
+Ready
+ → 
+@PreDestroy
+</div>
+
+<h3>Internamente o Spring utiliza:</h3>
+
+<ul>
+<li>Reflection intensivamente</li>
+<li>Dynamic Proxies</li>
+<li>CGLIB</li>
+<li>BeanFactory</li>
+<li>ApplicationContext</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-8">
+                    <h2 class="section-title"><i class="bi bi-database me-2 text-primary"></i> 7 - Hibernate Internals aprofundado</h2>
+                    <p>
+Hibernate não é apenas um ORM simples.
+</p>
+
+<p>
+Internamente ele possui:
+</p>
+
+<ul>
+<li>Persistence Context</li>
+<li>Dirty Checking</li>
+<li>First Level Cache</li>
+<li>Second Level Cache</li>
+<li>Entity Manager</li>
+<li>Session Factory</li>
+<li>Lazy Loading</li>
+</ul>
+
+<h3>Fluxo interno Hibernate</h3>
+
+<div class="flow">
+Entity
+ → 
+Persistence Context
+ → 
+Dirty Checking
+ → 
+SQL Generation
+ → 
+JDBC
+ → 
+Database
+</div>
+
+<h3>Dirty Checking</h3>
+
+<p>
+Hibernate monitora objetos em memória.
+</p>
+
+<p>
+Ao detectar alterações:
+</p>
+
+<ul>
+<li>gera UPDATE automaticamente</li>
+<li>sincroniza contexto</li>
+<li>executa flush</li>
+</ul>
+
+<h3>Problemas enterprise clássicos</h3>
+
+<ul>
+<li>N+1 Queries</li>
+<li>LazyInitializationException</li>
+<li>Overfetching</li>
+<li>Queries escondidas</li>
+<li>Alto uso de memória</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-9">
+                    <h2 class="section-title"><i class="bi bi-database-fill me-2 text-primary"></i> 8 - JDBI e JdbcTemplate aprofundado</h2>
+                    <h3>JDBI</h3>
+
+<p>
+JDBI tenta equilibrar:
+</p>
+
+<ul>
+<li>controle SQL</li>
+<li>performance</li>
+<li>simplicidade</li>
+<li>baixo boilerplate</li>
+</ul>
+
+<pre><code>@SqlQuery("""
+SELECT * FROM users
+WHERE id = :id
+""")
+User findById(Long id);
+</code></pre>
+
+<h3>JdbcTemplate</h3>
+
+<p>
+JdbcTemplate é extremamente utilizado em:
+</p>
+
+<ul>
+<li>sistemas financeiros</li>
+<li>plataformas fiscais</li>
+<li>APIs críticas</li>
+<li>queries complexas</li>
+</ul>
+
+<h3>Vantagens</h3>
+
+<ul>
+<li>SQL explícito</li>
+<li>Maior controle</li>
+<li>Alta performance</li>
+<li>Menos magia</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-10">
+                    <h2 class="section-title"><i class="bi bi-diagram-3 me-2 text-primary"></i> 9 - Pooling de conexões</h2>
+                    <p>
+Abrir conexões com banco é extremamente caro.
+</p>
+
+<p>
+Por isso aplicações enterprise utilizam pools.
+</p>
+
+<h3>HikariCP</h3>
+
+<p>
+Atualmente o HikariCP é o pool padrão do Spring Boot.
+</p>
+
+<pre><code>spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+</code></pre>
+
+<h3>Problemas comuns</h3>
+
+<ul>
+<li>Pool pequeno</li>
+<li>Pool gigante desnecessário</li>
+<li>Connection leak</li>
+<li>Timeout mal configurado</li>
+</ul>
+
+<h3>Fluxo interno</h3>
+
+<div class="flow">
+Request
+ → 
+Pool entrega conexão
+ → 
+SQL executado
+ → 
+Conexão devolvida ao pool
+</div>
+                </section>
+
+                <section class="section" id="section-11">
+                    <h2 class="section-title"><i class="bi bi-binoculars me-2 text-primary"></i> 10 - Observabilidade</h2>
+                    <p>
+Observabilidade moderna é fundamental em microsserviços.
+</p>
+
+<h3>Os 3 pilares</h3>
+
+<table>
+<thead>
+<tr>
+<th>Pilar</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logs</td>
+<td>Eventos</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Medições</td>
+</tr>
+<tr>
+<td>Tracing</td>
+<td>Fluxo distribuído</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Stack moderna</h3>
+
+<ul>
+<li>SLF4J</li>
+<li>Logback</li>
+<li>Micrometer</li>
+<li>Prometheus</li>
+<li>Grafana</li>
+<li>OpenTelemetry</li>
+<li>Jaeger</li>
+</ul>
+
+<h3>Fluxo de tracing distribuído</h3>
+
+<div class="flow">
+Gateway
+ → 
+Service A
+ → 
+Service B
+ → 
+Database
+ → 
+Kafka
+ → 
+Service C
+</div>
+                </section>
+
+                <section class="section" id="section-12">
+                    <h2 class="section-title"><i class="bi bi-shuffle me-2 text-primary"></i> 11 - REST vs gRPC aprofundado</h2>
+                    <table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>REST</th>
+<th>gRPC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payload</td>
+<td>JSON</td>
+<td>Binário</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Média</td>
+<td>Muito alta</td>
+</tr>
+<tr>
+<td>Latência</td>
+<td>Maior</td>
+<td>Menor</td>
+</tr>
+<tr>
+<td>Browser Friendly</td>
+<td>Sim</td>
+<td>Limitado</td>
+</tr>
+<tr>
+<td>Streaming</td>
+<td>Limitado</td>
+<td>Nativo</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Cenário moderno</h3>
+
+<div class="architecture">
+<h4>Arquitetura híbrida</h4>
+<div class="flow">
+Frontend
+ → 
+REST API Gateway
+ → 
+Microsserviços internos via gRPC
+ → 
+Redis / PostgreSQL / Kafka
+</div>
+</div>
+                </section>
+
+                <section class="section" id="section-13">
+                    <h2 class="section-title"><i class="bi bi-arrow-repeat me-2 text-primary"></i> 12 - Lifecycle completo de request REST</h2>
+                    <p>
+Abaixo está a representação arquitetural end-to-end do ciclo de vida completo de uma requisição REST em um ecossistema de microsserviços moderno empacotado em Kubernetes, escalado e orquestrado via AWS (incluindo automação do Elastic Beanstalk), utilizando Spring Boot e Jakarta Bean Validation para o processamento, aplicação de regras de negócio, consulta a dados e modulação do payload de retorno com tratamentos explícitos de sucesso e insucesso.
+</p>
+
+<div class="mermaid-container">
+    <div class="mermaid">
+        flowchart TD
+            subgraph Client_Layer [Camada do Cliente]
+                Client[Client Browser / Mobile / API Client]
+            end
+
+            subgraph AWS_Cloud [Infraestrutura AWS & Orquestração]
+                R53[AWS Route 53 / DNS]
+                ELB[AWS Elastic Load Balancer / ALB]
+                
+                subgraph Deployment_Automation [Automação de Deploy, Scaling & Monitoramento]
+                    EB[AWS Elastic Beanstalk / Elastic Container Service / EKS] -->|Gerencia & Provisiona| K8s[Kubernetes Cluster Nodes]
+                    CW[AWS CloudWatch] -.->|Métricas e Alertas| EB
+                    ASG[Auto Scaling Group] -.->|Escalabilidade Horizontal de Pods/Instâncias| K8s
+                end
+                
+                subgraph K8s_Infrastructure [Infraestrutura Kubernetes]
+                    Ingress[K8s Ingress Controller]
+                    PodREST[Spring Boot App Pod - Microserviço REST]
+                end
+            end
+
+            subgraph Spring_Boot_REST_Microservice [Microsserviço REST Spring Boot]
+                subgraph Security_Filter_Chain [Segurança & Filtros]
+                    SF[Spring Security Filter Chain]
+                    AuthFilter[Authentication & JWT Validator Filter]
+                end
+                
+                subgraph Presentation_Layer [Camada de Apresentação / Entrada]
+                    Ctrl[REST Controller\n@RestController]
+                    PayloadTreat[Tratamento de Payload\nDeserialização JSON -> Java DTO]
+                    Valid[Jakarta Bean Validation\n@Valid / @NotBlank / @Min]
+                end
+
+                subgraph Business_Layer [Camada de Negócio]
+                    Service[Service Layer\n@Service]
+                    Rules[Aplicação de Regras de Negócio\n& Validações Customizadas]
+                end
+
+                subgraph Data_Access_Layer [Camada de Acesso a Dados]
+                    Repo[Repository Layer\n@Repository]
+                    ORM[Hibernate JPA / Spring JdbcTemplate]
+                end
+
+                subgraph Mapping_Response_Layer [Mapeamento & Modulação do Payload]
+                    Mapper[Mapper Layer\nMapStruct / ModelMapper]
+                    RespMod[Modularização do Return Payload\nConstrução de DTO de Resposta Específico]
+                end
+            end
+
+            subgraph Database_Layer [Camada de Persistência]
+                DB[(Banco de Dados\nPostgreSQL / MySQL)]
+            end
+
+            %% Conexões do Fluxo Principal
+            Client -->|1. HTTP Request + JSON Payload| R53
+            R53 --> ELB
+            ELB --> Ingress
+            Ingress -->|Encaminha tráfego| PodREST
+            
+            PodREST --> SF
+            SF --> AuthFilter
+            AuthFilter -->|Token JWT Válido| Ctrl
+            
+            Ctrl --> PayloadTreat
+            PayloadTreat --> Valid
+            
+            Valid -->|2. Payload Validado com Sucesso| Service
+            Service --> Rules
+            Rules -->|3. Query de Dados| Repo
+            Repo --> ORM
+            ORM <-->|4. Leitura / Escrita| DB
+            
+            ORM -->|5. Retorno de Entidade / Dados Brutos| Mapper
+            Mapper --> RespMod
+            RespMod -->|6. Payload de Retorno Estruturado| Ctrl
+            
+            %% Ramificações de Status Code de Retorno (Sucesso e Insucesso)
+            Ctrl -->|8a. Finaliza com Sucesso\nHTTP 200 OK / 201 Created| Client
+            
+            ValidIntFalha[Handler de Exceções\n@RestControllerAdvice]
+            Valid -.->|7b. Insucesso: Falha de Validação| ValidIntFalha
+            ValidIntFalha -->|Retorna HTTP 400 Bad Request + Detalhes| Client
+            
+            AuthFilter -.->|7a. Insucesso: Token Inválido / Expirado| ClientUnauth[Retorna HTTP 401 Unauthorized / 403 Forbidden]
+            ClientUnauth --> Client
+            
+            Rules -.->|7c. Insucesso: Violação de Regra de Negócio| ValidIntFalha
+            ValidIntFalha -->|Retorna HTTP 422 Unprocessable Entity / 404 Not Found| Client
+            
+            Service -.->|7d. Insucesso: Exceção inesperada / Erro de Infra| ValidIntFalha
+            ValidIntFalha -->|Retorna HTTP 500 Internal Server Error| Client
+    </div>
+</div>
+                </section>
+
+                <section class="section" id="section-14">
+                    <h2 class="section-title"><i class="bi bi-arrow-repeat me-2 text-primary"></i> 13 - Lifecycle completo de request gRPC</h2>
+                    <p>
+Abaixo está o ciclo de vida completo de uma requisição utilizando a arquitetura gRPC de alta performance sobre HTTP/2. O fluxo demonstra desde a chamada do Stub cliente, passando pelo balanceamento de carga de rede na nuvem com AWS (estruturado sob governança do Elastic Beanstalk e Kubernetes), execução de interceptadores do ecossistema Spring Boot, conversão binária via Protobuf, validações, regras de negócio e a modulação de payloads específicos com tratamentos granulares de insucesso e sucesso mapeados para os status codes do gRPC.
+</p>
+
+<div class="mermaid-container">
+    <div class="mermaid">
+        flowchart TD
+            subgraph gRPC_Client_Layer [Camada do Cliente]
+                gRPC_Client[gRPC Stub Client / Mobile / Outro Microsserviço]
+            end
+
+            subgraph AWS_Cloud_gRPC [Infraestrutura AWS & Orquestração HTTP/2]
+                R53_gRPC[AWS Route 53 / DNS]
+                NLB[AWS Network Load Balancer / NLB\nSuporte Nativo a Conexões HTTP/2 Long-Lived]
+                
+                subgraph Deployment_Automation_gRPC [Automação de Deploy, Scaling & Monitoramento]
+                    EB_gRPC[AWS Elastic Beanstalk / EKS Container Management] -->|Provisiona & Gerencia Nodes| K8s_gRPC[Kubernetes Cluster Nodes]
+                    CW_gRPC[AWS CloudWatch] -.->|Métricas de Performance / CPU / Memória| EB_gRPC
+                    ASG_gRPC[Auto Scaling Group] -.->|Escalabilidade de Pods gRPC| K8s_gRPC
+                end
+                
+                subgraph K8s_Infrastructure_gRPC [Infraestrutura Kubernetes]
+                    Ingress_gRPC[K8s Ingress Controller\nHTTP/2 Passthrough / gRPC Routing]
+                    PodgRPC[Spring Boot App Pod - Microserviço gRPC]
+                end
+            end
+
+            subgraph Spring_Boot_gRPC_Microservice [Microsserviço gRPC Spring Boot]
+                subgraph Network_Transport_Layer [Camada de Transporte e Redes]
+                    H2_Server[Netty Server / HTTP/2 Server Connection]
+                    ProtoDe[Protobuf Deserialization\nConversão de Byte Stream -> Java Protobuf Object]
+                end
+
+                subgraph Interceptors_Chain [Cadeia de Interceptadores gRPC]
+                    AuthInterceptor[gRPC Security Interceptor\nValidação de Metadata JWT / Auth Context]
+                    ValidInterceptor[gRPC Validation Interceptor\nValidação de Campos da Mensagem Protobuf]
+                end
+                
+                subgraph Presentation_gRPC_Layer [Camada do Serviço gRPC]
+                    gRPC_Service[gRPC Service Implementation\nClasse que estende ImplBase gerada]
+                    PayloadExtract[Tratamento de Payload\nExtração de dados estruturados da mensagem]
+                end
+
+                subgraph Business_Layer_gRPC [Camada de Negócio]
+                    Service_gRPC[Service Layer\n@Service]
+                    Rules_gRPC[Aplicação de Regras de Negócio\n& Validações Customizadas]
+                end
+
+                subgraph Data_Access_Layer_gRPC [Camada de Acesso a Dados]
+                    Repo_gRPC[Repository Layer\n@Repository]
+                    ORM_gRPC[Hibernate JPA / JDBI / JdbcTemplate]
+                end
+
+                subgraph Mapping_Response_Layer_gRPC [Mapeamento, Modulação & Serialização]
+                    Mapper_gRPC[Proto Mapper Layer\nConversão Java Entity -> Protobuf Builder Object]
+                    RespMod_gRPC[Modularização do Return Payload\nConstrução da Mensagem Protobuf de Resposta Customizada]
+                    ProtoSer[Protobuf Serialization\nConversão de Java Object -> Byte Stream Binário]
+                end
+            end
+
+            subgraph Database_Layer_gRPC [Camada de Persistência]
+                DB_gRPC[(Banco de Dados\nPostgreSQL / MySQL / NoSQL)]
+            end
+
+            %% Fluxo Principal de Execução gRPC
+            gRPC_Client -->|1. gRPC Call over HTTP/2 com Protocol Buffers| R53_gRPC
+            R53_gRPC --> NLB
+            NLB --> Ingress_gRPC
+            Ingress_gRPC -->|Roteamento gRPC| PodgRPC
+            
+            PodgRPC --> H2_Server
+            H2_Server --> ProtoDe
+            ProtoDe --> AuthInterceptor
+            AuthInterceptor -->|Autenticado com Sucesso| ValidInterceptor
+            
+            ValidInterceptor -->|2. Payload Válido| gRPC_Service
+            gRPC_Service --> PayloadExtract
+            PayloadExtract --> Service_gRPC
+            
+            Service_gRPC --> Rules_gRPC
+            Rules_gRPC -->|3. Consulta de Dados| Repo_gRPC
+            Repo_gRPC --> ORM_gRPC
+            ORM_gRPC <-->|4. Query & Resultados| DB_gRPC
+            
+            ORM_gRPC -->|5. Retorno de Dados da Entidade| Mapper_gRPC
+            Mapper_gRPC --> RespMod_gRPC
+            RespMod_gRPC --> ProtoSer
+            ProtoSer -->|6. Retorno do Buffer de Bytes Binários| H2_Server
+            
+            %% Ramificações de Status Code de Retorno gRPC (Sucesso e Insucesso)
+            H2_Server -->|8a. Finaliza com Sucesso\ngRPC Status: OK 0| gRPC_Client
+            
+            ExceptionHandler[gRPC Exception Handler\n@GrpcGlobalInterceptor / StatusRuntimeException]
+            
+            AuthInterceptor -.->|7a. Insucesso: Token Inválido / Ausente| ExceptionHandler
+            ValidInterceptor -.->|7b. Insucesso: Falha de Validação de Campos| ExceptionHandler
+            Rules_gRPC -.->|7c. Insucesso: Violação de Regra / Recurso não encontrado| ExceptionHandler
+            Service_gRPC -.->|7d. Insucesso: Erro inesperado interno| ExceptionHandler
+            
+            ExceptionHandler -->|7a. gRPC Status: UNAUTHENTICATED 16| gRPC_Client
+            ExceptionHandler -->|7b. gRPC Status: INVALID_ARGUMENT 3| gRPC_Client
+            ExceptionHandler -->|7c. gRPC Status: NOT_FOUND 5 / FAILED_PRECONDITION 9| gRPC_Client
+            ExceptionHandler -->|7d. gRPC Status: INTERNAL 13| gRPC_Client
+    </div>
+</div>
+                </section>
+
+                <section class="section" id="section-15">
+                    <h2 class="section-title"><i class="bi bi-boxes me-2 text-primary"></i> 14 - Kubernetes e Amazon EKS aprofundado</h2>
+                    <h3>Kubernetes internals</h3>
+<p>
+Kubernetes é um orquestrador distribuído.
+</p>
+
+<h3>Componentes principais</h3>
+
+<ul>
+<li>Pods</li>
+<li>Deployments</li>
+<li>ReplicaSets</li>
+<li>Services</li>
+<li>Ingress</li>
+<li>ConfigMaps</li>
+<li>Secrets</li>
+</ul>
+
+<h3>Fluxo interno</h3>
+
+<div class="flow">
+Developer Push
+ → 
+CI/CD
+ → 
+Docker Build
+ → 
+Container Registry
+ → 
+Kubernetes Deployment
+ → 
+Pods
+ → 
+Service Discovery
+ → 
+Traffic Routing
+</div>
+
+<h3>EKS</h3>
+
+<p>
+Amazon EKS simplifica:
+</p>
+
+<ul>
+<li>gerenciamento Kubernetes</li>
+<li>auto scaling</li>
+<li>monitoramento</li>
+<li>segurança</li>
+<li>integração AWS</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-16">
+                    <h2 class="section-title"><i class="bi bi-building me-2 text-primary"></i> 15 - Arquitetura enterprise moderna completa</h2>
+                    <div class="architecture">
+<h3>Exemplo arquitetura enterprise</h3>
+<div class="flow">
+Frontend React / Angular
+ → 
+CloudFront CDN
+ → 
+API Gateway
+ → 
+Authentication Service
+ → 
+REST/gRPC Microservices
+ → 
+Redis Cache
+ → 
+PostgreSQL Cluster
+ → 
+Kafka
+ → 
+Data Lake
+ → 
+Observability Stack
+ → 
+LLM/RAG Platform
+</div>
+</div>
+
+<h3>Características</h3>
+
+<ul>
+<li>Escalabilidade horizontal</li>
+<li>Baixa latência</li>
+<li>Cache distribuído</li>
+<li>Tracing distribuído</li>
+<li>Mensageria</li>
+<li>Deploy contínuo</li>
+<li>Resiliência</li>
+<li>Circuit Breaker</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-17">
+                    <h2 class="section-title"><i class="bi bi-lightbulb me-2 text-primary"></i> 16 - RAG, MCP e LLM no Java</h2>
+                    <h3>RAG</h3>
+
+<p>
+Retrieval-Augmented Generation combina:
+</p>
+
+<ul>
+<li>vetorização</li>
+<li>embeddings</li>
+<li>LLMs</li>
+<li>busca semântica</li>
+</ul>
+
+<h3>Fluxo completo RAG</h3>
+
+<div class="flow">
+Documento
+ → 
+Chunking
+ → 
+Embedding
+ → 
+Vector Database
+ → 
+Busca semântica
+ → 
+LLM
+ → 
+Resposta contextualizada
+</div>
+
+<h3>MCP (Model Context Protocol)</h3>
+
+<p>
+MCP permite padronizar comunicação entre aplicações e modelos de IA.
+</p>
+
+<p>
+O objetivo é permitir:
+</p>
+
+<ul>
+<li>ferramentas compartilhadas</li>
+<li>memória contextual</li>
+<li>execução de funções</li>
+<li>interoperabilidade</li>
+</ul>
+
+<h3>Bibliotecas Java modernas</h3>
+
+<ul>
+<li>LangChain4j</li>
+<li>Spring AI</li>
+<li>Ollama Java</li>
+<li>OpenAI SDK</li>
+<li>Vertex AI SDK</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-18">
+                    <h2 class="section-title"><i class="bi bi-puzzle me-2 text-primary"></i> 17 - Padrões enterprise reais</h2>
+                    <h3>Principais padrões</h3>
+
+<table>
+<thead>
+<tr>
+<th>Padrão</th>
+<th>Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository</td>
+<td>Abstração de dados</td>
+</tr>
+<tr>
+<td>Service Layer</td>
+<td>Regras de negócio</td>
+</tr>
+<tr>
+<td>DTO</td>
+<td>Isolamento de payload</td>
+</tr>
+<tr>
+<td>Circuit Breaker</td>
+<td>Resiliência</td>
+</tr>
+<tr>
+<td>Saga</td>
+<td>Transações distribuídas</td>
+</tr>
+<tr>
+<td>Outbox Pattern</td>
+<td>Consistência eventos</td>
+</tr>
+<tr>
+<td>CQRS</td>
+<td>Separação leitura/escrita</td>
+</tr>
+<tr>
+<td>Event Sourcing</td>
+<td>Histórico imutável</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Outbox Pattern</h3>
+
+<div class="flow">
+Transaction DB
+ → 
+Outbox Table
+ → 
+Event Publisher
+ → 
+Kafka
+ → 
+Consumers
+</div>
+
+<h3>Circuit Breaker</h3>
+
+<p>
+Evita efeito cascata quando serviços externos falham.
+</p>
+
+<h3>Saga Pattern</h3>
+
+<p>
+Utilizado em microsserviços para coordenar transações distribuídas.
+</p>
+                </section>
+
+                <section class="section" id="section-19">
+                    <h2 class="section-title"><i class="bi bi-check-circle me-2 text-primary"></i> 18 - Considerações finais</h2>
+                    <p>
+Java continua sendo uma das plataformas mais fortes do mercado enterprise.
+</p>
+
+<p>
+O ecossistema moderno evoluiu drasticamente com:
+</p>
+
+<ul>
+<li>Spring Boot</li>
+<li>Virtual Threads</li>
+<li>Kubernetes</li>
+<li>Cloud Native</li>
+<li>Observabilidade distribuída</li>
+<li>IA Generativa</li>
+<li>Microsserviços</li>
+<li>gRPC</li>
+<li>RAG</li>
+</ul>
+
+<p>
+Atualmente os maiores desafios em aplicações enterprise Java estão relacionados a:
+</p>
+
+<ul>
+<li>arquitetura distribuída</li>
+<li>custos cloud</li>
+<li>latência</li>
+<li>consistência de dados</li>
+<li>observabilidade</li>
+<li>resiliência</li>
+<li>governança</li>
+</ul>
+
+<p>
+Java moderno continua extremamente competitivo para:
+</p>
+
+<ul>
+<li>fintechs</li>
+<li>bancos</li>
+<li>marketplaces</li>
+<li>ERPs</li>
+<li>Big Data</li>
+<li>IA corporativa</li>
+<li>APIs de alta concorrência</li>
+<li>plataformas distribuídas</li>
+</ul>
+
+
+
+<!-- A PARTIR DAQUI: TUDO QUE FALTAVA NA SUA LISTA -->
+                </section>
+
+                <section class="section" id="section-20">
+                    <h2 class="section-title"><i class="bi bi-sliders me-2 text-primary"></i> 19 - Principais arquivos de configuração em uma aplicação Java</h2>
+                    <h3>Aplicações simples (Java puro)</h3>
+<ul>
+    <li><strong>pom.xml</strong> (Maven) – dependências, plugins, build</li>
+    <li><strong>build.gradle</strong> (Gradle) – dependências, tasks, plugins</li>
+    <li><strong>settings.gradle</strong> – configuração de projeto multi-módulo</li>
+</ul>
+
+<h3>Spring Boot</h3>
+<ul>
+    <li><strong>application.properties</strong> ou <strong>application.yml</strong> – configurações de:
+        <ul>
+            <li>porta do servidor (server.port)</li>
+            <li>datasource (spring.datasource.*)</li>
+            <li>JPA/Hibernate (spring.jpa.*)</li>
+            <li>logs, profiles, etc.</li>
+        </ul>
+    </li>
+    <li><strong>bootstrap.yml</strong> (em alguns cenários com Spring Cloud)</li>
+</ul>
+
+<h3>Arquivos adicionais comuns</h3>
+<ul>
+    <li><strong>logback-spring.xml</strong> – configuração de logging</li>
+    <li><strong>Dockerfile</strong> – empacotamento em container</li>
+    <li><strong>docker-compose.yml</strong> – orquestração local de serviços</li>
+    <li><strong>kubernetes/*.yaml</strong> – manifests de deployment, service, ingress</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-21">
+                    <h2 class="section-title"><i class="bi bi-play-circle me-2 text-primary"></i> 20 - Arquivo de start e como iniciar uma aplicação Java</h2>
+                    <h3>Aplicação Java simples (sem Spring)</h3>
+<p>
+O ponto de entrada é uma classe com método <code>public static void main(String[] args)</code>.
+</p>
+
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}
+</code></pre>
+
+<p>
+Para iniciar:
+</p>
+<pre><code>javac Main.java
+java Main
+</code></pre>
+
+<h3>Aplicação Spring Boot</h3>
+
+<p>
+O ponto de entrada é a classe anotada com <code>@SpringBootApplication</code>.
+</p>
+
+<pre><code>@SpringBootApplication
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+</code></pre>
+
+<p>
+Para iniciar via Maven:
+</p>
+<pre><code>mvn spring-boot:run
+</code></pre>
+
+<p>
+Para iniciar via JAR:
+</p>
+<pre><code>mvn clean package
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+</code></pre>
+                </section>
+
+                <section class="section" id="section-22">
+                    <h2 class="section-title"><i class="bi bi-hammer me-2 text-primary"></i> 21 - Principais comandos para buildar e iniciar a aplicação</h2>
+                    <h3>Maven</h3>
+<ul>
+    <li><code>mvn clean</code> – limpa diretório target</li>
+    <li><code>mvn compile</code> – compila o código</li>
+    <li><code>mvn test</code> – executa testes</li>
+    <li><code>mvn package</code> – gera JAR/WAR</li>
+    <li><code>mvn spring-boot:run</code> – sobe aplicação Spring Boot</li>
+</ul>
+
+<h3>Gradle (Groovy DSL)</h3>
+<ul>
+    <li><code>./gradlew clean</code></li>
+    <li><code>./gradlew build</code></li>
+    <li><code>./gradlew test</code></li>
+    <li><code>./gradlew bootRun</code> – Spring Boot</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-23">
+                    <h2 class="section-title"><i class="bi bi-bug me-2 text-primary"></i> 22 - Como debugar com IntelliJ IDEA</h2>
+                    <ol>
+    <li>Abra o projeto no IntelliJ IDEA.</li>
+    <li>Coloque um breakpoint clicando à esquerda da linha de código.</li>
+    <li>Execute a aplicação em modo Debug:
+        <ul>
+            <li>Para Spring Boot: botão “Debug” na configuração de execução.</li>
+        </ul>
+    </li>
+    <li>Quando o código atingir o breakpoint, o IDE irá pausar a execução.</li>
+    <li>Use:
+        <ul>
+            <li>Step Over (F8)</li>
+            <li>Step Into (F7)</li>
+            <li>Step Out (Shift+F8)</li>
+            <li>Evaluate Expression para inspecionar variáveis</li>
+        </ul>
+    </li>
+</ol>
+
+<p>
+Também é possível debugar remotamente configurando a JVM com:
+</p>
+
+<pre><code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+</code></pre>
+                </section>
+
+                <section class="section" id="section-24">
+                    <h2 class="section-title"><i class="bi bi-box-seam me-2 text-primary"></i> 23 - Maven vs Gradle (Gerenciadores de pacotes)</h2>
+                    <table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Maven</th>
+<th>Gradle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Popularidade</td>
+<td>Altíssima, padrão de fato no mundo Java</td>
+<td>Crescendo muito, especialmente em projetos modernos</td>
+</tr>
+<tr>
+<td>Configuração</td>
+<td>XML (pom.xml)</td>
+<td>DSL Groovy/Kotlin (build.gradle)</td>
+</tr>
+<tr>
+<td>Curva de aprendizado</td>
+<td>Mais simples</td>
+<td>Mais flexível, porém mais complexo</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Boa</td>
+<td>Em geral mais rápido com build incremental</td>
+</tr>
+<tr>
+<td>Uso em web/Spring</td>
+<td>Extremamente comum</td>
+<td>Também muito utilizado</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Para desenvolvimento web com Spring Boot, Maven ainda é o mais utilizado, mas Gradle é uma excelente opção, especialmente em times que valorizam scripts mais flexíveis.
+</p>
+                </section>
+
+                <section class="section" id="section-25">
+                    <h2 class="section-title"><i class="bi bi-globe me-2 text-primary"></i> 24 - Principais frameworks para desenvolvimento web (Spring Boot)</h2>
+                    <ul>
+    <li><strong>Spring Boot</strong> – padrão de fato para APIs REST e microsserviços em Java.</li>
+    <li><strong>Spring MVC</strong> – base para controllers REST.</li>
+    <li><strong>Spring WebFlux</strong> – programação reativa.</li>
+    <li><strong>Jakarta EE</strong> – sucessor do Java EE, usado em servidores como WildFly, Payara.</li>
+    <li><strong>Micronaut / Quarkus</strong> – frameworks modernos focados em cloud-native e startup rápida.</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-26">
+                    <h2 class="section-title"><i class="bi bi-layers-half me-2 text-primary"></i> 25 - ORMs e JDBC: qual o melhor, mais utilizados e diferenças</h2>
+                    <h3>ORMs</h3>
+<ul>
+    <li><strong>Hibernate / JPA</strong> – padrão de mercado, abstrai SQL, mapeia entidades.</li>
+    <li><strong>EclipseLink</strong> – outra implementação JPA.</li>
+</ul>
+
+<h3>JDBC puro</h3>
+<p>
+Uso direto de <code>java.sql.Connection</code>, <code>PreparedStatement</code>, <code>ResultSet</code>. Máximo controle, porém mais verboso.
+</p>
+
+<h3>Abordagens intermediárias</h3>
+<ul>
+    <li><strong>Spring JdbcTemplate / NamedParameterJdbcTemplate</strong> – simplifica JDBC, mantém SQL explícito.</li>
+    <li><strong>JDBI</strong> – camada leve sobre JDBC com mapeamento mais amigável.</li>
+</ul>
+
+<p>
+Em sistemas legados, Hibernate/JPA é extremamente comum. Para evitar complexidade de ORMs pesados, JDBI e JdbcTemplate são ótimas opções, mantendo performance e controle sobre o SQL.
+</p>
+                </section>
+
+                <section class="section" id="section-27">
+                    <h2 class="section-title"><i class="bi bi-database-fill me-2 text-primary"></i> 26 - Hibernate, JDBI e Spring JdbcTemplate / NamedParameterJdbcTemplate</h2>
+                    <h3>Hibernate</h3>
+<p>
+É um ORM completo que implementa JPA. Ele:
+</p>
+<ul>
+    <li>Mapeia classes Java para tabelas</li>
+    <li>Gera SQL automaticamente</li>
+    <li>Gerencia cache, lazy loading, dirty checking</li>
+</ul>
+
+<p>
+Mais utilizado em sistemas legados e em aplicações enterprise que priorizam produtividade sobre controle fino de SQL.
+</p>
+
+<h3>JDBI (Jdbi3)</h3>
+<p>
+Biblioteca que fica entre JDBC puro e um ORM:
+</p>
+<ul>
+    <li>Você escreve SQL manualmente</li>
+    <li>JDBI mapeia resultados para objetos</li>
+    <li>Menos mágica que um ORM, mais controle</li>
+</ul>
+
+<h3>Spring JdbcTemplate / NamedParameterJdbcTemplate</h3>
+<p>
+Abstrações do Spring sobre JDBC:
+</p>
+<ul>
+    <li>Gerenciam recursos (Connection, PreparedStatement)</li>
+    <li>Reduzem boilerplate</li>
+    <li>Permitem SQL explícito</li>
+    <li>NamedParameterJdbcTemplate permite parâmetros nomeados</li>
+</ul>
+
+<h3>Qual o mais utilizado em sistemas legados?</h3>
+<ul>
+    <li><strong>Hibernate/JPA</strong> é o mais comum em legados enterprise.</li>
+</ul>
+
+<h3>Qual usar para evitar complexidade de ORM pesado, com performance e sem esconder SQL?</h3>
+<ul>
+    <li><strong>Spring JdbcTemplate</strong> ou <strong>JDBI</strong> são excelentes escolhas.</li>
+</ul>
+
+<h3>Qual o mais indicado para Spring Boot?</h3>
+<ul>
+    <li><strong>Spring Data JPA (Hibernate)</strong> para produtividade.</li>
+    <li><strong>Spring JdbcTemplate</strong> para cenários de alta performance e SQL complexo.</li>
+</ul>
+
+<h3>Facilidade de implementação</h3>
+<ul>
+    <li>Mais fácil: Spring Data JPA</li>
+    <li>Intermediário: JdbcTemplate</li>
+    <li>Mais flexível: JDBI</li>
+</ul>
+
+<h3>Tabela comparativa</h3>
+
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Tipo</th>
+<th>Controle sobre SQL</th>
+<th>Complexidade</th>
+<th>Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hibernate / JPA</td>
+<td>ORM completo</td>
+<td>Baixo (SQL gerado)</td>
+<td>Média/Alta</td>
+<td>Enterprise, legados, produtividade</td>
+</tr>
+<tr>
+<td>Spring Data JPA</td>
+<td>Abstração sobre JPA</td>
+<td>Baixo</td>
+<td>Baixa/Média</td>
+<td>APIs rápidas, CRUD</td>
+</tr>
+<tr>
+<td>Spring JdbcTemplate</td>
+<td>Abstração JDBC</td>
+<td>Alto (SQL explícito)</td>
+<td>Média</td>
+<td>Financeiro, queries complexas</td>
+</tr>
+<tr>
+<td>NamedParameterJdbcTemplate</td>
+<td>Abstração JDBC</td>
+<td>Alto</td>
+<td>Média</td>
+<td>SQL com muitos parâmetros</td>
+</tr>
+<tr>
+<td>JDBI</td>
+<td>Camada leve sobre JDBC</td>
+<td>Alto</td>
+<td>Média</td>
+<td>Serviços que querem controle e menos boilerplate</td>
+</tr>
+</tbody>
+</table>
+                </section>
+
+                <section class="section" id="section-28">
+                    <h2 class="section-title"><i class="bi bi-code me-2 text-primary"></i> 27 - Tipos de dados e variáveis mais utilizadas em Java</h2>
+                    <h3>Tipos primitivos</h3>
+<ul>
+    <li><strong>byte</strong> – 8 bits</li>
+    <li><strong>short</strong> – 16 bits</li>
+    <li><strong>int</strong> – 32 bits</li>
+    <li><strong>long</strong> – 64 bits</li>
+    <li><strong>float</strong> – 32 bits (ponto flutuante)</li>
+    <li><strong>double</strong> – 64 bits</li>
+    <li><strong>char</strong> – caractere Unicode</li>
+    <li><strong>boolean</strong> – true/false</li>
+</ul>
+
+<h3>Tipos de referência</h3>
+<ul>
+    <li><strong>String</strong></li>
+    <li><strong>List&lt;T&gt;</strong>, <strong>Set&lt;T&gt;</strong>, <strong>Map&lt;K,V&gt;</strong></li>
+    <li>Classes e objetos customizados</li>
+</ul>
+
+<h3>Exemplo</h3>
+<pre><code>int idade = 30;
+String nome = "Filipe";
+boolean ativo = true;
+List&lt;String&gt; tags = List.of("java", "spring");
+</code></pre>
+                </section>
+
+                <section class="section" id="section-29">
+                    <h2 class="section-title"><i class="bi bi-key me-2 text-primary"></i> 28 - Principais modificadores de acesso</h2>
+                    <ul>
+    <li><strong>public</strong> – acessível de qualquer lugar</li>
+    <li><strong>protected</strong> – acessível no mesmo pacote ou subclasses</li>
+    <li><strong>default (sem modificador)</strong> – acessível apenas no mesmo pacote</li>
+    <li><strong>private</strong> – acessível apenas dentro da própria classe</li>
+</ul>
+
+<pre><code>public class Pessoa {
+    private String nome;
+    protected int idade;
+    String cidade; // default
+    public String getNome() { return nome; }
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-30">
+                    <h2 class="section-title"><i class="bi bi-diagram-2 me-2 text-primary"></i> 29 - Interfaces, injeção de dependência, inversão de dependência e SOLID</h2>
+                    <h3>Interfaces em Java</h3>
+<p>
+Interfaces definem contratos:
+</p>
+<pre><code>public interface PaymentGateway {
+    void processPayment(double amount);
+}
+</code></pre>
+
+<h3>Injeção de dependência (DI) e inversão de controle (IoC)</h3>
+<p>
+Em vez de a classe criar suas dependências, elas são injetadas:
+</p>
+
+<pre><code>@Service
+public class OrderService {
+
+    private final PaymentGateway paymentGateway;
+
+    public OrderService(PaymentGateway paymentGateway) {
+        this.paymentGateway = paymentGateway;
+    }
+}
+</code></pre>
+
+<p>
+O Spring gerencia as instâncias e injeta a implementação correta.
+</p>
+
+<h3>SOLID no Java</h3>
+<ul>
+    <li><strong>S</strong> – Single Responsibility: cada classe com uma responsabilidade clara.</li>
+    <li><strong>O</strong> – Open/Closed: aberto para extensão, fechado para modificação.</li>
+    <li><strong>L</strong> – Liskov Substitution: subclasses devem poder substituir a superclasse.</li>
+    <li><strong>I</strong> – Interface Segregation: interfaces específicas, não gigantes.</li>
+    <li><strong>D</strong> – Dependency Inversion: dependa de abstrações, não de implementações.</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-31">
+                    <h2 class="section-title"><i class="bi bi-check2-circle me-2 text-primary"></i> 30 - Jakarta Bean Validation com exemplo</h2>
+                    <p>
+Jakarta Bean Validation (ex: Hibernate Validator) permite validar objetos com anotações.
+</p>
+
+<pre><code>public class UserRequest {
+
+    @NotBlank
+    private String name;
+
+    @Email
+    @NotBlank
+    private String email;
+
+    @Min(18)
+    private int age;
+
+    // getters e setters
+}
+</code></pre>
+
+<p>
+Em um controller Spring:
+</p>
+
+<pre><code>@PostMapping("/users")
+public ResponseEntity&lt;Void&gt; createUser(@Valid @RequestBody UserRequest request) {
+    // se inválido, Spring retorna 400 automaticamente
+    return ResponseEntity.ok().build();
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-32">
+                    <h2 class="section-title"><i class="bi bi-file-earmark-text me-2 text-primary"></i> 31 - SLF4J com Spring Boot e Logback</h2>
+                    <p>
+SLF4J é uma fachada de logging. Logback é uma implementação comum em Spring Boot.
+</p>
+
+<pre><code>@RestController
+@RequestMapping("/api")
+public class DemoController {
+
+    private static final Logger log = LoggerFactory.getLogger(DemoController.class);
+
+    @GetMapping("/hello")
+    public String hello() {
+        log.info("Recebida requisição em /hello");
+        return "Hello, world!";
+    }
+}
+</code></pre>
+
+<p>
+Configuração básica em <code>application.yml</code>:
+</p>
+
+<pre><code>logging:
+  level:
+    root: INFO
+    com.seuprojeto: DEBUG
+</code></pre>
+                </section>
+
+                <section class="section" id="section-33">
+                    <h2 class="section-title"><i class="bi bi-database me-2 text-primary"></i> 32 - Java com MySQL (exemplo)</h2>
+                    <h3>Configuração Spring Boot</h3>
+
+<pre><code>spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/minha_base
+    username: root
+    password: senha
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+</code></pre>
+
+<h3>Entidade e repository</h3>
+
+<pre><code>@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+}
+</code></pre>
+
+<pre><code>public interface CustomerRepository extends JpaRepository&lt;Customer, Long&gt; {
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-34">
+                    <h2 class="section-title"><i class="bi bi-database me-2 text-primary"></i> 33 - Java com PostgreSQL (exemplo)</h2>
+                    <pre><code>spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/minha_base
+    username: postgres
+    password: senha
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+</code></pre>
+
+<p>
+A implementação com JPA é praticamente idêntica à do MySQL, mudando apenas o driver e a URL.
+</p>
+                </section>
+
+                <section class="section" id="section-35">
+                    <h2 class="section-title"><i class="bi bi-cloud-upload me-2 text-primary"></i> 34 - Java com Supabase (arquivos pesados)</h2>
+                    <p>
+Supabase expõe APIs compatíveis com PostgreSQL e storage de arquivos. Em Java, você pode:
+</p>
+<ul>
+    <li>Conectar via JDBC ao banco PostgreSQL do Supabase</li>
+    <li>Usar o SDK HTTP/REST para o storage</li>
+</ul>
+
+<h3>Exemplo simplificado de upload via HTTP (pseudo-código)</h3>
+
+<pre><code>WebClient client = WebClient.builder()
+    .baseUrl("https://&lt;project-id&gt;.supabase.co/storage/v1")
+    .defaultHeader("apikey", "&lt;SUPABASE_KEY&gt;")
+    .build();
+
+public Mono&lt;Void&gt; uploadFile(byte[] content, String fileName) {
+    return client.post()
+        .uri("/object/bucket-name/" + fileName)
+        .bodyValue(content)
+        .retrieve()
+        .bodyToMono(Void.class);
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-36">
+                    <h2 class="section-title"><i class="bi bi-database me-2 text-primary"></i> 35 - Java com MongoDB (NoSQL documental)</h2>
+                    <h3>Dependência Spring Data MongoDB</h3>
+
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3>Configuração</h3>
+
+<pre><code>spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/minha_base
+</code></pre>
+
+<h3>Documento e repository</h3>
+
+<pre><code>@Document(collection = "products")
+public class Product {
+
+    @Id
+    private String id;
+    private String name;
+    private BigDecimal price;
+}
+</code></pre>
+
+<pre><code>public interface ProductRepository extends MongoRepository&lt;Product, String&gt; {
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-37">
+                    <h2 class="section-title"><i class="bi bi-lightning me-2 text-primary"></i> 36 - Java com Redis (cache)</h2>
+                    <h3>Dependência</h3>
+
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3>Configuração</h3>
+
+<pre><code>spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+</code></pre>
+
+<h3>Uso com cache</h3>
+
+<pre><code>@EnableCaching
+@SpringBootApplication
+public class DemoApplication { ... }
+</code></pre>
+
+<pre><code>@Service
+public class UserService {
+
+    @Cacheable("users")
+    public User findById(Long id) {
+        // busca no banco
+    }
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-38">
+                    <h2 class="section-title"><i class="bi bi-globe me-2 text-primary"></i> 37 - APIs REST no Java</h2>
+                    <h3>Exemplo com Spring Boot</h3>
+
+<pre><code>@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    private final UserService service;
+
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity&lt;UserDto&gt; findById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;UserDto&gt; create(@Valid @RequestBody UserRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
+    }
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-39">
+                    <h2 class="section-title"><i class="bi bi-diagram-2 me-2 text-primary"></i> 38 - gRPC no Java</h2>
+                    <h3>Definição do serviço (.proto)</h3>
+
+<pre><code>syntax = "proto3";
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message GetUserResponse {
+  int64 id = 1;
+  string name = 2;
+}
+</code></pre>
+
+<h3>Implementação em Java (servidor)</h3>
+
+<pre><code>public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
+
+    @Override
+    public void getUser(GetUserRequest request,
+                        StreamObserver&lt;GetUserResponse&gt; responseObserver) {
+        GetUserResponse response = GetUserResponse.newBuilder()
+            .setId(request.getId())
+            .setName("User " + request.getId())
+            .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-40">
+                    <h2 class="section-title"><i class="bi bi-clipboard-check me-2 text-primary"></i> 39 - Testes unitários e de integração</h2>
+                    <h3>Testes unitários</h3>
+
+<ul>
+    <li>Usar JUnit 5</li>
+    <li>Mockar dependências com Mockito</li>
+</ul>
+
+<pre><code>@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
+    @Mock
+    private UserRepository repository;
+
+    @InjectMocks
+    private UserService service;
+
+    @Test
+    void shouldReturnUser() {
+        when(repository.findById(1L)).thenReturn(Optional.of(new User(1L, "Filipe")));
+        User user = service.findById(1L);
+        assertEquals("Filipe", user.getName());
+    }
+}
+</code></pre>
+
+<h3>Testes de integração com Spring Boot</h3>
+
+<pre><code>@SpringBootTest
+@AutoConfigureMockMvc
+class UserControllerIT {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void shouldReturn200() throws Exception {
+        mockMvc.perform(get("/api/users/1"))
+            .andExpect(status().isOk());
+    }
+}
+</code></pre>
+                </section>
+
+                <section class="section" id="section-41">
+                    <h2 class="section-title"><i class="bi bi-star me-2 text-primary"></i> 40 - Clean Code em Java</h2>
+                    <h3>Boas práticas</h3>
+<ul>
+    <li>Nomes claros para classes, métodos e variáveis</li>
+    <li>Métodos curtos, com uma responsabilidade</li>
+    <li>Evitar parâmetros demais (usar objetos de request)</li>
+    <li>Evitar comentários desnecessários – código deve ser autoexplicativo</li>
+    <li>Separar camadas (controller, service, repository)</li>
+</ul>
+
+<h3>O que evitar</h3>
+<ul>
+    <li>Métodos gigantes</li>
+    <li>Classes “Deus” que fazem tudo</li>
+    <li>Abusar de static</li>
+    <li>Duplicação de código</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-42">
+                    <h2 class="section-title"><i class="bi bi-diagram-3 me-2 text-primary"></i> 41 - Arquiteturas e abordagens para microserviços robustos sem complexidade excessiva</h2>
+                    <h3>Abordagem recomendada</h3>
+<ul>
+    <li>Arquitetura em camadas simples (Controller → Service → Repository)</li>
+    <li>Banco por serviço (quando possível)</li>
+    <li>Comunicação síncrona REST e assíncrona via mensageria (Kafka, RabbitMQ)</li>
+    <li>Configuração centralizada (Spring Cloud Config ou equivalente)</li>
+    <li>Observabilidade desde o início</li>
+</ul>
+
+<h3>Evitar</h3>
+<ul>
+    <li>Microserviços demais sem necessidade</li>
+    <li>Complexidade prematura (CQRS/Event Sourcing sem real demanda)</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-43">
+                    <h2 class="section-title"><i class="bi bi-cloud-arrow-up me-2 text-primary"></i> 42 - AWS Elastic Beanstalk com Java (Jakarta EE / Spring Boot)</h2>
+                    <p>
+O Elastic Beanstalk permite deploy automatizado de aplicações Java sem gerenciar servidores diretamente.
+</p>
+
+<h3>Fluxo típico</h3>
+
+<div class="flow">
+Desenvolvedor
+ → 
+Build JAR/WAR
+ → 
+Upload para Elastic Beanstalk
+ → 
+Beanstalk provisiona EC2, Load Balancer, Auto Scaling
+ → 
+Aplicação disponível
+</div>
+
+<p>
+Você pode:
+</p>
+<ul>
+    <li>Subir um JAR Spring Boot</li>
+    <li>Configurar variáveis de ambiente</li>
+    <li>Monitorar logs e métricas pelo console da AWS</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-44">
+                    <h2 class="section-title"><i class="bi bi-boxes me-2 text-primary"></i> 43 - Amazon EKS para orquestrar microserviços Java</h2>
+                    <p>
+EKS é um serviço gerenciado de Kubernetes na AWS. Para microserviços Java:
+</p>
+<ul>
+    <li>Empacotar cada serviço em um container Docker</li>
+    <li>Criar manifests de Deployment, Service, Ingress</li>
+    <li>Usar ConfigMaps/Secrets para configurações</li>
+    <li>Usar Horizontal Pod Autoscaler para escalar com base em CPU/memória</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-45">
+                    <h2 class="section-title"><i class="bi bi-chat-dots me-2 text-primary"></i> 44 - MCP, RAG e LLM para Java (visão prática)</h2>
+                    <h3>MCP (Model Context Protocol)</h3>
+<p>
+No contexto Java, MCP pode ser integrado via SDKs de IA para:
+</p>
+<ul>
+    <li>Chamar modelos com contexto rico</li>
+    <li>Executar ferramentas (functions) a partir do modelo</li>
+    <li>Compartilhar memória entre chamadas</li>
+</ul>
+
+<h3>RAG em Java</h3>
+<p>
+Usando bibliotecas como LangChain4j ou Spring AI:
+</p>
+
+<pre><code>ChatLanguageModel model = OpenAiChatModel.withApiKey("KEY");
+
+String answer = model.generate("Explique Virtual Threads em Java 21");
+</code></pre>
+
+<p>
+Com RAG, você:
+</p>
+<ol>
+    <li>Indexa documentos em um banco vetorial</li>
+    <li>Busca trechos relevantes</li>
+    <li>Envia esses trechos como contexto para o LLM</li>
+</ol>
+
+<h3>LLM no Java</h3>
+<ul>
+    <li>Geração de código</li>
+    <li>Explicação de logs complexos</li>
+    <li>Assistentes internos para suporte a desenvolvedores</li>
+</ul>
+                </section>
+
+                <section class="section" id="section-46">
+                    <h2 class="section-title"><i class="bi bi-check-all me-2 text-primary"></i> 45 - Fechamento</h2>
+                    <p>
+Este documento agora cobre:
+</p>
+<ul>
+    <li>Java moderno (17–24), JVM, GC, Virtual Threads</li>
+    <li>Spring, Hibernate, JDBI, JdbcTemplate</li>
+    <li>Configuração, build, debug, IntelliJ IDEA</li>
+    <li>Maven vs Gradle</li>
+    <li>Tipos, modificadores, interfaces, SOLID</li>
+    <li>Bean Validation, SLF4J, Logback</li>
+    <li>MySQL, PostgreSQL, Supabase, MongoDB, Redis</li>
+    <li>REST, gRPC, testes, clean code</li>
+    <li>Arquiteturas de microsserviços, Elastic Beanstalk, EKS</li>
+    <li>MCP, RAG e LLM no ecossistema Java</li>
+</ul>
+
+<p>
+A partir daqui, você pode usar este material como base para estudo, onboarding de times, documentação interna e como guia de referência para decisões arquiteturais em Java moderno.
+</p>
+                </section>
+            </div>
+
+        </main>
+        <aside class="sidebar">
+            <h1><i class="bi bi-menu-button"></i> -----------</h1>
+            <div class="nav-title">MENU</div>
+
+            <nav>
+                <a href="#overview">Visão Geral</a>
+                <a href="#section-1">0 - IntelliJ IDEA Community Edit...</a>
+                <a href="#section-2">1 - Java 17, Java 21 e desafios ...</a>
+                <a href="#section-3">2 - JVM (Java Virtual Machine)</a>
+                <a href="#section-4">3 - Garbage Collector (GC)</a>
+                <a href="#section-5">4 - Virtual Threads aprofundado</a>
+                <a href="#section-6">5 - APIs assíncronas no Java</a>
+                <a href="#section-7">6 - Internals do Spring Framework</a>
+                <a href="#section-8">7 - Hibernate Internals aprofundado</a>
+                <a href="#section-9">8 - JDBI e JdbcTemplate aprofundado</a>
+                <a href="#section-10">9 - Pooling de conexões</a>
+                <a href="#section-11">10 - Observabilidade</a>
+                <a href="#section-12">11 - REST vs gRPC aprofundado</a>
+                <a href="#section-13">12 - Lifecycle completo de reque...</a>
+                <a href="#section-14">13 - Lifecycle completo de reque...</a>
+                <a href="#section-15">14 - Kubernetes e Amazon EKS apr...</a>
+                <a href="#section-16">15 - Arquitetura enterprise mode...</a>
+                <a href="#section-17">16 - RAG, MCP e LLM no Java</a>
+                <a href="#section-18">17 - Padrões enterprise reais</a>
+                <a href="#section-19">18 - Considerações finais</a>
+                <a href="#section-20">19 - Principais arquivos de conf...</a>
+                <a href="#section-21">20 - Arquivo de start e como ini...</a>
+                <a href="#section-22">21 - Principais comandos para bu...</a>
+                <a href="#section-23">22 - Como debugar com IntelliJ IDEA</a>
+                <a href="#section-24">23 - Maven vs Gradle (Gerenciado...</a>
+                <a href="#section-25">24 - Principais frameworks para ...</a>
+                <a href="#section-26">25 - ORMs e JDBC: qual o melhor,...</a>
+                <a href="#section-27">26 - Hibernate, JDBI e Spring Jd...</a>
+                <a href="#section-28">27 - Tipos de dados e variáveis ...</a>
+                <a href="#section-29">28 - Principais modificadores de...</a>
+                <a href="#section-30">29 - Interfaces, injeção de depe...</a>
+                <a href="#section-31">30 - Jakarta Bean Validation com...</a>
+                <a href="#section-32">31 - SLF4J com Spring Boot e Log...</a>
+                <a href="#section-33">32 - Java com MySQL (exemplo)</a>
+                <a href="#section-34">33 - Java com PostgreSQL (exemplo)</a>
+                <a href="#section-35">34 - Java com Supabase (arquivos...</a>
+                <a href="#section-36">35 - Java com MongoDB (NoSQL doc...</a>
+                <a href="#section-37">36 - Java com Redis (cache)</a>
+                <a href="#section-38">37 - APIs REST no Java</a>
+                <a href="#section-39">38 - gRPC no Java</a>
+                <a href="#section-40">39 - Testes unitários e de integ...</a>
+                <a href="#section-41">40 - Clean Code em Java</a>
+                <a href="#section-42">41 - Arquiteturas e abordagens p...</a>
+                <a href="#section-43">42 - AWS Elastic Beanstalk com J...</a>
+                <a href="#section-44">43 - Amazon EKS para orquestrar ...</a>
+                <a href="#section-45">44 - MCP, RAG e LLM para Java (v...</a>
+                <a href="#section-46">45 - Fechamento</a>
+            </nav>
+        </aside>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1a) Remove leading numbering from sidebar nav items
+            try {
+                document.querySelectorAll('aside.sidebar nav a').forEach(function (a) {
+                    a.textContent = a.textContent.replace(/^\s*\d+\s*-\s*/, '').trim();
+                });
+            } catch (e) {
+                console.error('Error cleaning sidebar nav:', e);
+            }
+
+            // 1b) Remove leading numbering from section titles while preserving icons
+            try {
+                document.querySelectorAll('section.section .section-title').forEach(function (el) {
+                    // Find and clean only text nodes, preserving child elements like <i> icons
+                    for (var i = 0; i < el.childNodes.length; i++) {
+                        var node = el.childNodes[i];
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            var cleaned = node.textContent.replace(/^\s*\d+\s*-\s*/, '').trim();
+                            if (cleaned !== node.textContent) {
+                                node.textContent = ' ' + cleaned;
+                                break;
+                            }
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Error cleaning section titles:', e);
+            }
+
+            // 2) Wrap each section's content (everything except the section title) into .grid > .card
+            try {
+                document.querySelectorAll('section.section').forEach(function (section) {
+                    // skip if already wrapped
+                    if (section.querySelector(':scope > .grid')) return;
+
+                    var title = section.querySelector('.section-title');
+                    // create wrapper
+                    var grid = document.createElement('div');
+                    grid.className = 'grid';
+                    var card = document.createElement('div');
+                    card.className = 'card';
+
+                    // move all nodes after the title into the card
+                    if (title) {
+                        while (title.nextSibling) {
+                            card.appendChild(title.nextSibling);
+                        }
+                    } else {
+                        // if no explicit title element, move all children
+                        while (section.firstChild) {
+                            card.appendChild(section.firstChild);
+                        }
+                    }
+
+                    // only append grid if card has content
+                    if (card.childNodes.length > 0) {
+                        grid.appendChild(card);
+                        section.appendChild(grid);
+                    }
+                });
+            } catch (e) {
+                console.error('Error wrapping sections:', e);
+            }
+
+            // 3) Wrap code blocks in .code and normalize pre/code structure
+            try {
+                document.querySelectorAll('pre').forEach(function (pre) {
+                    if (pre.closest('.code')) return;
+
+                    var code = pre.querySelector('code');
+                    if (code && pre.children.length === 1) {
+                        pre.innerHTML = code.innerHTML;
+                    }
+
+                    var wrapper = document.createElement('div');
+                    wrapper.className = 'code';
+                    pre.parentNode.insertBefore(wrapper, pre);
+                    wrapper.appendChild(pre);
+                });
+            } catch (e) {
+                console.error('Error wrapping code blocks:', e);
+            }
+
+            // 4) Convert warning/important notice paragraphs to callouts
+            try {
+                document.querySelectorAll('p').forEach(function (paragraph) {
+                    var text = (paragraph.textContent || '').trim();
+                    var normalized = text.replace(/^\s+|\s+$/g, '');
+                    var match = normalized.match(/^(important|warning|aviso|atenção)\s*:\s*(.*)$/i);
+                    if (!match) return;
+
+                    var prefix = match[1].toLowerCase();
+                    var message = match[2].trim();
+                    var callout = document.createElement('div');
+                    callout.className = 'callout';
+                    if (prefix === 'warning' || prefix === 'aviso') {
+                        callout.classList.add('warning');
+                    }
+                    callout.setAttribute('data-original-text', normalized);
+                    callout.innerHTML = '<strong>' + prefix.charAt(0).toUpperCase() + prefix.slice(1) + ':</strong> ' + message;
+                    paragraph.parentNode.replaceChild(callout, paragraph);
+                });
+            } catch (e) {
+                console.error('Error converting callouts:', e);
+            }
+
+            // 5) Standardize tables: add class 'table' and set data-original-text on th/td
+            try {
+                document.querySelectorAll('table').forEach(function (table) {
+                    table.classList.add('table');
+
+                    // ensure there is a tbody if none exists (but avoid moving existing thead/tbody)
+                    if (table.tBodies.length === 0) {
+                        var rows = Array.from(table.querySelectorAll(':scope > tr'));
+                        if (rows.length > 0) {
+                            var tbody = document.createElement('tbody');
+                            rows.forEach(function (r) { tbody.appendChild(r); });
+                            table.appendChild(tbody);
+                        }
+                    }
+
+                    table.querySelectorAll('th, td').forEach(function (cell) {
+                        var txt = (cell.textContent || '').trim();
+                        cell.setAttribute('data-original-text', txt);
+                    });
+                });
+            } catch (e) {
+                console.error('Error standardizing tables:', e);
+            }
+        });
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default'
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const currentLanguage = localStorage.getItem('technicalDocLanguage') || 'pt';
+
+        const translationResources = {
+    en: {
+        translation: {
+            "JAVA - DOCUMENTAÇÃO COMPLETA": "JAVA - COMPLETE DOCUMENTATION",
+            "JAVA - Documentação Completa": "JAVA - Complete Documentation",
+            "Objetivo: Este documento foi criado para servir como material técnico avançado para desenvolvedores Java Júnior, Pleno, Sênior e Especialistas, abordando arquitetura enterprise moderna, JVM, Spring, bancos de dados, observabilidade, microsserviços, Kubernetes, IA generativa, ferramentas de desenvolvimento, boas práticas de código e padrões utilizados em grandes plataformas corporativas. Ele inclui diagramas arquiteturais e de fluxo avançados utilizando Mermaid.js.": "Objective: This document was created to serve as advanced technical material for Junior, Full, Senior and Specialist Java developers, covering modern enterprise architecture, JVM, Spring, databases, observability, microservices, Kubernetes, generative AI, development tools, good code practices and standards used on large corporate platforms. It includes advanced architectural and flow diagrams using Mermaid.js.",
+            "Java 17/21": "Java 17/21",
+            "Spring Boot": "Spring Boot",
+            "JVM": "JVM",
+            "Microsserviços": "Microsserviços",
+            "Kubernetes": "Kubernetes",
+            "Virtual Threads": "Virtual Threads",
+            "0 - IntelliJ IDEA Community Edition e JetBrains AI Assistant": "0 - IntelliJ IDEA Community Edition e JetBrains AI Assistant",
+            "IntelliJ IDEA Community Edition": "IntelliJ IDEA Community Edition",
+            "O IntelliJ IDEA Community Edition é um dos IDEs mais utilizados para desenvolvimento Java. Ele oferece:": "IntelliJ IDEA Community Edition is one of the most used IDEs for Java development. It offers:",
+            "Suporte completo a Java, Maven, Gradle e Git": "Full support for Java, Maven, Gradle and Git",
+            "Refatorações inteligentes": "Smart refactorings",
+            "Auto-complete avançado": "Advanced autocomplete",
+            "Debug integrado": "Integrated debug",
+            "Integração com testes JUnit": "Integration with JUnit tests",
+            "JetBrains AI Assistant (visão geral)": "JetBrains AI Assistant (Overview)",
+            "O JetBrains AI Assistant é um recurso de IA integrado ao ecossistema JetBrains que auxilia em:": "JetBrains AI Assistant is an AI feature integrated into the JetBrains ecosystem that helps with:",
+            "Geração de código e snippets": "Code and snippet generation",
+            "Explicação de trechos de código complexos": "Explanation of complex code snippets",
+            "Refatoração guiada": "Guided refactoring",
+            "Geração de testes": "Test generation",
+            "Documentação automática": "Automatic documentation",
+            "Na prática, você pode selecionar um método, pedir explicação, sugerir melhorias ou gerar testes unitários diretamente do IDE, acelerando o desenvolvimento e reduzindo erros.": "In practice, you can select a method, ask for an explanation, suggest improvements or generate unit tests directly from the IDE, speeding up development and reducing errors.",
+            "1 - Java 17, Java 21 e desafios em sistemas legados": "1 - Java 17, Java 21 and challenges in legacy systems",
+            "Java 17 se tornou uma das versões LTS mais utilizadas em ambientes corporativos devido à estabilidade, maturidade do ecossistema e compatibilidade com frameworks enterprise.": "Java 17 has become one of the most used LTS versions in corporate environments due to its stability, ecosystem maturity and compatibility with enterprise frameworks.",
+            "Porém, muitas empresas ainda operam aplicações Java 8 ou Java 11 devido a:": "However, many companies still operate Java 8 or Java 11 applications due to:",
+            "Dependência de bibliotecas antigas": "Dependency on ancient libraries",
+            "Frameworks legados": "Legacy Frameworks",
+            "Alto acoplamento": "High coupling",
+            "Baixa cobertura de testes": "Low test coverage",
+            "Risco operacional": "Operational risk",
+            "Dependência de servidores Java EE antigos": "Dependency on old Java EE servers",
+            "Problemas comuns em sistemas legados Java": "Common issues in legacy Java systems",
+            "Monolitos gigantes": "giant monoliths",
+            "Alto uso de memória": "High memory usage",
+            "Hibernate mal otimizado": "Poorly optimized Hibernate",
+            "Queries N+1": "Queries N+1",
+            "Baixa observabilidade": "Low observability",
+            "Acoplamento extremo": "Extreme coupling",
+            "Baixa modularização": "Low modularization",
+            "Deploy lento": "Slow deployment",
+            "Ausência de automação": "Lack of automation",
+            "Principais evoluções do Java moderno": "Main evolutions of modern Java",
+            "Recurso": "Feature",
+            "Impacto": "Impact",
+            "Alta concorrência": "High competition",
+            "Records": "Records",
+            "Menos boilerplate": "Less boilerplate",
+            "Pattern Matching": "Pattern Matching",
+            "Legibilidade": "Readability",
+            "Switch Expressions": "Switch Expressions",
+            "Código mais limpo": "Cleaner code",
+            "Sealed Classes": "Sealed Classes",
+            "Controle de herança": "Inheritance control",
+            "GraalVM": "GrailVM",
+            "Startup extremamente rápido": "Extremely fast startup",
+            "Últimas versões do Java e versão atual estável": "Latest Java versions and current stable version",
+            "Versão": "Version",
+            "Tipo": "Type",
+            "Status": "Status",
+            "Java 17": "Java 17",
+            "LTS": "LTS",
+            "Muito utilizado em produção": "Widely used in production",
+            "Java 21": "Java 21",
+            "Atual principal recomendação enterprise": "Current top enterprise recommendation",
+            "Java 22": "Java 22",
+            "Feature Release": "Feature Release",
+            "Recursos experimentais": "Experimental Features",
+            "Java 23": "Java 23",
+            "Evoluções contínuas": "Continuous evolutions",
+            "Java 24": "Java 24",
+            "Atual mais recente": "Current latest",
+            "Modernização contínua": "Continuous modernization",
+            "Java 21 e Virtual Threads": "Java 21 e Virtual Threads",
+            "Uma das maiores revoluções recentes do Java foi o Project Loom com Virtual Threads.": "One of the biggest recent revolutions in Java was Project Loom with Virtual Threads.",
+            "Antes do Loom, aplicações concorrentes dependiam fortemente de pools de threads do sistema operacional, gerando alto consumo de memória e limitações de escalabilidade.": "Before Loom, competing applications relied heavily on operating system thread pools, leading to high memory consumption and scalability limitations.",
+            "Com Virtual Threads, Java agora consegue lidar com milhões de operações concorrentes utilizando threads extremamente leves.": "With Virtual Threads, Java can now handle millions of concurrent operations using extremely lightweight threads.",
+            "Isso tornou Java extremamente competitivo para aplicações:": "This made Java extremely competitive for applications:",
+            "High throughput": "High throughput",
+            "APIs massivas": "Massive APIs",
+            "Streaming": "Streaming",
+            "Processamento concorrente": "Concurrent processing",
+            "2 - JVM (Java Virtual Machine)": "2 - JVM (Java Virtual Machine)",
+            "A JVM é o núcleo do ecossistema Java.": "The JVM is the core of the Java ecosystem.",
+            "Ela é responsável por:": "She is responsible for:",
+            "Gerenciamento de memória": "Memory Management",
+            "Execução do bytecode": "Bytecode execution",
+            "Garbage Collection": "Garbage Collection",
+            "JIT Compilation": "JIT Compilation",
+            "Thread management": "Thread management",
+            "Class loading": "Class loading",
+            "Otimizações em runtime": "Runtime optimizations",
+            "Fluxo interno da JVM": "JVM internal flow",
+            "Class Loader": "Class Loader",
+            "O Class Loader carrega classes dinamicamente.": "The Class Loader loads classes dynamically.",
+            "Existem três principais:": "There are three main ones:",
+            "Bootstrap ClassLoader": "Bootstrap ClassLoader",
+            "Extension ClassLoader": "Extension ClassLoader",
+            "Application ClassLoader": "Application ClassLoader",
+            "JIT Compiler": "JIT Compiler",
+            "O Just-In-Time Compiler converte bytecode em código nativo otimizado em tempo de execução.": "The Just-In-Time Compiler converts bytecode into optimized native code at runtime.",
+            "Isso faz Java atingir performance extremamente alta em workloads longos.": "This makes Java achieve extremely high performance on long workloads.",
+            "3 - Garbage Collector (GC)": "3 - Garbage Collector (GC)",
+            "Garbage Collection é responsável por gerenciamento automático de memória.": "Garbage Collection is responsible for automatic memory management.",
+            "Heap Memory": "Heap Memory",
+            "Principais Garbage Collectors": "Principais Garbage Collectors",
+            "GC": "GC",
+            "Cenário": "Scenario",
+            "Características": "Features",
+            "Serial GC": "Serial GC",
+            "Aplicações simples": "Simple applications",
+            "Single thread": "Single thread",
+            "Parallel GC": "Parallel GC",
+            "Throughput": "Throughput",
+            "Maior performance bruta": "Higher gross performance",
+            "G1GC": "G1GC",
+            "Enterprise moderno": "Modern Enterprise",
+            "Balanceado": "Balanced",
+            "ZGC": "ZGC",
+            "Baixíssima latência": "Very low latency",
+            "Pausas mínimas": "Minimal breaks",
+            "Shenandoah": "Shenandoah",
+            "Ultra low latency": "Ultra low latency",
+            "GC concorrente": "Concurrent GC",
+            "Problemas comuns de GC": "Common GC Problems",
+            "Memory leaks": "Memory leaks",
+            "Objetos gigantes em memória": "Giant objects in memory",
+            "Excesso de alocação": "Overallocation",
+            "Pool mal configurado": "Pool incorrectly configured",
+            "Cache sem eviction": "Cache sem eviction",
+            "Streams mal utilizados": "Misused streams",
+            "4 - Virtual Threads aprofundado": "4 - Virtual Threads in depth",
+            "Virtual Threads representam uma das maiores mudanças da história do Java.": "Virtual Threads represent one of the biggest changes in the history of Java.",
+            "Antes do Project Loom:": "Before Project Loom:",
+            "Cada requisição consumia thread pesada do SO": "Each request consumed heavy OS threads",
+            "Alto consumo de memória": "High memory consumption",
+            "Context switching caro": "Context switching caro",
+            "Limitação de concorrência": "Limitation of competition",
+            "Agora Virtual Threads são extremamente leves.": "Now Virtual Threads are extremely lightweight.",
+            "Impactos arquiteturais": "Architectural impacts",
+            "Milhões de conexões concorrentes": "Millions of competing connections",
+            "Menos necessidade de programação reativa": "Less need for reactive programming",
+            "Maior simplicidade": "Greater simplicity",
+            "Redução de complexidade assíncrona": "Asynchronous complexity reduction",
+            "Quando evitar Virtual Threads": "When to Avoid Virtual Threads",
+            "CPU-bound pesado": "Heavy CPU-bound",
+            "Bibliotecas não thread-safe": "Non-thread safe libraries",
+            "Drivers antigos": "Old drivers",
+            "5 - APIs assíncronas no Java": "5 - Asynchronous APIs in Java",
+            "APIs assíncronas permitem que operações demoradas não bloqueiem threads principais.": "Asynchronous APIs allow time-consuming operations to not block main threads.",
+            "CompletableFuture": "CompletableFuture",
+            "Fluxo assíncrono": "Asynchronous flow",
+            "Quando usar async": "When to use async",
+            "Integrações externas": "External integrations",
+            "IO-bound": "IO-bound",
+            "Uploads": "Uploads",
+            "Mensageria": "Messaging",
+            "Processamento distribuído": "Distributed processing",
+            "6 - Internals do Spring Framework": "6 - Internals do Spring Framework",
+            "O Spring é baseado fortemente em:": "Spring is based heavily on:",
+            "IoC Container": "IoC Container",
+            "Dependency Injection": "Dependency Injection",
+            "Reflection": "Reflection",
+            "Proxy Pattern": "Proxy Pattern",
+            "AOP": "AOP",
+            "Fluxo interno do Spring": "Spring internal flow",
+            "Bean Lifecycle": "Bean Lifecycle",
+            "Internamente o Spring utiliza:": "Internally, Spring uses:",
+            "Reflection intensivamente": "Reflection intensively",
+            "Dynamic Proxies": "Dynamic Proxies",
+            "CGLIB": "CGLIB",
+            "BeanFactory": "BeanFactory",
+            "ApplicationContext": "ApplicationContext",
+            "7 - Hibernate Internals aprofundado": "7 - Hibernate Internals in depth",
+            "Hibernate não é apenas um ORM simples.": "Hibernate is not just a simple ORM.",
+            "Internamente ele possui:": "Internally it has:",
+            "Persistence Context": "Persistence Context",
+            "Dirty Checking": "Dirty Checking",
+            "First Level Cache": "First Level Cache",
+            "Second Level Cache": "Second Level Cache",
+            "Entity Manager": "Entity Manager",
+            "Session Factory": "Session Factory",
+            "Lazy Loading": "Lazy Loading",
+            "Fluxo interno Hibernate": "Hibernate internal flow",
+            "Hibernate monitora objetos em memória.": "Hibernate monitors objects in memory.",
+            "Ao detectar alterações:": "When detecting changes:",
+            "gera UPDATE automaticamente": "automatically generates UPDATE",
+            "sincroniza contexto": "synchronize context",
+            "executa flush": "perform flush",
+            "Problemas enterprise clássicos": "Classic enterprise problems",
+            "N+1 Queries": "N+1 Queries",
+            "LazyInitializationException": "LazyInitializationException",
+            "Overfetching": "Overfetching",
+            "Queries escondidas": "hidden queries",
+            "8 - JDBI e JdbcTemplate aprofundado": "8 - JDBI and JdbcTemplate in depth",
+            "JDBI": "JDBI",
+            "JDBI tenta equilibrar:": "JDBI tries to balance:",
+            "controle SQL": "controle SQL",
+            "performance": "performance",
+            "simplicidade": "simplicity",
+            "baixo boilerplate": "low boilerplate",
+            "JdbcTemplate": "JdbcTemplate",
+            "JdbcTemplate é extremamente utilizado em:": "JdbcTemplate is widely used in:",
+            "sistemas financeiros": "financial systems",
+            "plataformas fiscais": "tax platforms",
+            "APIs críticas": "Critical APIs",
+            "queries complexas": "complex queries",
+            "Vantagens": "Advantages",
+            "SQL explícito": "Explicit SQL",
+            "Maior controle": "Greater control",
+            "Alta performance": "Alta performance",
+            "Menos magia": "Less magic",
+            "9 - Pooling de conexões": "9 - Connection pooling",
+            "Abrir conexões com banco é extremamente caro.": "Opening bank connections is extremely expensive.",
+            "Por isso aplicações enterprise utilizam pools.": "That's why enterprise applications use pools.",
+            "HikariCP": "HikariCP",
+            "Atualmente o HikariCP é o pool padrão do Spring Boot.": "HikariCP is currently the default Spring Boot pool.",
+            "Problemas comuns": "Common Problems",
+            "Pool pequeno": "Small pool",
+            "Pool gigante desnecessário": "Unnecessary giant pool",
+            "Connection leak": "Connection leak",
+            "Timeout mal configurado": "Badly configured timeout",
+            "Fluxo interno": "Internal flow",
+            "10 - Observabilidade": "10 - Observability",
+            "Observabilidade moderna é fundamental em microsserviços.": "Modern observability is fundamental in microservices.",
+            "Os 3 pilares": "The 3 pillars",
+            "Pilar": "Pilar",
+            "Objetivo": "Aim",
+            "Logs": "Logs",
+            "Eventos": "Events",
+            "Metrics": "Metrics",
+            "Medições": "Measurements",
+            "Tracing": "Tracing",
+            "Fluxo distribuído": "Distributed flow",
+            "Stack moderna": "Stack modern",
+            "SLF4J": "SLF4J",
+            "Logback": "Logback",
+            "Micrometer": "Micrometer",
+            "Prometheus": "Prometheus",
+            "Grafana": "Grafana",
+            "OpenTelemetry": "OpenTelemetry",
+            "Jaeger": "Jaeger",
+            "Fluxo de tracing distribuído": "Distributed tracing flow",
+            "11 - REST vs gRPC aprofundado": "11 – REST vs in-depth gRPC",
+            "Critério": "Criterion",
+            "REST": "REST",
+            "gRPC": "gRPC",
+            "Payload": "Payload",
+            "JSON": "JSON",
+            "Binário": "Binary",
+            "Performance": "Performance",
+            "Média": "Average",
+            "Muito alta": "Very high",
+            "Latência": "Latency",
+            "Maior": "Bigger",
+            "Menor": "Minor",
+            "Browser Friendly": "Browser Friendly",
+            "Sim": "Sim",
+            "Limitado": "Limited",
+            "Nativo": "Native",
+            "Cenário moderno": "Modern setting",
+            "Arquitetura híbrida": "Hybrid architecture",
+            "12 - Lifecycle completo de request REST": "12 - Lifecycle completo de request REST",
+            "Abaixo está a representação arquitetural end-to-end do ciclo de vida completo de uma requisição REST em um ecossistema de microsserviços moderno empacotado em Kubernetes, escalado e orquestrado via AWS (incluindo automação do Elastic Beanstalk), utilizando Spring Boot e Jakarta Bean Validation para o processamento, aplicação de regras de negócio, consulta a dados e modulação do payload de retorno com tratamentos explícitos de sucesso e insucesso.": "Below is the end-to-end architectural representation of the complete lifecycle of a REST request in a modern microservices ecosystem packaged in Kubernetes, scaled and orchestrated via AWS (including Elastic Beanstalk automation), using Spring Boot and Jakarta Bean Validation for processing, applying business rules, querying data and modulating the return payload with explicit success and failure treatments.",
+            "13 - Lifecycle completo de request gRPC": "13 - Lifecycle completo de request gRPC",
+            "Abaixo está o ciclo de vida completo de uma requisição utilizando a arquitetura gRPC de alta performance sobre HTTP/2. O fluxo demonstra desde a chamada do Stub cliente, passando pelo balanceamento de carga de rede na nuvem com AWS (estruturado sob governança do Elastic Beanstalk e Kubernetes), execução de interceptadores do ecossistema Spring Boot, conversão binária via Protobuf, validações, regras de negócio e a modulação de payloads específicos com tratamentos granulares de insucesso e sucesso mapeados para os status codes do gRPC.": "Below is the complete lifecycle of a request using the high-performance gRPC architecture over HTTP/2. The flow demonstrates everything from calling the Stub client, through network load balancing in the cloud with AWS (structured under Elastic Beanstalk and Kubernetes governance), execution of Spring Boot ecosystem interceptors, binary conversion via Protobuf, validations, business rules and the modulation of specific payloads with granular failure and success treatments mapped to gRPC status codes.",
+            "14 - Kubernetes e Amazon EKS aprofundado": "14 - Kubernetes and Amazon EKS in-depth",
+            "Kubernetes internals": "Kubernetes internals",
+            "Kubernetes é um orquestrador distribuído.": "Kubernetes is a distributed orchestrator.",
+            "Componentes principais": "Main components",
+            "Pods": "Pods",
+            "Deployments": "Deployments",
+            "ReplicaSets": "ReplicaSets",
+            "Services": "Services",
+            "Ingress": "Ingress",
+            "ConfigMaps": "ConfigMaps",
+            "Secrets": "Secrets",
+            "EKS": "EX",
+            "Amazon EKS simplifica:": "Amazon EKS simplifica:",
+            "gerenciamento Kubernetes": "Kubernetes management",
+            "auto scaling": "auto scaling",
+            "monitoramento": "monitoring",
+            "segurança": "security",
+            "integração AWS": "AWS integration",
+            "15 - Arquitetura enterprise moderna completa": "15 - Complete modern enterprise architecture",
+            "Exemplo arquitetura enterprise": "Enterprise architecture example",
+            "Escalabilidade horizontal": "Horizontal scalability",
+            "Baixa latência": "Low latency",
+            "Cache distribuído": "Distributed cache",
+            "Tracing distribuído": "Distributed tracing",
+            "Deploy contínuo": "Continuous deployment",
+            "Resiliência": "Resilience",
+            "Circuit Breaker": "Circuit Breaker",
+            "16 - RAG, MCP e LLM no Java": "16 - RAG, MCP e LLM no Java",
+            "RAG": "RAG",
+            "Retrieval-Augmented Generation combina:": "Retrieval-Augmented Generation combina:",
+            "vetorização": "vectorization",
+            "embeddings": "embeddings",
+            "LLMs": "LLMs",
+            "busca semântica": "semantic search",
+            "Fluxo completo RAG": "RAG full flow",
+            "MCP (Model Context Protocol)": "MCP (Model Context Protocol)",
+            "MCP permite padronizar comunicação entre aplicações e modelos de IA.": "MCP allows you to standardize communication between applications and AI models.",
+            "O objetivo é permitir:": "The objective is to allow:",
+            "ferramentas compartilhadas": "shared tools",
+            "memória contextual": "contextual memory",
+            "execução de funções": "execution of functions",
+            "interoperabilidade": "interoperability",
+            "Bibliotecas Java modernas": "Modern Java Libraries",
+            "LangChain4j": "LangChain4j",
+            "Spring AI": "Spring AI",
+            "Ollama Java": "Ollama Java",
+            "OpenAI SDK": "OpenAI SDK",
+            "Vertex AI SDK": "Vertex AI SDK",
+            "17 - Padrões enterprise reais": "17 - Real enterprise standards",
+            "Principais padrões": "Main standards",
+            "Padrão": "Standard",
+            "Repository": "Repository",
+            "Abstração de dados": "Data abstraction",
+            "Service Layer": "Service Layer",
+            "Regras de negócio": "Business rules",
+            "DTO": "DTO",
+            "Isolamento de payload": "Payload isolation",
+            "Saga": "Saga",
+            "Transações distribuídas": "Distributed Transactions",
+            "Outbox Pattern": "Outbox Pattern",
+            "Consistência eventos": "Event Consistency",
+            "CQRS": "CQRS",
+            "Separação leitura/escrita": "Read/write separation",
+            "Event Sourcing": "Event Sourcing",
+            "Histórico imutável": "Immutable history",
+            "Evita efeito cascata quando serviços externos falham.": "Prevents cascading effects when external services fail.",
+            "Saga Pattern": "Saga Pattern",
+            "Utilizado em microsserviços para coordenar transações distribuídas.": "Used in microservices to coordinate distributed transactions.",
+            "18 - Considerações finais": "18 - Final considerations",
+            "Java continua sendo uma das plataformas mais fortes do mercado enterprise.": "Java continues to be one of the strongest platforms in the enterprise market.",
+            "O ecossistema moderno evoluiu drasticamente com:": "The modern ecosystem has evolved drastically with:",
+            "Cloud Native": "Cloud Native",
+            "Observabilidade distribuída": "Distributed Observability",
+            "IA Generativa": "Generative AI",
+            "Atualmente os maiores desafios em aplicações enterprise Java estão relacionados a:": "Currently the biggest challenges in enterprise Java applications are related to:",
+            "arquitetura distribuída": "distributed architecture",
+            "custos cloud": "cloud costs",
+            "latência": "latency",
+            "consistência de dados": "data consistency",
+            "observabilidade": "observability",
+            "resiliência": "resilience",
+            "governança": "governance",
+            "Java moderno continua extremamente competitivo para:": "Modern Java remains extremely competitive for:",
+            "fintechs": "fintechs",
+            "bancos": "banks",
+            "marketplaces": "marketplaces",
+            "ERPs": "ERPs",
+            "Big Data": "Big Data",
+            "IA corporativa": "Enterprise AI",
+            "APIs de alta concorrência": "High competition APIs",
+            "plataformas distribuídas": "distributed platforms",
+            "19 - Principais arquivos de configuração em uma aplicação Java": "19 - Main configuration files in a Java application",
+            "Aplicações simples (Java puro)": "Simple applications (pure Java)",
+            "pom.xml (Maven) – dependências, plugins, build": "pom.xml (Maven) – dependencies, plugins, build",
+            "build.gradle (Gradle) – dependências, tasks, plugins": "build.gradle (Gradle) – dependências, tasks, plugins",
+            "settings.gradle – configuração de projeto multi-módulo": "settings.gradle – multi-module project configuration",
+            "application.properties ou application.yml – configurações de: porta do servidor (server.port) datasource (spring.datasource.*) JPA/Hibernate (spring.jpa.*) logs, profiles, etc.": "application.properties or application.yml – settings for: server port (server.port) datasource (spring.datasource.*) JPA/Hibernate (spring.jpa.*) logs, profiles, etc.",
+            "porta do servidor (server.port)": "server port (server.port)",
+            "datasource (spring.datasource.*)": "datasource (spring.datasource.*)",
+            "JPA/Hibernate (spring.jpa.*)": "JPA/Hibernate (spring.jpa.*)",
+            "logs, profiles, etc.": "logs, profiles, etc.",
+            "bootstrap.yml (em alguns cenários com Spring Cloud)": "bootstrap.yml (in some scenarios with Spring Cloud)",
+            "Arquivos adicionais comuns": "Common Additional Files",
+            "logback-spring.xml – configuração de logging": "logback-spring.xml – logging configuration",
+            "Dockerfile – empacotamento em container": "Dockerfile – packaging in containers",
+            "docker-compose.yml – orquestração local de serviços": "docker-compose.yml – local service orchestration",
+            "kubernetes/*.yaml – manifests de deployment, service, ingress": "kubernetes/*.yaml – manifests de deployment, service, ingress",
+            "20 - Arquivo de start e como iniciar uma aplicação Java": "20 - Start file and how to start a Java application",
+            "Aplicação Java simples (sem Spring)": "Simple Java application (without Spring)",
+            "Para iniciar:": "To start:",
+            "O ponto de entrada é uma classe com método public static void main(String[] args).": "The entry point is a class with method public static void main(String[] args).",
+            "O ponto de entrada é a classe anotada com @SpringBootApplication.": "The entry point is the class annotated with @SpringBootApplication.",
+            "Aplicação Spring Boot": "Spring Boot application",
+            "Para iniciar via Maven:": "To start via Maven:",
+            "Para iniciar via JAR:": "To start via JAR:",
+            "21 - Principais comandos para buildar e iniciar a aplicação": "21 - Main commands for building and starting the application",
+            "Maven": "Maven",
+            "Gradle (Groovy DSL)": "Gradle (Groovy DSL)",
+            "22 - Como debugar com IntelliJ IDEA": "22 - How to debug with IntelliJ IDEA",
+            "Abra o projeto no IntelliJ IDEA.": "Open the project in IntelliJ IDEA.",
+            "Coloque um breakpoint clicando à esquerda da linha de código.": "Place a breakpoint by clicking to the left of the line of code.",
+            "Execute a aplicação em modo Debug: Para Spring Boot: botão “Debug” na configuração de execução.": "Run the application in Debug mode: For Spring Boot: “Debug” button in the execution configuration.",
+            "Para Spring Boot: botão “Debug” na configuração de execução.": "For Spring Boot: “Debug” button in the run configuration.",
+            "Quando o código atingir o breakpoint, o IDE irá pausar a execução.": "When the code reaches the breakpoint, the IDE will pause execution.",
+            "Use: Step Over (F8) Step Into (F7) Step Out (Shift+F8) Evaluate Expression para inspecionar variáveis": "Use: Step Over (F8) Step Into (F7) Step Out (Shift+F8) Evaluate Expression to inspect variables",
+            "Step Over (F8)": "Step Over (F8)",
+            "Step Into (F7)": "Step Into (F7)",
+            "Step Out (Shift+F8)": "Step Out (Shift+F8)",
+            "Evaluate Expression para inspecionar variáveis": "Evaluate Expression to inspect variables",
+            "Também é possível debugar remotamente configurando a JVM com:": "It is also possible to debug remotely by configuring the JVM with:",
+            "23 - Maven vs Gradle (Gerenciadores de pacotes)": "23 - Maven vs Gradle (Package Managers)",
+            "Gradle": "Gradle",
+            "Popularidade": "Popularity",
+            "Altíssima, padrão de fato no mundo Java": "Highest, de facto standard in the Java world",
+            "Crescendo muito, especialmente em projetos modernos": "Growing a lot, especially in modern projects",
+            "Configuração": "Settings",
+            "XML (pom.xml)": "XML (pom.xml)",
+            "DSL Groovy/Kotlin (build.gradle)": "DSL Groovy/Kotlin (build.gradle)",
+            "Curva de aprendizado": "Learning curve",
+            "Mais simples": "Simpler",
+            "Mais flexível, porém mais complexo": "More flexible, but more complex",
+            "Boa": "Boa",
+            "Em geral mais rápido com build incremental": "Generally faster with incremental build",
+            "Uso em web/Spring": "Use on web/Spring",
+            "Extremamente comum": "Extremely common",
+            "Também muito utilizado": "Also widely used",
+            "Para desenvolvimento web com Spring Boot, Maven ainda é o mais utilizado, mas Gradle é uma excelente opção, especialmente em times que valorizam scripts mais flexíveis.": "For web development with Spring Boot, Maven is still the most used, but Gradle is an excellent option, especially in teams that value more flexible scripts.",
+            "24 - Principais frameworks para desenvolvimento web (Spring Boot)": "24 - Main frameworks for web development (Spring Boot)",
+            "Spring Boot – padrão de fato para APIs REST e microsserviços em Java.": "Spring Boot – de facto standard for REST APIs and microservices in Java.",
+            "Spring MVC – base para controllers REST.": "Spring MVC – base para controllers REST.",
+            "Spring WebFlux – programação reativa.": "Spring WebFlux – reactive programming.",
+            "Jakarta EE – sucessor do Java EE, usado em servidores como WildFly, Payara.": "Jakarta EE – successor to Java EE, used on servers like WildFly, Payara.",
+            "Micronaut / Quarkus – frameworks modernos focados em cloud-native e startup rápida.": "Micronaut / Quarkus – modern frameworks focused on cloud-native and fast startups.",
+            "25 - ORMs e JDBC: qual o melhor, mais utilizados e diferenças": "25 - ORMs and JDBC: which is best, most used and differences",
+            "ORMs": "ORMs",
+            "Hibernate / JPA – padrão de mercado, abstrai SQL, mapeia entidades.": "Hibernate / JPA – market standard, abstracts SQL, maps entities.",
+            "EclipseLink – outra implementação JPA.": "EclipseLink – another JPA implementation.",
+            "JDBC puro": "pure JDBC",
+            "Abordagens intermediárias": "Intermediate approaches",
+            "Spring JdbcTemplate / NamedParameterJdbcTemplate – simplifica JDBC, mantém SQL explícito.": "Spring JdbcTemplate / NamedParameterJdbcTemplate – simplifies JDBC, keeps SQL explicit.",
+            "JDBI – camada leve sobre JDBC com mapeamento mais amigável.": "JDBI – lightweight layer over JDBC with more user-friendly mapping.",
+            "Em sistemas legados, Hibernate/JPA é extremamente comum. Para evitar complexidade de ORMs pesados, JDBI e JdbcTemplate são ótimas opções, mantendo performance e controle sobre o SQL.": "On legacy systems, Hibernate/JPA is extremely common. To avoid the complexity of heavy ORMs, JDBI and JdbcTemplate are great options, maintaining performance and control over SQL.",
+            "26 - Hibernate, JDBI e Spring JdbcTemplate / NamedParameterJdbcTemplate": "26 - Hibernate, JDBI e Spring JdbcTemplate / NamedParameterJdbcTemplate",
+            "Hibernate": "Hibernate",
+            "É um ORM completo que implementa JPA. Ele:": "It is a complete ORM that implements JPA. He:",
+            "Mapeia classes Java para tabelas": "Maps Java classes to tables",
+            "Gera SQL automaticamente": "Generate SQL automatically",
+            "Gerencia cache, lazy loading, dirty checking": "Gerencia cache, lazy loading, dirty checking",
+            "Mais utilizado em sistemas legados e em aplicações enterprise que priorizam produtividade sobre controle fino de SQL.": "Most used in legacy systems and enterprise applications that prioritize productivity over fine SQL control.",
+            "JDBI (Jdbi3)": "JDBI(Jdbi3)",
+            "Biblioteca que fica entre JDBC puro e um ORM:": "Library that lies between pure JDBC and an ORM:",
+            "Você escreve SQL manualmente": "You write SQL manually",
+            "JDBI mapeia resultados para objetos": "JDBI maps results to objects",
+            "Menos mágica que um ORM, mais controle": "Less magic than an ORM, more control",
+            "Spring JdbcTemplate / NamedParameterJdbcTemplate": "Spring JdbcTemplate / NamedParameterJdbcTemplate",
+            "Abstrações do Spring sobre JDBC:": "Spring Abstractions over JDBC:",
+            "Gerenciam recursos (Connection, PreparedStatement)": "Manage resources (Connection, PreparedStatement)",
+            "Reduzem boilerplate": "Reduce boilerplate",
+            "Permitem SQL explícito": "Allow explicit SQL",
+            "NamedParameterJdbcTemplate permite parâmetros nomeados": "NamedParameterJdbcTemplate allows named parameters",
+            "Qual o mais utilizado em sistemas legados?": "Which is most used in legacy systems?",
+            "Hibernate/JPA é o mais comum em legados enterprise.": "Hibernate/JPA is the most common in legacy enterprises.",
+            "Qual usar para evitar complexidade de ORM pesado, com performance e sem esconder SQL?": "Which one to use to avoid heavy ORM complexity, with performance and without hiding SQL?",
+            "Spring JdbcTemplate ou JDBI são excelentes escolhas.": "Spring JdbcTemplate or JDBI are excellent choices.",
+            "Qual o mais indicado para Spring Boot?": "Which is best for Spring Boot?",
+            "Spring Data JPA (Hibernate) para produtividade.": "Spring Data JPA (Hibernate) for productivity.",
+            "Spring JdbcTemplate para cenários de alta performance e SQL complexo.": "Spring JdbcTemplate for high performance and complex SQL scenarios.",
+            "Facilidade de implementação": "Ease of implementation",
+            "Mais fácil: Spring Data JPA": "Easiest: Spring Data JPA",
+            "Intermediário: JdbcTemplate": "Intermediate: JdbcTemplate",
+            "Mais flexível: JDBI": "More flexible: JDBI",
+            "Tabela comparativa": "Comparison table",
+            "Ferramenta": "Tool",
+            "Controle sobre SQL": "Control over SQL",
+            "Complexidade": "Complexity",
+            "Uso típico": "Typical use",
+            "Hibernate / JPA": "Hibernate / JPA",
+            "ORM completo": "ORM completo",
+            "Baixo (SQL gerado)": "Low (Generated SQL)",
+            "Média/Alta": "Medium/High",
+            "Enterprise, legados, produtividade": "Enterprise, legacies, productivity",
+            "Spring Data JPA": "Spring Data JPA",
+            "Abstração sobre JPA": "Abstraction over JPA",
+            "Baixo": "Low",
+            "Baixa/Média": "Low/Medium",
+            "APIs rápidas, CRUD": "Fast APIs, CRUD",
+            "Spring JdbcTemplate": "Spring JdbcTemplate",
+            "Abstração JDBC": "JDBC abstraction",
+            "Alto (SQL explícito)": "High (explicit SQL)",
+            "Financeiro, queries complexas": "Financial, complex queries",
+            "NamedParameterJdbcTemplate": "NamedParameterJdbcTemplate",
+            "Alto": "Alto",
+            "SQL com muitos parâmetros": "SQL with many parameters",
+            "Camada leve sobre JDBC": "Light layer over JDBC",
+            "Serviços que querem controle e menos boilerplate": "Services that want control and less boilerplate",
+            "27 - Tipos de dados e variáveis mais utilizadas em Java": "27 - Most used data types and variables in Java",
+            "Tipos primitivos": "Primitive types",
+            "byte – 8 bits": "byte – 8 bits",
+            "short – 16 bits": "short – 16 bits",
+            "int – 32 bits": "int – 32 bits",
+            "long – 64 bits": "long – 64 bits",
+            "float – 32 bits (ponto flutuante)": "float – 32 bits (floating point)",
+            "double – 64 bits": "double – 64 bits",
+            "char – caractere Unicode": "char – caractere Unicode",
+            "boolean – true/false": "boolean – true/false",
+            "Tipos de referência": "Reference types",
+            "String": "String",
+            "List<T> , Set<T> , Map<K,V>": "List<T> , Set<T> , Map<K,V>",
+            "Classes e objetos customizados": "Custom classes and objects",
+            "Exemplo": "Example",
+            "28 - Principais modificadores de acesso": "28 - Main access modifiers",
+            "public – acessível de qualquer lugar": "public – accessible from anywhere",
+            "protected – acessível no mesmo pacote ou subclasses": "protected – accessible in the same package or subclasses",
+            "default (sem modificador) – acessível apenas no mesmo pacote": "default (no modifier) ​​– only accessible in the same package",
+            "private – acessível apenas dentro da própria classe": "private – accessible only within the class itself",
+            "29 - Interfaces, injeção de dependência, inversão de dependência e SOLID": "29 - Interfaces, dependency injection, dependency inversion and SOLID",
+            "Interfaces em Java": "Interfaces em Java",
+            "Interfaces definem contratos:": "Interfaces define contracts:",
+            "Injeção de dependência (DI) e inversão de controle (IoC)": "Dependency Injection (DI) and Inversion of Control (IoC)",
+            "Em vez de a classe criar suas dependências, elas são injetadas:": "Instead of the class creating its dependencies, they are injected:",
+            "O Spring gerencia as instâncias e injeta a implementação correta.": "Spring manages the instances and injects the correct implementation.",
+            "SOLID no Java": "SOLID no Java",
+            "S – Single Responsibility: cada classe com uma responsabilidade clara.": "S – Single Responsibility: each class with a clear responsibility.",
+            "O – Open/Closed: aberto para extensão, fechado para modificação.": "O – Open/Closed: open for extension, closed for modification.",
+            "L – Liskov Substitution: subclasses devem poder substituir a superclasse.": "L – Liskov Substitution: subclasses must be able to replace the superclass.",
+            "I – Interface Segregation: interfaces específicas, não gigantes.": "I – Interface Segregation: specific interfaces, not giant ones.",
+            "D – Dependency Inversion: dependa de abstrações, não de implementações.": "D – Dependency Inversion: depend on abstractions, not implementations.",
+            "30 - Jakarta Bean Validation com exemplo": "30 - Jakarta Bean Validation with example",
+            "Jakarta Bean Validation (ex: Hibernate Validator) permite validar objetos com anotações.": "Jakarta Bean Validation (e.g. Hibernate Validator) allows you to validate objects with annotations.",
+            "Em um controller Spring:": "In a Spring controller:",
+            "31 - SLF4J com Spring Boot e Logback": "31 - SLF4J com Spring Boot e Logback",
+            "SLF4J é uma fachada de logging. Logback é uma implementação comum em Spring Boot.": "SLF4J is a logging facade. Logback is a common implementation in Spring Boot.",
+            "32 - Java com MySQL (exemplo)": "32 - Java with MySQL (example)",
+            "Configuração Spring Boot": "Spring Boot Configuration",
+            "Entidade e repository": "Entity and repository",
+            "33 - Java com PostgreSQL (exemplo)": "33 - Java with PostgreSQL (example)",
+            "A implementação com JPA é praticamente idêntica à do MySQL, mudando apenas o driver e a URL.": "The implementation with JPA is practically identical to that of MySQL, only changing the driver and the URL.",
+            "34 - Java com Supabase (arquivos pesados)": "34 - Java with Supabase (heavy files)",
+            "Supabase expõe APIs compatíveis com PostgreSQL e storage de arquivos. Em Java, você pode:": "Supabase exposes APIs compatible with PostgreSQL and file storage. In Java you can:",
+            "Conectar via JDBC ao banco PostgreSQL do Supabase": "Connect via JDBC to Supabase PostgreSQL database",
+            "Usar o SDK HTTP/REST para o storage": "Use the HTTP/REST SDK for storage",
+            "Exemplo simplificado de upload via HTTP (pseudo-código)": "Simplified example of uploading via HTTP (pseudo-code)",
+            "35 - Java com MongoDB (NoSQL documental)": "35 - Java with MongoDB (documentary NoSQL)",
+            "Dependência Spring Data MongoDB": "Spring Data MongoDB Dependency",
+            "Documento e repository": "Document and repository",
+            "36 - Java com Redis (cache)": "36 - Java com Redis (cache)",
+            "Dependência": "Dependence",
+            "Uso com cache": "Use with cache",
+            "37 - APIs REST no Java": "37 - APIs REST no Java",
+            "Exemplo com Spring Boot": "Example with Spring Boot",
+            "38 - gRPC no Java": "38 - gRPC no Java",
+            "Definição do serviço (.proto)": "Service definition (.proto)",
+            "Implementação em Java (servidor)": "Implementation in Java (server)",
+            "39 - Testes unitários e de integração": "39 - Unit and integration tests",
+            "Testes unitários": "Unit tests",
+            "Usar JUnit 5": "Use JUnit 5",
+            "Mockar dependências com Mockito": "Mock dependencies with Mockito",
+            "Testes de integração com Spring Boot": "Integration tests with Spring Boot",
+            "40 - Clean Code em Java": "40 - Clean Code em Java",
+            "Boas práticas": "Good practices",
+            "Nomes claros para classes, métodos e variáveis": "Clear names for classes, methods and variables",
+            "Métodos curtos, com uma responsabilidade": "Short methods, with a responsibility",
+            "Evitar parâmetros demais (usar objetos de request)": "Avoid too many parameters (use request objects)",
+            "Evitar comentários desnecessários – código deve ser autoexplicativo": "Avoid unnecessary comments – code must be self-explanatory",
+            "Separar camadas (controller, service, repository)": "Separate layers (controller, service, repository)",
+            "O que evitar": "What to avoid",
+            "Métodos gigantes": "Giant methods",
+            "Classes “Deus” que fazem tudo": "“God” classes that do everything",
+            "Abusar de static": "Static abuse",
+            "Duplicação de código": "Code duplication",
+            "41 - Arquiteturas e abordagens para microserviços robustos sem complexidade excessiva": "41 - Architectures and approaches for robust microservices without excessive complexity",
+            "Abordagem recomendada": "Recommended approach",
+            "Arquitetura em camadas simples (Controller → Service → Repository)": "Simple layered architecture (Controller → Service → Repository)",
+            "Banco por serviço (quando possível)": "Bank by service (when possible)",
+            "Comunicação síncrona REST e assíncrona via mensageria (Kafka, RabbitMQ)": "REST synchronous and asynchronous communication via messaging (Kafka, RabbitMQ)",
+            "Configuração centralizada (Spring Cloud Config ou equivalente)": "Centralized configuration (Spring Cloud Config or equivalent)",
+            "Observabilidade desde o início": "Observability from the start",
+            "Evitar": "Avoid",
+            "Microserviços demais sem necessidade": "Too many unnecessary microservices",
+            "Complexidade prematura (CQRS/Event Sourcing sem real demanda)": "Premature complexity (CQRS/Event Sourcing without real demand)",
+            "42 - AWS Elastic Beanstalk com Java (Jakarta EE / Spring Boot)": "42 - AWS Elastic Beanstalk com Java (Jakarta EE / Spring Boot)",
+            "O Elastic Beanstalk permite deploy automatizado de aplicações Java sem gerenciar servidores diretamente.": "Elastic Beanstalk allows automated deployment of Java applications without directly managing servers.",
+            "Fluxo típico": "Typical flow",
+            "Você pode:": "You can:",
+            "Subir um JAR Spring Boot": "Upload a Spring Boot JAR",
+            "Configurar variáveis de ambiente": "Configure environment variables",
+            "Monitorar logs e métricas pelo console da AWS": "Monitor logs and metrics through the AWS console",
+            "43 - Amazon EKS para orquestrar microserviços Java": "43 - Amazon EKS for orchestrating Java microservices",
+            "EKS é um serviço gerenciado de Kubernetes na AWS. Para microserviços Java:": "EKS is a managed Kubernetes service on AWS. For Java microservices:",
+            "Empacotar cada serviço em um container Docker": "Package each service in a Docker container",
+            "Criar manifests de Deployment, Service, Ingress": "Create Deployment, Service, Ingress manifests",
+            "Usar ConfigMaps/Secrets para configurações": "Use ConfigMaps/Secrets for configurations",
+            "Usar Horizontal Pod Autoscaler para escalar com base em CPU/memória": "Use Horizontal Pod Autoscaler to scale based on CPU/memory",
+            "44 - MCP, RAG e LLM para Java (visão prática)": "44 - MCP, RAG and LLM for Java (practical view)",
+            "No contexto Java, MCP pode ser integrado via SDKs de IA para:": "In the Java context, MCP can be integrated via AI SDKs to:",
+            "Chamar modelos com contexto rico": "Call models with rich context",
+            "Executar ferramentas (functions) a partir do modelo": "Execute tools (functions) from the model",
+            "Compartilhar memória entre chamadas": "Share memory between calls",
+            "RAG em Java": "RAG in Java",
+            "Usando bibliotecas como LangChain4j ou Spring AI:": "Using libraries like LangChain4j or Spring AI:",
+            "Com RAG, você:": "With RAG, you:",
+            "Indexa documentos em um banco vetorial": "Index documents in a vector database",
+            "Busca trechos relevantes": "Search for relevant snippets",
+            "Envia esses trechos como contexto para o LLM": "Send these snippets as context to LLM",
+            "LLM no Java": "LLM no Java",
+            "Geração de código": "Code generation",
+            "Explicação de logs complexos": "Explanation of complex logs",
+            "Assistentes internos para suporte a desenvolvedores": "Built-in wizards for developer support",
+            "45 - Fechamento": "45 - Closing",
+            "Este documento agora cobre:": "This document now covers:",
+            "Java moderno (17–24), JVM, GC, Virtual Threads": "Java moderno (17–24), JVM, GC, Virtual Threads",
+            "Spring, Hibernate, JDBI, JdbcTemplate": "Spring, Hibernate, JDBI, JdbcTemplate",
+            "Configuração, build, debug, IntelliJ IDEA": "Configuration, build, debug, IntelliJ IDEA",
+            "Maven vs Gradle": "Maven vs Gradle",
+            "Tipos, modificadores, interfaces, SOLID": "Types, modifiers, interfaces, SOLID",
+            "Bean Validation, SLF4J, Logback": "Bean Validation, SLF4J, Logback",
+            "MySQL, PostgreSQL, Supabase, MongoDB, Redis": "MySQL, PostgreSQL, Supabase, MongoDB, Redis",
+            "REST, gRPC, testes, clean code": "REST, gRPC, testes, clean code",
+            "Arquiteturas de microsserviços, Elastic Beanstalk, EKS": "Microservices architectures, Elastic Beanstalk, EKS",
+            "MCP, RAG e LLM no ecossistema Java": "MCP, RAG and LLM in the Java ecosystem",
+            "A partir daqui, você pode usar este material como base para estudo, onboarding de times, documentação interna e como guia de referência para decisões arquiteturais em Java moderno.": "From here, you can use this material as a basis for study, team onboarding, internal documentation and as a reference guide for architectural decisions in modern Java.",
+            "Java Docs": "Java Docs",
+            "Visão Geral": "Overview",
+            "0 - IntelliJ IDEA Community Edit...": "0 - IntelliJ IDEA Community Edit...",
+            "1 - Java 17, Java 21 e desafios ...": "1 - Java 17, Java 21 and challenges...",
+            "12 - Lifecycle completo de reque...": "12 - Complete lifecycle of requirements...",
+            "13 - Lifecycle completo de reque...": "13 - Complete lifecycle of requirements...",
+            "14 - Kubernetes e Amazon EKS apr...": "14 - Kubernetes e Amazon EKS apr...",
+            "15 - Arquitetura enterprise mode...": "15 - Enterprise model architecture...",
+            "19 - Principais arquivos de conf...": "19 - Main configuration files...",
+            "20 - Arquivo de start e como ini...": "20 - Start file and how to start...",
+            "21 - Principais comandos para bu...": "21 - Main commands for bu...",
+            "23 - Maven vs Gradle (Gerenciado...": "23 - Maven vs Gradle (Managed...",
+            "24 - Principais frameworks para ...": "24 - Main frameworks for...",
+            "25 - ORMs e JDBC: qual o melhor,...": "25 - ORMs and JDBC: which is best,...",
+            "26 - Hibernate, JDBI e Spring Jd...": "26 - Hibernate, JDBI e Spring Jd...",
+            "27 - Tipos de dados e variáveis ...": "27 - Data types and variables...",
+            "28 - Principais modificadores de...": "28 - Main modifiers of...",
+            "29 - Interfaces, injeção de depe...": "29 - Interfaces, dependency injection...",
+            "30 - Jakarta Bean Validation com...": "30 - Jakarta Bean Validation com...",
+            "31 - SLF4J com Spring Boot e Log...": "31 - SLF4J com Spring Boot e Log...",
+            "34 - Java com Supabase (arquivos...": "34 - Java with Supabase (files...",
+            "35 - Java com MongoDB (NoSQL doc...": "35 - Java com MongoDB (NoSQL doc...",
+            "39 - Testes unitários e de integ...": "39 - Unit and integration tests...",
+            "41 - Arquiteturas e abordagens p...": "41 - Architectures and approaches to...",
+            "42 - AWS Elastic Beanstalk com J...": "42 - AWS Elastic Beanstalk com J...",
+            "43 - Amazon EKS para orquestrar ...": "43 - Amazon EKS to orchestrate...",
+            "44 - MCP, RAG e LLM para Java (v...": "44 - MCP, RAG and LLM for Java (v...",
+            "Developed by": "Developed by",
+            "— Filipe Gonçalves": "— Filipe Gonçalves",
+            "Contact": "Contact",
+            "filipeh.goncalves@gmail.com": "filipeh.goncalves@gmail.com",
+            "Social media": "Social media",
+            "github.com/FilipeHG": "github.com/FilipeHG",
+            "linkedin.com/in/filipehg": "linkedin.com/in/filipehg"
+}
+    }
+};
+
+        function normalizeText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        function getInlineCodePlaceholders(element) {
+            return Array.from(element.querySelectorAll('code')).map((code, index) => ({
+                placeholder: `__CODE_PLACEHOLDER_${index}__`,
+                text: code.textContent,
+                html: code.outerHTML
+            }));
+        }
+
+        function restoreCodeHtml(translated, placeholders) {
+            let result = translated;
+            placeholders.forEach(({ placeholder, html }) => {
+                result = result.replace(placeholder, html);
+            });
+            return result;
+        }
+
+        function createTranslatableElements() {
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li:not(.breadcrumb-item), td, th, span:not(.badge):not(.bi), a:not(.lang-item):not(.dropdown-item), button:not(#languageToggle), .tag, .callout, .warning, .danger, .badge, .info-box, .warning-box, .success-box'))
+                .filter(element => {
+                    if (element.closest('pre, .code-block, #languageSelectorRoot, .dropdown-menu')) return false;
+                    if (element.classList.contains('no-translate')) return false;
+                    const text = normalizeText(element.textContent || '');
+                    return text.length > 1;
+                });
+        }
+
+        function storeOriginalText(element) {
+            if (!element.dataset.originalText) {
+                element.dataset.originalText = normalizeText(element.textContent);
+                if (element.querySelector('code')) {
+                    element.dataset.originalHtml = element.innerHTML;
+                }
+            }
+        }
+
+        function restoreOriginalTexts(elements) {
+            elements.forEach(el => {
+                if (el.dataset.originalHtml) {
+                    el.innerHTML = el.dataset.originalHtml;
+                } else if (el.dataset.originalText) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + el.dataset.originalText;
+                    } else {
+                        el.textContent = el.dataset.originalText;
+                    }
+                }
+            });
+        }
+
+        function applyTranslations(elements) {
+            elements.forEach(el => {
+                const originalKey = el.dataset.originalText || normalizeText(el.textContent);
+                const translated = i18next.t(originalKey, { defaultValue: originalKey });
+                if (translated !== originalKey) {
+                    const icon = el.querySelector('i.bi');
+                    const placeholders = getInlineCodePlaceholders(el);
+                    let output = translated;
+                    if (placeholders.length > 0) {
+                        placeholders.forEach(({ text, placeholder }) => {
+                            output = output.replace(text, placeholder);
+                        });
+                        output = restoreCodeHtml(output, placeholders);
+                    }
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + output;
+                    } else if (placeholders.length > 0) {
+                        el.innerHTML = output;
+                    } else {
+                        el.textContent = output;
+                    }
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            if (lang === i18next.language) return;
+            localStorage.setItem('technicalDocLanguage', lang);
+            i18next.changeLanguage(lang).then(() => {
+                const elements = createTranslatableElements();
+                if (lang === 'pt') {
+                    restoreOriginalTexts(elements);
+                } else {
+                    elements.forEach(storeOriginalText);
+                    applyTranslations(elements);
+                }
+                document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+            });
+        }
+
+        function renderLanguageSwitcher() {
+            if (!window.React || !window.ReactDOM || !window.i18next || !window.ReactI18next) return;
+            const { useTranslation, I18nextProvider } = window.ReactI18next;
+
+            function LanguageSwitcher() {
+                const { i18n } = useTranslation();
+                const [open, setOpen] = React.useState(false);
+
+                React.useEffect(() => {
+                    function handleDocumentClick(event) {
+                        const root = document.getElementById('languageSelectorRoot');
+                        if (root && !root.contains(event.target)) {
+                            setOpen(false);
+                        }
+                    }
+                    document.addEventListener('click', handleDocumentClick);
+                    return () => document.removeEventListener('click', handleDocumentClick);
+                }, []);
+
+                const lang = i18n.language || 'en';
+                const flagSrc = lang === 'pt'
+                    ? 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg'
+                    : 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg';
+                const flagAlt = lang === 'pt' ? 'BR' : 'US';
+
+                return React.createElement('div', {
+                    className: `dropdown${open ? ' show' : ''}`,
+                    style: { position: 'relative' }
+                },
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'btn shadow no-translate',
+                        onClick: () => setOpen(prev => !prev),
+                        style: { backgroundColor: '#fff', color: '#000', minWidth: '45px', padding: '6px 10px' },
+                        title: 'Select Language',
+                        'aria-haspopup': 'true',
+                        'aria-expanded': open
+                    },
+                        React.createElement('img', {
+                            id: 'flagIcon',
+                            src: flagSrc,
+                            alt: flagAlt,
+                            style: { width: '24px', height: '18px', borderRadius: '2px' }
+                        })
+                    ),
+                    React.createElement('ul', {
+                        className: `dropdown-menu dropdown-menu-end shadow${open ? ' show' : ''}`,
+                        style: { display: open ? 'block' : 'none', marginTop: '4px' }
+                    },
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('pt'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg',
+                                    alt: 'BR',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'Português'
+                            )
+                        ),
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('en'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg',
+                                    alt: 'US',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'English'
+                            )
+                        )
+                    )
+                );
+            }
+
+            const rootElement = document.getElementById('languageSelectorRoot');
+            if (rootElement) {
+                try {
+                    ReactDOM.createRoot(rootElement).render(
+                        React.createElement(I18nextProvider, { i18n: i18next }, React.createElement(LanguageSwitcher))
+                    );
+                } catch (error) {
+                    console.error('Error rendering React component:', error);
+                }
+            }
+        }
+
+        function initializeLanguageSwitcher() {
+            if (typeof i18next === 'undefined' || typeof window.ReactI18next === 'undefined') {
+                setTimeout(initializeLanguageSwitcher, 100);
+                return;
+            }
+
+            i18next
+                .use(window.ReactI18next.initReactI18next)
+                .init({
+                    resources: translationResources,
+                    lng: currentLanguage,
+                    fallbackLng: 'en',
+                    debug: false,
+                    keySeparator: false,
+                    interpolation: { escapeValue: false }
+                }).then(() => {
+                    renderLanguageSwitcher();
+                    document.documentElement.lang = (i18next.language === 'pt' ? 'pt-BR' : 'en');
+
+                    if (i18next.language === 'en') {
+                        const elements = createTranslatableElements();
+                        elements.forEach(storeOriginalText);
+                        applyTranslations(elements);
+                    }
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeLanguageSwitcher();
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.code pre').forEach(pre => {
+            const lines = pre.textContent.split('\n');
+
+            // remove linhas vazias do início e fim
+            while (lines.length && lines[0].trim() === '') lines.shift();
+            while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+            // detecta indentação mínima
+            const indent = Math.min(
+                ...lines
+                    .filter(l => l.trim().length > 0)
+                    .map(l => l.match(/^(\s*)/)[0].length)
+            );
+
+            // remove apenas essa indentação
+            pre.textContent = lines.map(l => l.slice(indent)).join('\n');
+        });
+    </script>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>
