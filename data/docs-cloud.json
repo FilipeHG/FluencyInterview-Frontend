@@ -1,0 +1,80 @@
+{
+    "title": "Cloud, DevOps & Messaging",
+    "iconClass": "bi bi-cloud-fill",
+    "sections": [
+        {
+            "title": "Messaging & Serverless",
+            "icon": "bi bi-chat-square-quote",
+            "cards": [
+                {
+                    "topic": "Kafka vs RabbitMQ",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>RabbitMQ:</strong> Smart Broker, Dumb Consumer. Routing (Exchanges) and transactional queues.</li>\n                            <li><strong>Kafka:</strong> Dumb Broker, Smart Consumer. Event Streaming, immutable logs, extremely high throughput.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>RabbitMQ:</strong> Smart Broker, Dumb Consumer. Roteamento (Exchanges) e filas transacionais.</li>\n                            <li><strong>Kafka:</strong> Dumb Broker, Smart Consumer. Event Streaming, logs imutáveis, vazão altíssima.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Resilient Queueing Concepts",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>DLQ (Dead Letter Queue):</strong> Isolates messages with errors after X failed attempts (Poison Messages).</li>\n                            <li><strong>Visibility Timeout:</strong> Hides messages from other workers while being processed to avoid duplicate execution.</li>\n                            <li><strong>Idempotency:</strong> Safe retries. Processing the same message twice must yield the same state result.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>DLQ:</strong> Fila morta. Isola mensagens com erro após X tentativas.</li>\n                            <li><strong>Visibility Timeout:</strong> Esconde a mensagem enquanto é processada para evitar duplicidade.</li>\n                            <li><strong>Idempotência:</strong> Processar a mesma mensagem duas vezes deve manter o sistema no mesmo estado de sucesso.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Cloud Providers",
+            "icon": "bi bi-hdd-rack",
+            "cards": [
+                {
+                    "topic": "AWS Ecosystem",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>EC2 & Auto Scaling:</strong> Virtual machines that scale based on CPU/RAM thresholds.</li>\n                            <li><strong>S3:</strong> Unlimited Object Storage. Key features: Versioning and Lifecycle rules.</li>\n                            <li><strong>RDS:</strong> Managed DB. Use Multi-AZ for failover availability and Read Replicas for scaling reads.</li>\n                            <li><strong>SNS & SQS:</strong> SNS is Fan-out (Pub/Sub). SQS is point-to-point queues.</li>\n                            <li><strong>Lambda:</strong> Serverless (Max 15 min execution).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>EC2 & Auto Scaling:</strong> VMs que escalam via regras de CPU/RAM.</li>\n                            <li><strong>S3:</strong> Storage ilimitado. Destaques: Versionamento e regras de ciclo de vida.</li>\n                            <li><strong>RDS:</strong> Banco gerenciado. Use Multi-AZ para alta disponibilidade e Read Replicas para escalar leitura.</li>\n                            <li><strong>SNS & SQS:</strong> SNS faz Fan-out (vários destinos). SQS é fila isolada.</li>\n                            <li><strong>Lambda:</strong> Serverless (máx 15 min de execução).</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Azure Ecosystem",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Azure Functions:</strong> Serverless offering. Consumption vs Premium plans.</li>\n                            <li><strong>Azure Service Bus:</strong> Enterprise messaging with topics and queues.</li>\n                            <li><strong>Azure Blob Storage:</strong> Unstructured object storage.</li>\n                            <li><strong>Azure Container Instances:</strong> Run containers instantly without K8s complexity.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Azure Functions:</strong> Oferta serverless com planos de Consumo ou Premium.</li>\n                            <li><strong>Azure Service Bus:</strong> Mensageria enterprise avançada.</li>\n                            <li><strong>Azure Blob Storage:</strong> Storage de objetos.</li>\n                            <li><strong>Azure Container Instances:</strong> Rodar containers na nuvem sem precisar montar cluster.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Cloud I/O & Networking",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Ingress vs Egress:</strong> Ingress (traffic in) is often free. Egress (traffic out) costs money.</li>\n                            <li><strong>ALB (Application Load Balancer):</strong> Distributes HTTP/HTTPS traffic.</li>\n                            <li><strong>Cloudflare (CDN):</strong> Caches assets globally and acts as a security proxy (WAF) blocking DDoS attacks.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Ingress vs Egress:</strong> Ingress (entrada) costuma ser grátis. Egress (saída) é tarifado.</li>\n                            <li><strong>ALB:</strong> Balanceador que distribui tráfego web HTTP/HTTPS.</li>\n                            <li><strong>Cloudflare:</strong> CDN global e proxy de segurança (WAF e proteção Anti-DDoS).</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Containers, Kubernetes & Observability",
+            "icon": "bi bi-box-seam",
+            "cards": [
+                {
+                    "topic": "Docker & Kubernetes",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Docker:</strong> Containerization. Best practices: Multi-stage builds, least privilege, small images.</li>\n                            <li><strong>K8s Pods:</strong> Smallest unit. Managed by Deployments or StatefulSets.</li>\n                            <li><strong>HPA (Horizontal Pod Autoscaler):</strong> Automatically scales replica counts.</li>\n                            <li><strong>Probes:</strong> Liveness (kills if stuck) and Readiness (removes from traffic pool if slow).</li>\n                            <li><strong>Portainer:</strong> GUI to manage Docker/K8s clusters easily.</li>\n                            <li><strong>Terraform:</strong> Infrastructure as Code (IaC) to automate cloud deployments.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Docker:</strong> Containerização. Práticas: Multi-stage builds, imagens leves, varredura de vulnerabilidades.</li>\n                            <li><strong>Pods K8s:</strong> Unidade mínima. Devem ser criados via Deployments ou StatefulSets.</li>\n                            <li><strong>HPA:</strong> Auto-scaler baseado em uso de CPU.</li>\n                            <li><strong>Probes:</strong> Liveness (mata pod travado) e Readiness (espera carregar antes de mandar tráfego).</li>\n                            <li><strong>Portainer:</strong> Interface visual para gerenciar clusters.</li>\n                            <li><strong>Terraform:</strong> Infraestrutura como código (IaC) para a nuvem.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Observability & CI/CD",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Observability Pillars:</strong> Logs, Metrics, and Distributed Tracing.</li>\n                            <li><strong>OpenTelemetry:</strong> Industry standard for generating traces.</li>\n                            <li><strong>Correlation IDs:</strong> Trace a request across multiple microservices.</li>\n                            <li><strong>CI/CD (Continuous Integration/Deployment):</strong> Automated pipelines (GitHub Actions, Azure DevOps, ArgoCD for GitOps).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Pilares da Observabilidade:</strong> Logs, Métricas e Traces Distribuídos.</li>\n                            <li><strong>OpenTelemetry:</strong> Padrão da indústria para rastreamento.</li>\n                            <li><strong>Correlation IDs:</strong> ID único para rastrear uma requisição passando por 10 microsserviços.</li>\n                            <li><strong>CI/CD:</strong> Pipelines automatizados (GitHub Actions, Azure DevOps, ArgoCD).</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Docker & Kubernetes Deep Dive",
+            "icon": "bi bi-container",
+            "cards": [
+                {
+                    "topic": "Docker Best Practices",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Multi-stage Builds:</strong> Reduce image size by separating build stages from runtime.</li>\n                            <li><strong>Least Privilege:</strong> Run containers as non-root users.</li>\n                            <li><strong>Scanning:</strong> Use Trivy or Docker Scout to detect vulnerabilities before pushing to registry.</li>\n                            <li><strong>Small Base Images:</strong> Use Alpine or distroless images to minimize attack surface.</li>\n                            <li><strong>Layer Caching:</strong> Order Dockerfile commands from least-changing to most-changing.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Multi-stage Builds:</strong> Reduz tamanho da imagem separando build de runtime.</li>\n                            <li><strong>Least Privilege:</strong> Rode containers como usuários não-root.</li>\n                            <li><strong>Scanning:</strong> Use Trivy ou Docker Scout para detectar vulnerabilidades.</li>\n                            <li><strong>Base Images Leves:</strong> Alpine ou distroless para minimizar superfície de ataque.</li>\n                            <li><strong>Layer Caching:</strong> Ordene comandos de menos-mudança para mais-mudança.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Kubernetes Advanced Patterns",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Rolling Updates:</strong> Gradually replace old pods with new ones. Zero downtime deployments.</li>\n                            <li><strong>Blue-Green Deployment:</strong> Maintain two identical environments. Switch traffic instantly.</li>\n                            <li><strong>Canary Releases:</strong> Route small percentage of traffic to new version, monitor, then roll out.</li>\n                            <li><strong>Service Mesh (Istio):</strong> Advanced traffic management, retries, circuit breakers, and mutual TLS.</li>\n                            <li><strong>StatefulSets:</strong> Ordered, stable identities for databases and stateful services.</li>\n                            <li><strong>Network Policies:</strong> Restrict traffic between pods for security isolation.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Rolling Updates:</strong> Replace gradualmente pods antigos. Deploy sem downtime.</li>\n                            <li><strong>Blue-Green Deployment:</strong> Dois ambientes idênticos. Muda tráfego instantaneamente.</li>\n                            <li><strong>Canary Releases:</strong> Rota pequeno % de tráfego para versão nova, monitora, depois faz rollout.</li>\n                            <li><strong>Service Mesh (Istio):</strong> Tráfego avançado, retries, circuit breakers e mTLS.</li>\n                            <li><strong>StatefulSets:</strong> Identidades ordenadas e estáveis para bancos e serviços stateful.</li>\n                            <li><strong>Network Policies:</strong> Restringe tráfego entre pods para isolamento de segurança.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "CI/CD & GitOps",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>CI (Continuous Integration):</strong> Automated builds, unit tests, and integration tests on every commit.</li>\n                            <li><strong>CD (Continuous Deployment):</strong> Automated deployment to production after tests pass.</li>\n                            <li><strong>GitOps:</strong> Infrastructure and deployments declared in Git. ArgoCD syncs cluster state to Git.</li>\n                            <li><strong>Artifact Registry:</strong> Docker images pushed to registries (Docker Hub, ACR, ECR, GCR).</li>\n                            <li><strong>Policy as Code:</strong> Enforce security, compliance, and best practices automatically (OPA/Rego).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>CI:</strong> Build, testes unitários e integração automatizados a cada commit.</li>\n                            <li><strong>CD:</strong> Deploy automático em produção após testes.</li>\n                            <li><strong>GitOps:</strong> Infraestrutura e deploys declarados em Git. ArgoCD sincroniza estado do cluster.</li>\n                            <li><strong>Artifact Registry:</strong> Imagens pushadas para registries (Docker Hub, ACR, ECR, GCR).</li>\n                            <li><strong>Policy as Code:</strong> Força segurança, compliance e best practices (OPA/Rego).</li>\n                        </ul>\n                    "
+                }
+            ]
+        }
+    ]
+}

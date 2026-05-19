@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Agile & Team Dynamics",
+        "icon": "bi bi-people-fill",
+        "cards": [
+            {
+                "topic": "Agile Experience (Scrum & Kanban)",
+                "q_en": "What is your practical experience with Agile, Scrum, and Kanban?",
+                "q_pt": "Qual sua experiência prática com Agile, Scrum e Kanban?",
+                "a_en": "I have worked in squads using Kanban with virtual boards (Trello, Jira) moving cards through To Do, Doing, Code Review, and Done. I'm also very familiar with Scrum ceremonies, participating in Dailies, 15-day Sprints, Planning sessions, and Retrospectives to discuss improvements.",
+                "a_pt": "Trabalhei em squads usando Kanban com quadros virtuais (Trello, Jira), movendo cards entre To Do, Doing, Code Review e Done. Também estou habituado ao Scrum, participando de Dailys, Sprints de 15 dias, Plannings e Retrospectivas para melhorar o fluxo."
+            },
+            {
+                "topic": "Git Flow & Code Review",
+                "q_en": "How do you utilize Git Flow and Code Review in your daily work?",
+                "q_pt": "Como você utiliza Git Flow e Code Review no dia a dia?",
+                "a_en": "I create individual feature branches from the main branch. Hotfixes get their own isolated branches. Once development is complete, I open a Pull Request (PR) to trigger a Code Review by another developer. I never commit directly to production or staging branches; merging only happens after peer approval.",
+                "a_pt": "Eu crio branches de feature a partir da principal. Correções urgentes vão para branches de hotfix. Terminado o desenvolvimento, abro um Pull Request (PR) para Code Review de outro desenvolvedor. Nunca commito direto na master ou homologação; o merge só ocorre após aprovação."
+            },
+            {
+                "topic": "Handling SOUP",
+                "q_en": "What is SOUP (Software of Unknown Provenance) and how have you dealt with it?",
+                "q_pt": "O que é SOUP e como você já lidou com isso?",
+                "a_en": "SOUP stands for Software of Unknown Provenance — software or legacy components that are untrusted or poorly documented. I dealt with it in a legacy notification system that was dropping chat messages and piling up queues. I redesigned the queueing logic, added processing priorities, and secured the pipeline to prevent data loss.",
+                "a_pt": "SOUP significa Software of Unknown Provenance — código legado ou de origem desconhecida e não confiável. Lidei com isso em um sistema de chat que perdia mensagens na fila. Replanejamos o uso das filas, adicionamos priorização e garantimos que nenhuma mensagem de notificação fosse perdida."
+            }
+        ]
+    }
+]

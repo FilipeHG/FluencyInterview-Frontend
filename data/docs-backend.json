@@ -1,0 +1,92 @@
+{
+    "title": "Backend (.NET & Node.js)",
+    "iconClass": "bi bi-cpu",
+    "sections": [
+        {
+            "title": "Backend Paradigms",
+            "icon": "bi bi-server",
+            "cards": [
+                {
+                    "topic": "Synchronous vs Asynchronous Execution",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Synchronous APIs (Sync):</strong> Block the thread until the final response. <br><em>When to use:</em> Purely computational tasks (CPU-bound).</li>\n                            <li><strong>Asynchronous APIs (Async):</strong> Release the server thread while waiting. <br><em>When to use:</em> Always for I/O-bound requests. Vital for scalability.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>APIs Síncronas (Sync):</strong> Bloqueiam a thread até a resposta final. <br><em>Quando usar:</em> Tarefas computacionais (CPU-bound).</li>\n                            <li><strong>APIs Assíncronas (Async):</strong> Liberam a thread enquanto aguardam. <br><em>Quando usar:</em> Sempre em requisições I/O-bound. Vital para escalabilidade.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Big-O Notation (Algorithmic Efficiency)",
+                    "contentEn": "\n                        <p>Used to classify algorithms according to how their run time or space requirements grow as the input size grows.</p>\n                        <ul>\n                            <li><strong>O(1):</strong> Constant time (e.g., Hash map lookup).</li>\n                            <li><strong>O(N):</strong> Linear time (e.g., iterating an array).</li>\n                            <li><strong>O(log N):</strong> Logarithmic time (e.g., Binary Search).</li>\n                            <li><strong>O(N²):</strong> Quadratic time (e.g., Nested loops, Bubble sort). Bad for large datasets.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Usada para classificar a eficiência de algoritmos conforme o tamanho da entrada cresce em tempo e espaço.</p>\n                        <ul>\n                            <li><strong>O(1):</strong> Tempo constante (ex: busca em Hash map).</li>\n                            <li><strong>O(N):</strong> Tempo linear (ex: varrer array).</li>\n                            <li><strong>O(log N):</strong> Tempo logarítmico (ex: Busca binária).</li>\n                            <li><strong>O(N²):</strong> Tempo quadrático (ex: Loops aninhados). Péssimo para alto volume.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": ".NET 8 / .NET 10 Ecosystem",
+            "icon": "bi bi-microsoft",
+            "cards": [
+                {
+                    "topic": "Advanced .NET Features",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Span&lt;T&gt; & Memory&lt;T&gt;:</strong> Low allocation, high-performance slicing of memory without GC overhead.</li>\n                            <li><strong>Native AOT:</strong> Ahead-of-time compilation. No JIT. Reduces RAM and enables instant cold starts.</li>\n                            <li><strong>Minimal APIs:</strong> Lightning fast endpoint routing with Source Generators avoiding reflection.</li>\n                            <li><strong>BackgroundServices:</strong> IHostedService for running background tasks, queue processors, and CRONs.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Span&lt;T&gt; & Memory&lt;T&gt;:</strong> Fatiamento de memória de alta performance sem alocação do Garbage Collector.</li>\n                            <li><strong>Native AOT:</strong> Compilação prévia, sem JIT. Reduz RAM e zera cold start.</li>\n                            <li><strong>Minimal APIs:</strong> Roteamento ultrarrápido com Source Generators (evita reflection).</li>\n                            <li><strong>BackgroundServices:</strong> IHostedService para rodar tarefas em segundo plano, filas e CRONs.</li>\n                        </ul>\n                    ",
+                    "diagramHtml": "\n                        <pre class=\"bg-dark text-light p-3 mt-3 rounded\"><code>var app = builder.Build();\napp.MapGet(\"/api/order/{id}\", (int id) => new Order(id));\napp.Run();</code></pre>\n                    "
+                },
+                {
+                    "topic": "Dependency Injection (DI)",
+                    "contentEn": "\n                        <ul>\n                            <li><em>Transient:</em> New instance per request.</li>\n                            <li><em>Scoped:</em> One per HTTP request (default for DbContext).</li>\n                            <li><em>Singleton:</em> Single instance for the entire app (requires thread-safety).</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><em>Transient:</em> Nova instância por chamada.</li>\n                            <li><em>Scoped:</em> Uma por requisição HTTP (padrão para DbContext).</li>\n                            <li><em>Singleton:</em> Única para toda aplicação (requer cuidado com concorrência).</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Node.js & Security",
+            "icon": "bi bi-shield-lock",
+            "cards": [
+                {
+                    "topic": "Node.js Event Loop",
+                    "contentEn": "\n                        <div class=\"alert alert-warning mb-3\">\n                            <strong>Warning:</strong> Never run heavy CPU-bound synchronous code on the Node.js main thread, it blocks the event loop for all users!\n                        </div>\n                        <p>Node.js is extremely fast for I/O operations because it uses an asynchronous non-blocking event loop.</p>\n                    ",
+                    "contentPt": "\n                        <div class=\"alert alert-warning mb-3\">\n                            <strong>Aviso:</strong> Nunca rode código síncrono pesado de CPU na thread principal do Node.js, isso trava o event loop para todos os usuários!\n                        </div>\n                        <p>Node.js é extremamente rápido para operações I/O por usar um event loop assíncrono e não bloqueante.</p>\n                    "
+                },
+                {
+                    "topic": "Enterprise Security",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>OAuth2 & OpenID Connect (OIDC):</strong> Standard protocols for authorization and authentication.</li>\n                            <li><strong>JWT (JSON Web Token):</strong> Stateless tokens. Must use short expiration and refresh tokens.</li>\n                            <li><strong>RBAC (Role-Based Access Control):</strong> Permissions mapped to user roles.</li>\n                            <li><strong>Zero Trust:</strong> Never trust the network, always verify every request internally.</li>\n                            <li><strong>WAF & Rate Limiting:</strong> Web Application Firewalls and request limits to prevent DDoS and Brute Force attacks.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>OAuth2 & OIDC:</strong> Protocolos padrão de autorização e autenticação.</li>\n                            <li><strong>JWT:</strong> Tokens stateless. Devem ter expiração curta e uso de refresh tokens.</li>\n                            <li><strong>RBAC:</strong> Controle de acesso por papéis (Roles).</li>\n                            <li><strong>Zero Trust:</strong> Nunca confie na rede, sempre valide todas as requisições internamente.</li>\n                            <li><strong>WAF & Rate Limiting:</strong> Firewalls de aplicação e limites de request para evitar DDoS.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "CMS & Testing",
+            "icon": "bi bi-check2-square",
+            "cards": [
+                {
+                    "topic": "Umbraco CMS (.NET)",
+                    "contentEn": "\n                        <p>Enterprise .NET CMS.</p>\n                        <ul>\n                            <li><strong>Architecture:</strong> Fully integrated with .NET Core. Headless API support.</li>\n                            <li><strong>Document Types:</strong> Flexible content modeling.</li>\n                            <li><strong>Performance:</strong> Strongly relies on built-in caching and optimized database calls.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>CMS Enterprise focado em .NET.</p>\n                        <ul>\n                            <li><strong>Arquitetura:</strong> Totalmente integrado com .NET Core. Suporte a APIs Headless.</li>\n                            <li><strong>Document Types:</strong> Modelagem de conteúdo flexível.</li>\n                            <li><strong>Performance:</strong> Forte uso de cache nativo e chamadas otimizadas de banco.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Quality & TDD",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Unit Tests:</strong> Test a single class/method isolated using Mocks.</li>\n                            <li><strong>Integration Tests:</strong> Test components interacting with real DBs or APIs (e.g. Testcontainers).</li>\n                            <li><strong>TDD (Test-Driven Development):</strong> Red, Green, Refactor. Write the failing test first, make it pass, then clean the code.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Testes Unitários:</strong> Testam uma classe/método isolado usando Mocks.</li>\n                            <li><strong>Testes de Integração:</strong> Testam componentes reais interagindo com banco (ex: Testcontainers).</li>\n                            <li><strong>TDD:</strong> Red, Green, Refactor. Escreva o teste falhando, faça passar, depois limpe o código.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Design Patterns & Architecture",
+            "icon": "bi bi-puzzle",
+            "cards": [
+                {
+                    "topic": "Gang of Four (GoF) Patterns",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Strategy:</strong> Define interchangeable algorithms. Runtime behavior switching without code changes.</li>\n                            <li><strong>Observer:</strong> One-to-many dependency. Automatic notifications when state changes.</li>\n                            <li><strong>Decorator:</strong> Add behavior dynamically without altering the original class. Wrapping objects.</li>\n                            <li><strong>Proxy:</strong> Access control and lazy loading for heavy objects.</li>\n                            <li><strong>Factory Method:</strong> Creation interface where subclasses decide the concrete instance.</li>\n                            <li><strong>Singleton:</strong> Single instance with global access. Requires thread-safety in multi-threaded scenarios.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Strategy:</strong> Define algoritmos intercambiáveis para mudanças de comportamento em runtime.</li>\n                            <li><strong>Observer:</strong> Dependência um-para-muitos com notificações automáticas de mudanças.</li>\n                            <li><strong>Decorator:</strong> Adiciona comportamento dinamicamente sem alterar a classe original.</li>\n                            <li><strong>Proxy:</strong> Controle de acesso e lazy loading para objetos pesados.</li>\n                            <li><strong>Factory Method:</strong> Interface de criação onde subclasses decidem a instância concreta.</li>\n                            <li><strong>Singleton:</strong> Instância única com acesso global (requer sincronização em multithreading).</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Clean Architecture in Practice",
+                    "contentEn": "\n                        <p>Decoupling business rules from infrastructure through layered isolation.</p>\n                        <ul>\n                            <li><strong>Domain Layer:</strong> Pure business logic. No frameworks, no dependencies.</li>\n                            <li><strong>Application Layer:</strong> Use cases, commands, queries. Orchestrates domain logic.</li>\n                            <li><strong>Infrastructure Layer:</strong> Database, APIs, external services. Implements repositories and adapters.</li>\n                            <li><strong>Presentation Layer:</strong> Controllers, REST endpoints, user interfaces.</li>\n                        </ul>\n                        <p><em>Key Principle:</em> Dependencies always point inward towards the domain (center).</p>\n                    ",
+                    "contentPt": "\n                        <p>Desacoplamento de regras de negócio da infraestrutura através de camadas isoladas.</p>\n                        <ul>\n                            <li><strong>Domain Layer:</strong> Lógica pura de negócio. Sem frameworks, sem dependências.</li>\n                            <li><strong>Application Layer:</strong> Use cases, comandos, queries. Orquestra a lógica de domínio.</li>\n                            <li><strong>Infrastructure Layer:</strong> Banco, APIs, serviços externos. Implementa repositórios e adaptadores.</li>\n                            <li><strong>Presentation Layer:</strong> Controllers, endpoints REST, interfaces.</li>\n                        </ul>\n                        <p><em>Princípio:</em> Dependências sempre apontam para dentro em direção ao domínio (centro).</p>\n                    "
+                },
+                {
+                    "topic": "CQRS (Command Query Responsibility Segregation)",
+                    "contentEn": "\n                        <p>Separate read and write models for independent optimization and scalability.</p>\n                        <ul>\n                            <li><strong>Command Model (Write):</strong> Validates business rules, enforces constraints, persists state. Complex but controlled.</li>\n                            <li><strong>Query Model (Read):</strong> Optimized for speed. Uses denormalized views or projection materialization. No business logic.</li>\n                            <li><strong>Eventual Consistency:</strong> Read model catches up asynchronously. Perfect for high-load scenarios.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Separa os modelos de leitura e escrita para otimização e escalabilidade independentes.</p>\n                        <ul>\n                            <li><strong>Command Model (Escrita):</strong> Valida regras, força consistência, persiste estado.</li>\n                            <li><strong>Query Model (Leitura):</strong> Otimizado para velocidade. Views desnormalizadas ou projeções materializadas.</li>\n                            <li><strong>Eventual Consistency:</strong> Modelo de leitura atualiza-se assincronamente.</li>\n                        </ul>\n                    "
+                }
+            ]
+        }
+    ]
+}

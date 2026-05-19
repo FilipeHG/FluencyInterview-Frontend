@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.4.0/dist/umd/i18next.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-i18next@13.0.1/dist/umd/react-i18next.min.js" crossorigin></script>
+
+    <title>High-Performance Tax Analyzer - Intelligent Fiscal Platform</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-secondary: #111827;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #16a34a;
+            --warning: #ea580c;
+            --danger: #dc2626;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--text);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            padding: 40px 0 0 0;
+        }
+
+        .nav-title {
+            color: var(--primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 22px 0 10px;
+            font-weight: 800;
+        }
+
+        .sidebar {
+            width: 300px;
+            max-height: calc(100vh - 106px);
+            z-index: 999;
+            background: linear-gradient(180deg, #0f172a, #111827);
+            color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .sidebar h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-top: 28px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #dbeafe;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+            margin: 5px 0;
+            padding: 6px 8px;
+            background-color: #ffffff17;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .main {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+        }
+
+        .content {
+            padding: 40px 0px 15px 15px;
+            margin-top: 4rem;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 26px 40px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .header p {
+            color: var(--text);
+            margin-top: 8px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            max-width: 1200px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 999px;
+            padding: 10px 16px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 0px;
+        }
+
+        .section-title {
+            margin-top: 70px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-bottom: 3px solid #dbeafe;
+            padding-bottom: 14px;
+        }
+
+        .section-description {
+            color: var(--text);
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin: 30px 0 0 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin-top: 16px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .diagram {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border-left: 6px solid var(--primary);
+        }
+
+        .info-box,
+        .warning-box,
+        .success-box {
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 18px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+        }
+
+        .code {
+            background: #08111f;
+            border: 1px solid #243656;
+            border-radius: 20px;
+            padding: 0;
+            margin: 30px 0 0 0;
+            overflow: auto;
+        }
+
+        .code pre {
+            color: #d6e3ff;
+            line-height: 1.8;
+            font-size: 14px;
+            padding: 30px 40px;
+            margin: 0;
+            display: inline-block;
+            white-space: pre;
+            /* mantém formatação */
+        }
+
+        .mermaid {
+            margin-top: 24px;
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--border);
+            padding: 16px;
+            text-align: left;
+        }
+
+        .table th {
+            font-size: 15px;
+            text-transform: uppercase;
+            background: #92ade5;
+            border: none;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            box-shadow: 0 5px 20px rgb(15 23 41 / 15%);
+        }
+
+        .callout {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 28px;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border-left: 5px solid var(--warning);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+        .danger {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border: 1px solid transparent;
+            /* override default */
+        }
+
+
+
+        @media(max-width:1200px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
+        }
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="sticky-top no-print" style="z-index: 1000; width: 100%; position: fixed; top: 0; left: 0;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; width: 100%;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a href="Index.html" class="d-inline-block">
+                    <img src="assets/images/fluencyinterview-logo-p.png" alt="Logo" style="height: 50px;">
+                </a>
+
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Language Selector -->
+                    <div id="languageSelectorRoot"></div>
+
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <main class="main">
+
+            <div class="content">
+
+                <section class="hero" id="vision">
+
+                    <h1 class="fs-4 text-white fw-bold mb-4">
+                        High-Performance Tax Analyzer
+                    </h1>
+
+                    <p>
+                        The <strong>High-Performance Tax Analyzer</strong> is undergoing a strategic evolution from a
+                        traditional calculation engine into a state-of-the-art <strong>Intelligent Fiscal
+                            Platform</strong>.
+                        By leveraging distributed processing, artificial intelligence, and semantic reasoning, it
+                        delivers
+                        real-time analytics and autonomous operational intelligence. This unified enterprise ecosystem
+                        seamlessly converges high-throughput transactional workloads with deep analytical processing,
+                        generative AI, and predictive monitoring—empowering organizations to process millions of fiscal
+                        operations with unparalleled scalability, ultra-low latency, and intelligent, data-driven
+                        decision-making.
+                    </p>
+
+                    <p>
+                        An Enterprise Distributed Tax Intelligence Platform engineered for the future, powered by a
+                        modern
+                        stack featuring .NET 8, Azure Databricks, Spark, Delta Lake, Kubernetes, and advanced RAG
+                        architectures.
+                    </p>
+
+                    <div class="badges">
+                        <div class="badge">.NET 8</div>
+                        <div class="badge">Kubernetes</div>
+                        <div class="badge">Azure Databricks</div>
+                        <div class="badge">Delta Lake</div>
+                        <div class="badge">Spark</div>
+                        <div class="badge">RAG</div>
+                        <div class="badge">LLMs</div>
+                        <div class="badge">gRPC</div>
+                        <div class="badge">Generative AI</div>
+                        <div class="badge">Observability AI</div>
+                        <div class="badge">Data Lake</div>
+                    </div>
+
+                </section>
+
+                <section class="section" id="ecosystem">
+
+                    <h2 class="section-title"><i class="bi bi-diagram-3"></i> Complete Ecosystem Vision</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[Angular Cockpit] --> B[Node.js BFF + GraphQL]
+
+        B --> C[HighPerformanceTaxAnalyzer API .NET 8]
+
+        C --> D[Profile Resolution Engine]
+
+        C --> E[Product Correlation Engine]
+
+        C --> F[Calculation Engine]
+
+        D --> G[(PostgreSQL)]
+
+        E --> G
+
+        F --> G
+
+        C --> H[gRPC Internal Services]
+
+        H --> I[Validation Services]
+
+        H --> J[Rule Search Services]
+
+        H --> K[AI Recommendation Services]
+
+        G --> L[CDC Pipeline]
+
+        L --> M[Kafka / Event Hub]
+
+        M --> N[Azure Data Lake]
+
+        N --> O[Azure Databricks]
+
+        O --> P[Spark Processing]
+
+        P --> Q[Delta Lake]
+
+        Q --> R[Gold Analytics Layer]
+
+        R --> S[Power BI]
+
+        R --> T[Machine Learning]
+
+        R --> U[RAG Platform]
+
+        U --> V[Azure OpenAI]
+
+        Q --> W[AI Observability]
+
+        W --> X[Anomaly Detection]
+
+        W --> Y[Predictive Monitoring]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="architecture">
+
+                    <h2 class="section-title"><i class="bi bi-building"></i> Enterprise Distributed Architecture</h2>
+
+                    <p class="section-description">
+                        The architecture must separate transactional workloads from analytical workloads while enabling
+                        real-time synchronization,
+                        AI processing and distributed observability.
+                    </p>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>Transactional Layer (OLTP)</h3>
+
+                            <ul>
+                                <li>.NET 8 Clean Architecture</li>
+                                <li>Dapper High Performance Queries</li>
+                                <li>PostgreSQL</li>
+                                <li>Redis Distributed Cache</li>
+                                <li>gRPC Internal Services</li>
+                                <li>Docker Containers</li>
+                                <li>Kubernetes AKS</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Analytical Layer (OLAP)</h3>
+
+                            <ul>
+                                <li>Azure Databricks</li>
+                                <li>Delta Lake</li>
+                                <li>Apache Spark</li>
+                                <li>Data Lake</li>
+                                <li>Streaming Pipelines</li>
+                                <li>ML Pipelines</li>
+                                <li>Semantic Search</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>AI Intelligence Layer</h3>
+
+                            <ul>
+                                <li>Azure OpenAI</li>
+                                <li>RAG Pipelines</li>
+                                <li>Embeddings</li>
+                                <li>LLM Assistants</li>
+                                <li>AI Copilots</li>
+                                <li>Anomaly Detection</li>
+                                <li>Predictive Analytics</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section" id="workspace">
+
+                    <h2 class="section-title"><i class="bi bi-cloud"></i> Azure Workspace Structure</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart TD
+
+        A[Azure Subscription]
+
+        A --> B[Azure Resource Group]
+
+        B --> C[Azure Kubernetes Service]
+
+        B --> D[Azure PostgreSQL Flexible Server]
+
+        B --> E[Azure Data Lake Gen2]
+
+        B --> F[Azure Databricks Workspace]
+
+        B --> G[Azure OpenAI]
+
+        B --> H[Azure Event Hub]
+
+        B --> I[Azure Monitor]
+
+        F --> J[Spark Clusters]
+
+        F --> K[Notebooks]
+
+        F --> L[Delta Lake]
+
+        F --> M[ML Models]
+
+        F --> N[MLflow]
+
+        F --> O[Unity Catalog]
+        </pre>
+                    </div>
+
+                    <table class="table">
+
+                        <tr>
+                            <th>Azure Component</th>
+                            <th>Purpose</th>
+                            <th>Responsibility</th>
+                        </tr>
+
+                        <tr>
+                            <td>AKS</td>
+                            <td>Container orchestration</td>
+                            <td>Microservices scalability</td>
+                        </tr>
+
+                        <tr>
+                            <td>Azure PostgreSQL</td>
+                            <td>Transactional storage</td>
+                            <td>OLTP workloads</td>
+                        </tr>
+
+                        <tr>
+                            <td>Azure Databricks</td>
+                            <td>Distributed analytics</td>
+                            <td>OLAP processing</td>
+                        </tr>
+
+                        <tr>
+                            <td>Delta Lake</td>
+                            <td>Reliable analytical storage</td>
+                            <td>ACID consistency</td>
+                        </tr>
+
+                        <tr>
+                            <td>Azure OpenAI</td>
+                            <td>Generative AI</td>
+                            <td>Tax copilots and semantic AI</td>
+                        </tr>
+
+                    </table>
+
+                </section>
+
+                <section class="section" id="oltp">
+
+                    <h2 class="section-title"><i class="bi bi-server"></i> OLTP Modernization Strategy</h2>
+
+                    <p class="section-description">
+                        The transactional layer must remain highly optimized for low latency operations.
+                        The goal is to isolate analytical workloads from PostgreSQL while maintaining operational
+                        consistency.
+                    </p>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>HighPerformanceTaxAnalyzer API</h3>
+
+                            <ul>
+                                <li>.NET 8</li>
+                                <li>Minimal APIs</li>
+                                <li>Clean Architecture</li>
+                                <li>Dapper</li>
+                                <li>CQRS</li>
+                                <li>MediatR</li>
+                                <li>Redis Cache</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Performance Strategy</h3>
+
+                            <ul>
+                                <li>Compiled Queries</li>
+                                <li>Partitioned Tables</li>
+                                <li>Connection Pooling</li>
+                                <li>Distributed Cache</li>
+                                <li>Async Pipelines</li>
+                                <li>Bulk Operations</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Database Strategy</h3>
+
+                            <ul>
+                                <li>Read Replicas</li>
+                                <li>Index Optimization</li>
+                                <li>Partitioning</li>
+                                <li>Logical Replication</li>
+                                <li>CDC Streams</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section" id="grpc">
+
+                    <h2 class="section-title"><i class="bi bi-router"></i> gRPC Distributed Communication</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[HighPerformanceTaxAnalyzer API] --> B[gRPC Rule Resolver]
+
+        A --> C[gRPC Product Matcher]
+
+        A --> D[gRPC Validation Engine]
+
+        A --> E[gRPC AI Assistant]
+        </pre>
+                    </div>
+
+                    <div class="info-box">
+                        Strongly typed high-performance gRPC communication will reduce serialization overhead and
+                        improve
+                        internal microservice latency.
+                    </div>
+
+                </section>
+
+                <section class="section" id="docker">
+
+                    <h2 class="section-title"><i class="bi bi-box-seam"></i> Docker Strategy</h2>
+
+                    <div class="code">
+                        <pre>
+        FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+        WORKDIR /app
+
+        COPY . .
+
+        RUN dotnet publish -c Release -o out
+
+        ENTRYPOINT ["dotnet", "HighPerformanceTaxAnalyzer.dll"]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="kubernetes">
+
+                    <h2 class="section-title"><i class="bi bi-diagram-2"></i> Kubernetes Architecture</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart TD
+
+        A[Ingress Controller]
+
+        A --> B[HighPerformanceTaxAnalyzer Pods]
+
+        B --> C[Profile Resolver Pods]
+
+        B --> D[Rule Resolver Pods]
+
+        B --> E[Validation Pods]
+
+        B --> F[AI Copilot Pods]
+
+        B --> G[Redis Cluster]
+
+        B --> H[PostgreSQL]
+        </pre>
+                    </div>
+
+                    <div class="warning-box">
+                        Horizontal Pod Autoscaling should dynamically scale services during invoice processing peaks.
+                    </div>
+
+                </section>
+
+                <section class="section" id="databricks">
+
+                    <h2 class="section-title"><i class="bi bi-lightning-charge"></i> Azure Databricks Strategy</h2>
+
+                    <p class="section-description">
+                        Azure Databricks will become the analytical brain of the platform.
+                        All heavy analytical, ML and AI workloads must be isolated from OLTP systems.
+                    </p>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[PostgreSQL CDC]
+
+        A --> B[Event Hub]
+
+        B --> C[Databricks Streaming]
+
+        C --> D[Bronze Delta]
+
+        D --> E[Silver Delta]
+
+        E --> F[Gold Delta]
+
+        F --> G[Analytics]
+
+        F --> H[Machine Learning]
+
+        F --> I[RAG Embeddings]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="delta">
+
+                    <h2 class="section-title"><i class="bi bi-shield-check"></i> Delta Lake Reliability Strategy</h2>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>ACID Reliability</h3>
+
+                            <p>
+                                Delta Lake guarantees transactional reliability even during concurrent writes and
+                                streaming
+                                ingestion.
+                            </p>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Time Travel</h3>
+
+                            <p>
+                                Historical versions allow rollback, auditing and reprocessing of fiscal operations.
+                            </p>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Schema Enforcement</h3>
+
+                            <p>
+                                Invalid or corrupted fiscal data will be automatically rejected before reaching
+                                analytical
+                                layers.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="code">
+                        <pre>
+        df.write.format("delta") \
+        .mode("append") \
+        .save("/mnt/delta/fiscal_rules")
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="spark">
+
+                    <h2 class="section-title"><i class="bi bi-lightning"></i> Apache Spark Distributed Processing</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart TD
+
+        A[Spark Driver]
+
+        A --> B[Worker Node 1]
+        A --> C[Worker Node 2]
+        A --> D[Worker Node 3]
+        A --> E[Worker Node 4]
+
+        B --> F[Parallel Rule Matching]
+        C --> F
+        D --> F
+        E --> F
+        </pre>
+                    </div>
+
+                    <div class="info-box">
+                        Spark distributed processing enables massive tax rule analysis, anomaly detection and semantic
+                        indexing at scale.
+                    </div>
+
+                </section>
+
+                <section class="section" id="pipelines">
+
+                    <h2 class="section-title"><i class="bi bi-bezier2"></i> Data Pipelines Strategy</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[PostgreSQL]
+
+        A --> B[CDC]
+
+        B --> C[Kafka/Event Hub]
+
+        C --> D[Spark Streaming]
+
+        D --> E[Bronze Layer]
+
+        E --> F[Silver Layer]
+
+        F --> G[Gold Layer]
+
+        G --> H[Analytics]
+
+        G --> I[ML Models]
+
+        G --> J[RAG Search]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="llm">
+
+                    <h2 class="section-title"><i class="bi bi-robot"></i> LLMs and Generative AI</h2>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>Tax Copilot</h3>
+
+                            <ul>
+                                <li>Semantic tax search</li>
+                                <li>Rule explanation</li>
+                                <li>Invoice analysis</li>
+                                <li>Natural language queries</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>AI Rule Generation</h3>
+
+                            <ul>
+                                <li>Generate fiscal rules</li>
+                                <li>Suggest missing rules</li>
+                                <li>Detect inconsistencies</li>
+                                <li>Predict fiscal conflicts</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>AI Validation</h3>
+
+                            <ul>
+                                <li>Invoice anomaly detection</li>
+                                <li>Suspicious tax behavior</li>
+                                <li>Operational risk analysis</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section" id="rag">
+
+                    <h2 class="section-title"><i class="bi bi-search"></i> RAG Semantic Search Platform</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[Fiscal Rules]
+
+        A --> B[Embeddings Generator]
+
+        B --> C[Vector Database]
+
+        C --> D[Semantic Search]
+
+        D --> E[Azure OpenAI]
+
+        E --> F[Tax Copilot Response]
+        </pre>
+                    </div>
+
+                    <div class="code">
+                        <pre>
+        "Find ICMS-ST rules for interstate operations involving auto parts in São Paulo"
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="genai">
+
+                    <h2 class="section-title"><i class="bi bi-magic"></i> Generative AI for Rule Creation</h2>
+
+                    <div class="code">
+                        <pre>
+        Prompt:
+
+        "Generate a fiscal rule for ICMS-ST applicable to NCM 8708
+        for interstate operations between SP and MG considering
+        Simples Nacional and CST 060."
+        </pre>
+                    </div>
+
+                    <div class="info-box">
+                        The generated rule must always pass through human approval before production publication.
+                    </div>
+
+                </section>
+
+                <section class="section" id="ml">
+
+                    <h2 class="section-title"><i class="bi bi-cpu"></i> Machine Learning Models</h2>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>Anomaly Detection</h3>
+
+                            <ul>
+                                <li>Unexpected tax values</li>
+                                <li>Incorrect tax patterns</li>
+                                <li>Outlier operations</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Predictive Models</h3>
+
+                            <ul>
+                                <li>Operational overload</li>
+                                <li>Latency forecasting</li>
+                                <li>Fiscal error prediction</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Recommendation Models</h3>
+
+                            <ul>
+                                <li>Rule recommendations</li>
+                                <li>Product matching</li>
+                                <li>Tax optimization</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section" id="observability">
+
+                    <h2 class="section-title"><i class="bi bi-eye"></i> AI Observability Platform</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart LR
+
+        A[Applications]
+
+        A --> B[OpenTelemetry]
+
+        B --> C[Azure Monitor]
+
+        C --> D[Metrics]
+
+        C --> E[Logs]
+
+        C --> F[Distributed Traces]
+
+        F --> G[AI Anomaly Detection]
+
+        G --> H[Predictive Insights]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="anomaly">
+
+                    <h2 class="section-title"><i class="bi bi-exclamation-triangle"></i> Anomaly Detection</h2>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>Database Anomalies</h3>
+
+                            <ul>
+                                <li>Slow queries</li>
+                                <li>Index degradation</li>
+                                <li>Connection spikes</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Operational Anomalies</h3>
+
+                            <ul>
+                                <li>Unexpected tax behaviors</li>
+                                <li>Calculation spikes</li>
+                                <li>Rule conflicts</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Infrastructure Anomalies</h3>
+
+                            <ul>
+                                <li>CPU spikes</li>
+                                <li>Memory leaks</li>
+                                <li>Pod instability</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section" id="predictive">
+
+                    <h2 class="section-title"><i class="bi bi-graph-up-arrow"></i> Predictive Analytics</h2>
+
+                    <div class="diagram">
+                        <pre class="mermaid">
+        flowchart TD
+
+        A[Telemetry Data]
+
+        A --> B[ML Forecasting]
+
+        B --> C[Capacity Prediction]
+
+        B --> D[Failure Prediction]
+
+        B --> E[Cost Prediction]
+
+        B --> F[Traffic Prediction]
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="notebooks">
+
+                    <h2 class="section-title"><i class="bi bi-journal-code"></i> Databricks Notebook Examples</h2>
+
+                    <h3>Fiscal Rules Query Notebook</h3>
+
+                    <div class="code">
+                        <pre>
+        from pyspark.sql import SparkSession
+
+        spark = SparkSession.builder.appName("FiscalRules").getOrCreate()
+
+        df = spark.read.format("delta").load("/mnt/delta/fiscal_rules")
+
+        filtered = df.filter(
+            (df.uf == "SP") &
+            (df.ncm == "87089990")
+        )
+
+        display(filtered)
+        </pre>
+                    </div>
+
+                    <h3>Product Correlation Notebook</h3>
+
+                    <div class="code">
+                        <pre>
+        products = spark.read.format("delta").load("/mnt/delta/products")
+
+        matches = products.filter(
+            products.cEAN == "7891234567890"
+        )
+
+        display(matches)
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="sql">
+
+                    <h2 class="section-title"><i class="bi bi-database"></i> SQL Analytics Examples</h2>
+
+                    <div class="code">
+                        <pre>
+        SELECT
+            uf,
+            COUNT(*) AS total_rules,
+            AVG(icms_value) AS avg_icms
+        FROM gold.tax_rules
+        GROUP BY uf
+        ORDER BY total_rules DESC;
+        </pre>
+                    </div>
+
+                    <div class="code">
+                        <pre>
+        SELECT
+            ncm,
+            COUNT(*) AS total_products
+        FROM gold.products
+        GROUP BY ncm
+        ORDER BY total_products DESC;
+        </pre>
+                    </div>
+
+                </section>
+
+                <section class="section" id="aiqueries">
+
+                    <h2 class="section-title"><i class="bi bi-chat-right-text"></i> AI Semantic Query Examples</h2>
+
+                    <div class="grid">
+
+                        <div class="card">
+                            <h3>Natural Language Search</h3>
+
+                            <p>
+                                "Show fiscal rules for interstate ICMS-ST operations involving automotive parts between
+                                São
+                                Paulo and Minas Gerais."
+                            </p>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>Tax Explanation</h3>
+
+                            <p>
+                                "Why was CST 060 applied to this invoice item?"
+                            </p>
+
+                        </div>
+
+                        <div class="card">
+                            <h3>AI Recommendation</h3>
+
+                            <p>
+                                "Suggest missing fiscal rules for NCM 22030000 in the Northeast region."
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="section mb-0">
+
+                    <h2 class="section-title"><i class="bi bi-map"></i> Implementation Roadmap</h2>
+
+                    <table class="table">
+
+                        <tr>
+                            <th>Phase</th>
+                            <th>Goal</th>
+                            <th>Main Deliverables</th>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 1</td>
+                            <td>Infrastructure Foundation</td>
+                            <td>AKS, PostgreSQL, Event Hub, Docker</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 2</td>
+                            <td>Data Platform</td>
+                            <td>Databricks, Delta Lake, Spark</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 3</td>
+                            <td>Streaming Architecture</td>
+                            <td>CDC, Kafka/Event Hub</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 4</td>
+                            <td>AI & RAG</td>
+                            <td>Embeddings, OpenAI, Semantic Search</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 5</td>
+                            <td>Observability AI</td>
+                            <td>Anomaly Detection, Predictive Monitoring</td>
+                        </tr>
+
+                        <tr>
+                            <td>Phase 6</td>
+                            <td>Autonomous Tax Intelligence</td>
+                            <td>AI Rule Generation, AI Validation</td>
+                        </tr>
+
+                    </table>
+
+                </section>
+            </div>
+
+        </main>
+
+        <aside class="sidebar">
+            <h1><i class="bi bi-menu-button"></i> -----------</h1>
+
+            <div class="nav-title">MENU</div>
+
+            <a href="#vision">Strategic Vision</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#workspace">Azure Workspace</a>
+
+            <div class="nav-title">Core Platform</div>
+
+            <a href="#oltp">OLTP Architecture</a>
+            <a href="#grpc">gRPC Services</a>
+            <a href="#kubernetes">Kubernetes</a>
+            <a href="#docker">Docker</a>
+
+            <div class="nav-title">Data Platform</div>
+
+            <a href="#databricks">Azure Databricks</a>
+            <a href="#datalake">Data Lake</a>
+            <a href="#delta">Delta Lake</a>
+            <a href="#spark">Spark Processing</a>
+            <a href="#pipelines">Pipelines</a>
+
+            <div class="nav-title">Artificial Intelligence</div>
+
+            <a href="#llm">LLMs</a>
+            <a href="#rag">RAG</a>
+            <a href="#genai">Generative AI</a>
+            <a href="#ml">Machine Learning</a>
+
+            <div class="nav-title">Observability</div>
+
+            <a href="#observability">AI Observability</a>
+            <a href="#anomaly">Anomaly Detection</a>
+            <a href="#predictive">Predictive Analytics</a>
+
+            <div class="nav-title">Examples</div>
+
+            <a href="#notebooks">Notebooks</a>
+            <a href="#sql">SQL Queries</a>
+            <a href="#aiqueries">AI Queries</a>
+
+        </aside>
+    </div>
+
+    <script>
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default'
+        });
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const currentLanguage = localStorage.getItem('technicalDocLanguage') || 'en';
+
+        const translationResources = {
+            pt: {
+                translation: {
+                    "High-Performance Tax Analyzer - Intelligent Fiscal Platform": "Analisador Fiscal de Alta Performance - Plataforma Fiscal Inteligente",
+                    "Intelligent Fiscal Platform": "Plataforma Fiscal Inteligente",
+                    "Search documentation...": "Pesquisar na documentação...",
+                    "Overview": "Visão Geral",
+                    "Strategic Vision": "Visão Estratégica",
+                    "Ecosystem": "Ecossistema",
+                    "Architecture": "Arquitetura",
+                    "Azure Workspace": "Espaço de Trabalho Azure",
+                    "Core Platform": "Plataforma Principal",
+                    "OLTP Architecture": "Arquitetura OLTP",
+                    "gRPC Services": "Serviços gRPC",
+                    "Kubernetes": "Kubernetes",
+                    "Docker": "Docker",
+                    "Data Platform": "Plataforma de Dados",
+                    "Azure Databricks": "Azure Databricks",
+                    "Data Lake": "Data Lake",
+                    "Delta Lake": "Delta Lake",
+                    "Spark Processing": "Processamento Spark",
+                    "Pipelines": "Pipelines",
+                    "Artificial Intelligence": "Inteligência Artificial",
+                    "LLMs": "LLMs",
+                    "RAG": "RAG",
+                    "Generative AI": "IA Generativa",
+                    "Machine Learning": "Machine Learning",
+                    "Observability": "Observabilidade",
+                    "AI Observability": "Observabilidade com IA",
+                    "Anomaly Detection": "Detecção de Anomalias",
+                    "Predictive Analytics": "Análise Preditiva",
+                    "Examples": "Exemplos",
+                    "Notebooks": "Notebooks",
+                    "SQL Queries": "Consultas SQL",
+                    "AI Queries": "Consultas IA",
+                    "Enterprise Distributed Tax Intelligence Platform powered by .NET 8, Azure, Databricks, Spark, Delta Lake, Kubernetes, AI, RAG and Distributed Processing.": "Plataforma de Inteligência Fiscal Distribuída Enterprise desenvolvida com .NET 8, Azure, Databricks, Spark, Delta Lake, Kubernetes, IA, RAG e Processamento Distribuído.",
+                    "Platform Vision": "Visão da Plataforma",
+                    "The High-Performance Tax Analyzer is undergoing a strategic evolution from a traditional calculation engine into a state-of-the-art Intelligent Fiscal Platform. By leveraging distributed processing, artificial intelligence, and semantic reasoning, it delivers real-time analytics and autonomous operational intelligence. This unified enterprise ecosystem seamlessly converges high-throughput transactional workloads with deep analytical processing, generative AI, and predictive monitoring—empowering organizations to process millions of fiscal operations with unparalleled scalability, ultra-low latency, and intelligent, data-driven decision-making.": "O Analisador Fiscal de Alta Performance está passando por uma evolução estratégica, de um motor de cálculo tradicional para uma Plataforma Fiscal Inteligente de última geração. Através de processamento distribuído, inteligência artificial e raciocínio semântico, a plataforma entrega análises em tempo real e inteligência operacional autônoma. Este ecossistema corporativo unificado converge cargas de trabalho transacionais de alto volume com processamento analítico profundo, IA generativa e monitoramento preditivo — capacitando organizações a processar milhões de operações fiscais com escalabilidade incomparável, latência ultrabaixa e tomada de decisão inteligente e baseada em dados.",
+                    "An Enterprise Distributed Tax Intelligence Platform engineered for the future, powered by a modern stack featuring .NET 8, Azure Databricks, Spark, Delta Lake, Kubernetes, and advanced RAG architectures.": "Uma Plataforma de Inteligência Fiscal Corporativa Distribuída projetada para o futuro, impulsionada por uma stack moderna contendo .NET 8, Azure Databricks, Spark, Delta Lake, Kubernetes e arquiteturas RAG avançadas.",
+                    "Complete Ecosystem Vision": "Visão Completa do Ecossistema",
+                    "Enterprise Distributed Architecture": "Arquitetura Distribuída Enterprise",
+                    "The architecture must separate transactional workloads from analytical workloads while enabling real-time synchronization, AI processing and distributed observability.": "A arquitetura deve separar as cargas de trabalho transacionais das cargas de trabalho analíticas, permitindo sincronização em tempo real, processamento de IA e observabilidade distribuída.",
+                    "Transactional Layer (OLTP)": "Camada Transacional (OLTP)",
+                    ".NET 8 Clean Architecture": ".NET 8 Clean Architecture",
+                    "Dapper High Performance Queries": "Consultas de Alta Performance com Dapper",
+                    "PostgreSQL": "PostgreSQL",
+                    "Redis Distributed Cache": "Cache Distribuído Redis",
+                    "gRPC Internal Services": "Serviços Internos gRPC",
+                    "Docker Containers": "Contêineres Docker",
+                    "Kubernetes AKS": "Kubernetes AKS",
+                    "Analytical Layer (OLAP)": "Camada Analítica (OLAP)",
+                    "Azure Databricks": "Azure Databricks",
+                    "Delta Lake": "Delta Lake",
+                    "Apache Spark": "Apache Spark",
+                    "Data Lake": "Data Lake",
+                    "Streaming Pipelines": "Pipelines de Streaming",
+                    "ML Pipelines": "Pipelines de ML",
+                    "Semantic Search": "Busca Semântica",
+                    "AI Intelligence Layer": "Camada de Inteligência de IA",
+                    "Azure OpenAI": "Azure OpenAI",
+                    "RAG Pipelines": "Pipelines RAG",
+                    "Embeddings": "Embeddings",
+                    "LLM Assistants": "Assistentes LLM",
+                    "AI Copilots": "Copilotos de IA",
+                    "Anomaly Detection": "Detecção de Anomalias",
+                    "Predictive Analytics": "Análises Preditivas",
+                    "Azure Workspace Structure": "Estrutura do Workspace Azure",
+                    "Azure Component": "Componente Azure",
+                    "Purpose": "Propósito",
+                    "Responsibility": "Responsabilidade",
+                    "AKS": "AKS",
+                    "Container orchestration": "Orquestração de contêineres",
+                    "Microservices scalability": "Escalabilidade de microsserviços",
+                    "Azure PostgreSQL": "Azure PostgreSQL",
+                    "Transactional storage": "Armazenamento transacional",
+                    "OLTP workloads": "Cargas de trabalho OLTP",
+                    "Azure Databricks": "Azure Databricks",
+                    "Distributed analytics": "Análise distribuída",
+                    "OLAP processing": "Processamento OLAP",
+                    "Delta Lake": "Delta Lake",
+                    "Reliable analytical storage": "Armazenamento analítico confiável",
+                    "ACID consistency": "Consistência ACID",
+                    "Azure OpenAI": "Azure OpenAI",
+                    "Generative AI": "IA Generativa",
+                    "Tax copilots and semantic AI": "Copilotos fiscais e IA semântica",
+                    "OLTP Modernization Strategy": "Estratégia de Modernização OLTP",
+                    "The transactional layer must remain highly optimized for low latency operations. The goal is to isolate analytical workloads from PostgreSQL while maintaining operational consistency.": "A camada transacional deve permanecer altamente otimizada para operações de baixa latência. O objetivo é isolar as cargas de trabalho analíticas do PostgreSQL mantendo a consistência operacional.",
+                    "HighPerformanceTaxAnalyzer API": "API HighPerformanceTaxAnalyzer",
+                    ".NET 8": ".NET 8",
+                    "Minimal APIs": "Minimal APIs",
+                    "Clean Architecture": "Clean Architecture",
+                    "Dapper": "Dapper",
+                    "CQRS": "CQRS",
+                    "MediatR": "MediatR",
+                    "Redis Cache": "Cache Redis",
+                    "Performance Strategy": "Estratégia de Performance",
+                    "Compiled Queries": "Consultas Compiladas",
+                    "Partitioned Tables": "Tabelas Particionadas",
+                    "Connection Pooling": "Pool de Conexões",
+                    "Distributed Cache": "Cache Distribuído",
+                    "Async Pipelines": "Pipelines Assíncronos",
+                    "Bulk Operations": "Operações em Massa",
+                    "Database Strategy": "Estratégia de Banco de Dados",
+                    "Read Replicas": "Réplicas de Leitura",
+                    "Index Optimization": "Otimização de Índices",
+                    "Partitioning": "Particionamento",
+                    "Logical Replication": "Replicação Lógica",
+                    "CDC Streams": "Streams CDC",
+                    "gRPC Distributed Communication": "Comunicação Distribuída gRPC",
+                    "Strongly typed high-performance gRPC communication will reduce serialization overhead and improve internal microservice latency.": "A comunicação gRPC de alta performance e fortemente tipada reduzirá a sobrecarga de serialização e melhorará a latência interna dos microsserviços.",
+                    "Docker Strategy": "Estratégia Docker",
+                    "Kubernetes Architecture": "Arquitetura Kubernetes",
+                    "Horizontal Pod Autoscaling should dynamically scale services during invoice processing peaks.": "O Horizontal Pod Autoscaling deve dimensionar dinamicamente os serviços durante os picos de processamento de notas fiscais.",
+                    "Azure Databricks Strategy": "Estratégia Azure Databricks",
+                    "Azure Databricks will become the analytical brain of the platform. All heavy analytical, ML and AI workloads must be isolated from OLTP systems.": "O Azure Databricks se tornará o cérebro analítico da plataforma. Todas as cargas de trabalho pesadas de análise, ML e IA devem ser isoladas dos sistemas OLTP.",
+                    "Delta Lake Strategy": "Estratégia Delta Lake",
+                    "Spark Processing Strategy": "Estratégia de Processamento Spark",
+                    "Data Lake Strategy": "Estratégia Data Lake",
+                    "Artificial Intelligence Strategy": "Estratégia de Inteligência Artificial",
+                    "LLM Integration": "Integração LLM",
+                    "RAG Pipeline": "Pipeline RAG",
+                    "Generative AI Applications": "Aplicações de IA Generativa",
+                    "Machine Learning Models": "Modelos de Machine Learning",
+                    "Observability Strategy": "Estratégia de Observabilidade",
+                    "AI Observability Framework": "Framework de Observabilidade com IA",
+                    "Anomaly Detection Implementation": "Implementação de Detecção de Anomalias",
+                    "Predictive Analytics Deployment": "Implantação de Análise Preditiva",
+                    "AI Semantic Query Examples": "Exemplos de Consultas Semânticas de IA",
+                    "Natural Language Search": "Busca em Linguagem Natural",
+                    "Show fiscal rules for interstate ICMS-ST operations involving automotive parts between São Paulo and Minas Gerais.": "Mostrar regras fiscais para operações interestaduais de ICMS-ST envolvendo autopeças entre São Paulo e Minas Gerais.",
+                    "Tax Explanation": "Explicação Fiscal",
+                    "Why was CST 060 applied to this invoice item?": "Por que o CST 060 foi aplicado a este item da nota fiscal?",
+                    "AI Recommendation": "Recomendação de IA",
+                    "Suggest missing fiscal rules for NCM 22030000 in the Northeast region.": "Sugerir regras fiscais ausentes para NCM 22030000 na região Nordeste.",
+                    "Implementation Roadmap": "Roadmap de Implementação",
+                    "Phase": "Fase",
+                    "Goal": "Objetivo",
+                    "Main Deliverables": "Principais Entregáveis",
+                    "Phase 1": "Fase 1",
+                    "Infrastructure Foundation": "Fundação de Infraestrutura",
+                    "AKS, PostgreSQL, Event Hub, Docker": "AKS, PostgreSQL, Event Hub, Docker",
+                    "Phase 2": "Fase 2",
+                    "Data Platform": "Plataforma de Dados",
+                    "Databricks, Delta Lake, Spark": "Databricks, Delta Lake, Spark",
+                    "Phase 3": "Fase 3",
+                    "Streaming Architecture": "Arquitetura de Streaming",
+                    "CDC, Kafka/Event Hub": "CDC, Kafka/Event Hub",
+                    "Phase 4": "Fase 4",
+                    "AI & RAG": "IA e RAG",
+                    "Embeddings, OpenAI, Semantic Search": "Embeddings, OpenAI, Busca Semântica",
+                    "Phase 5": "Fase 5",
+                    "Observability AI": "IA de Observabilidade",
+                    "Anomaly Detection, Predictive Monitoring": "Detecção de Anomalias, Monitoramento Preditivo",
+                    "Phase 6": "Fase 6",
+                    "Autonomous Tax Intelligence": "Inteligência Fiscal Autônoma",
+                    "AI Rule Generation, AI Validation": "Geração de Regras por IA, Validação por IA",
+                    "Spark": "Spark",
+                    "gRPC": "gRPC",
+                    "Delta Lake Reliability Strategy": "Estratégia de Confiabilidade do Delta Lake",
+                    "ACID Reliability": "Confiabilidade ACID",
+                    "Delta Lake guarantees transactional reliability even during concurrent writes and streaming ingestion.": "O Delta Lake garante a confiabilidade transacional mesmo durante escritas concorrentes e ingestão de streaming.",
+                    "Time Travel": "Viagem no Tempo (Time Travel)",
+                    "Historical versions allow rollback, auditing and reprocessing of fiscal operations.": "Versões históricas permitem rollback, auditoria e reprocessamento de operações fiscais.",
+                    "Schema Enforcement": "Imposição de Esquema (Schema Enforcement)",
+                    "Invalid or corrupted fiscal data will be automatically rejected before reaching analytical layers.": "Dados fiscais inválidos ou corrompidos serão automaticamente rejeitados antes de atingirem as camadas analíticas.",
+                    "Apache Spark Distributed Processing": "Processamento Distribuído com Apache Spark",
+                    "Spark distributed processing enables massive tax rule analysis, anomaly detection and semantic indexing at scale.": "O processamento distribuído do Spark permite análise massiva de regras fiscais, detecção de anomalias e indexação semântica em larga escala.",
+                    "Data Pipelines Strategy": "Estratégia de Pipelines de Dados",
+                    "LLMs and Generative AI": "LLMs e IA Generativa",
+                    "Tax Copilot": "Copiloto Fiscal",
+                    "Semantic tax search": "Busca fiscal semântica",
+                    "Rule explanation": "Explicação de regras",
+                    "Invoice analysis": "Análise de notas fiscais",
+                    "Natural language queries": "Consultas em linguagem natural",
+                    "AI Rule Generation": "Geração de Regras por IA",
+                    "Generate fiscal rules": "Gerar regras fiscais",
+                    "Suggest missing rules": "Sugerir regras ausentes",
+                    "Detect inconsistencies": "Detectar inconsistências",
+                    "Predict fiscal conflicts": "Prever conflitos fiscais",
+                    "AI Validation": "Validação por IA",
+                    "Invoice anomaly detection": "Detecção de anomalias em notas fiscais",
+                    "Suspicious tax behavior": "Comportamento fiscal suspeito",
+                    "Operational risk analysis": "Análise de risco operacional",
+                    "RAG Semantic Search Platform": "Plataforma de Busca Semântica RAG",
+                    "Generative AI for Rule Creation": "IA Generativa para Criação de Regras",
+                    "The generated rule must always pass through human approval before production publication.": "A regra gerada deve sempre passar por aprovação humana antes da publicação em produção.",
+                    "Unexpected tax values": "Valores de impostos inesperados",
+                    "Incorrect tax patterns": "Padrões fiscais incorretos",
+                    "Outlier operations": "Operações atípicas (outliers)",
+                    "Predictive Models": "Modelos Preditivos",
+                    "Operational overload": "Sobrecarga operacional",
+                    "Latency forecasting": "Previsão de latência",
+                    "Fiscal error prediction": "Previsão de erro fiscal",
+                    "Recommendation Models": "Modelos de Recomendação",
+                    "Rule recommendations": "Recomendações de regras",
+                    "Product matching": "Correspondência de produtos",
+                    "Tax optimization": "Otimização fiscal",
+                    "AI Observability Platform": "Plataforma de Observabilidade de IA",
+                    "Database Anomalies": "Anomalias de Banco de Dados",
+                    "Slow queries": "Consultas lentas",
+                    "Index degradation": "Degradação de índices",
+                    "Connection spikes": "Picos de conexão",
+                    "Operational Anomalies": "Anomalias Operacionais",
+                    "Unexpected tax behaviors": "Comportamentos fiscais inesperados",
+                    "Calculation spikes": "Picos de cálculo",
+                    "Rule conflicts": "Conflitos de regras",
+                    "Infrastructure Anomalies": "Anomalias de Infraestrutura",
+                    "CPU spikes": "Picos de CPU",
+                    "Memory leaks": "Vazamentos de memória",
+                    "Pod instability": "Instabilidade de pods",
+                    "Databricks Notebook Examples": "Exemplos de Notebooks no Databricks",
+                    "Fiscal Rules Query Notebook": "Notebook de Consulta de Regras Fiscais",
+                    "Product Correlation Notebook": "Notebook de Correlação de Produtos",
+                    "SQL Analytics Examples": "Exemplos de SQL Analytics",
+                    "\"Show fiscal rules for interstate ICMS-ST operations involving automotive parts between São Paulo and Minas Gerais.\"": "\"Mostrar regras fiscais para operações interestaduais de ICMS-ST envolvendo autopeças entre São Paulo e Minas Gerais.\"",
+                    "\"Why was CST 060 applied to this invoice item?\"": "\"Por que o CST 060 foi aplicado a este item da nota fiscal?\"",
+                    "\"Suggest missing fiscal rules for NCM 22030000 in the Northeast region.\"": "\"Sugerir regras fiscais ausentes para NCM 22030000 na região Nordeste.\"",
+                    "High-Performance Tax Analyzer - Intelligent Fiscal Platform • Enterprise Distributed Tax Intelligence Ecosystem": "Analisador Fiscal de Alta Performance - Plataforma Fiscal Inteligente • Ecossistema Corporativo Distribuído de Inteligência Fiscal"
+                }
+            }
+        };
+
+        function normalizeText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        function createTranslatableElements() {
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li:not(.breadcrumb-item), td, th, span:not(.badge):not(.bi), a:not(.lang-item):not(.dropdown-item), button:not(#languageToggle), .tag, .callout, .warning, .danger, .badge, .info-box, .warning-box, .success-box'))
+                .filter(element => {
+                    if (element.closest('code, pre, .code-block, #languageSelectorRoot, .dropdown-menu')) return false;
+                    if (element.querySelector('code, pre')) return false;
+                    if (element.classList.contains('no-translate')) return false;
+                    const text = normalizeText(element.textContent || '');
+                    return text.length > 1;
+                });
+        }
+
+        function storeOriginalText(element) {
+            if (!element.dataset.originalText) {
+                element.dataset.originalText = normalizeText(element.textContent);
+            }
+        }
+
+        function restoreOriginalTexts(elements) {
+            elements.forEach(el => {
+                if (el.dataset.originalText) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + el.dataset.originalText;
+                    } else {
+                        el.textContent = el.dataset.originalText;
+                    }
+                }
+            });
+        }
+
+        function applyTranslations(elements) {
+            elements.forEach(el => {
+                const originalKey = el.dataset.originalText || normalizeText(el.textContent);
+                const translated = i18next.t(originalKey, { defaultValue: originalKey });
+                if (translated !== originalKey) {
+                    const icon = el.querySelector('i.bi');
+                    if (icon) {
+                        el.innerHTML = icon.outerHTML + ' ' + translated;
+                    } else {
+                        el.textContent = translated;
+                    }
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            if (lang === i18next.language) return;
+            localStorage.setItem('technicalDocLanguage', lang);
+            i18next.changeLanguage(lang).then(() => {
+                const elements = createTranslatableElements();
+                if (lang === 'en') {
+                    restoreOriginalTexts(elements);
+                } else {
+                    elements.forEach(storeOriginalText);
+                    applyTranslations(elements);
+                }
+                document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+            });
+        }
+
+        function renderLanguageSwitcher() {
+            if (!window.React || !window.ReactDOM || !window.i18next || !window.ReactI18next) return;
+            const { useTranslation, I18nextProvider } = window.ReactI18next;
+
+            function LanguageSwitcher() {
+                const { i18n } = useTranslation();
+                const [open, setOpen] = React.useState(false);
+
+                React.useEffect(() => {
+                    function handleDocumentClick(event) {
+                        const root = document.getElementById('languageSelectorRoot');
+                        if (root && !root.contains(event.target)) {
+                            setOpen(false);
+                        }
+                    }
+                    document.addEventListener('click', handleDocumentClick);
+                    return () => document.removeEventListener('click', handleDocumentClick);
+                }, []);
+
+                const lang = i18n.language || 'en';
+                const flagSrc = lang === 'pt'
+                    ? 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg'
+                    : 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg';
+                const flagAlt = lang === 'pt' ? 'BR' : 'US';
+
+                return React.createElement('div', {
+                    className: `dropdown${open ? ' show' : ''}`,
+                    style: { position: 'relative' }
+                },
+                    React.createElement('button', {
+                        type: 'button',
+                        className: 'btn shadow no-translate',
+                        onClick: () => setOpen(prev => !prev),
+                        style: { backgroundColor: '#fff', color: '#000', minWidth: '45px', padding: '6px 10px' },
+                        title: 'Select Language',
+                        'aria-haspopup': 'true',
+                        'aria-expanded': open
+                    },
+                        React.createElement('img', {
+                            id: 'flagIcon',
+                            src: flagSrc,
+                            alt: flagAlt,
+                            style: { width: '24px', height: '18px', borderRadius: '2px' }
+                        })
+                    ),
+                    React.createElement('ul', {
+                        className: `dropdown-menu dropdown-menu-end shadow${open ? ' show' : ''}`,
+                        style: { display: open ? 'block' : 'none', marginTop: '4px' }
+                    },
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('pt'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/BR.svg',
+                                    alt: 'BR',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'Português'
+                            )
+                        ),
+                        React.createElement('li', null,
+                            React.createElement('button', {
+                                type: 'button',
+                                className: 'dropdown-item fw-bold no-translate',
+                                style: { width: '100%', textAlign: 'left', background: 'none', border: 'none' },
+                                onClick: () => { changeLanguage('en'); setOpen(false); }
+                            },
+                                React.createElement('img', {
+                                    src: 'https://cdn.jsdelivr.net/npm/country-flag-icons@1.5.7/3x2/US.svg',
+                                    alt: 'US',
+                                    style: { width: '20px', height: '15px', borderRadius: '2px', marginRight: '8px' }
+                                }),
+                                'English'
+                            )
+                        )
+                    )
+                );
+            }
+
+            const rootElement = document.getElementById('languageSelectorRoot');
+            if (rootElement) {
+                try {
+                    ReactDOM.createRoot(rootElement).render(
+                        React.createElement(I18nextProvider, { i18n: i18next }, React.createElement(LanguageSwitcher))
+                    );
+                } catch (error) {
+                    console.error('Error rendering React component:', error);
+                }
+            }
+        }
+
+        function initializeLanguageSwitcher() {
+            if (typeof i18next === 'undefined' || typeof window.ReactI18next === 'undefined') {
+                setTimeout(initializeLanguageSwitcher, 100);
+                return;
+            }
+
+            i18next
+                .use(window.ReactI18next.initReactI18next)
+                .init({
+                    resources: translationResources,
+                    lng: currentLanguage,
+                    fallbackLng: 'en',
+                    debug: false,
+                    keySeparator: false,
+                    interpolation: { escapeValue: false }
+                }).then(() => {
+                    renderLanguageSwitcher();
+                    document.documentElement.lang = (i18next.language === 'pt' ? 'pt-BR' : 'en');
+
+                    if (i18next.language === 'pt') {
+                        const elements = createTranslatableElements();
+                        elements.forEach(storeOriginalText);
+                        applyTranslations(elements);
+                    }
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeLanguageSwitcher();
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.code pre').forEach(pre => {
+            const lines = pre.textContent.split('\n');
+
+            // remove linhas vazias do início e fim
+            while (lines.length && lines[0].trim() === '') lines.shift();
+            while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+            // detecta indentação mínima
+            const indent = Math.min(
+                ...lines
+                    .filter(l => l.trim().length > 0)
+                    .map(l => l.match(/^(\s*)/)[0].length)
+            );
+
+            // remove apenas essa indentação
+            pre.textContent = lines.map(l => l.slice(indent)).join('\n');
+        });
+    </script>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>

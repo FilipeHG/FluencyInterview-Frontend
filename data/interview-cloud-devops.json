@@ -1,0 +1,63 @@
+[
+    {
+        "title": "Messaging & Event-Driven",
+        "icon": "bi bi-chat-square-quote",
+        "cards": [
+            {
+                "topic": "Kafka vs RabbitMQ",
+                "q_en": "What is the difference between Kafka and RabbitMQ and when do you use each?",
+                "q_pt": "Qual a diferença entre Kafka e RabbitMQ e quando usar cada um?",
+                "a_en": "Kafka is an event streaming platform based on a distributed append-only log. It offers massive throughput and retains messages. It is ideal for Big Data, stream processing, and event sourcing. RabbitMQ is a traditional smart message broker. It uses queues and exchanges for complex routing (fanout, topic). It is ideal for microservice communication, background job queues, and low-latency delivery where messages are deleted once consumed.",
+                "a_pt": "Kafka é uma plataforma de streaming baseada em um log distribuído. Tem throughput massivo e retém as mensagens no disco. É ideal para Big Data e event sourcing. RabbitMQ é um broker tradicional inteligente. Usa exchanges e filas para roteamento complexo. É ideal para comunicação entre microsserviços, filas de trabalho em background e baixa latência, onde a mensagem é apagada após lida."
+            },
+            {
+                "topic": "AWS Pub/Sub Flow",
+                "q_en": "How does a Pub/Sub flow work using AWS (SNS, SQS, Lambda, EventBridge)?",
+                "q_pt": "Como funciona o fluxo Pub/Sub usando AWS (SNS, SQS, Lambda, EventBridge)?",
+                "a_en": "A standard AWS flow uses SNS as the publisher topic. The messages are then routed to an SQS queue which buffers them, offering automatic retries and rate control. Finally, an AWS Lambda function polls the SQS queue to process the messages. Using SQS between SNS and Lambda acts as a shock absorber, preventing the Lambda from being overwhelmed during traffic spikes. EventBridge is used for even more advanced event routing across the cloud.",
+                "a_pt": "Um fluxo padrão usa o SNS como tópico de publicação. As mensagens vão para uma fila SQS que faz o buffer, garantindo retries e controle de taxa. Finalmente, uma função Lambda lê a fila SQS. Usar o SQS entre o SNS e a Lambda atua como um amortecedor, evitando que a Lambda seja sobrecarregada em picos. O EventBridge é usado para roteamento de eventos ainda mais avançado."
+            },
+            {
+                "topic": "Azure Pub/Sub Flow",
+                "q_en": "How does a Pub/Sub flow work using Azure Cloud Services?",
+                "q_pt": "Como funciona o fluxo Pub/Sub usando Azure Cloud Services?",
+                "a_en": "In Azure, we typically use Azure Service Bus. A producer publishes messages to a Topic. Multiple Subscriptions can listen to that Topic and apply filters to receive a copy of the message. Then, consumers like Azure Functions or Logic Apps are triggered automatically to process the message. Azure Event Grid is also used for resource events, and Web PubSub for real-time WebSocket communication.",
+                "a_pt": "No Azure, usamos tipicamente o Azure Service Bus. O produtor publica em um Tópico. Múltiplas Subscriptions (assinaturas) escutam esse Tópico, aplicando filtros para receber cópias da mensagem. Depois, Azure Functions ou Logic Apps são disparados automaticamente para processamento. Usa-se também o Event Grid para eventos de infra e Web PubSub para WebSockets em tempo real."
+            }
+        ]
+    },
+    {
+        "title": "Cloud Infrastructure & K8s",
+        "icon": "bi bi-diagram-3",
+        "cards": [
+            {
+                "topic": "AWS Lambda Concepts",
+                "q_en": "What is AWS Lambda and in what scenarios is it ideal?",
+                "q_pt": "O que é AWS Lambda e em que cenários ela é ideal?",
+                "a_en": "AWS Lambda is a serverless computing service where you provide code (C#, Node.js, Python), and AWS handles all provisioning and auto-scaling. You only pay for execution time (down to the millisecond). It is perfect for event-driven processing, reacting to S3 uploads, SQS messages, running CRON jobs, and handling unpredictable traffic.",
+                "a_pt": "AWS Lambda é um serviço serverless onde você apenas escreve o código e a AWS gerencia a infraestrutura e o auto-scaling. Você só paga pelo tempo de execução. É perfeito para processamento baseado em eventos, como reagir a uploads no S3, mensagens na fila SQS, CRON jobs e tráfego intermitente."
+            },
+            {
+                "topic": "Kubernetes vs Rancher",
+                "q_en": "What is the difference between Kubernetes and Rancher?",
+                "q_pt": "Qual a diferença entre Rancher e Kubernetes?",
+                "a_en": "Kubernetes is the actual container orchestration engine. It manages deployments, auto-healing, scaling, and rolling updates. Rancher is a management platform that sits on top of Kubernetes. It provides a user-friendly UI to manage multiple K8s clusters, handles user permissions, and simplifies monitoring. Essentially, K8s is the engine, and Rancher is the dashboard.",
+                "a_pt": "O Kubernetes é o motor de orquestração de containers. Ele cuida do deploy, auto-scaling, auto-healing e atualizações. O Rancher é uma plataforma de gestão que fica em cima do Kubernetes. Ele fornece uma interface amigável para gerenciar múltiplos clusters, cuidar de permissões de usuários e monitoramento. Basicamente, K8s é o motor, e Rancher é o painel de controle."
+            },
+            {
+                "topic": "Azure Functions, App Services and AKS",
+                "q_en": "How do you choose between Azure Functions, App Services and AKS for a backend?",
+                "q_pt": "Como você escolhe entre Azure Functions, App Services e AKS para um backend?",
+                "a_en": "I start by the workload profile: use Azure Functions for event-driven, bursty tasks and small stateless endpoints where cold start is acceptable or kept under control. App Services fit APIs and web apps that need managed platform features, easy CI/CD and moderate scale with built-in SSL, autoscaling and deployment slots. AKS is the choice when you need full control over containers, custom networking, service mesh and complex multi-container systems. I also consider operational maturity and team experience—if the team already handles Kubernetes, AKS can be great; otherwise App Services often deliver faster business value.",
+                "a_pt": "Começo pelo perfil de workload: uso Azure Functions para tarefas event-driven e picos, e endpoints sem estado onde cold start é aceitável ou bem mitigado. App Services servem APIs e web apps que precisam de recursos gerenciados, CI/CD fácil e escala moderada com SSL integrado, autoscaling e deployment slots. AKS é a escolha quando há necessidade de controle total sobre containers, rede customizada, service mesh e sistemas complexos multi-container. Também considero maturidade operacional e experiência da equipe—se o time já lida com Kubernetes, AKS pode ser excelente; caso contrário, App Services entregam valor de negócio mais rápido."
+            },
+            {
+                "topic": "Kubernetes & Helm Deployment",
+                "q_en": "How do you use Kubernetes and Helm to deploy updates without downtime?",
+                "q_pt": "Como você usa Kubernetes e Helm para fazer deploy sem downtime?",
+                "a_en": "I package the service as a Helm chart with clear resource requests, liveness/readiness probes, and deployment strategies. For production, I use rolling updates with max surge and max unavailable configured so new pods come up before old ones go down. Helm makes it easy to version those chart releases and manage config changes. Combined with health checks and a proper rollback strategy, this approach allows safe updates without interrupting traffic.",
+                "a_pt": "Empacoto o serviço como um chart Helm com pedidos de recursos claros, probes de liveness/readiness e estratégias de deployment. Em produção uso rolling updates com max surge e max unavailable configurados para que novos pods subam antes dos antigos caírem. O Helm facilita versionar esses releases e gerenciar mudanças de configuração. Com health checks e estratégia de rollback, esse approach permite updates seguros sem interromper o tráfego."
+            }
+        ]
+    }
+]

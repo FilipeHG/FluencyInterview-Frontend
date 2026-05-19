@@ -1,0 +1,98 @@
+[
+    {
+        "title": "Architecture Patterns",
+        "icon": "fas fa-layer-group",
+        "cards": [
+            {
+                "topic": "Architecture Choice",
+                "q_en": "How do you decide between Clean, Hexagonal, or something simpler?",
+                "q_pt": "Como você decide entre Clean, Hexagonal ou algo mais simples?",
+                "a_en": "I don’t start with architecture — I start with the problem. If it’s a smaller system, I avoid overengineering. But when I know the system will grow, integrate with multiple external services, or have complex business rules, I lean towards Clean or Hexagonal. Hexagonal works great when you have multiple integrations, and Clean is great for organizing use cases and business logic. The goal is always to keep the domain protected and avoid tight coupling.",
+                "a_pt": "Eu não começo pela arquitetura — começo pelo problema. Se for algo menor, eu evito overengineering. Quando sei que o sistema vai crescer, integrar com várias coisas externas ou ter regras de negócio complexas, puxo mais pra Clean ou Hexagonal. Hexagonal funciona muito bem com várias integrações, e Clean ajuda a organizar melhor casos de uso. No fim, o objetivo é sempre proteger o domínio e evitar acoplamento."
+            },
+            {
+                "topic": "Clean vs Hexagonal vs Onion",
+                "q_en": "What is the difference between Clean, Hexagonal, and Onion Architecture?",
+                "q_pt": "Qual a diferença entre Clean, Hexagonal e Onion Architecture?",
+                "a_en": "All three share the same core goal: isolate business rules from infrastructure details. Clean Architecture uses concentric circles with the Domain at the center and dependencies pointing inwards. Hexagonal focuses on Ports (interfaces) and Adapters (implementations) to isolate the core, making it highly testable. Onion Architecture is similar to Clean but places an even stronger emphasis on DDD (Domain-Driven Design). Ultimately, they all follow Dependency Inversion to ensure the core business logic never depends on external frameworks or databases.",
+                "a_pt": "As três têm o mesmo objetivo: isolar regras de negócio da infraestrutura. A Clean Architecture usa círculos concêntricos com o Domínio no centro e dependências apontando para dentro. A Hexagonal foca em Portas (interfaces) e Adaptadores (implementações) para isolar o core, facilitando testes. A Onion é parecida com a Clean, mas enfatiza ainda mais o DDD. No fim, todas usam Inversão de Dependência para garantir que a lógica de negócio nunca dependa de frameworks ou bancos externos."
+            },
+            {
+                "topic": "Modern vs 3-Tier Architecture",
+                "q_en": "How do Clean and Hexagonal architectures differ from traditional 3-tier architecture?",
+                "q_pt": "Qual a diferença entre essas arquiteturas e a arquitetura tradicional em 3 camadas?",
+                "a_en": "Traditional 3-tier architecture (UI, Business Logic, Data Access) is simpler but often leads to the business layer depending directly on the data layer. It is common for business logic to 'leak' into the UI or DAL, making unit tests harder. Clean and Hexagonal architectures put the domain at the absolute center. They force dependencies from the outside in, completely isolating the infrastructure. This makes it much easier to swap databases or UIs, and scales much better for complex, long-living systems.",
+                "a_pt": "A arquitetura em 3 camadas (UI, BLL, DAL) é mais simples, mas frequentemente faz a camada de negócios depender da camada de dados. É comum a lógica 'vazar' para a UI ou DAL, dificultando testes unitários. Clean e Hexagonal colocam o domínio no centro absoluto. Elas forçam as dependências de fora para dentro, isolando completamente a infraestrutura. Isso facilita trocar de banco ou UI, e escala muito melhor para sistemas complexos e duradouros."
+            },
+            {
+                "topic": "CQRS",
+                "q_en": "What is CQRS, and what are its benefits and trade-offs?",
+                "q_pt": "O que é CQRS e quais são seus benefícios e trade-offs?",
+                "a_en": "CQRS (Command Query Responsibility Segregation) separates the read model from the write model. The Command model handles data mutation (create, update, delete) and enforces strict business rules. The Query model handles reading and can use optimized structures like materialized views. Benefits include independent scalability for reads and writes, simplified models, and a great fit with Event Sourcing. Trade-offs include increased architectural complexity and the introduction of eventual consistency.",
+                "a_pt": "CQRS separa o modelo de leitura do modelo de escrita. O modelo de Command lida com alterações (create, update, delete) e regras de negócio estritas. O modelo de Query lida com leitura e pode usar estruturas otimizadas como views materializadas. Benefícios incluem escalabilidade independente de leitura e escrita, modelos mais simples e ótima combinação com Event Sourcing. Os trade-offs incluem aumento da complexidade arquitetural e a introdução de consistência eventual."
+            },
+            {
+                "topic": "Webhooks",
+                "q_en": "What is a Webhook and how would you use it in a SaaS architecture?",
+                "q_pt": "O que é um Webhook e como você o utilizaria em uma arquitetura SaaS?",
+                "a_en": "A Webhook is an HTTP callback mechanism. Instead of the client constantly polling the server to see if an event happened, the server pushes an HTTP POST request to a pre-configured URL whenever the event occurs (e.g., payment approved). In a SaaS, I'd use it to notify clients about order status changes or to integrate with third parties like payment gateways. Best practices include signing payloads with HMAC for authenticity, implementing retries with exponential backoff, and ensuring idempotency on the receiving end.",
+                "a_pt": "Um Webhook é um mecanismo de callback HTTP. Em vez do cliente ficar consultando (polling) o servidor, o servidor faz um POST HTTP para uma URL pré-configurada sempre que um evento ocorre (ex: pagamento aprovado). Em um SaaS, eu usaria para notificar clientes sobre status de pedidos ou integrar gateways de pagamento. Boas práticas incluem assinar o payload com HMAC, implementar retries com backoff e garantir idempotência no receptor."
+            },
+            {
+                "topic": "SaaS vs MicroSaaS",
+                "q_en": "What is a SaaS and what differentiates a MicroSaaS?",
+                "q_pt": "O que é um SaaS e o que diferencia um MicroSaaS?",
+                "a_en": "SaaS (Software as a Service) is a model where software is centrally hosted and accessed via the internet, usually under a subscription model and highly multi-tenant. A MicroSaaS is a lean SaaS focused on a very specific niche problem. It is usually built by a very small team (or a solo founder), requires low infrastructure costs, and has a reduced but highly polished scope. Using lightweight backends and integrations like WhatsApp API or Webhooks fits the MicroSaaS concept perfectly.",
+                "a_pt": "SaaS é um modelo onde o software é hospedado na nuvem e acessado via internet, geralmente por assinatura e multi-tenant. Um MicroSaaS é um SaaS enxuto focado em um problema de nicho muito específico. Geralmente é criado por um time pequeno (ou solo), tem baixo custo de infraestrutura e escopo reduzido, mas bem resolvido. Usar backends leves e integrações como WhatsApp API e Webhooks é perfeito para o conceito de MicroSaaS."
+            },
+            {
+                "topic": "C4 Model",
+                "q_en": "How do you use the C4 Model to communicate architecture to different stakeholders?",
+                "q_pt": "Como você usa o C4 Model para comunicar arquitetura a diferentes stakeholders?",
+                "a_en": "I start with the Context diagram to show the system boundaries and who uses it, then use the Container diagram to explain major runtime pieces like API, database, and background workers. For engineering peers, I drill into Component diagrams to show service contracts, libraries, and data flows. If necessary, I use Code-level diagrams only for the most complex modules, keeping the rest of the story at a higher level so product managers and architects stay aligned. The key is choosing the right level of detail for each audience.",
+                "a_pt": "Começo com o diagrama de Contexto para mostrar os limites do sistema e quem o consome, depois uso o diagrama de Contêiner para explicar as peças principais em tempo de execução como API, banco e workers. Para colegas de engenharia, aprofundo nos diagramas de Componente, mostrando contratos de serviço, bibliotecas e fluxos de dados. Se precisar, uso o nível de Código apenas nos módulos mais complexos, mantendo o restante da narrativa em alto nível para que gerentes e arquitetos fiquem alinhados. O importante é escolher o nível certo de detalhe para cada público."
+            },
+            {
+                "topic": "Applying DDD without Over-Engineering",
+                "q_en": "How do you apply DDD in a project without over-engineering it?",
+                "q_pt": "Como aplicar DDD em um projeto sem over-engineering?",
+                "a_en": "I use DDD where the business rules are complex and the domain language is shared with stakeholders. I identify bounded contexts early, keep entities and value objects explicit, and avoid forcing DDD on simple CRUD modules. For simpler areas I use clean layered design with clear service boundaries and only introduce aggregates or domain events when a real consistency or collaboration requirement appears. That way the team benefits from a ubiquitous language and strong domain model without turning the codebase into unnecessary ceremony.",
+                "a_pt": "Uso DDD onde as regras de negócio são complexas e a linguagem do domínio é compartilhada com as partes interessadas. Identifico bounded contexts cedo, mantenho entidades e value objects explícitos e evito aplicar DDD em módulos simples de CRUD. Em áreas mais simples, uso um design em camadas limpas com limites de serviço claros e só introduzo aggregates ou domain events quando surge uma real necessidade de consistência ou colaboração. Assim a equipe ganha com uma linguagem ubíqua e modelo de domínio forte sem transformar o código em cerimônia desnecessária."
+            }
+        ]
+    },
+    {
+        "title": "Code Quality, OOP & Principles",
+        "icon": "fas fa-code",
+        "cards": [
+            {
+                "topic": "SOLID Principles",
+                "q_en": "Can you explain the SOLID principles with practical examples?",
+                "q_pt": "Explique os princípios SOLID com exemplos práticos",
+                "a_en": "S - Single Responsibility: A class should have one reason to change (e.g., separating salary calculation from database persistence). O - Open/Closed: Open for extension, closed for modification (e.g., using Strategy pattern instead of changing existing if/else chains). L - Liskov Substitution: Derived classes must be substitutable for their base classes without breaking behavior. I - Interface Segregation: Don't force classes to implement methods they don't use (split large interfaces into smaller ones). D - Dependency Inversion: Depend on abstractions, not implementations (e.g., injecting an IRepository interface instead of a direct SqlRepository class).",
+                "a_pt": "S (Responsabilidade Única): Uma classe deve ter um único motivo para mudar (ex: separar cálculo de salário de salvar no banco). O (Aberto/Fechado): Aberto para extensão, fechado para modificação (ex: usar herança/Strategy em vez de alterar código existente). L (Substituição de Liskov): Classes derivadas devem substituir as classes base sem quebrar comportamento. I (Segregação de Interfaces): Não forçar classes a implementar métodos que não usam (dividir interfaces grandes). D (Inversão de Dependência): Depender de abstrações, não implementações (ex: injetar IRepository em vez de SqlRepository)."
+            },
+            {
+                "topic": "Polymorphism",
+                "q_en": "What is compile-time polymorphism vs runtime polymorphism?",
+                "q_pt": "O que é polimorfismo em tempo de compilação e em tempo de execução?",
+                "a_en": "Compile-time polymorphism happens via method overloading (methods with the same name but different signatures). The compiler decides which one to call. Runtime polymorphism happens via method overriding (a derived class overrides a virtual/abstract method). The decision of which method to execute is made while the program is running, based on the actual object type in memory.",
+                "a_pt": "Polimorfismo em tempo de compilação ocorre via sobrecarga (overload), onde métodos têm o mesmo nome mas assinaturas diferentes. O compilador decide qual chamar. Polimorfismo em tempo de execução ocorre via sobrescrita (override), onde uma classe filha sobrescreve um método virtual/abstract. A decisão de qual método rodar é feita na execução, baseada no tipo real do objeto na memória."
+            },
+            {
+                "topic": "Struct vs Class",
+                "q_en": "What is the difference between Struct and Class in .NET?",
+                "q_pt": "Qual a diferença entre Struct e Class no .NET?",
+                "a_en": "A Struct is a Value Type, typically allocated on the stack (if local) or inline, and does not support inheritance. It is ideal for small, immutable data structures used intensively. A Class is a Reference Type, allocated on the Heap, managed by the Garbage Collector, and fully supports inheritance.",
+                "a_pt": "Uma Struct é um Tipo de Valor (Value Type), alocada na stack (se local) ou inline, e não suporta herança. É ideal para dados pequenos, imutáveis e de uso intensivo. Uma Class é um Tipo de Referência, alocada na Heap, gerenciada pelo Garbage Collector e suporta herança completa."
+            },
+            {
+                "topic": "Stack vs Heap Memory",
+                "q_en": "Can you explain the difference between Stack and Heap memory?",
+                "q_pt": "Explique a diferença entre memória Stack e Heap",
+                "a_en": "The Stack is a smaller, extremely fast memory area used for primitive types, local variables, small structs, and references to Heap objects. Data is automatically cleared when the execution scope ends. The Heap is a much larger memory area used for reference types (Classes, Arrays). It requires the Garbage Collector to scan and free up memory that is no longer referenced.",
+                "a_pt": "A Stack é uma memória menor e muito rápida, usada para variáveis locais primitivas, structs pequenas e referências para objetos na Heap. Os dados morrem assim que o escopo de execução termina. A Heap é uma memória maior, usada para tipos de referência (Classes, Arrays). Ela exige que o Garbage Collector faça a varredura para liberar os objetos que não têm mais referência."
+            }
+        ]
+    }
+]

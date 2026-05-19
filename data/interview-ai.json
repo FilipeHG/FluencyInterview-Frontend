@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Artificial Intelligence",
+        "icon": "bi bi-robot",
+        "cards": [
+            {
+                "topic": "RAG Concepts",
+                "q_en": "What is RAG (Retrieval Augmented Generation) and why is it important?",
+                "q_pt": "O que é RAG e por que ele é importante?",
+                "a_en": "RAG combines a Large Language Model (LLM) with an external search mechanism. Instead of relying solely on the LLM's static training data, you convert the user query into an embedding, search a vector database for relevant private documents, and pass that context to the LLM. It is crucial for providing accurate, up-to-date answers on corporate data and heavily reducing AI hallucinations.",
+                "a_pt": "RAG combina um LLM com um mecanismo de busca externo. Em vez de depender apenas do treino original do modelo, você converte a pergunta em vetor, busca documentos privados num banco vetorial e injeta esse contexto pro LLM responder. É crucial para dar respostas precisas sobre dados corporativos e reduzir alucinações."
+            },
+            {
+                "topic": "Supabase & pgvector",
+                "q_en": "Why use Supabase with pgvector in an AI architecture?",
+                "q_pt": "Por que usar Supabase com pgvector em uma arquitetura de IA?",
+                "a_en": "Supabase offers a managed PostgreSQL database with native pgvector extension. It allows you to store AI embeddings directly in SQL columns and perform cosine similarity searches. It's a fantastic choice for the retrieval layer in RAG systems because it merges relational data and vector storage in a single, robust open-source database without needing complex external infrastructure.",
+                "a_pt": "Supabase oferece Postgres gerenciado com a extensão pgvector nativa. Ele permite guardar embeddings direto nas colunas do banco e fazer busca por similaridade de cosseno. É ótimo para a camada de retrieval em RAG, pois junta banco relacional e vetorial num só lugar, sem precisar contratar um banco NoSQL só pra isso."
+            },
+            {
+                "topic": "Semantic Cache in Redis",
+                "q_en": "Why use Redis as a semantic cache in AI?",
+                "q_pt": "Por que usar Redis como semantic cache em IA?",
+                "a_en": "A semantic cache evaluates meaning rather than exact keyword matches. When a user asks a question, we generate an embedding and compare it to previous questions in Redis. If a semantically similar question is found, we instantly return the cached answer. This dramatically reduces latency, cuts down expensive API token costs, and improves the UX for recurrent queries.",
+                "a_pt": "O cache semântico avalia o significado e não apenas a exatidão das palavras. Quando o usuário pergunta algo, geramos o vetor e comparamos com perguntas antigas no Redis. Se houver uma muito similar, retornamos a resposta instantaneamente. Isso reduz o custo de tokens na API, baixa a latência absurdamente e melhora a experiência."
+            },
+            {
+                "topic": "Hybrid AI Architecture (.NET + Node.js)",
+                "q_en": "Why use Node.js for the AI layer and .NET for the main backend?",
+                "q_pt": "Por que usar Node.js para a camada de IA e .NET para o backend principal?",
+                "a_en": "Node.js has a very rich ecosystem for AI SDKs (like LangChain.js and Vercel AI) and is incredibly fast at streaming data (SSE) back to the user without blocking threads. .NET is perfect for the main enterprise backend, managing core business rules, robust security, and complex transactions. Combining them uses the best of both worlds.",
+                "a_pt": "O Node.js tem um ecossistema gigantesco de SDKs de IA (LangChain, Vercel AI) e é incrivelmente rápido para fazer streaming de dados (SSE) em tempo real. Já o .NET é perfeito para o backend corporativo robusto, lidando com transações complexas e segurança avançada. A arquitetura híbrida junta o melhor dos dois mundos."
+            }
+        ]
+    }
+]

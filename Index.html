@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Training - Professional Level</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Resets e Identidade Visual (Baseado no Estudo Musical) */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Header Robusto */
+        .header-banner {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            border-bottom: 5px solid #e74c3c;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-banner h1 {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Títulos de Seção com Destaque */
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Cards Estilizados */
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-body {
+            background-color: white;
+            padding: 20px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #111827;
+            font-size: 1.1rem;
+        }
+
+        .question-pt {
+            color: #6b7280;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .answer-en {
+            color: #2c3e50;
+            font-weight: 500;
+            margin-top: 15px;
+            border-left: 4px solid #e74c3c;
+            padding-left: 15px;
+        }
+
+        .answer-pt {
+            color: #6b7280;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            padding-left: 19px;
+        }
+
+        /* Botão Stop Voice Alinhado à Direita e Chamativo */
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        #btnStopSpeech {
+            background-color: #e74c3c;
+            color: white;
+            border: 3px solid #c0392b;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: all 0.2s;
+        }
+
+        #btnStopSpeech:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* Botão de Voz Ativo */
+        .btn-voice-active {
+            background-color: #2c3e50 !important;
+            color: #fff !important;
+            border-color: #2c3e50 !important;
+            box-shadow: 0 0 10px rgba(44, 62, 80, 0.4);
+        }
+
+        .btn-voice-active i {
+            transform: scale(1.3);
+        }
+
+        /* Timer e Gravação */
+        .timer-display {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1rem;
+            line-height: 28px;
+            text-align: right;
+            padding: 0 30px;
+            margin: 0;
+            background-color: #f1f3f4;
+            border-radius: 6px;
+        }
+
+        .recordings audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+
+        footer {
+            background: linear-gradient(to top, #1f2937db, #00142e);
+            color: #ffffff;
+            padding: 50px 0 30px 0;
+            margin-top: 60px;
+            border-top: 4px solid #e74c3c;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer img {
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #e74c3c;
+        }
+
+        .footer-link.logo-client {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.25s ease;
+            font-weight: 500;
+            border-radius: 20px;
+            background-color: #f1f5f9;
+            padding: 6px 6px 12px 6px;
+        }
+
+        .footer-link.logo-client img {
+            height: 45px;
+            width: auto;
+            margin-left: 6px;
+        }
+
+        .logo-client-text {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .footer-icon {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        .icon-email {
+            color: #e74c3c;
+        }
+
+        .icon-github {
+            color: #ffffff;
+        }
+
+        .icon-linkedin {
+            color: #0A66C2;
+        }
+
+        .footer-divider {
+            border-color: rgb(255 255 255 / 50%);
+            margin: 30px 0;
+        }
+
+        footer .col-md-4 {
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            footer .col-md-4 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Fixed Header -->
+    <div class="sticky-top no-print" style="z-index: 1000;">
+        <header class="shadow-sm" style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c;">
+            <div class="container d-flex justify-content-between align-items-center py-2">
+                <!-- Left Side: Logo -->
+                <a href="Index.html" class="d-inline-block">
+                    <img src="assets/images/fluencyinterview-logo-p.png" alt="Logo" style="height: 50px;">
+                </a>
+
+                <!-- Right Side: PDF, Home, Hamburger -->
+                <div class="d-flex align-items-center gap-2">
+                    <button onclick="window.print()" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Print PDF">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <a href="Index.html" class="btn shadow" style="background-color: #0e3167; color: white;"
+                        title="Home">
+                        <i class="bi bi-house-door-fill"></i>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="background-color: #FFFFFF; color: #0e3167; border: 1px solid #0e3167; padding: 6px 12px;"
+                            title="Menu">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li>
+                                <h6 class="dropdown-header">Navigation</h6>
+                            </li>
+                            <li><a class="dropdown-item fw-bold" href="Docs-Index.html"><i
+                                        class="bi bi-book me-2 text-primary"></i> Documentation Hub</a></li>
+                            <li><a class="dropdown-item fw-bold" href="Index.html"><i
+                                        class="bi bi-compass me-2 text-danger"></i> Interview Training</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-software-engineering-technical-documentation.html"><i
+                                        class="bi bi-cpu me-2 text-success"></i> Technical Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold"
+                                    href="page-high-performance-tax-analyzer-documentation.html"><i
+                                        class="bi bi-calculator me-2 text-warning"></i> HP Tax Analyzer</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-databricks-technical-documentation.html"><i
+                                        class="bi bi-database me-2 text-info"></i> Databricks Documentation</a></li>
+                            <li><a class="dropdown-item fw-bold" href="page-java-full-documentation.html"><i class="bi bi-file-earmark-code me-2 text-warning"></i> Java Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Title Section -->
+
+
+
+
+
+
+
+
+
+        <div class="header-banner shadow-sm" style="background-color: #2c3e50; padding: 12px 0;">
+            <div class="container d-flex align-items-center justify-content-between">
+                <h1 class="fs-4 text-white fw-bold mb-1"><i class="bi bi-compass"></i> Interview Training</h1>
+                <div class="search-container d-flex" style="max-width: 250px;">
+                    <div class="input-group input-group-sm shadow-sm">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search topics..."
+                            style="border: 2px solid #e74c3c;">
+                        <button class="btn btn-light" type="button" id="btnSearchClear"
+                            style="border-top: 2px solid #e74c3c; border-bottom: 2px solid #e74c3c; color: #e74c3c; display: none;"
+                            title="Clear">
+                            <i class="bi bi-x-lg fw-bold"></i>
+                        </button>
+                        <button class="btn" type="button" id="btnSearch"
+                            style="background-color: #e74c3c; color: white; border: 2px solid #e74c3c;" title="Search">
+                            <i class="bi bi-search fw-bold"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5" id="interviewTrainingContent" style="display: block;">
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <a href="interview-hr-personal.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-person-badge display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">HR & Personal Fit</h3>
+                            <p class="text-muted small mt-2">Practice 7 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-architecture.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-building display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Architecture & Design Patterns</h3>
+                            <p class="text-muted small mt-2">Practice 7 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-backend.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-cpu display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Backend (.NET & Node.js)</h3>
+                            <p class="text-muted small mt-2">Practice 6 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-frontend.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-browser-chrome display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Frontend & APIs</h3>
+                            <p class="text-muted small mt-2">Practice 5 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-cloud-devops.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-cloud-fill display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Cloud, DevOps & Messaging</h3>
+                            <p class="text-muted small mt-2">Practice 6 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-databases.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-database display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Databases</h3>
+                            <p class="text-muted small mt-2">Practice 3 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-ai.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-robot display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Artificial Intelligence</h3>
+                            <p class="text-muted small mt-2">Practice 4 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="interview-agile.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0"
+                        style="transition: transform 0.2s; border-radius: 12px; border-bottom: 5px solid #e74c3c !important;">
+                        <div class="card-body text-center p-5">
+                            <i class="bi bi-kanban display-4 mb-3" style="color: #2c3e50;"></i>
+                            <h3 class="h5 fw-bold text-dark">Agile & Methodologies</h3>
+                            <p class="text-muted small mt-2">Practice 3 questions about this topic.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const searchIndex = { "interview-hr-personal.html": "hr & personal fit personal background about yourself tell me a bit about yourself. where do you live today and how’s your life outside work? me fale um pouco sobre você. onde você mora hoje e como é sua vida fora do trabalho? i’m married, 36 years old, with a 9-year-old daughter, plus a cat and a little dog. i currently live in foz do iguaçu, paraná, brazil. in my free time, i love spending time with my family, playing the violin, working out, enjoying barbecues, and going shopping in paraguay. eu sou casado, tenho 36 anos, uma filha de 9 anos, uma gatinha e uma cachorrinha. moro em foz do iguaçu, paraná. no meu tempo livre, adoro passar tempo com minha família, tocar violino, praticar esportes, fazer churrasco e ir ao paraguai fazer umas compras. change vs stability would you consider yourself someone who likes change or prefers stability? você se considera uma pessoa que gosta de mudanças ou prefere estabilidade? i like stability, but i’m also open to change when it makes sense for my professional and personal growth. moving from são paulo to foz do iguaçu was an example of that. right now, i’m looking for an international challenge to broaden my horizons. eu gosto de estabilidade, mas também sou aberto a mudanças quando elas fazem sentido para meu crescimento profissional e pessoal. minha mudança de sp para foz do iguaçu foi um exemplo disso. agora estou buscando um desafio internacional. future goals what’s your biggest goal for the next few years? qual seu maior objetivo para os próximos anos? professionally, my goal is to land an international job, work abroad, and join global teams. i want to grow both technically, especially in software architecture and engineering, and personally, learning from other cultures. profissionalmente, meu objetivo é conquistar uma vaga internacional, trabalhar fora do brasil e participar de times globais. quero evoluir na parte técnica, principalmente em arquitetura, e também pessoalmente. career & soft skills software engineer identity you define yourself as a full stack developer but also consider yourself a software engineer. can you tell me why? você se define como desenvolvedor full stack, mas também se considera engenheiro de software. por quê? yes! although my current title is full stack developer, throughout my career i’ve worked as an analyst, backend developer, frontend developer, team leader, and even as an architect. so, i have a broad view of the software lifecycle, architecture, and best practices. sim! apesar do meu cargo ser full stack, atuei como analista, desenvolvedor, team leader e arquiteto. por isso, tenho uma visão ampla de ciclo de vida de software, arquitetura e melhores práticas. leadership experience have you ever led people or teams? do you enjoy that role? você já liderou pessoas ou times? gosta desse papel? yes, i have. i was a team leader at times, especially in bigger projects like at tv1 group and linx. i really enjoy helping, training colleagues, and discussing architecture, but i also love coding daily. já sim. fui team leader em alguns momentos, principalmente em projetos maiores. gosto bastante de ajudar, treinar colegas e discutir arquitetura, mas também curto programar no dia a dia. standout moment tell me about a moment when you stood out in your career. me fale de um momento que você se destacou na carreira. an important moment was at linx. the team was large, and i took part in an internal selection process for a software engineer position. i did technical presentations, defended solutions, and ended up getting promoted. um momento importante foi na linx. o time era grande e participei de uma concorrência interna para uma vaga de engenheiro de software. fiz apresentações técnicas, defendi soluções e acabei sendo promovido. international challenge have you ever worked on international projects? what do you think will be your biggest challenge? você já trabalhou em projetos internacionais? qual acha que será o maior desafio? i haven’t had that opportunity yet, but i’ve always wanted to. i think the biggest challenge will be adapting to cultural differences and the technical english used daily. but i’m constantly studying english and confident i can handle it. ainda não tive essa oportunidade, mas sempre tive vontade. acho que o maior desafio vai ser me adaptar às diferenças culturais e ao inglês técnico. mas estou estudando constantemente e confiante de que consigo. ", "interview-architecture.html": "architecture & design patterns architecture patterns c4 model i see you know the c4 model. how do you usually apply it in practice? vejo que você domina o modelo c4. como você costuma usá-lo na prática? i usually use c4 to document and explain architectures in a simple way, without overwhelming whoever is reading it. i start with the context to show who interacts with the system, then go deeper into containers and components. eu costumo usar o c4 para documentar e explicar arquiteturas de forma simples. começo pelo contexto para mostrar quem interage com o sistema, depois vou detalhando containers e componentes. clean & hexagonal architecture can you explain the difference between clean architecture and hexagonal architecture? pode explicar a diferença entre clean architecture e arquitetura hexagonal? they share the same core philosophy: isolating the business domain from external details like databases or uis using interfaces (dependency inversion). hexagonal talks about ports and adapters, while clean architecture visualizes it as concentric layers. both make the code highly testable. eles compartilham a mesma filosofia: isolar o domínio de negócios de detalhes externos (como bancos e ui) usando interfaces. a hexagonal usa portas e adaptadores, enquanto a clean visualiza em camadas. ambas focam em testabilidade. domain-driven design (ddd) how would you approach building a new complex system? would you use ddd? como você abordaria a criação de um novo sistema complexo? usaria ddd? yes, if the business rules are complex, i'd use domain-driven design. i would start by understanding the ubiquitous language and splitting the system into bounded contexts to avoid tightly coupled domains. sim, se as regras de negócio forem complexas, eu usaria ddd. eu começaria entendendo a linguagem ubíqua e dividindo o sistema em bounded contexts para evitar domínios muito acoplados. code quality & principles solid principles can you give me an example of how you apply solid principles? pode me dar um exemplo de como você aplica os princípios solid? sure! i often use the dependency inversion principle (the 'd' in solid). instead of a service depending directly on a specific sql repository class, it depends on an interface. this makes it easy to mock the database during unit testing. claro! eu uso muito o princípio da inversão de dependência (o 'd' do solid). em vez de um serviço depender diretamente de uma classe de repositório sql, ele depende de uma interface. isso facilita mockar o banco nos testes unitários. design patterns (gof) what design patterns do you use most frequently? quais design patterns você usa com mais frequência? i frequently use strategy to switch algorithms at runtime, factory method for complex object creation, and decorator to add behaviors like logging or caching without changing the original class. uso frequentemente o strategy para trocar algoritmos em tempo de execução, factory method para criação complexa de objetos, e decorator para adicionar comportamentos como log ou cache sem alterar a classe original. big o notation how do you usually deal with performance and complexity analysis, like big o? como você costuma lidar com performance e análise de complexidade, tipo big o? i always think about big o when creating algorithms or querying large data volumes. i analyze the worst-case scenario to avoid bottlenecks in production. i’ve had to optimize database queries and reduce nested loops to improve performance. eu sempre penso em big o quando crio algoritmos ou consulto grandes volumes de dados. analiso o pior caso para evitar gargalos em produção. já precisei otimizar queries no banco e reduzir loops aninhados. clean code why is clean code important for you? por que clean code é importante para você? at the end of the day, clean code is not just about aesthetics but about making life easier for the people who’ll work on the code tomorrow. giving clear names to variables and keeping functions small makes maintenance much smoother. no fim das contas, clean code não é só sobre estética, mas sobre facilitar a vida de quem vai trabalhar no código amanhã. dar nomes claros às variáveis e manter funções pequenas facilita muito a manutenção. ", "interview-backend.html": "backend (.net & node.js) .net ecosystem experience with .net 8 tell me about your experience with .net 8. me fale sobre sua experiência com .net 8. i have strong experience with .net 8. i've built minimal apis to reduce overhead, utilized primary constructors for cleaner code, and applied dependency injection extensively. i also worked on migrating legacy .net framework apps to modern .net core versions. tenho muita experiência com .net 8. construí minimal apis para reduzir overhead, usei primary constructors para um código mais limpo e apliquei injeção de dependência extensivamente. também trabalhei migrando apps legados para .net core. dependency injection lifetimes how do you handle dependency injection in .net? what lifetimes do you use? como você lida com injeção de dependência no .net? quais escopos você usa? i use the built-in di container, being careful with lifetimes. i use 'transient' for lightweight services, 'scoped' for things tied to the http request like dbcontext, and 'singleton' for caches, always watching out for thread-safety issues. uso o container nativo, tomando cuidado com o ciclo de vida. uso 'transient' para serviços leves, 'scoped' para coisas ligadas ao request (como dbcontext), e 'singleton' para caches, sempre atento à segurança de threads. entity framework vs dapper if you had to choose between entity framework and dapper, which would you use and why? se tivesse que escolher entre entity framework e dapper, qual usaria e por quê? it depends on the project. if i need productivity and quick cruds, i use entity framework because it speeds things up a lot with linq and migrations. but if the project needs highly optimized queries and raw performance, i prefer dapper. often, i use both in a cqrs approach. depende do projeto. se precisar de produtividade e cruds rápidos, uso entity framework. mas se precisar de performance bruta e queries muito otimizadas, prefiro dapper. geralmente, uso os dois em uma abordagem cqrs. node.js ecosystem node.js vs .net you also have experience with node.js. when would you choose it over .net? você também tem experiência com node.js. quando escolheria ele ao invés de .net? i'd choose node.js for real-time applications, i/o-heavy workloads, or when building bffs (backend for frontend) because of its event-driven, non-blocking architecture. it is lightweight and great for rapid api development. eu escolheria node.js para aplicações em tempo real, alta carga de i/o, ou para construir bffs por causa de sua arquitetura baseada em eventos e não-bloqueante. é leve e ótimo para desenvolvimento rápido de apis. event loop pitfalls what is the biggest danger when working with node.js? qual o maior perigo ao se trabalhar com node.js? blocking the event loop. since node.js is single-threaded, executing heavy synchronous code on the main thread will freeze the entire api for all users. we must always rely on asynchronous methods for i/o operations. bloquear o event loop. como o node.js é single-thread, executar código síncrono pesado na thread principal congela a api inteira para todos os usuários. devemos sempre usar métodos assíncronos para operações de i/o. node frameworks & orms which node.js frameworks and orms do you prefer working with? quais frameworks e orms do node.js você prefere usar? for large enterprise apps, i prefer nestjs because of its structured, angular-like approach. for orms, i really like prisma because of its type-safety and developer experience, though i've also worked with typeorm. para aplicações corporativas grandes, prefiro nestjs devido à sua estrutura robusta. para orms, gosto muito do prisma por ser type-safe e ter ótima experiência de desenvolvimento, mas também já usei typeorm. ", "interview-frontend.html": "frontend & apis frontend frameworks angular experience on the frontend, you seem to like angular. why do you choose it? no frontend, você parece gostar de angular. por que escolhe ele? i like angular because it’s very complete. it already comes with structure, a powerful cli, dependency injection, and patterns that help a lot in large projects. i find it great for enterprise apps or complex dashboards with lots of business logic. gosto do angular porque é muito completo. ele já traz estrutura, cli poderosa, injeção de dependência e patterns que ajudam muito em projetos grandes. acho ótimo para aplicações corporativas com muita regra de negócio. angular evolution (v18) how do you keep up with recent angular updates like signals? como você acompanha as atualizações recentes do angular, como signals? i've upgraded projects to angular 18 and implemented signals for granular reactivity, which removes the need for zone.js and improves performance significantly. i also use lazy loading and standalone components. eu atualizei projetos para o angular 18 e implementei signals para reatividade granular, o que remove a necessidade do zone.js e melhora muito a performance. também uso lazy loading e standalone components. headless cms integration have you integrated umbraco cms with spas like angular or react? já integrou umbraco cms com spas, tipo angular ou react? yes, i’ve integrated umbraco with angular in corporate projects, using rest apis and sometimes graphql. i like the headless concept, which keeps the frontend entirely separate from the backoffice. sim, já integrei umbraco com angular em projetos corporativos, usando apis rest e às vezes graphql. gosto do conceito headless, que deixa o front totalmente separado do backoffice. api orchestration bff pattern what is a bff and why use it? o que é um bff e por que usá-lo? a backend for frontend (bff) acts as a middle layer. instead of a mobile app calling 5 different microservices directly, it calls a dedicated bff that orchestrates those requests and returns exactly the payload the app needs, reducing latency. um backend for frontend (bff) atua como camada intermediária. em vez de um app mobile chamar 5 microsserviços direto, ele chama um bff dedicado que orquestra essas requisições e retorna exatamente os dados necessários, reduzindo a latência. graphql vs rest when would you use graphql instead of rest? quando você usaria graphql ao invés de rest? i'd use graphql when i have multiple clients (like a mobile app and a web dashboard) that need different data shapes. it solves the overfetching and underfetching problem, allowing the client to request exactly what it needs. eu usaria graphql quando tenho múltiplos clientes (como app mobile e dashboard web) que precisam de formatos de dados diferentes. ele resolve problemas de overfetching e underfetching, permitindo ao cliente pedir exatamente o que precisa. ", "interview-cloud-devops.html": "cloud, devops & messaging messaging & event-driven pub/sub in practice you work with pub/sub. give me a real example of where you’d use it. você trabalha com pub/sub. me dá um exemplo real onde usaria? i’d use pub/sub for communication between microservices. let’s say an order service creates an order and publishes an event. several services could subscribe to this event — inventory, billing — each reacting without directly depending on each other. usaria pub/sub para comunicação entre microsserviços. digamos que um serviço de pedidos cria um pedido e publica um evento. vários serviços podem assinar esse evento (estoque, faturamento), reagindo sem depender diretamente um do outro. kafka vs rabbitmq what is the difference between rabbitmq and kafka? qual a diferença entre rabbitmq e kafka? rabbitmq is a traditional message broker focused on complex routing and guaranteed delivery to workers. kafka is an event streaming platform focused on high throughput, real-time analytics, and treating messages as an immutable append-only log. rabbitmq é um broker focado em roteamento complexo e entrega garantida para workers. kafka é uma plataforma de streaming focada em alta vazão, tempo real, e trata mensagens como um log imutável. sqs & dead letter queues what is the purpose of a dead letter queue (dlq)? qual o propósito de uma dead letter queue (dlq)? a dlq is crucial for handling poison messages. if an aws sqs queue tries to process a message but fails multiple times due to a bug, it's moved to the dlq so it doesn't block the queue in an infinite retry loop. a dlq é crucial para lidar com mensagens problemáticas. se o sqs falhar ao processar uma mensagem várias vezes devido a um bug, ela é movida para a dlq para não travar a fila principal em um loop infinito. cloud infrastructure & k8s aws & azure experience what's your experience with aws and azure? qual sua experiência com aws e azure? i've worked extensively with both. in aws, i've used lambda, sqs, sns, s3, and ec2 for highly scalable environments. in azure, i've worked a lot with service bus, blob storage, and azure functions. trabalhei bastante com ambas. na aws, usei lambda, sqs, sns, s3 e ec2 para ambientes escaláveis. na azure, atuei muito com service bus, blob storage e azure functions. serverless limitations when would you not use serverless functions (like aws lambda)? quando você não usaria funções serverless (como aws lambda)? i wouldn't use serverless for processes that take longer than 15 minutes, stateful workloads that need to persist data in memory across requests, or high-volume constant traffic, where a kubernetes cluster would be cheaper. eu não usaria serverless para processos que duram mais de 15 minutos, workloads stateful (que mantêm dados em memória), ou tráfego massivo e constante, onde um cluster kubernetes seria mais barato. docker & kubernetes how do you manage containers in production? como você gerencia containers em produção? i use docker to containerize the applications and kubernetes to orchestrate them. kubernetes provides self-healing, scaling with hpa, and load balancing. i also use rancher or portainer to manage the clusters visually. uso docker para containerizar as aplicações e kubernetes para orquestrá-las. o k8s oferece auto-recuperação, escalonamento (hpa) e balanceamento. também uso rancher ou portainer para gerenciar os clusters visualmente. ", "interview-databases.html": "databases databases & caching database optimization tell me about a time you had to optimize a database. me fale de uma vez que você teve que otimizar um banco de dados. i once optimized a postgresql database with millions of rows. i analyzed execution plans, created composite indexes, and normalized jsonb fields. the query times dropped from seconds to milliseconds. já otimizei um banco postgresql com milhões de linhas. analisei planos de execução, criei índices compostos e normalizei campos jsonb. o tempo das consultas caiu de segundos para milissegundos. nosql vs sql when would you use mongodb over a relational database? quando você usaria mongodb em vez de um banco relacional? i'd use mongodb for applications dealing with semi-structured data or when we need high schema flexibility, such as product catalogs or iot telemetry data, where documents might have completely different fields. usaria mongodb para aplicações lidando com dados semiestruturados ou quando precisamos de alta flexibilidade de esquema, como catálogos de produtos ou iot, onde os documentos podem ter campos muito diferentes. caching with redis how do you use redis in your projects? como você usa o redis nos seus projetos? i use redis primarily as an in-memory cache to store expensive database query results. i also use it for managing distributed user sessions and implementing rate-limiting to protect apis from abuse. uso o redis principalmente como cache em memória para guardar resultados de consultas pesadas ao banco. também uso para gerenciar sessões de usuários distribuídas e implementar rate-limiting para proteger as apis. ", "interview-ai.html": "artificial intelligence artificial intelligence ai in observability is ai in observability real or just hype? ia em observabilidade é real ou hype? it’s real — if used correctly. the main value is anomaly detection, event correlation, and noise reduction. but it doesn’t replace good metrics and structured logging. é real — se bem aplicada. o principal valor é detectar anomalias, correlacionar eventos e reduzir ruído. mas não substitui boas métricas e logs estruturados. autonomous ai agents what are autonomous ai agents? o que são agentes autônomos de ia? unlike simple llm chatbots that only generate text, ai agents have memory, a goal, and use tool calling. they can autonomously decide to query a sql database, read the result, and send an email report without human intervention. diferente de chatbots simples que só geram texto, agentes de ia têm memória, um objetivo e usam tool calling (chamada de ferramentas). eles podem decidir autonomamente consultar um banco sql, ler o resultado e enviar um email. model context protocol (mcp) have you heard of the model context protocol (mcp)? você já ouviu falar no model context protocol (mcp)? yes, mcp is an open standard created by anthropic. it allows securely connecting llms to local data sources, corporate apis, and databases, standardizing how ai agents access context securely. sim, o mcp é um padrão aberto criado pela anthropic. ele permite conectar llms de forma segura a fontes de dados locais, apis corporativas e bancos de dados, padronizando como agentes de ia acessam contexto de forma segura. ai orchestration tools how would you build an automated workflow with ai? como você construiria um fluxo automatizado com ia? for visual, low-code automation, i'd use n8n to connect ai with apis like slack or whatsapp quickly. for fine-grained control via code, i'd use langchain with typescript or python to orchestrate complex reasoning chains. para automação visual low-code, usaria n8n para conectar a ia rapidamente com apis como slack ou whatsapp. para controle fino via código, usaria langchain com typescript ou python para orquestrar cadeias de raciocínio complexas. " };
+        const searchInput = document.getElementById('searchInput');
+        const btnSearch = document.getElementById('btnSearch');
+        const btnSearchClear = document.getElementById('btnSearchClear');
+
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query.replace(/\s/g, '').length < 2 && query.length > 0) return;
+
+            if (query.length === 0) {
+                clearSearch();
+                return;
+            }
+
+            btnSearchClear.style.display = 'block';
+
+            document.querySelectorAll('.col-md-4').forEach(col => {
+                const link = col.querySelector('a');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    if (searchIndex[href] && searchIndex[href].includes(query)) {
+                        col.style.display = 'block';
+                    } else {
+                        col.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            btnSearchClear.style.display = 'none';
+            document.querySelectorAll('.col-md-4').forEach(col => col.style.display = 'block');
+        }
+
+        btnSearch.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+        btnSearchClear.addEventListener('click', clearSearch);
+    </script>
+
+    <footer class="no-print">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Coluna 1: Developed by -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">
+                        <i class="bi bi-code-slash me-2"></i>
+                        Developed by
+                    </h5>
+                    <div class="mb-1">
+                        <a href="https://www.linsys.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-link logo-client d-inline-flex align-items-center">
+                            <img src="assets/images/linsys-logo.webp" alt="Linsys" title="Linsys">
+                        </a>
+
+                        <p class="logo-client-text"> — Filipe Gonçalves</p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contact -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Contact</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-envelope-fill footer-icon icon-email"></i>
+                        <a href="mailto:filipeh.goncalves@gmail.com" class="footer-link ">
+                            filipeh.goncalves@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Coluna 3: Social media -->
+                <div class="col-md-4">
+                    <h5 class="footer-title">Social media</h5>
+
+                    <p class="mb-2">
+                        <i class="bi bi-github footer-icon icon-github"></i>
+                        <a href="https://github.com/FilipeHG" target="_blank" class="footer-link">
+                            github.com/FilipeHG
+                        </a>
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-linkedin footer-icon icon-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/filipehg/" target="_blank" class="footer-link">
+                            linkedin.com/in/filipehg
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider" />
+
+            <div class="text-center opacity-85 small">
+                © 2026 Filipe Henrique Gonçalves — All rights reserved.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

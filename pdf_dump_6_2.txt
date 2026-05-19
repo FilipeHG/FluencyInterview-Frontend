@@ -1,0 +1,597 @@
+ 1. Arquiteturas de software 
+ 1.1 Qual a diferença entre Clean, Hexagonal e Onion Architecture? 
+ Resposta: 
+ As três arquiteturas têm o mesmo objetivo central:  isolar regras de negócio de detalhes de 
+ infraestrutura  , promovendo baixo acoplamento, alta  testabilidade e facilidade de evolução. A 
+ diferença está principalmente na  organização conceitual  e visual  . 
+ ●  Clean Architecture 
+ Proposta por Uncle Bob, organiza o sistema em círculos concêntricos: 
+ ○  Domínio/Entidades  no centro (regras de negócio puras). 
+ ○  Use Cases / Application  em volta (orquestram regras). 
+ ○  Interface Adapters  (controllers, presenters, gateways). 
+ ○  Frameworks & Drivers  (banco, UI, mensageria, etc.)  na borda. Regras: 
+ ○  Dependências sempre apontam  para dentro  . 
+ ○  Camadas internas não conhecem detalhes externos. 
+ ○  Usa interfaces para inverter dependências (DIP). 
+ ●  Hexagonal Architecture (Ports & Adapters) 
+ Foca em  portas (interfaces)  e  adaptadores (implementações)  : 
+ ○  A aplicação expõe  ports  (interfaces) para entrada/saída. 
+ ○  Adapters  conectam a aplicação a banco, UI, APIs externas,  filas, etc. 
+ ○  Não há uma hierarquia visual em círculos, mas sim um “núcleo” cercado de 
+ adaptadores. 
+ ○  Excelente para testes: você troca adaptadores sem mexer no core. 
+ ●  Onion Architecture 
+ Parecida com Clean, mas com foco ainda mais forte no  domínio no centro  : 
+ ○  Camada de  Domain  (entidades, agregados, serviços de  domínio). 
+ ○  Camada de  Application Services  (casos de uso). 
+ ○  Camada de  Infrastructure  (ORM, repositórios, mensageria). 
+ ○  Camada de  UI  na borda. 
+ ○  Infraestrutura depende do domínio, nunca o contrário. 
+ Resumo: 
+ ●  Todas seguem DIP e separação de responsabilidades. 
+ ●  Clean é mais “didática” e popular. 
+ ●  Hexagonal é mais explícita em ports/adapters. 
+ ●  Onion enfatiza domínio e DDD. 
+ 1.2 Qual a diferença entre essas arquiteturas e a arquitetura tradicional em 
+ 3 camadas? 
+ Resposta: 
+ A arquitetura em  3 camadas  (UI → BLL → DAL) é mais  simples e tradicional: 
+ ●  UI (Presentation)  : telas, controllers, views. 
+ ●  BLL (Business Logic Layer)  : regras de negócio. 
+ ●  DAL (Data Access Layer)  : acesso a banco. 
+ Problemas comuns: 
+ ●  Muitas vezes a BLL acaba dependendo diretamente de detalhes de infraestrutura. 
+ ●  É comum “vazar” lógica de negócio para UI ou DAL. 
+ ●  Testes unitários ficam mais difíceis quando a lógica está espalhada. 
+ ●  Escalar e evoluir o sistema se torna mais custoso. 
+ Já Clean/Hexagonal/Onion: 
+ ●  Colocam o  domínio no centro  . 
+ ●  Forçam dependências  de fora para dentro  . 
+ ●  Isolam infraestrutura, facilitando troca de banco, mensageria, UI, etc. 
+ ●  São mais adequadas para sistemas complexos, distribuídos e de longa vida. 
+ 1.3 O que é CQRS e quais são seus benefícios e trade-offs? 
+ Resposta: 
+ CQRS (Command Query Responsibility Segregation)  separa  o modelo de  leitura  do 
+ modelo de  escrita  . 
+ ●  Command Model  : 
+ ○  Responsável por  escrita  (create, update, delete). 
+ ○  Contém regras de negócio, validações, invariantes. 
+ ○  Pode usar entidades ricas, agregados, DDD. 
+ ●  Query Model  : 
+ ○  Responsável por  leitura  . 
+ ○  Pode usar modelos otimizados (DTOs, views, projeções). 
+ ○  Pode ler de bancos diferentes, caches, materialized views. 
+ Benefícios: 
+ ●  Escalabilidade independente de leitura e escrita. 
+ ●  Modelos mais simples e focados. 
+ ●  Facilita otimização de consultas. 
+ ●  Combina muito bem com Event Sourcing. 
+ Trade-offs: 
+ ●  Aumenta complexidade arquitetural. 
+ ●  Pode introduzir  eventual consistency  . 
+ ●  Exige mais disciplina e infraestrutura. 
+ 1.4 O que é Pub/Sub e em que cenários ele é ideal? 
+ Resposta: 
+ Pub/Sub (Publish/Subscribe)  é um padrão em que: 
+ ●  Publishers  enviam mensagens para um tópico/canal. 
+ ●  Subscribers  se inscrevem para receber mensagens desse  tópico. 
+ ●  O publisher não sabe quem consome; o subscriber não sabe quem publicou. 
+ Cenários ideais: 
+ ●  Arquiteturas event-driven. 
+ ●  Integração entre microserviços. 
+ ●  Notificações, eventos de domínio, logs de auditoria. 
+ ●  Sistemas desacoplados, onde produtores e consumidores evoluem de forma 
+ independente. 
+ Ferramentas típicas: SNS, SQS, Service Bus, RabbitMQ, Kafka, EventBridge, etc. 
+ 2. Programação assíncrona e paralelismo 
+ 2.1 Qual a diferença entre código síncrono e o uso de async/await? 
+ Resposta: 
+ ●  Código síncrono  : 
+ ○  Executa instruções em sequência. 
+ ○  Uma chamada bloqueante (ex.: acesso a banco, HTTP) segura a thread até 
+ terminar. 
+ ○  Em aplicações web, isso reduz a capacidade de atender múltiplas requisições. 
+ ●  Async/Await  : 
+ ○  Permite que a thread seja liberada enquanto a operação I/O está em 
+ andamento. 
+ ○  A operação continua “em background” e, quando termina, o fluxo retoma. 
+ ○  Não significa multithreading; significa  não bloquear  a thread  . 
+ ○  Ideal para operações I/O-bound (HTTP, banco, arquivos, filas). 
+ Benefícios: 
+ ●  Melhor uso de recursos. 
+ ●  Maior escalabilidade. 
+ ●  Melhor responsividade em UI e APIs. 
+ 2.2 Por que o EF Core não suporta operações paralelas no mesmo 
+ DbContext? 
+ Resposta: 
+ O  DbContext  não é thread-safe  . Isso significa que: 
+ ●  Se você tentar executar múltiplas consultas ou comandos em paralelo usando a mesma 
+ instância de  DbContext  , pode ocorrer: 
+ ○  Corrupção de estado interno. 
+ ○  Exceções de concorrência. 
+ ○  Comportamento indefinido. 
+ Por isso, a recomendação é: 
+ ●  Sempre usar  await  nas operações assíncronas. 
+ ●  Para operações realmente paralelas, usar  instâncias  separadas  de  DbContext  . 
+ 3. Cloud: AWS, Azure, Databricks, Serverless 
+ 3.1 Como funciona o fluxo Pub/Sub usando Azure Cloud Services? 
+ Resposta: 
+ Um fluxo típico de Pub/Sub na Azure pode envolver: 
+ ●  Azure Service Bus (Topics e Subscriptions) 
+ ○  O produtor publica mensagens em um  Topic  . 
+ ○  Cada  Subscription  recebe uma cópia da mensagem. 
+ ○  É possível aplicar filtros por assinatura, dead-letter, etc. 
+ ●  Azure Functions ou Logic Apps  como consumidores: 
+ ○  São disparadas quando novas mensagens chegam. 
+ ○  Processam a mensagem e podem acionar outros serviços. 
+ ●  Azure Event Grid / Web PubSub  : 
+ ○  Event Grid para eventos de recursos Azure (storage, etc.). 
+ ○  Web PubSub para comunicação em tempo real (websockets). 
+ Benefícios: 
+ ●  Escalabilidade automática. 
+ ●  Desacoplamento entre produtores e consumidores. 
+ ●  Suporte a DLQ, retries, filtros. 
+ 3.2 Como funciona o fluxo Pub/Sub usando AWS (SNS, SQS, Lambda, 
+ EventBridge)? 
+ Resposta: 
+ Um fluxo típico na AWS: 
+ ●  SNS (Simple Notification Service)  : 
+ ○  Atua como  tópico de publicação  . 
+ ○  Produtores publicam mensagens no tópico. 
+ ●  SQS (Simple Queue Service)  : 
+ ○  Pode ser inscrita como consumidor do SNS. 
+ ○  Armazena mensagens até que sejam processadas. 
+ ●  Lambda  : 
+ ○  Pode ser inscrita diretamente no SNS. 
+ ○  Ou configurada como  event source  da SQS (fazendo polling  da fila). 
+ ●  EventBridge  : 
+ ○  Pode ser usado para roteamento avançado de eventos com regras e filtros. 
+ Fluxo 1: SNS → Lambda 
+ ●  SNS publica. 
+ ●  Lambda é invocada diretamente. 
+ ●  Ideal para notificações em tempo real, eventos simples. 
+ Fluxo 2: SNS → SQS → Lambda 
+ ●  SNS publica no tópico. 
+ ●  SQS recebe a mensagem. 
+ ●  Lambda lê da fila via event source mapping. 
+ Vantagens do fluxo com SQS: 
+ ●  Buffering. 
+ ●  Retry automático. 
+ ●  Controle de taxa. 
+ ●  Evita sobrecarga da Lambda. 
+ ●  Melhor resiliência. 
+ 3.3 O que é AWS Lambda e em que cenários ela é ideal? 
+ Resposta: 
+ AWS Lambda  é um serviço de computação serverless: 
+ ●  Você escreve funções (em C#, Node.js, Python, etc.). 
+ ●  A AWS cuida de provisionamento, escalabilidade e infraestrutura. 
+ ●  Você paga apenas pelo tempo de execução. 
+ Cenários ideais: 
+ ●  Processamento de eventos (SNS, SQS, S3, API Gateway). 
+ ●  Webhooks. 
+ ●  Jobs de curta duração. 
+ ●  Pipelines de dados. 
+ 3.4 O que é Azure Databricks e quando você usaria? 
+ Resposta: 
+ Azure Databricks  é uma plataforma de análise de dados  e processamento distribuído 
+ baseada em Apache Spark, integrada ao ecossistema Azure. 
+ ●  Permite: 
+ ○  Processamento de grandes volumes de dados (batch e streaming). 
+ ○  Criação de notebooks colaborativos (Python, Scala, SQL). 
+ ○  Integração com Data Lake, Synapse, Power BI, etc. 
+ Cenários ideais: 
+ ●  Big Data. 
+ ●  ETL/ELT em larga escala. 
+ ●  Machine Learning em cima de grandes datasets. 
+ ●  Pipelines de dados analíticos. 
+ 4. Webhooks, SaaS e MicroSaaS 
+ 4.1 O que é um Webhook e como você o utilizaria em uma arquitetura 
+ SaaS? 
+ Resposta: 
+ Um  Webhook  é um mecanismo de comunicação baseado  em  HTTP callbacks  : 
+ ●  Um sistema A expõe uma URL para receber notificações. 
+ ●  Um sistema B, ao detectar um evento (ex.: pagamento aprovado, mensagem recebida), 
+ faz uma requisição HTTP (geralmente POST) para essa URL com os dados do evento. 
+ Características: 
+ ●  Comunicação  push  (o servidor envia, o cliente não  precisa ficar consultando). 
+ ●  Baseado em HTTP/HTTPS. 
+ ●  Normalmente usa JSON ou XML no corpo. 
+ Uso em SaaS: 
+ ●  Notificar sistemas clientes sobre eventos (ex.: faturas, status de pedidos). 
+ ●  Integração com terceiros (ex.: gateways de pagamento, WhatsApp API). 
+ ●  Automatização de fluxos entre sistemas. 
+ Boas práticas: 
+ ●  Assinatura de payload (HMAC) para validar autenticidade. 
+ ●  Retry com backoff em caso de falha. 
+ ●  Idempotência no processamento do lado receptor. 
+ 4.2 O que é um SaaS e o que diferencia um MicroSaaS? 
+ Resposta: 
+ SaaS (Software as a Service)  : 
+ ●  Modelo em que o software é oferecido como serviço via internet. 
+ ●  Usuários acessam via navegador ou API. 
+ ●  Cobrança geralmente por assinatura (mensal/anual). 
+ ●  Multi-tenant (vários clientes usando a mesma infraestrutura). 
+ MicroSaaS: 
+ ●  Um SaaS  enxuto  , focado em um problema muito específico. 
+ ●  Geralmente: 
+ ○  Time pequeno (às vezes uma pessoa só). 
+ ○  Nicho bem definido. 
+ ○  Escopo reduzido, mas bem resolvido. 
+ ●  Pode ser construído com: 
+ ○  Backend leve (ex.: .NET minimal APIs, Node). 
+ ○  Banco gerenciado. 
+ ○  Infra em cloud com baixo custo. 
+ ○  Integrações via Webhooks, APIs, etc. 
+ Você citou no documento a ideia de  MicroSaaS com Webhooks,  WhatsApp API, filas, etc.  , o 
+ que é um exemplo perfeito de aplicação desse conceito. 
+ 5. .NET, DI, EF Core, GC, AOT 
+ 5.1 O que é Injeção de Dependência (DI) no ASP.NET Core e por que ela é 
+ importante? 
+ Resposta: 
+ Injeção de Dependência é um  padrão de projeto  que  consiste em: 
+ ●  Em vez de uma classe criar diretamente suas dependências (  new  ), ela recebe essas 
+ dependências “de fora”, geralmente via construtor. 
+ ●  No ASP.NET Core, existe um  container de DI nativo  que: 
+ ○  Registra interfaces e implementações (  AddSingleton  ,  AddScoped  , 
+ AddTransient  ). 
+ ○  Resolve dependências automaticamente quando um controller, service, etc. é 
+ instanciado. 
+ Benefícios: 
+ ●  Baixo acoplamento. 
+ ●  Facilidade de teste (mock de dependências). 
+ ●  Melhor organização de código. 
+ ●  Implementação prática do DIP (Dependency Inversion Principle). 
+ 5.2 Qual a diferença entre Inversão de Dependência (DIP) e Injeção de 
+ Dependência (DI)? 
+ Resposta: 
+ ●  Inversão de Dependência (DIP)  : 
+ ○  É um  princípio  (o “D” do SOLID). 
+ ○  Diz que: 
+ ■  Módulos de alto nível não devem depender de módulos de baixo nível. 
+ ■  Ambos devem depender de abstrações. 
+ ■  Abstrações não devem depender de detalhes; detalhes devem depender 
+ de abstrações. 
+ ●  Injeção de Dependência (DI)  : 
+ ○  É um  padrão de projeto  . 
+ ○  É uma forma prática de aplicar DIP. 
+ ○  Em vez de uma classe criar suas dependências, elas são injetadas (via 
+ construtor, método, propriedade). 
+ DIP é o conceito; DI é uma das formas de implementá-lo. 
+ 5.3 Explique AddSingleton, AddScoped e AddTransient no ASP.NET Core 
+ Resposta: 
+ ●  AddSingleton  : 
+ ○  Uma única instância para toda a aplicação. 
+ ○  Criada na primeira vez que é solicitada. 
+ ○  Reutilizada em todas as requisições. 
+ ●  AddScoped  : 
+ ○  Uma instância por  requisição  HTTP. 
+ ○  Dentro da mesma requisição, todos que pedirem essa dependência recebem a 
+ mesma instância. 
+ ○  Em aplicações sem contexto de requisição (ex.: console), pode se comportar 
+ como Transient. 
+ ●  AddTransient  : 
+ ○  Uma nova instância a cada vez que é solicitada. 
+ ○  Ideal para serviços stateless e leves. 
+ 5.4 O que é Tracking no EF Core e quando usar AsNoTracking? 
+ Resposta: 
+ ●  Tracking  : 
+ ○  Quando você faz uma consulta com EF Core, por padrão ele “rastreia” as 
+ entidades retornadas. 
+ ○  Isso significa que, se você modificar essas entidades e chamar 
+ SaveChanges()  , o EF sabe o que mudou e gera os comandos  SQL 
+ adequados. 
+ ●  AsNoTracking()  : 
+ ○  Desabilita o tracking para aquela consulta. 
+ ○  Ideal para cenários de  somente leitura  , onde você  não vai atualizar as 
+ entidades. 
+ ○  Melhora performance e reduz uso de memória. 
+ 5.5 Explique o funcionamento do Garbage Collector no .NET e o papel do 
+ IDisposable 
+ Resposta: 
+ O  Garbage Collector (GC)  : 
+ ●  Gerencia automaticamente a memória de objetos  gerenciados  . 
+ ●  Quando um objeto não é mais referenciado, ele se torna elegível para coleta. 
+ ●  O GC: 
+ 1.  Marca objetos ainda em uso (Mark). 
+ 2.  Libera os não utilizados (Sweep). 
+ 3.  Pode compactar a memória (Compact) para evitar fragmentação. 
+ Porém, o GC  não sabe  como liberar recursos  não gerenciados  (ex.: handles de arquivo, 
+ conexões de banco, sockets). 
+ Por isso existe a interface  IDisposable  : 
+ ●  O método  Dispose()  deve: 
+ ○  Liberar recursos não gerenciados. 
+ ○  Chamar  GC.SuppressFinalize(this)  quando apropriado. 
+ ●  Em C#, usamos  using  para garantir que  Dispose()  seja  chamado. 
+ 5.6 O que é AOT (Ahead-of-Time Compilation) no .NET e quais suas 
+ vantagens e limitações? 
+ Resposta: 
+ AOT  compila o código IL diretamente para binário  nativo  antes da execução  : 
+ ●  Vantagens: 
+ ○  Reduz tempo de inicialização. 
+ ○  Pode reduzir consumo de memória. 
+ ○  Ideal para: 
+ ■  Azure Functions. 
+ ■  AWS Lambda. 
+ ■  Containers. 
+ ■  Ambientes restritos. 
+ ●  Limitações: 
+ ○  Menor flexibilidade para reflexão dinâmica. 
+ ○  Dificuldade com carregamento dinâmico de assemblies. 
+ ○  Algumas APIs podem não funcionar como no modelo JIT. 
+ 6. POO, SOLID, Polimorfismo, Struct vs Class, Stack vs 
+ Heap 
+ 6.1 Explique os princípios SOLID com exemplos práticos 
+ Resposta (resumida, mas completa): 
+ ●  S – Single Responsibility Principle 
+ Uma classe deve ter um único motivo para mudar. 
+ Ex.: separar lógica de cálculo de salário da lógica de persistência. 
+ ●  O – Open/Closed Principle 
+ Classes devem estar abertas para extensão, mas fechadas para modificação. 
+ Ex.: usar herança ou estratégias em vez de alterar código existente. 
+ ●  L – Liskov Substitution Principle 
+ Classes derivadas devem poder substituir a base sem quebrar o comportamento 
+ esperado. 
+ Ex.: uma subclasse não deve violar contratos da classe base. 
+ ●  I – Interface Segregation Principle 
+ Não forçar classes a implementar métodos que não usam. 
+ Ex.: dividir interfaces grandes em interfaces menores e específicas. 
+ ●  D – Dependency Inversion Principle 
+ Depender de abstrações, não de implementações. 
+ Ex.: injetar  IRepositorioCliente  em vez de  RepositorioClienteSql  . 
+ 6.2 O que é polimorfismo em tempo de compilação e em tempo de 
+ execução? 
+ Resposta: 
+ ●  Polimorfismo em tempo de compilação (overload/sobrecarga)  : 
+ ○  Mesma função, nomes iguais, assinaturas diferentes. 
+ ○  A escolha do método é feita em tempo de compilação. 
+ ●  Polimorfismo em tempo de execução (override/sobrescrita)  : 
+ ○  Uma classe derivada sobrescreve um método virtual/abstract da base. 
+ ○  A escolha do método é feita em tempo de execução, com base no tipo real do 
+ objeto. 
+ 6.3 Qual a diferença entre Struct e Class no .NET? 
+ Resposta: 
+ ●  Struct  : 
+ ○  Value type. 
+ ○  Alocado na stack (quando local) ou inline em outros objetos. 
+ ○  Não suporta herança (apenas interfaces). 
+ ○  Ideal para tipos pequenos, imutáveis, de uso intensivo. 
+ ●  Class  : 
+ ○  Reference type. 
+ ○  Alocado na heap. 
+ ○  Suporta herança. 
+ ○  Gerenciado pelo GC. 
+ 6.4 Explique a diferença entre memória Stack e Heap 
+ Resposta: 
+ ●  Stack  : 
+ ○  Memória de tamanho menor e acesso muito rápido. 
+ ○  Armazena: 
+ ■  Variáveis locais de tipos primitivos. 
+ ■  Structs pequenos. 
+ ■  Referências para objetos na heap. 
+ ○  Objetos “morrem” quando o escopo é encerrado. 
+ ●  Heap  : 
+ ○  Memória maior, gerenciada pelo GC. 
+ ○  Armazena objetos de referência (classes, arrays, etc.). 
+ ○  O GC precisa varrer a heap para liberar memória. 
+ 7. Redis, Cache e Banco de Dados 
+ 7.1 Qual a vantagem de utilizar um banco de dados documental de cache 
+ como o Redis? 
+ Resposta: 
+ O  Redis  é um banco de dados em memória, chave-valor,  extremamente rápido: 
+ ●  Vantagens: 
+ ○  Baixa latência. 
+ ○  Alta taxa de throughput. 
+ ○  Ideal para cache de dados frequentemente acessados. 
+ ○  Reduz carga em bancos relacionais ou NoSQL. 
+ ○  Suporta estruturas como strings, hashes, listas, sets, sorted sets, etc. 
+ ●  Uso típico: 
+ ○  Cache de sessões. 
+ ○  Cache de resultados de consultas. 
+ ○  Rate limiting. 
+ ○  Filas simples. 
+ ○  Em IA, pode ser usado como  semantic cache  (armazenando  embeddings e 
+ respostas). 
+ 8. Angular: Components, Modules, Directives, Pipes, 
+ Observables 
+ 8.1 O que é um Component em Angular e quais são suas partes principais? 
+ Resposta: 
+ Um  Component  é a unidade básica de construção da  UI no Angular. 
+ ●  É definido por um  decorator  @Component  que: 
+ ○  Informa o seletor (  selector  ). 
+ ○  Template (  template  ou  templateUrl  ). 
+ ○  Estilos (  styles  ou  styleUrls  ). 
+ ●  Um componente é composto por: 
+ ○  Classe TypeScript  : lógica, propriedades, métodos. 
+ ○  Template HTML  : estrutura visual. 
+ ○  CSS/SCSS  : estilos. 
+ ○  Metadata  : fornecida pelo decorator. 
+ Ele é responsável por: 
+ ●  Controlar uma parte da tela. 
+ ●  Interagir com serviços. 
+ ●  Emitir eventos para outros componentes. 
+ 8.2 O que é um Module em Angular e qual seu papel? 
+ Resposta: 
+ Um  Module  em Angular (decorado com  @NgModule  ) é uma  unidade de organização da 
+ aplicação. 
+ Ele agrupa: 
+ ●  Declarations  : 
+ ○  Components. 
+ ○  Directives. 
+ ○  Pipes. 
+ ●  Imports  : 
+ ○  Outros módulos necessários (ex.:  CommonModule  ,  FormsModule  , 
+ HttpClientModule  ). 
+ ●  Exports  : 
+ ○  O que será exposto para outros módulos. 
+ ●  Providers  : 
+ ○  Serviços que serão injetados via DI. 
+ ●  Bootstrap  : 
+ ○  Componente raiz (no módulo principal). 
+ Diferença para Component: 
+ ●  Component  : representa uma parte da UI. 
+ ●  Module  : organiza e agrupa componentes, pipes, directives  e serviços. 
+ 8.3 O que são Directives em Angular? 
+ Resposta: 
+ Directives  são classes que podem modificar o comportamento  ou a aparência de elementos 
+ no DOM. 
+ Tipos: 
+ ●  Component  : é um tipo especial de directive com template. 
+ ●  Structural Directives  (  *ngIf  ,  *ngFor  ): 
+ ○  Alteram a estrutura do DOM (adicionam/removem elementos). 
+ ●  Attribute Directives  (  ngClass  ,  ngStyle  ): 
+ ○  Alteram aparência/comportamento de elementos existentes. 
+ Você pode criar directives customizadas para encapsular comportamentos reutilizáveis. 
+ 8.4 O que são Pipes em Angular e quando usá-los? 
+ Resposta: 
+ Pipes  transformam valores exibidos no template. 
+ Exemplos: 
+ ●  date  → formata datas. 
+ ●  currency  → formata valores monetários. 
+ ●  uppercase  → transforma texto em maiúsculas. 
+ Você pode criar  pipes customizados  para: 
+ ●  Formatar CPF/CNPJ. 
+ ●  Máscaras de telefone. 
+ ●  Transformações específicas de domínio. 
+ 8.5 O que são Observables em Angular e qual a relação com RxJS? 
+ Resposta: 
+ Observables  são uma abstração para fluxos de dados  assíncronos e reativos. 
+ ●  Usados em: 
+ ○  HttpClient  (requisições HTTP retornam Observables). 
+ ○  Eventos de UI. 
+ ○  Streams de dados contínuos. 
+ RxJS  é a biblioteca que implementa Observables e operadores  (map, filter, switchMap, etc.). 
+ Benefícios: 
+ ●  Composição de fluxos. 
+ ●  Tratamento de erros. 
+ ●  Cancelamento de assinaturas. 
+ ●  Reatividade. 
+ 9. Mensageria: Kafka, RabbitMQ 
+ 9.1 Qual a diferença entre Kafka e RabbitMQ e quando usar cada um? 
+ Resposta: 
+ ●  Kafka  : 
+ ○  Plataforma de streaming de eventos. 
+ ○  Baseado em log distribuído append-only. 
+ ○  Altíssimo throughput. 
+ ○  Ideal para: 
+ ■  Big Data. 
+ ■  Processamento de streams. 
+ ■  Event sourcing. 
+ ■  Integração de dados em larga escala. 
+ ●  RabbitMQ  : 
+ ○  Message broker tradicional. 
+ ○  Usa filas, exchanges, bindings. 
+ ○  Suporta roteamento complexo (fanout, topic, direct). 
+ ○  Ideal para: 
+ ■  Comunicação entre serviços. 
+ ■  Work queues. 
+ ■  Garantias por mensagem. 
+ ■  Baixa latência. 
+ 10. Containers e Orquestração: Docker, Rancher, 
+ Kubernetes 
+ 10.1 Qual a diferença entre Rancher e Kubernetes? 
+ Resposta: 
+ ●  Kubernetes  : 
+ ○  Orquestrador de containers. 
+ ○  Gerencia: 
+ ■  Deploy. 
+ ■  Escalabilidade. 
+ ■  Auto-healing. 
+ ■  Rolling updates. 
+ ○  É o “motor” de orquestração. 
+ ●  Rancher  : 
+ ○  Plataforma de gerenciamento de clusters Kubernetes e Docker. 
+ ○  Fornece: 
+ ■  UI amigável. 
+ ■  Gestão de múltiplos clusters. 
+ ■  Gestão de usuários, permissões. 
+ ■  Ferramentas de monitoramento e deploy. 
+ Em resumo: Kubernetes é o orquestrador; Rancher é uma camada de gestão por cima dele. 
+ 11. Agile, Git Flow, Code Review, Times, SOUP 
+ 11.1 Qual sua experiência com Agile, Scrum e Kanban? 
+ Resposta (baseado no seu texto): 
+ Você já trabalhou em squads usando: 
+ ●  Kanban  : 
+ ○  Quadros virtuais (Trello, Azure DevOps, Jira). 
+ ○  Colunas como: To Do, Doing, Code Review, Done. 
+ ●  Scrum  : 
+ ○  Dailys. 
+ ○  Sprints de 15 dias. 
+ ○  Planning (planejamento da sprint). 
+ ○  Review/Retrospective (o que foi bem/mal, melhorias). 
+ 11.2 Como você utiliza Git Flow e Code Review no dia a dia? 
+ Resposta: 
+ ●  Criação de  branches individuais  a partir da branch  principal (ex.:  master  ou  main  ). 
+ ●  Para hotfixes, criação de branches específicas (  hotfix/...  ). 
+ ●  Após o desenvolvimento: 
+ ○  Criação de  Merge Request (MR)  ou  Pull Request (PR)  . 
+ ○  Outro desenvolvedor faz o  Code Review  . 
+ ●  Nunca commitar diretamente na branch de produção/homologação/dev. 
+ ●  Só após aprovação o código é mergeado. 
+ 11.3 O que é SOUP e como você já lidou com isso? 
+ Resposta (baseado no seu exemplo): 
+ SOUP (  Software of Unknown Provenance  ) é software  de origem desconhecida ou não 
+ totalmente confiável. 
+ No seu caso, você mencionou um sistema com: 
+ ●  Problemas de processamento de mensagens de chat. 
+ ●  Acúmulo de mensagens em fila. 
+ ●  Perda de dados de notificações. 
+ Sua solução: 
+ ●  Replanejou o uso de filas. 
+ ●  Implementou  priorização  de processamento. 
+ ●  Evitou perda de dados. 
+ ●  Aumentou a segurança do processamento. 
+ 12. IA Generativa, RAG, Supabase, Redis, Node + .NET 
+ 12.1 O que é RAG (Retrieval Augmented Generation) e por que ele é 
+ importante? 
+ Resposta: 
+ RAG  é um padrão em que: 
+ ●  Você combina um  modelo de linguagem (LLM)  com um  mecanismo  de busca  . 
+ ●  Em vez de o LLM responder apenas com base no que foi treinado, você: 
+ 1.  Converte a pergunta em embedding. 
+ 2.  Busca em um banco vetorial (ex.: pgvector, Redis, etc.). 
+ 3.  Recupera documentos relevantes. 
+ 4.  Passa esses documentos como contexto para o LLM gerar a resposta. 
+ Benefícios: 
+ ●  Respostas mais precisas e atualizadas. 
+ ●  Possibilidade de conectar o LLM a dados privados. 
+ ●  Redução de alucinações. 
+ 12.2 Por que usar Supabase com pgvector em uma arquitetura de IA? 
+ Resposta: 
+ Supabase  é uma plataforma que oferece Postgres gerenciado,  com suporte a  pgvector  : 
+ ●  Permite armazenar embeddings em colunas vetoriais. 
+ ●  Suporta busca por similaridade (cosine, L2, etc.). 
+ ●  Integra bem com Node.js, .NET e outras linguagens. 
+ ●  Open source, com boa DX. 
+ É uma ótima escolha para implementar a camada de  retrieval  em um sistema RAG. 
+ 12.3 Por que usar Redis como semantic cache em IA? 
+ Resposta: 
+ Semantic cache  é um cache baseado em similaridade  semântica: 
+ ●  Em vez de cachear apenas por chave exata, você: 
+ ○  Gera embedding da pergunta. 
+ ○  Compara com embeddings de perguntas anteriores. 
+ ○  Se encontrar algo similar, retorna a resposta cacheada. 
+ Redis pode ser usado para: 
+ ●  Armazenar embeddings. 
+ ●  Armazenar respostas. 
+ ●  Fazer buscas rápidas. 
+ Benefícios: 
+ ●  Reduz custo de chamadas ao LLM. 
+ ●  Acelera respostas para perguntas recorrentes. 
+ ●  Melhora experiência do usuário. 
+ 12.4 Por que usar Node.js para a camada de IA e .NET para o backend 
+ principal? 
+ Resposta (alinhado com seu documento): 
+ ●  Node.js  : 
+ ○  Ecossistema rico em SDKs de IA. 
+ ○  Integração fácil com Supabase, Redis, OpenAI, etc. 
+ ○  Bom para orquestrar fluxos de IA, streaming de respostas, etc. 
+ ●  .NET  : 
+ ○  Excelente para backend corporativo. 
+ ○  Alta performance. 
+ ○  Tipagem forte. 
+ ○  Ótimo suporte a APIs REST, segurança, autenticação, etc. 
+ Arquitetura híbrida: 
+ ●  .NET como  backend principal  (APIs, regras de negócio,  integrações). 
+ ●  Node.js como  orquestrador de IA  (RAG, embeddings,  LLMs). 
+ ●  Comunicação via HTTP, gRPC ou mensageria. 
+

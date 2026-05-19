@@ -1,0 +1,60 @@
+{
+    "title": "Artificial Intelligence",
+    "iconClass": "bi bi-robot",
+    "sections": [
+        {
+            "title": "AI Agents & Orchestration",
+            "icon": "bi bi-cpu-fill",
+            "cards": [
+                {
+                    "topic": "Autonomous Agents & Tool Calling",
+                    "contentEn": "\n                        <p>Unlike simple LLM chatbots, <strong>AI Agents</strong> have goals, memory, and utilize <strong>Tool Calling</strong>. They can autonomously access SQL, APIs, and files without human intervention.</p>\n                        <ul>\n                            <li><strong>MCP (Model Context Protocol):</strong> Anthropic's standard for secure communication between LLMs and corporate tools.</li>\n                            <li><strong>Orchestrators:</strong>\n                                <ul>\n                                    <li><strong>n8n:</strong> Visual automation (low-code) to connect AI to WhatsApp/Slack workflows.</li>\n                                    <li><strong>LangChain / LangGraph:</strong> Code-based framework (Python/TS) to manipulate complex prompt chains.</li>\n                                </ul>\n                            </li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Diferente de chatbots simples, os <strong>AI Agents</strong> possuem objetivos, memória e utilizam <strong>Tool Calling</strong>. Podem acessar SQL, APIs e arquivos de forma autônoma sem intervenção humana.</p>\n                        <ul>\n                            <li><strong>MCP (Model Context Protocol):</strong> Padrão da Anthropic para comunicação segura entre LLMs e ferramentas corporativas.</li>\n                            <li><strong>Orquestradores:</strong>\n                                <ul>\n                                    <li><strong>n8n:</strong> Automação visual (low-code) para conectar IA a fluxos de WhatsApp/Slack.</li>\n                                    <li><strong>LangChain / LangGraph:</strong> Framework via código para manipular cadeias complexas.</li>\n                                </ul>\n                            </li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Prompt Engineering",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Zero-shot:</strong> Asking the model a question without providing examples.</li>\n                            <li><strong>Few-shot:</strong> Providing a few examples inside the prompt to guide the output format.</li>\n                            <li><strong>Chain-of-Thought (CoT):</strong> Asking the model to \"think step by step\", significantly improving logical reasoning.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Zero-shot:</strong> Pedir algo ao modelo sem fornecer exemplos.</li>\n                            <li><strong>Few-shot:</strong> Fornecer alguns exemplos no prompt para guiar a resposta.</li>\n                            <li><strong>Chain-of-Thought (CoT):</strong> Pedir para o modelo \"pensar passo a passo\", melhorando absurdamente a lógica.</li>\n                        </ul>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Generative AI & Vector DBs",
+            "icon": "bi bi-boxes",
+            "cards": [
+                {
+                    "topic": "RAG (Retrieval-Augmented Generation)",
+                    "contentEn": "\n                        <p>Enhancing LLMs with private data to prevent hallucinations.</p>\n                        <ul>\n                            <li><strong>Ingestion & Chunking:</strong> Splitting PDF/Docs into semantic logical chunks.</li>\n                            <li><strong>Embeddings:</strong> Converting text chunks into mathematical vectors.</li>\n                            <li><strong>Vector DB:</strong> Storing embeddings (e.g., Pinecone, Chroma, Milvus, Supabase/pgvector).</li>\n                            <li><strong>Retrieval & Re-ranking:</strong> Finding the closest vectors via cosine similarity and re-ranking them before sending to the LLM context window.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Enriquecer LLMs com dados privados para evitar alucinações.</p>\n                        <ul>\n                            <li><strong>Ingestão & Chunking:</strong> Cortar PDFs/Docs em pedaços lógicos e semânticos.</li>\n                            <li><strong>Embeddings:</strong> Converter textos em vetores matemáticos.</li>\n                            <li><strong>Vector DB:</strong> Banco que guarda os vetores (Pinecone, Chroma, Milvus, Supabase pgvector).</li>\n                            <li><strong>Retrieval & Re-ranking:</strong> Buscar os vetores mais próximos por similaridade de cosseno e reordená-los antes de enviar ao LLM.</li>\n                        </ul>\n                    ",
+                    "diagramHtml": "\n                        <div class=\"mermaid-container p-3 bg-light border rounded text-center\">\n                            <div class=\"mermaid\">\n                            flowchart LR\n                                Docs[PDFs / Docs] --> Chunk[Chunking]\n                                Chunk --> Embeddings[Embeddings]\n                                Embeddings --> Vector[(Vector DB)]\n                                Vector --> Retrieval[Retrieval]\n                                Retrieval --> LLM[LLM Context]\n                            </div>\n                        </div>\n                    "
+                },
+                {
+                    "topic": "Supabase & pgvector",
+                    "contentEn": "\n                        <p>Supabase provides managed PostgreSQL with native pgvector extension. Ideal for RAG architectures without adding another external Vector DB infrastructure.</p>\n                    ",
+                    "contentPt": "\n                        <p>Supabase entrega PostgreSQL gerenciado com a extensão pgvector nativa. Ideal para arquiteturas RAG sem a necessidade de gerenciar outra infra de banco vetorial externo.</p>\n                    "
+                }
+            ]
+        },
+        {
+            "title": "Advanced AI & LLM Engineering",
+            "icon": "bi bi-brain",
+            "cards": [
+                {
+                    "topic": "Model Context Protocol (MCP)",
+                    "contentEn": "\n                        <p>Anthropic's standard for secure, structured communication between LLMs and local/corporate tools.</p>\n                        <ul>\n                            <li><strong>Purpose:</strong> Enable AI to safely access corporate data, databases, APIs without exposing sensitive information to the model.</li>\n                            <li><strong>Architecture:</strong> Standardized protocol that decouples AI from infrastructure.</li>\n                            <li><strong>Security:</strong> Enforces zero-trust with explicit permissions and audit trails.</li>\n                            <li><strong>Benefits:</strong> GDPR/LGPD compliance, controlled access, reproducibility.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <p>Padrão da Anthropic para comunicação segura entre LLMs e ferramentas corporativas/locais.</p>\n                        <ul>\n                            <li><strong>Objetivo:</strong> LLM acessa dados corporativos de forma segura sem expor dados sensíveis.</li>\n                            <li><strong>Arquitetura:</strong> Protocolo padronizado que desacopla IA da infraestrutura.</li>\n                            <li><strong>Segurança:</strong> Zero-trust com permissões explícitas e auditoria.</li>\n                            <li><strong>Benefícios:</strong> Compliance GDPR/LGPD, controle de acesso, reproducibilidade.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "LLM Models & Selection",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>OpenAI GPT-4:</strong> State-of-the-art reasoning. Multimodal (text + vision). High cost.</li>\n                            <li><strong>Claude 3 (Anthropic):</strong> Excellent reasoning, longer context window (200K tokens), strong instruction following.</li>\n                            <li><strong>Open-source (Mistral, Llama):</strong> Lower cost, privacy-friendly, self-hosted options.</li>\n                            <li><strong>Criteria for Selection:</strong> Cost, latency, context length, reasoning ability, safety guarantees, deployment options.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>GPT-4:</strong> Estado-da-arte em raciocínio. Multimodal. Alto custo.</li>\n                            <li><strong>Claude 3:</strong> Excelente raciocínio, janela de contexto longa (200K tokens).</li>\n                            <li><strong>Open-source:</strong> Mistral, Llama. Custo baixo, privacy-friendly, auto-hosted.</li>\n                            <li><strong>Critérios:</strong> Custo, latência, tamanho de contexto, raciocínio, segurança, deploy.</li>\n                        </ul>\n                    "
+                },
+                {
+                    "topic": "Advanced Prompt Engineering & Caching",
+                    "contentEn": "\n                        <ul>\n                            <li><strong>Structured Output:</strong> Use JSON schemas to enforce deterministic outputs (Pydantic, zod).</li>\n                            <li><strong>Multi-turn Conversations:</strong> Maintain context across multiple messages for dialogue systems.</li>\n                            <li><strong>Semantic Caching:</strong> Cache LLM responses based on semantic similarity (Redis + embeddings).</li>\n                            <li><strong>Prompt Optimization:</strong> Iteratively refine prompts and measure quality with metrics (BLEU, ROUGE).</li>\n                            <li><strong>Cost Control:</strong> Monitor token usage, use cheaper models for simple tasks, implement rate limits.</li>\n                        </ul>\n                    ",
+                    "contentPt": "\n                        <ul>\n                            <li><strong>Structured Output:</strong> JSON schemas para outputs determinísticos (Pydantic, zod).</li>\n                            <li><strong>Multi-turn Conversations:</strong> Manter contexto entre mensagens para diálogos.</li>\n                            <li><strong>Semantic Caching:</strong> Cache de respostas baseado em similaridade semântica (Redis + embeddings).</li>\n                            <li><strong>Otimização de Prompt:</strong> Refinar iterativamente e medir qualidade (BLEU, ROUGE).</li>\n                            <li><strong>Controle de Custo:</strong> Monitorar tokens, usar modelos baratos para tarefas simples.</li>\n                        </ul>\n                    "
+                }
+            ]
+        }
+    ]
+}

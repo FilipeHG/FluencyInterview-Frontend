@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Databases & Caching",
+        "icon": "fas fa-database",
+        "cards": [
+            {
+                "topic": "EF Core AsNoTracking",
+                "q_en": "What is Tracking in EF Core and when should you use AsNoTracking()?",
+                "q_pt": "O que é Tracking no EF Core e quando usar AsNoTracking()?",
+                "a_en": "By default, when you query data with EF Core, it tracks the entities. If you modify them and call SaveChanges(), it automatically generates the SQL updates. AsNoTracking() disables this behavior. You should use it for read-only queries where you do not intend to modify the data. It massively improves performance and reduces memory usage.",
+                "a_pt": "Por padrão, quando o EF Core faz uma consulta, ele 'rastreia' as entidades. Se você alterá-las e chamar SaveChanges(), ele sabe como gerar o SQL de update. O AsNoTracking() desabilita isso. Você deve usar em consultas exclusivas para leitura. Isso melhora drasticamente a performance e reduz o uso de memória."
+            },
+            {
+                "topic": "Redis Database",
+                "q_en": "What is the advantage of using an in-memory document/cache database like Redis?",
+                "q_pt": "Qual a vantagem de utilizar um banco de dados documental/cache como o Redis?",
+                "a_en": "Redis operates entirely in RAM, making it incredibly fast with ultra-low latency. It is used to cache heavy database queries, manage distributed user sessions, rate-limiting, and simple queueing. In modern AI, it serves as a semantic cache to store vector embeddings, saving API token costs by returning cached LLM responses.",
+                "a_pt": "O Redis opera 100% em memória (RAM), o que o torna incrivelmente rápido e com baixíssima latência. É usado para fazer cache de consultas SQL pesadas, gerenciar sessões distribuídas e rate-limiting. Em IA moderna, ele atua como cache semântico guardando vetores, economizando tokens ao reaproveitar respostas do LLM."
+            },
+            {
+                "topic": "Azure Databricks",
+                "q_en": "What is Azure Databricks and when would you use it?",
+                "q_pt": "O que é Azure Databricks e quando você usaria?",
+                "a_en": "Azure Databricks is a distributed analytics platform built on Apache Spark, seamlessly integrated with Azure. I would use it for Big Data processing, massive ETL/ELT pipelines, streaming data, and running Machine Learning workloads over massive datasets stored in a Data Lake.",
+                "a_pt": "Azure Databricks é uma plataforma analítica distribuída baseada no Apache Spark, integrada ao Azure. Eu usaria para processamento de Big Data, pipelines massivos de ETL/ELT, streaming e workloads de Machine Learning em cima de bases gigantes no Data Lake."
+            },
+            {
+                "topic": "Spark Optimization",
+                "q_en": "How do you optimize Spark pipelines in Databricks for high-volume data and reduce shuffle?",
+                "q_pt": "Como você otimiza pipelines Spark no Databricks para dados de alto volume e reduz shuffle?",
+                "a_en": "I optimize by partitioning data on query-relevant keys, using broadcast joins for small dimension tables, and caching hot intermediate datasets only when it saves recomputation. In Databricks, I also tune cluster sizing, enable adaptive query execution, and use Delta Lake for ACID tables and Z-ordering on frequently filtered columns. The goal is to minimize expensive shuffle and disk spill while keeping the pipeline predictable under heavy load.",
+                "a_pt": "Eu otimizo particionando dados nas chaves relevantes para consulta, usando broadcast joins para tabelas pequenas e cacheando intermediários quentes apenas quando vale a pena. No Databricks, também ajusto o cluster, habilito Adaptive Query Execution e uso Delta Lake para tabelas ACID e Z-ordering em colunas muito filtradas. O objetivo é reduzir shuffle e spill de disco caros, mantendo o pipeline previsível sob carga pesada."
+            }
+        ]
+    }
+]
