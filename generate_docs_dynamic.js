@@ -39,7 +39,7 @@ function generateDocPage(filename, title, iconClass, sections) {
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="Docs-index.html" class="text-decoration-none">Documentation Hub</a></li>
+                <li class="breadcrumb-item"><a href="docs-index.html" class="text-decoration-none">Documentation Hub</a></li>
                 <li class="breadcrumb-item active fw-bold" aria-current="page">${title}</li>
             </ol>
         </nav>
@@ -641,8 +641,8 @@ pages.forEach(p => generateDocPage(p.filename, p.title, p.iconClass, p.sections)
 console.log('Documentation site generated successfully!');
 
 
-// --------------------- GENERATE DOCS HUB (Docs-index.html) ---------------------
-let docsHub = fs.readFileSync('Docs-index.html', 'utf8');
+// --------------------- GENERATE DOCS HUB (docs-index.html) ---------------------
+let docsHub = fs.readFileSync('docs-index.html', 'utf8');
 
 const docsSearchIndex = {};
 pages.forEach(p => {
@@ -720,5 +720,5 @@ const docsScriptStr = `
 `;
 
 docsHub = docsHub + '\n' + docsScriptStr + '\n</body>\n</html>';
-fs.writeFileSync('Docs-index.html', docsHub);
+fs.writeFileSync('docs-index.html', docsHub);
 console.log('Docs Hub updated with search functionality!');

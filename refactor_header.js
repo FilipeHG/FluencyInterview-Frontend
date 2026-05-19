@@ -34,8 +34,8 @@ replaceFile('index.html', (content) => {
     return html;
 });
 
-// 2. Docs-index.html
-replaceFile('Docs-index.html', (content) => {
+// 2. docs-index.html
+replaceFile('docs-index.html', (content) => {
     let html = content.replace(
         /<header class="sticky-top shadow-sm no-print"\s*style="background-color: #FFFFFF; border-bottom: 4px solid #e74c3c; z-index: 1000;">/g,
         `<div class="sticky-top no-print" style="z-index: 1000;">
@@ -127,7 +127,7 @@ replaceFile('generate_docs_dynamic.js', (content) => {
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li class="breadcrumb-item"><a href="Docs-index.html" class="text-white-50 text-decoration-none small">Documentation Hub</a></li>
+                    <li class="breadcrumb-item"><a href="docs-index.html" class="text-white-50 text-decoration-none small">Documentation Hub</a></li>
                     <li class="breadcrumb-item active text-white fw-bold small" aria-current="page">\${title}</li>
                 </ol>
             </nav>
